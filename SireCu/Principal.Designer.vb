@@ -28,12 +28,14 @@ Partial Class Principal
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.SuspendLayout()
         Me.MenuStripPrincipal.SuspendLayout()
         CType(Me.SplitContainerPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerPrincipal.Panel1.SuspendLayout()
         Me.SplitContainerPrincipal.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -88,6 +90,10 @@ Partial Class Principal
         Me.SplitContainerPrincipal.IsSplitterFixed = True
         Me.SplitContainerPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainerPrincipal.Name = "SplitContainerPrincipal"
+        '
+        'SplitContainerPrincipal.Panel1
+        '
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonIngresos)
         Me.SplitContainerPrincipal.Size = New System.Drawing.Size(784, 365)
         Me.SplitContainerPrincipal.SplitterDistance = 200
         Me.SplitContainerPrincipal.SplitterWidth = 1
@@ -105,6 +111,23 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SalirToolStripMenuItem.Text = "&Salir"
+        '
+        'RadioButtonIngresos
+        '
+        Me.RadioButtonIngresos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButtonIngresos.AutoSize = True
+        Me.RadioButtonIngresos.Checked = True
+        Me.RadioButtonIngresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButtonIngresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButtonIngresos.Location = New System.Drawing.Point(3, 3)
+        Me.RadioButtonIngresos.MinimumSize = New System.Drawing.Size(190, 30)
+        Me.RadioButtonIngresos.Name = "RadioButtonIngresos"
+        Me.RadioButtonIngresos.Size = New System.Drawing.Size(190, 30)
+        Me.RadioButtonIngresos.TabIndex = 0
+        Me.RadioButtonIngresos.TabStop = True
+        Me.RadioButtonIngresos.Text = "Ingresos"
+        Me.RadioButtonIngresos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButtonIngresos.UseVisualStyleBackColor = True
         '
         'Principal
         '
@@ -124,6 +147,8 @@ Partial Class Principal
         Me.ToolStripContainerPrincipal.PerformLayout()
         Me.MenuStripPrincipal.ResumeLayout(False)
         Me.MenuStripPrincipal.PerformLayout()
+        Me.SplitContainerPrincipal.Panel1.ResumeLayout(False)
+        Me.SplitContainerPrincipal.Panel1.PerformLayout()
         CType(Me.SplitContainerPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerPrincipal.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -135,5 +160,6 @@ Partial Class Principal
     Friend WithEvents SplitContainerPrincipal As System.Windows.Forms.SplitContainer
     Friend WithEvents ArchivoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents RadioButtonIngresos As System.Windows.Forms.RadioButton
 
 End Class
