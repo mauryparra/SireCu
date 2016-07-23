@@ -29,10 +29,13 @@ Partial Class Principal
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.stat_Label = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.stat_Bar = New System.Windows.Forms.ToolStripProgressBar()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.SuspendLayout()
+        Me.StatusStripPrincipal.SuspendLayout()
         CType(Me.SplitContainerPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerPrincipal.Panel1.SuspendLayout()
         Me.SplitContainerPrincipal.SuspendLayout()
@@ -66,6 +69,7 @@ Partial Class Principal
         'StatusStripPrincipal
         '
         Me.StatusStripPrincipal.Dock = System.Windows.Forms.DockStyle.None
+        Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar})
         Me.StatusStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.StatusStripPrincipal.Name = "StatusStripPrincipal"
         Me.StatusStripPrincipal.Size = New System.Drawing.Size(922, 22)
@@ -129,6 +133,18 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.SalirToolStripMenuItem.Text = "&Salir"
         '
+        'stat_Label
+        '
+        Me.stat_Label.Name = "stat_Label"
+        Me.stat_Label.Size = New System.Drawing.Size(65, 17)
+        Me.stat_Label.Text = "Conectado"
+        '
+        'stat_Bar
+        '
+        Me.stat_Bar.Name = "stat_Bar"
+        Me.stat_Bar.Size = New System.Drawing.Size(100, 16)
+        Me.stat_Bar.Visible = False
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -145,6 +161,8 @@ Partial Class Principal
         Me.ToolStripContainerPrincipal.TopToolStripPanel.PerformLayout()
         Me.ToolStripContainerPrincipal.ResumeLayout(False)
         Me.ToolStripContainerPrincipal.PerformLayout()
+        Me.StatusStripPrincipal.ResumeLayout(False)
+        Me.StatusStripPrincipal.PerformLayout()
         Me.SplitContainerPrincipal.Panel1.ResumeLayout(False)
         Me.SplitContainerPrincipal.Panel1.PerformLayout()
         CType(Me.SplitContainerPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
@@ -161,5 +179,7 @@ Partial Class Principal
     Friend WithEvents ArchivoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RadioButtonIngresos As System.Windows.Forms.RadioButton
+    Friend WithEvents stat_Label As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents stat_Bar As System.Windows.Forms.ToolStripProgressBar
 
 End Class

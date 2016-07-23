@@ -30,6 +30,9 @@ Public Class ABMIngresos
                 'Desconectamos
                 desconectar()
 
+                'Habilitamos boton para modificar
+                btn_Modificar.Enabled = True
+
             Case "Segundo"
                 lb_Mes1.Text = "Abril"
                 lb_Mes2.Text = "Mayo"
@@ -47,6 +50,8 @@ Public Class ABMIngresos
                 cargar(lb_Mes3.Text, tb_IngresosP3, tb_IngresosO3)
 
                 desconectar()
+
+                btn_Modificar.Enabled = True
 
             Case "Tercero"
                 lb_Mes1.Text = "Julio"
@@ -66,6 +71,8 @@ Public Class ABMIngresos
 
                 desconectar()
 
+                btn_Modificar.Enabled = True
+
             Case "Cuarto"
                 lb_Mes1.Text = "Octubre"
                 lb_Mes2.Text = "Noviembre"
@@ -84,6 +91,8 @@ Public Class ABMIngresos
 
                 desconectar()
 
+                btn_Modificar.Enabled = True
+
                 'Limpiamos si no es ninguno de los Trimestres
             Case Else
                 lb_Mes1.Text = "----"
@@ -95,6 +104,7 @@ Public Class ABMIngresos
                 tb_IngresosO1.Text = ""
                 tb_IngresosO2.Text = ""
                 tb_IngresosO3.Text = ""
+                btn_Modificar.Enabled = False
         End Select
 
     End Sub
@@ -131,4 +141,127 @@ Public Class ABMIngresos
 
     End Sub
 
+    'Boton Modificar
+    Private Sub btn_Modificar_Click(sender As Object, e As EventArgs) Handles btn_Modificar.Click
+
+        'Habilitamos
+        tb_IngresosP1.Enabled = True
+        tb_IngresosP2.Enabled = True
+        tb_IngresosP3.Enabled = True
+        tb_IngresosO1.Enabled = True
+        tb_IngresosO2.Enabled = True
+        tb_IngresosO3.Enabled = True
+        btn_Guardar.Enabled = True
+        btn_Modificar.Enabled = False
+
+    End Sub
+
+    'Boton Guardar
+    Private Sub btn_Guardar_Click(sender As Object, e As EventArgs) Handles btn_Guardar.Click
+
+        'Conectamos la BD
+        If conectar() = True Then
+            Exit Sub
+        End If
+
+        'Preguntamos si esta seguro
+        If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
+
+            'Verificamos si esta vacío (No se puede convertir un "nothing" en double)
+
+            'Primera Fila
+            If (tb_IngresosP1.Text = "") Then
+                If tb_IngresosO1.Text = "" Then
+                    guardar(lb_Mes1.Text, "0.00", "0.00")
+                Else : guardar(lb_Mes1.Text, "0.00", CDbl(tb_IngresosO1.Text))
+                End If
+            ElseIf (tb_IngresosO1.Text = "") Then
+                guardar(lb_Mes1.Text, CDbl(tb_IngresosP1.Text), "0.00")
+            Else : guardar(lb_Mes1.Text, CDbl(tb_IngresosP1.Text), CDbl(tb_IngresosO1.Text))
+            End If
+
+            'Segunda Fila
+            If (tb_IngresosP2.Text = "") Then
+                If tb_IngresosO2.Text = "" Then
+                    guardar(lb_Mes2.Text, "0.00", "0.00")
+                Else : guardar(lb_Mes2.Text, "0.00", CDbl(tb_IngresosO2.Text))
+                End If
+            ElseIf (tb_IngresosO2.Text = "") Then
+                guardar(lb_Mes2.Text, CDbl(tb_IngresosP2.Text), "0.00")
+            Else : guardar(lb_Mes2.Text, CDbl(tb_IngresosP2.Text), CDbl(tb_IngresosO2.Text))
+            End If
+
+            'Tercera Fila
+            If (tb_IngresosP3.Text = "") Then
+                If tb_IngresosO3.Text = "" Then
+                    guardar(lb_Mes3.Text, "0.00", "0.00")
+                Else : guardar(lb_Mes3.Text, "0.00", CDbl(tb_IngresosO3.Text))
+                End If
+            ElseIf (tb_IngresosO3.Text = "") Then
+                guardar(lb_Mes3.Text, CDbl(tb_IngresosP3.Text), "0.00")
+            Else : guardar(lb_Mes3.Text, CDbl(tb_IngresosP3.Text), CDbl(tb_IngresosO3.Text))
+            End If
+
+            desconectar()
+
+            'Habilitamos
+            tb_IngresosP1.Enabled = False
+            tb_IngresosP2.Enabled = False
+            tb_IngresosP3.Enabled = False
+            tb_IngresosO1.Enabled = False
+            tb_IngresosO2.Enabled = False
+            tb_IngresosO3.Enabled = False
+            btn_Guardar.Enabled = False
+            btn_Modificar.Enabled = True
+
+        Else
+            desconectar()
+            Exit Sub
+        End If
+
+    End Sub
+    Private Sub guardar(ByVal mes As String, ByVal iprov As Double, ByVal oing As Double)
+        Dim sql As String = "UPDATE ingresos SET iProvinciales = @iProvinciales, oIngresos = @oIngresos WHERE mes = @mes"
+        Dim command As New SqlCeCommand
+        command.Parameters.AddWithValue("@iProvinciales", iprov)
+        command.Parameters.AddWithValue("@oIngresos", oing)
+        command.Parameters.AddWithValue("@mes", mes)
+
+        consultar(sql, command)
+    End Sub
+
+    'Verificación de solo entrada de números
+    Public Sub keyverify(ByVal e As System.Windows.Forms.KeyPressEventArgs)
+
+        If Char.IsLetter(e.KeyChar) Then ' Letras -> no
+            e.Handled = True
+        ElseIf Char.IsControl(e.KeyChar) Then 'Caracter de control -> si
+            e.Handled = False
+        ElseIf Char.IsSeparator(e.KeyChar) Then 'Espacio en blanco -> no
+            e.Handled = True
+        ElseIf Char.IsDigit(e.KeyChar) Then 'Numeros -> si
+            e.Handled = False
+        ElseIf (e.KeyChar = ",") Then 'Coma -> Si
+            e.Handled = False
+        Else : e.Handled = True
+        End If
+    End Sub
+    Private Sub tb_IngresosO1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_IngresosO1.KeyPress
+        keyverify(e)
+    End Sub
+    Private Sub tb_IngresosO2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_IngresosO2.KeyPress
+        keyverify(e)
+    End Sub
+    Private Sub tb_IngresosO3_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_IngresosO3.KeyPress
+        keyverify(e)
+    End Sub
+    Private Sub tb_IngresosP1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_IngresosP1.KeyPress
+        keyverify(e)
+    End Sub
+    Private Sub tb_IngresosP2_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_IngresosP2.KeyPress
+        keyverify(e)
+    End Sub
+    Private Sub tb_IngresosP3_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_IngresosP3.KeyPress
+        keyverify(e)
+    End Sub
 End Class

@@ -161,6 +161,7 @@ Partial Class ABMIngresos
         '
         'btn_Modificar
         '
+        Me.btn_Modificar.Enabled = False
         Me.btn_Modificar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Modificar.Location = New System.Drawing.Point(526, 104)
         Me.btn_Modificar.Name = "btn_Modificar"
