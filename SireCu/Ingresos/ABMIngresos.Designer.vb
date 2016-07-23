@@ -22,32 +22,190 @@ Partial Class ABMIngresos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.LabelTitulo = New System.Windows.Forms.Label()
+        Me.lb_Titulo = New System.Windows.Forms.Label()
+        Me.cb_Trimestre = New System.Windows.Forms.ComboBox()
+        Me.lb_Trimestre = New System.Windows.Forms.Label()
+        Me.lb_Mes1 = New System.Windows.Forms.Label()
+        Me.lb_Mes2 = New System.Windows.Forms.Label()
+        Me.lb_Mes3 = New System.Windows.Forms.Label()
+        Me.tb_IngresosP1 = New System.Windows.Forms.TextBox()
+        Me.tb_IngresosP2 = New System.Windows.Forms.TextBox()
+        Me.tb_IngresosP3 = New System.Windows.Forms.TextBox()
+        Me.tb_IngresosO1 = New System.Windows.Forms.TextBox()
+        Me.tb_IngresosO2 = New System.Windows.Forms.TextBox()
+        Me.tb_IngresosO3 = New System.Windows.Forms.TextBox()
+        Me.btn_Guardar = New System.Windows.Forms.Button()
+        Me.btn_Modificar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'LabelTitulo
+        'lb_Titulo
         '
-        Me.LabelTitulo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.LabelTitulo.AutoSize = True
-        Me.LabelTitulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelTitulo.Location = New System.Drawing.Point(218, 12)
-        Me.LabelTitulo.Name = "LabelTitulo"
-        Me.LabelTitulo.Size = New System.Drawing.Size(102, 25)
-        Me.LabelTitulo.TabIndex = 0
-        Me.LabelTitulo.Text = "Ingresos"
+        Me.lb_Titulo.AutoSize = True
+        Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Titulo.Location = New System.Drawing.Point(279, 15)
+        Me.lb_Titulo.Name = "lb_Titulo"
+        Me.lb_Titulo.Size = New System.Drawing.Size(128, 38)
+        Me.lb_Titulo.TabIndex = 0
+        Me.lb_Titulo.Text = "Ingresos"
+        '
+        'cb_Trimestre
+        '
+        Me.cb_Trimestre.AutoCompleteCustomSource.AddRange(New String() {"Primero", "Segundo", "Tercero", "Cuarto"})
+        Me.cb_Trimestre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cb_Trimestre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.cb_Trimestre.FormattingEnabled = True
+        Me.cb_Trimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
+        Me.cb_Trimestre.Location = New System.Drawing.Point(238, 82)
+        Me.cb_Trimestre.Name = "cb_Trimestre"
+        Me.cb_Trimestre.Size = New System.Drawing.Size(121, 21)
+        Me.cb_Trimestre.TabIndex = 1
+        '
+        'lb_Trimestre
+        '
+        Me.lb_Trimestre.AutoSize = True
+        Me.lb_Trimestre.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Trimestre.Location = New System.Drawing.Point(95, 78)
+        Me.lb_Trimestre.Name = "lb_Trimestre"
+        Me.lb_Trimestre.Size = New System.Drawing.Size(94, 23)
+        Me.lb_Trimestre.TabIndex = 2
+        Me.lb_Trimestre.Text = "Trimestre:"
+        '
+        'lb_Mes1
+        '
+        Me.lb_Mes1.AutoSize = True
+        Me.lb_Mes1.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Mes1.Location = New System.Drawing.Point(33, 154)
+        Me.lb_Mes1.Name = "lb_Mes1"
+        Me.lb_Mes1.Size = New System.Drawing.Size(50, 23)
+        Me.lb_Mes1.TabIndex = 3
+        Me.lb_Mes1.Text = "----"
+        '
+        'lb_Mes2
+        '
+        Me.lb_Mes2.AutoSize = True
+        Me.lb_Mes2.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Mes2.Location = New System.Drawing.Point(33, 211)
+        Me.lb_Mes2.Name = "lb_Mes2"
+        Me.lb_Mes2.Size = New System.Drawing.Size(50, 23)
+        Me.lb_Mes2.TabIndex = 4
+        Me.lb_Mes2.Text = "----"
+        '
+        'lb_Mes3
+        '
+        Me.lb_Mes3.AutoSize = True
+        Me.lb_Mes3.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Mes3.Location = New System.Drawing.Point(33, 262)
+        Me.lb_Mes3.Name = "lb_Mes3"
+        Me.lb_Mes3.Size = New System.Drawing.Size(50, 23)
+        Me.lb_Mes3.TabIndex = 5
+        Me.lb_Mes3.Text = "----"
+        '
+        'tb_IngresosP1
+        '
+        Me.tb_IngresosP1.Enabled = False
+        Me.tb_IngresosP1.Location = New System.Drawing.Point(171, 158)
+        Me.tb_IngresosP1.Name = "tb_IngresosP1"
+        Me.tb_IngresosP1.Size = New System.Drawing.Size(119, 20)
+        Me.tb_IngresosP1.TabIndex = 6
+        '
+        'tb_IngresosP2
+        '
+        Me.tb_IngresosP2.Enabled = False
+        Me.tb_IngresosP2.Location = New System.Drawing.Point(171, 215)
+        Me.tb_IngresosP2.Name = "tb_IngresosP2"
+        Me.tb_IngresosP2.Size = New System.Drawing.Size(119, 20)
+        Me.tb_IngresosP2.TabIndex = 7
+        '
+        'tb_IngresosP3
+        '
+        Me.tb_IngresosP3.Enabled = False
+        Me.tb_IngresosP3.Location = New System.Drawing.Point(171, 266)
+        Me.tb_IngresosP3.Name = "tb_IngresosP3"
+        Me.tb_IngresosP3.Size = New System.Drawing.Size(119, 20)
+        Me.tb_IngresosP3.TabIndex = 8
+        '
+        'tb_IngresosO1
+        '
+        Me.tb_IngresosO1.Enabled = False
+        Me.tb_IngresosO1.Location = New System.Drawing.Point(332, 158)
+        Me.tb_IngresosO1.Name = "tb_IngresosO1"
+        Me.tb_IngresosO1.Size = New System.Drawing.Size(119, 20)
+        Me.tb_IngresosO1.TabIndex = 9
+        '
+        'tb_IngresosO2
+        '
+        Me.tb_IngresosO2.Enabled = False
+        Me.tb_IngresosO2.Location = New System.Drawing.Point(332, 215)
+        Me.tb_IngresosO2.Name = "tb_IngresosO2"
+        Me.tb_IngresosO2.Size = New System.Drawing.Size(119, 20)
+        Me.tb_IngresosO2.TabIndex = 10
+        '
+        'tb_IngresosO3
+        '
+        Me.tb_IngresosO3.Enabled = False
+        Me.tb_IngresosO3.Location = New System.Drawing.Point(332, 266)
+        Me.tb_IngresosO3.Name = "tb_IngresosO3"
+        Me.tb_IngresosO3.Size = New System.Drawing.Size(119, 20)
+        Me.tb_IngresosO3.TabIndex = 11
+        '
+        'btn_Guardar
+        '
+        Me.btn_Guardar.Enabled = False
+        Me.btn_Guardar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Guardar.Location = New System.Drawing.Point(526, 215)
+        Me.btn_Guardar.Name = "btn_Guardar"
+        Me.btn_Guardar.Size = New System.Drawing.Size(97, 46)
+        Me.btn_Guardar.TabIndex = 12
+        Me.btn_Guardar.Text = "Guardar"
+        Me.btn_Guardar.UseVisualStyleBackColor = True
+        '
+        'btn_Modificar
+        '
+        Me.btn_Modificar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Modificar.Location = New System.Drawing.Point(526, 104)
+        Me.btn_Modificar.Name = "btn_Modificar"
+        Me.btn_Modificar.Size = New System.Drawing.Size(97, 46)
+        Me.btn_Modificar.TabIndex = 13
+        Me.btn_Modificar.Text = "Modificar"
+        Me.btn_Modificar.UseVisualStyleBackColor = True
         '
         'ABMIngresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.LabelTitulo)
+        Me.Controls.Add(Me.btn_Modificar)
+        Me.Controls.Add(Me.btn_Guardar)
+        Me.Controls.Add(Me.tb_IngresosO3)
+        Me.Controls.Add(Me.tb_IngresosO2)
+        Me.Controls.Add(Me.tb_IngresosO1)
+        Me.Controls.Add(Me.tb_IngresosP3)
+        Me.Controls.Add(Me.tb_IngresosP2)
+        Me.Controls.Add(Me.tb_IngresosP1)
+        Me.Controls.Add(Me.lb_Mes3)
+        Me.Controls.Add(Me.lb_Mes2)
+        Me.Controls.Add(Me.lb_Mes1)
+        Me.Controls.Add(Me.lb_Trimestre)
+        Me.Controls.Add(Me.cb_Trimestre)
+        Me.Controls.Add(Me.lb_Titulo)
         Me.Name = "ABMIngresos"
-        Me.Size = New System.Drawing.Size(583, 365)
+        Me.Size = New System.Drawing.Size(662, 361)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents LabelTitulo As System.Windows.Forms.Label
+    Friend WithEvents lb_Titulo As System.Windows.Forms.Label
+    Friend WithEvents cb_Trimestre As System.Windows.Forms.ComboBox
+    Friend WithEvents lb_Trimestre As System.Windows.Forms.Label
+    Friend WithEvents lb_Mes1 As System.Windows.Forms.Label
+    Friend WithEvents lb_Mes2 As System.Windows.Forms.Label
+    Friend WithEvents lb_Mes3 As System.Windows.Forms.Label
+    Friend WithEvents tb_IngresosP1 As System.Windows.Forms.TextBox
+    Friend WithEvents tb_IngresosP2 As System.Windows.Forms.TextBox
+    Friend WithEvents tb_IngresosP3 As System.Windows.Forms.TextBox
+    Friend WithEvents tb_IngresosO1 As System.Windows.Forms.TextBox
+    Friend WithEvents tb_IngresosO2 As System.Windows.Forms.TextBox
+    Friend WithEvents tb_IngresosO3 As System.Windows.Forms.TextBox
+    Friend WithEvents btn_Guardar As System.Windows.Forms.Button
+    Friend WithEvents btn_Modificar As System.Windows.Forms.Button
 
 End Class
