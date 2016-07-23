@@ -22,15 +22,16 @@ Partial Class Principal
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.ToolStripContainerPrincipal = New System.Windows.Forms.ToolStripContainer()
         Me.StatusStripPrincipal = New System.Windows.Forms.StatusStrip()
+        Me.stat_Label = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.stat_Bar = New System.Windows.Forms.ToolStripProgressBar()
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
         Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.stat_Label = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.stat_Bar = New System.Windows.Forms.ToolStripProgressBar()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
@@ -52,13 +53,13 @@ Partial Class Principal
         'ToolStripContainerPrincipal.ContentPanel
         '
         Me.ToolStripContainerPrincipal.ContentPanel.Controls.Add(Me.SplitContainerPrincipal)
-        Me.ToolStripContainerPrincipal.ContentPanel.Size = New System.Drawing.Size(922, 382)
+        Me.ToolStripContainerPrincipal.ContentPanel.Size = New System.Drawing.Size(982, 465)
         Me.ToolStripContainerPrincipal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerPrincipal.LeftToolStripPanelVisible = False
         Me.ToolStripContainerPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainerPrincipal.Name = "ToolStripContainerPrincipal"
         Me.ToolStripContainerPrincipal.RightToolStripPanelVisible = False
-        Me.ToolStripContainerPrincipal.Size = New System.Drawing.Size(922, 428)
+        Me.ToolStripContainerPrincipal.Size = New System.Drawing.Size(982, 511)
         Me.ToolStripContainerPrincipal.TabIndex = 0
         Me.ToolStripContainerPrincipal.Text = "ToolStripContainer1"
         '
@@ -72,8 +73,20 @@ Partial Class Principal
         Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar})
         Me.StatusStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.StatusStripPrincipal.Name = "StatusStripPrincipal"
-        Me.StatusStripPrincipal.Size = New System.Drawing.Size(922, 22)
+        Me.StatusStripPrincipal.Size = New System.Drawing.Size(982, 22)
         Me.StatusStripPrincipal.TabIndex = 0
+        '
+        'stat_Label
+        '
+        Me.stat_Label.Name = "stat_Label"
+        Me.stat_Label.Size = New System.Drawing.Size(65, 17)
+        Me.stat_Label.Text = "Conectado"
+        '
+        'stat_Bar
+        '
+        Me.stat_Bar.Name = "stat_Bar"
+        Me.stat_Bar.Size = New System.Drawing.Size(100, 16)
+        Me.stat_Bar.Visible = False
         '
         'SplitContainerPrincipal
         '
@@ -88,7 +101,7 @@ Partial Class Principal
         'SplitContainerPrincipal.Panel1
         '
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonIngresos)
-        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(922, 382)
+        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(982, 465)
         Me.SplitContainerPrincipal.SplitterDistance = 200
         Me.SplitContainerPrincipal.SplitterWidth = 1
         Me.SplitContainerPrincipal.TabIndex = 0
@@ -116,7 +129,7 @@ Partial Class Principal
         Me.MenuStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem})
         Me.MenuStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPrincipal.Name = "MenuStripPrincipal"
-        Me.MenuStripPrincipal.Size = New System.Drawing.Size(922, 24)
+        Me.MenuStripPrincipal.Size = New System.Drawing.Size(982, 24)
         Me.MenuStripPrincipal.TabIndex = 0
         Me.MenuStripPrincipal.Text = "MenuStrip1"
         '
@@ -133,26 +146,16 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.SalirToolStripMenuItem.Text = "&Salir"
         '
-        'stat_Label
-        '
-        Me.stat_Label.Name = "stat_Label"
-        Me.stat_Label.Size = New System.Drawing.Size(65, 17)
-        Me.stat_Label.Text = "Conectado"
-        '
-        'stat_Bar
-        '
-        Me.stat_Bar.Name = "stat_Bar"
-        Me.stat_Bar.Size = New System.Drawing.Size(100, 16)
-        Me.stat_Bar.Visible = False
-        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(922, 428)
+        Me.ClientSize = New System.Drawing.Size(982, 511)
         Me.Controls.Add(Me.ToolStripContainerPrincipal)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStripPrincipal
         Me.Name = "Principal"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SireCu"
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.ResumeLayout(False)
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.PerformLayout()

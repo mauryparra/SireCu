@@ -118,7 +118,7 @@ Public Class ABMIngresos
         Dim dataset As New DataSet
         dataset.Tables.Add("tabla")
 
-        'Al command para ocnsultar le agregamos el mes con el que vamos a filtrar la consulta
+        'Al command para consultar le agregamos el mes con el que vamos a filtrar la consulta
         command.Parameters.AddWithValue("@mes", mes)
         'consultamos
         consultar(sql, command)
@@ -129,12 +129,8 @@ Public Class ABMIngresos
         adapter.Fill(dataset.Tables("tabla"))
 
         'Lleno los Textbox (vienen por referencia a la función) con el contenido del Dataset
-        For i = 0 To dataset.Tables("tabla").Rows.Count - 1
-            If (dataset.Tables("tabla").Rows.Item(i).Item("mes") = mes) Then
-                txb1.Text = dataset.Tables("tabla").Rows.Item(i).Item("iProvinciales")
-                txb2.Text = dataset.Tables("tabla").Rows.Item(i).Item("oIngresos")
-            End If
-        Next i
+        txb1.Text = dataset.Tables("tabla").Rows.Item(0).Item("iProvinciales")
+        txb2.Text = dataset.Tables("tabla").Rows.Item(0).Item("oIngresos")
 
         'Limpio el Dataset por si las dudas
         dataset.Tables("tabla").Rows.Clear()
@@ -153,6 +149,7 @@ Public Class ABMIngresos
         tb_IngresosO3.Enabled = True
         btn_Guardar.Enabled = True
         btn_Modificar.Enabled = False
+        cb_Trimestre.Enabled = False
 
     End Sub
 
@@ -213,9 +210,20 @@ Public Class ABMIngresos
             tb_IngresosO3.Enabled = False
             btn_Guardar.Enabled = False
             btn_Modificar.Enabled = True
+            cb_Trimestre.Enabled = True
+
 
         Else
             desconectar()
+            tb_IngresosP1.Enabled = False
+            tb_IngresosP2.Enabled = False
+            tb_IngresosP3.Enabled = False
+            tb_IngresosO1.Enabled = False
+            tb_IngresosO2.Enabled = False
+            tb_IngresosO3.Enabled = False
+            btn_Guardar.Enabled = False
+            btn_Modificar.Enabled = True
+            cb_Trimestre.Enabled = True
             Exit Sub
         End If
 

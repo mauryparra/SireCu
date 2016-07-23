@@ -42,7 +42,7 @@ Partial Class ABMIngresos
         '
         Me.lb_Titulo.AutoSize = True
         Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Titulo.Location = New System.Drawing.Point(279, 15)
+        Me.lb_Titulo.Location = New System.Drawing.Point(305, 13)
         Me.lb_Titulo.Name = "lb_Titulo"
         Me.lb_Titulo.Size = New System.Drawing.Size(128, 38)
         Me.lb_Titulo.TabIndex = 0
@@ -55,7 +55,7 @@ Partial Class ABMIngresos
         Me.cb_Trimestre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.cb_Trimestre.FormattingEnabled = True
         Me.cb_Trimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
-        Me.cb_Trimestre.Location = New System.Drawing.Point(238, 82)
+        Me.cb_Trimestre.Location = New System.Drawing.Point(154, 95)
         Me.cb_Trimestre.Name = "cb_Trimestre"
         Me.cb_Trimestre.Size = New System.Drawing.Size(121, 21)
         Me.cb_Trimestre.TabIndex = 1
@@ -63,18 +63,21 @@ Partial Class ABMIngresos
         'lb_Trimestre
         '
         Me.lb_Trimestre.AutoSize = True
+        Me.lb_Trimestre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lb_Trimestre.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Trimestre.Location = New System.Drawing.Point(95, 78)
+        Me.lb_Trimestre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.lb_Trimestre.Location = New System.Drawing.Point(38, 91)
         Me.lb_Trimestre.Name = "lb_Trimestre"
-        Me.lb_Trimestre.Size = New System.Drawing.Size(94, 23)
+        Me.lb_Trimestre.Size = New System.Drawing.Size(96, 25)
         Me.lb_Trimestre.TabIndex = 2
         Me.lb_Trimestre.Text = "Trimestre:"
         '
         'lb_Mes1
         '
         Me.lb_Mes1.AutoSize = True
+        Me.lb_Mes1.BackColor = System.Drawing.SystemColors.Control
         Me.lb_Mes1.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Mes1.Location = New System.Drawing.Point(33, 154)
+        Me.lb_Mes1.Location = New System.Drawing.Point(82, 186)
         Me.lb_Mes1.Name = "lb_Mes1"
         Me.lb_Mes1.Size = New System.Drawing.Size(50, 23)
         Me.lb_Mes1.TabIndex = 3
@@ -84,7 +87,7 @@ Partial Class ABMIngresos
         '
         Me.lb_Mes2.AutoSize = True
         Me.lb_Mes2.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Mes2.Location = New System.Drawing.Point(33, 211)
+        Me.lb_Mes2.Location = New System.Drawing.Point(82, 258)
         Me.lb_Mes2.Name = "lb_Mes2"
         Me.lb_Mes2.Size = New System.Drawing.Size(50, 23)
         Me.lb_Mes2.TabIndex = 4
@@ -94,7 +97,7 @@ Partial Class ABMIngresos
         '
         Me.lb_Mes3.AutoSize = True
         Me.lb_Mes3.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Mes3.Location = New System.Drawing.Point(33, 262)
+        Me.lb_Mes3.Location = New System.Drawing.Point(82, 331)
         Me.lb_Mes3.Name = "lb_Mes3"
         Me.lb_Mes3.Size = New System.Drawing.Size(50, 23)
         Me.lb_Mes3.TabIndex = 5
@@ -103,59 +106,59 @@ Partial Class ABMIngresos
         'tb_IngresosP1
         '
         Me.tb_IngresosP1.Enabled = False
-        Me.tb_IngresosP1.Location = New System.Drawing.Point(171, 158)
+        Me.tb_IngresosP1.Location = New System.Drawing.Point(225, 190)
         Me.tb_IngresosP1.Name = "tb_IngresosP1"
-        Me.tb_IngresosP1.Size = New System.Drawing.Size(119, 20)
-        Me.tb_IngresosP1.TabIndex = 6
+        Me.tb_IngresosP1.Size = New System.Drawing.Size(132, 20)
+        Me.tb_IngresosP1.TabIndex = 2
         '
         'tb_IngresosP2
         '
         Me.tb_IngresosP2.Enabled = False
-        Me.tb_IngresosP2.Location = New System.Drawing.Point(171, 215)
+        Me.tb_IngresosP2.Location = New System.Drawing.Point(225, 262)
         Me.tb_IngresosP2.Name = "tb_IngresosP2"
-        Me.tb_IngresosP2.Size = New System.Drawing.Size(119, 20)
-        Me.tb_IngresosP2.TabIndex = 7
+        Me.tb_IngresosP2.Size = New System.Drawing.Size(132, 20)
+        Me.tb_IngresosP2.TabIndex = 4
         '
         'tb_IngresosP3
         '
         Me.tb_IngresosP3.Enabled = False
-        Me.tb_IngresosP3.Location = New System.Drawing.Point(171, 266)
+        Me.tb_IngresosP3.Location = New System.Drawing.Point(225, 335)
         Me.tb_IngresosP3.Name = "tb_IngresosP3"
-        Me.tb_IngresosP3.Size = New System.Drawing.Size(119, 20)
-        Me.tb_IngresosP3.TabIndex = 8
+        Me.tb_IngresosP3.Size = New System.Drawing.Size(132, 20)
+        Me.tb_IngresosP3.TabIndex = 6
         '
         'tb_IngresosO1
         '
         Me.tb_IngresosO1.Enabled = False
-        Me.tb_IngresosO1.Location = New System.Drawing.Point(332, 158)
+        Me.tb_IngresosO1.Location = New System.Drawing.Point(399, 190)
         Me.tb_IngresosO1.Name = "tb_IngresosO1"
-        Me.tb_IngresosO1.Size = New System.Drawing.Size(119, 20)
-        Me.tb_IngresosO1.TabIndex = 9
+        Me.tb_IngresosO1.Size = New System.Drawing.Size(132, 20)
+        Me.tb_IngresosO1.TabIndex = 3
         '
         'tb_IngresosO2
         '
         Me.tb_IngresosO2.Enabled = False
-        Me.tb_IngresosO2.Location = New System.Drawing.Point(332, 215)
+        Me.tb_IngresosO2.Location = New System.Drawing.Point(399, 262)
         Me.tb_IngresosO2.Name = "tb_IngresosO2"
-        Me.tb_IngresosO2.Size = New System.Drawing.Size(119, 20)
-        Me.tb_IngresosO2.TabIndex = 10
+        Me.tb_IngresosO2.Size = New System.Drawing.Size(132, 20)
+        Me.tb_IngresosO2.TabIndex = 5
         '
         'tb_IngresosO3
         '
         Me.tb_IngresosO3.Enabled = False
-        Me.tb_IngresosO3.Location = New System.Drawing.Point(332, 266)
+        Me.tb_IngresosO3.Location = New System.Drawing.Point(399, 335)
         Me.tb_IngresosO3.Name = "tb_IngresosO3"
-        Me.tb_IngresosO3.Size = New System.Drawing.Size(119, 20)
-        Me.tb_IngresosO3.TabIndex = 11
+        Me.tb_IngresosO3.Size = New System.Drawing.Size(132, 20)
+        Me.tb_IngresosO3.TabIndex = 7
         '
         'btn_Guardar
         '
         Me.btn_Guardar.Enabled = False
         Me.btn_Guardar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_Guardar.Location = New System.Drawing.Point(526, 215)
+        Me.btn_Guardar.Location = New System.Drawing.Point(621, 283)
         Me.btn_Guardar.Name = "btn_Guardar"
-        Me.btn_Guardar.Size = New System.Drawing.Size(97, 46)
-        Me.btn_Guardar.TabIndex = 12
+        Me.btn_Guardar.Size = New System.Drawing.Size(116, 63)
+        Me.btn_Guardar.TabIndex = 9
         Me.btn_Guardar.Text = "Guardar"
         Me.btn_Guardar.UseVisualStyleBackColor = True
         '
@@ -163,10 +166,10 @@ Partial Class ABMIngresos
         '
         Me.btn_Modificar.Enabled = False
         Me.btn_Modificar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_Modificar.Location = New System.Drawing.Point(526, 104)
+        Me.btn_Modificar.Location = New System.Drawing.Point(621, 103)
         Me.btn_Modificar.Name = "btn_Modificar"
-        Me.btn_Modificar.Size = New System.Drawing.Size(97, 46)
-        Me.btn_Modificar.TabIndex = 13
+        Me.btn_Modificar.Size = New System.Drawing.Size(116, 61)
+        Me.btn_Modificar.TabIndex = 8
         Me.btn_Modificar.Text = "Modificar"
         Me.btn_Modificar.UseVisualStyleBackColor = True
         '
@@ -189,7 +192,7 @@ Partial Class ABMIngresos
         Me.Controls.Add(Me.cb_Trimestre)
         Me.Controls.Add(Me.lb_Titulo)
         Me.Name = "ABMIngresos"
-        Me.Size = New System.Drawing.Size(662, 361)
+        Me.Size = New System.Drawing.Size(773, 420)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
