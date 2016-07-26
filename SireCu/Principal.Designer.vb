@@ -28,6 +28,7 @@ Partial Class Principal
         Me.stat_Label = New System.Windows.Forms.ToolStripStatusLabel()
         Me.stat_Bar = New System.Windows.Forms.ToolStripProgressBar()
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
+        Me.RadioButtonEgresos = New System.Windows.Forms.RadioButton()
         Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -100,17 +101,33 @@ Partial Class Principal
         '
         'SplitContainerPrincipal.Panel1
         '
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonEgresos)
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonIngresos)
         Me.SplitContainerPrincipal.Size = New System.Drawing.Size(982, 465)
         Me.SplitContainerPrincipal.SplitterDistance = 200
         Me.SplitContainerPrincipal.SplitterWidth = 1
         Me.SplitContainerPrincipal.TabIndex = 0
         '
+        'RadioButtonEgresos
+        '
+        Me.RadioButtonEgresos.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButtonEgresos.AutoSize = True
+        Me.RadioButtonEgresos.BackColor = System.Drawing.SystemColors.Control
+        Me.RadioButtonEgresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButtonEgresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButtonEgresos.Location = New System.Drawing.Point(3, 78)
+        Me.RadioButtonEgresos.MinimumSize = New System.Drawing.Size(190, 30)
+        Me.RadioButtonEgresos.Name = "RadioButtonEgresos"
+        Me.RadioButtonEgresos.Size = New System.Drawing.Size(190, 30)
+        Me.RadioButtonEgresos.TabIndex = 1
+        Me.RadioButtonEgresos.Text = "Egresos"
+        Me.RadioButtonEgresos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButtonEgresos.UseVisualStyleBackColor = False
+        '
         'RadioButtonIngresos
         '
         Me.RadioButtonIngresos.Appearance = System.Windows.Forms.Appearance.Button
         Me.RadioButtonIngresos.AutoSize = True
-        Me.RadioButtonIngresos.Checked = True
         Me.RadioButtonIngresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButtonIngresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButtonIngresos.Location = New System.Drawing.Point(3, 13)
@@ -118,7 +135,6 @@ Partial Class Principal
         Me.RadioButtonIngresos.Name = "RadioButtonIngresos"
         Me.RadioButtonIngresos.Size = New System.Drawing.Size(190, 30)
         Me.RadioButtonIngresos.TabIndex = 0
-        Me.RadioButtonIngresos.TabStop = True
         Me.RadioButtonIngresos.Text = "Ingresos"
         Me.RadioButtonIngresos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButtonIngresos.UseVisualStyleBackColor = True
@@ -184,5 +200,6 @@ Partial Class Principal
     Friend WithEvents RadioButtonIngresos As System.Windows.Forms.RadioButton
     Friend WithEvents stat_Label As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents stat_Bar As System.Windows.Forms.ToolStripProgressBar
+    Friend WithEvents RadioButtonEgresos As System.Windows.Forms.RadioButton
 
 End Class

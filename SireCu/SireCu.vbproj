@@ -93,6 +93,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.vb" />
+    <Compile Include="Egresos\ABMEgresos.Designer.vb">
+      <DependentUpon>ABMEgresos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Egresos\ABMEgresos.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Ingresos\ABMIngresos.Designer.vb">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </Compile>
@@ -123,6 +129,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Egresos\ABMEgresos.resx">
+      <DependentUpon>ABMEgresos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ingresos\ABMIngresos.resx">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </EmbeddedResource>
@@ -166,7 +175,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Egresos\" />
     <Folder Include="Reportes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
