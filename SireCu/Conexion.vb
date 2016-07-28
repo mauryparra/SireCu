@@ -15,11 +15,11 @@ Module Conexion
         Catch e As SqlCeException
             'Muestra el error
             MessageBox.Show(e.Message)
-            Return True
+            Return False
             Exit Function
         End Try
 
-        Return False
+        Return True
 
     End Function
 

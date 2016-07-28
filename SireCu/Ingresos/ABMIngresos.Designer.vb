@@ -36,6 +36,10 @@ Partial Class ABMIngresos
         Me.tb_IngresosO3 = New System.Windows.Forms.TextBox()
         Me.btn_Guardar = New System.Windows.Forms.Button()
         Me.btn_Modificar = New System.Windows.Forms.Button()
+        Me.lb_Año = New System.Windows.Forms.Label()
+        Me.tb_Año = New System.Windows.Forms.TextBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lb_Titulo
@@ -155,6 +159,7 @@ Partial Class ABMIngresos
         '
         Me.btn_Guardar.Enabled = False
         Me.btn_Guardar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Guardar.ForeColor = System.Drawing.Color.Green
         Me.btn_Guardar.Location = New System.Drawing.Point(621, 283)
         Me.btn_Guardar.Name = "btn_Guardar"
         Me.btn_Guardar.Size = New System.Drawing.Size(116, 63)
@@ -166,17 +171,52 @@ Partial Class ABMIngresos
         '
         Me.btn_Modificar.Enabled = False
         Me.btn_Modificar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_Modificar.Location = New System.Drawing.Point(621, 103)
+        Me.btn_Modificar.Location = New System.Drawing.Point(621, 122)
         Me.btn_Modificar.Name = "btn_Modificar"
         Me.btn_Modificar.Size = New System.Drawing.Size(116, 61)
         Me.btn_Modificar.TabIndex = 8
         Me.btn_Modificar.Text = "Modificar"
         Me.btn_Modificar.UseVisualStyleBackColor = True
         '
+        'lb_Año
+        '
+        Me.lb_Año.AutoSize = True
+        Me.lb_Año.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Año.Location = New System.Drawing.Point(629, 26)
+        Me.lb_Año.Name = "lb_Año"
+        Me.lb_Año.Size = New System.Drawing.Size(38, 23)
+        Me.lb_Año.TabIndex = 11
+        Me.lb_Año.Text = "Año"
+        '
+        'tb_Año
+        '
+        Me.tb_Año.Enabled = False
+        Me.tb_Año.Location = New System.Drawing.Point(673, 31)
+        Me.tb_Año.MaxLength = 4
+        Me.tb_Año.Name = "tb_Año"
+        Me.tb_Año.Size = New System.Drawing.Size(49, 20)
+        Me.tb_Año.TabIndex = 12
+        Me.tb_Año.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox1.Image = Global.SireCu.My.Resources.Resources._363122_x
+        Me.PictureBox1.Location = New System.Drawing.Point(728, 31)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(19, 18)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 13
+        Me.PictureBox1.TabStop = False
+        Me.PictureBox1.Visible = False
+        '
         'ABMIngresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.tb_Año)
+        Me.Controls.Add(Me.lb_Año)
         Me.Controls.Add(Me.btn_Modificar)
         Me.Controls.Add(Me.btn_Guardar)
         Me.Controls.Add(Me.tb_IngresosO3)
@@ -193,6 +233,7 @@ Partial Class ABMIngresos
         Me.Controls.Add(Me.lb_Titulo)
         Me.Name = "ABMIngresos"
         Me.Size = New System.Drawing.Size(773, 420)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,5 +252,8 @@ Partial Class ABMIngresos
     Friend WithEvents tb_IngresosO3 As System.Windows.Forms.TextBox
     Friend WithEvents btn_Guardar As System.Windows.Forms.Button
     Friend WithEvents btn_Modificar As System.Windows.Forms.Button
+    Friend WithEvents lb_Año As System.Windows.Forms.Label
+    Friend WithEvents tb_Año As System.Windows.Forms.TextBox
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
 
 End Class
