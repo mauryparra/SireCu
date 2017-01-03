@@ -92,6 +92,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Ingreso.vb" />
+    <Compile Include="Clases\Reporte.vb" />
+    <Compile Include="Clases\reporteEgreso.vb" />
+    <Compile Include="Clases\reporteGeneral.vb" />
+    <Compile Include="Clases\reporteIngreso.vb" />
     <Compile Include="Conexion.vb" />
     <Compile Include="Egresos\ABMEgresos.Designer.vb">
       <DependentUpon>ABMEgresos.vb</DependentUpon>
@@ -103,7 +108,7 @@
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </Compile>
     <Compile Include="Ingresos\ABMIngresos.vb">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
