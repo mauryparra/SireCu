@@ -36,4 +36,16 @@
         End Set
     End Property
 
+    Public Sub cargar_ingreso()
+
+    End Sub
+
+    Public Sub modificar_ingreso()
+
+    End Sub
+
+    Public Sub filtrar_datos()
+
+    End Sub
+
 End Class

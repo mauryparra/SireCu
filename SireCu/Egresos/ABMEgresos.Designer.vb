@@ -63,7 +63,7 @@ Partial Class ABMEgresos
         Me.tbTComprobante.Location = New System.Drawing.Point(524, 133)
         Me.tbTComprobante.Name = "tbTComprobante"
         Me.tbTComprobante.Size = New System.Drawing.Size(163, 21)
-        Me.tbTComprobante.TabIndex = 8
+        Me.tbTComprobante.TabIndex = 7
         '
         'bttnConsultar
         '
@@ -81,14 +81,15 @@ Partial Class ABMEgresos
         Me.tbPVenta.Location = New System.Drawing.Point(524, 180)
         Me.tbPVenta.Name = "tbPVenta"
         Me.tbPVenta.Size = New System.Drawing.Size(59, 20)
-        Me.tbPVenta.TabIndex = 9
+        Me.tbPVenta.TabIndex = 8
         '
         'tbReintegro
         '
         Me.tbReintegro.Location = New System.Drawing.Point(155, 228)
+        Me.tbReintegro.MaxLength = 2
         Me.tbReintegro.Name = "tbReintegro"
         Me.tbReintegro.Size = New System.Drawing.Size(156, 20)
-        Me.tbReintegro.TabIndex = 7
+        Me.tbReintegro.TabIndex = 6
         '
         'lbYear
         '
@@ -122,11 +123,13 @@ Partial Class ABMEgresos
         '
         'tbYear
         '
+        Me.tbYear.Enabled = False
         Me.tbYear.Location = New System.Drawing.Point(668, 73)
         Me.tbYear.MaxLength = 4
         Me.tbYear.Name = "tbYear"
         Me.tbYear.Size = New System.Drawing.Size(54, 20)
-        Me.tbYear.TabIndex = 4
+        Me.tbYear.TabIndex = 45
+        Me.tbYear.TabStop = False
         '
         'tbMonth
         '
@@ -180,7 +183,7 @@ Partial Class ABMEgresos
         Me.tbGasto.Location = New System.Drawing.Point(155, 135)
         Me.tbGasto.Name = "tbGasto"
         Me.tbGasto.Size = New System.Drawing.Size(156, 21)
-        Me.tbGasto.TabIndex = 5
+        Me.tbGasto.TabIndex = 4
         '
         'btnGuardar
         '
@@ -300,7 +303,7 @@ Partial Class ABMEgresos
         Me.tbProveedor.Location = New System.Drawing.Point(155, 180)
         Me.tbProveedor.Name = "tbProveedor"
         Me.tbProveedor.Size = New System.Drawing.Size(156, 20)
-        Me.tbProveedor.TabIndex = 6
+        Me.tbProveedor.TabIndex = 5
         '
         'lb_Titulo
         '
@@ -317,7 +320,7 @@ Partial Class ABMEgresos
         Me.tbNComprobante.Location = New System.Drawing.Point(590, 180)
         Me.tbNComprobante.Name = "tbNComprobante"
         Me.tbNComprobante.Size = New System.Drawing.Size(97, 20)
-        Me.tbNComprobante.TabIndex = 63
+        Me.tbNComprobante.TabIndex = 9
         '
         'ABMEgresos
         '

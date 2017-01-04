@@ -1,8 +1,8 @@
 ﻿Public Class Reporte
 
-    Private sec As String
-    Private trim As String
-    Private año As Integer
+    Protected sec As String
+    Protected trim As String
+    Protected año As Integer
 
     'Get & Set
     Public Property seccional() As String
@@ -29,5 +29,17 @@
             año = value
         End Set
     End Property
+
+    Public Sub subir()
+
+    End Sub
+
+    Public Sub descargar()
+
+    End Sub
+
+    Public Sub generar()
+
+    End Sub
 
 End Class

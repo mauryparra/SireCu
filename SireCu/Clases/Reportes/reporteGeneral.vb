@@ -9,8 +9,12 @@
     Private totG As Double
 
     'Constructor
-    Public Sub New(ByVal saldoInicial As Double, ByVal saldoFinal As Double, ByVal ingresos As Double,
+    Public Sub New(ByVal seccional As String, ByVal año As Integer, ByVal trimestre As String, _
+                   ByVal saldoInicial As Double, ByVal saldoFinal As Double, ByVal ingresos As Double,
                    ByVal egresos As Double, ByVal totGen As Double)
+        Me.año = año
+        Me.sec = seccional
+        Me.trim = trimestre
         Me.sI = saldoInicial
         Me.sF = saldoFinal
         Me.ing = ingresos

@@ -92,11 +92,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Egreso.vb" />
     <Compile Include="Clases\Ingreso.vb" />
-    <Compile Include="Clases\Reporte.vb" />
-    <Compile Include="Clases\reporteEgreso.vb" />
-    <Compile Include="Clases\reporteGeneral.vb" />
-    <Compile Include="Clases\reporteIngreso.vb" />
+    <Compile Include="Clases\Personas\Persona.vb" />
+    <Compile Include="Clases\Personas\personaGastador.vb" />
+    <Compile Include="Clases\Personas\personaProveedor.vb" />
+    <Compile Include="Clases\Reportes\Reporte.vb" />
+    <Compile Include="Clases\Reportes\reporteEgreso.vb" />
+    <Compile Include="Clases\Reportes\reporteGeneral.vb" />
+    <Compile Include="Clases\Reportes\reporteIngreso.vb" />
+    <Compile Include="Clases\Personas\personaUsuario.vb" />
+    <Compile Include="Clases\Personas\Usuarios\usuarioAdmin.vb" />
+    <Compile Include="Clases\Personas\Usuarios\usuarioContador.vb" />
     <Compile Include="Conexion.vb" />
     <Compile Include="Egresos\ABMEgresos.Designer.vb">
       <DependentUpon>ABMEgresos.vb</DependentUpon>

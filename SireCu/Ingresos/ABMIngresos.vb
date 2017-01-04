@@ -169,6 +169,107 @@ Public Class ABMIngresos
 
     End Sub
 
+    'Modificar saldos al cambiar ingresos
+    Private Function modSaldo(ByVal trimestre As String)
+
+        'Consultamos el total de egresos del trimestre
+        'Consultamos la BD
+        Dim command As New SqlCeCommand
+        Dim adapter As SqlCeDataAdapter
+        Dim dataset As New DataSet
+        dataset.Tables.Add("egresos")
+        dataset.Tables.Add("saldos")
+        Dim sql As String = ""
+
+        Select Case trimestre
+            Case "Primero"
+                sql = "SELECT monto FROM egresos WHERE ((DATEPART(mm, fecha)='01' or mes=01) OR (DATEPART(mm, fecha)='02' or mes=02) OR (DATEPART(mm, fecha)='03' or mes=03)) AND (DATEPART(yyyy, fecha)='" + tb_Año.Text + "')"
+            Case "Segundo"
+                sql = "SELECT monto FROM egresos WHERE ((DATEPART(mm, fecha)='04' or mes=04) OR (DATEPART(mm, fecha)='05' or mes=05) OR (DATEPART(mm, fecha)='06' or mes=06)) AND (DATEPART(yyyy, fecha)='" + tb_Año.Text + "')"
+            Case "Tercero"
+                sql = "SELECT monto FROM egresos WHERE ((DATEPART(mm, fecha)='07' or mes=07) OR (DATEPART(mm, fecha)='08' or mes=08) OR (DATEPART(mm, fecha)='09' or mes=09)) AND (DATEPART(yyyy, fecha)='" + tb_Año.Text + "')"
+            Case "Cuarto"
+                sql = "SELECT monto FROM egresos WHERE ((DATEPART(mm, fecha)='10' or mes=10) OR (DATEPART(mm, fecha)='11' or mes=11) OR (DATEPART(mm, fecha)='12' or mes=12)) AND (DATEPART(yyyy, fecha)='" + tb_Año.Text + "')"
+        End Select
+
+        'Consultamos la BD
+        If conectar() = False Then
+            MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
+            Return (False)
+        End If
+        consultar(sql, command)
+        desconectar()
+
+        'Sacamos el resultado
+        adapter = New SqlCeDataAdapter(command)
+        adapter.Fill(dataset.Tables("egresos"))
+        'Recorrer el dataset
+        Dim etotal As Double = 0.0
+        For i = 0 To dataset.Tables("egresos").Rows.Count - 1
+            etotal = etotal + Val(dataset.Tables("egresos").Rows.Item(i).Item("monto"))
+        Next i
+
+
+        'Sacamos Ingresos + Saldo trimestre anterior
+        Dim trimestreAnterior As String = ""
+        Select Case trimestre
+            Case "Primero"
+                trimestreAnterior = "Cuarto"
+            Case "Segundo"
+                trimestreAnterior = "Primero"
+            Case "Tercero"
+                trimestreAnterior = "Segundo"
+            Case "Cuarto"
+                trimestreAnterior = "Terero"
+        End Select
+        'Variable que contiene al año anterior al ingresado
+        Dim añoa As String = Val(tb_Año.Text - 1)
+        'Si estamos en el primer trimestre, consultamos por el saldo del cuarto trimestre del año ANTERIOR
+        If (trimestreAnterior = "Cuarto") Then
+            sql = "SELECT saldo FROM saldos WHERE (trimestre = @trim) AND (año = '" + añoa + "')"
+        Else : sql = "SELECT saldo FROM saldos WHERE (trimestre = @trim) AND (año = '" + tb_Año.Text + "')"
+        End If
+        command.Parameters.AddWithValue("@trim", trimestreAnterior)
+        If conectar() = False Then
+            MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
+            Return (False)
+        End If
+        consultar(sql, command)
+        desconectar()
+        'Sacamos el resultado
+        adapter = New SqlCeDataAdapter(command)
+        adapter.Fill(dataset.Tables("saldos"))
+
+        'Total ingresos del trimestre modificados
+        Dim itotal As Double = (Val(tb_IngresosO1.Text) + Val(tb_IngresosO2.Text) + Val(tb_IngresosO3.Text) + _
+                                Val(tb_IngresosP1.Text) + Val(tb_IngresosP2.Text) + Val(tb_IngresosP3.Text))
+
+        'Sumamos (o restamos) el saldo del trimestre anterior a los ingresos totales de este trimestre
+        If (dataset.Tables("saldos").Rows.Count() = 0) Then
+            'No se cargaron saldos en el año anterior, no se suma nada
+        Else
+            itotal = itotal + Val(dataset.Tables("saldos").Rows.Item(0).Item("saldo"))
+        End If
+
+
+        'Actualizamos el Saldo del trimestre
+        'Valor del saldo disponible del trimestre
+        Dim final As Double = (Val(itotal) - Val(etotal))
+        'Consultamos la BD
+        sql = "UPDATE saldos SET saldo=@saldo WHERE trimestre = @trimestre"
+        command.Parameters.AddWithValue("@trimestre", trimestre)
+        command.Parameters.AddWithValue("@saldo", final)
+        If conectar() = False Then
+            MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
+            Return (False)
+        End If
+        consultar(sql, command)
+        desconectar()
+
+        Return (True)
+
+    End Function
+
     'Ver el último año cargado
     Private Function ultimoaño()
 
@@ -181,7 +282,6 @@ Public Class ABMIngresos
         'Consultamos la BD
         If conectar() = False Then
             Return ("error")
-            Exit Function
         End If
         consultar(query, command)
         desconectar()
@@ -258,6 +358,11 @@ Public Class ABMIngresos
             ElseIf (tb_IngresosO3.Text = "") Then
                 guardar(lb_Mes3.Text, CDbl(tb_IngresosP3.Text), "0.00", tb_Año.Text)
             Else : guardar(lb_Mes3.Text, CDbl(tb_IngresosP3.Text), CDbl(tb_IngresosO3.Text), tb_Año.Text)
+            End If
+
+            'Modificamos el Saldo del trimestre
+            If (modSaldo(cb_Trimestre.Text) = False) Then
+                MsgBox("Problemas al actualizar el saldo del trimestre", MsgBoxStyle.Exclamation, "Error")
             End If
 
             desconectar()
@@ -338,19 +443,19 @@ Public Class ABMIngresos
         If e.X > tb_Año.Location.X And e.X < tb_Año.Location.X + tb_Año.Width And _
         e.Y > tb_Año.Location.Y And e.Y < tb_Año.Location.Y + tb_Año.Height Then
             tb_Año.Enabled = True
+            cb_Trimestre.Text = ""
+            cb_Trimestre.Enabled = False
+            tb_IngresosO1.Enabled = False
+            tb_IngresosO2.Enabled = False
+            tb_IngresosO3.Enabled = False
+            tb_IngresosP1.Enabled = False
+            tb_IngresosP2.Enabled = False
+            tb_IngresosP3.Enabled = False
+            btn_Guardar.Enabled = False
+            btn_Modificar.Enabled = False
+            tb_Año.Focus()
+        Else
         End If
-
-        cb_Trimestre.Text = ""
-        cb_Trimestre.Enabled = False
-        tb_IngresosO1.Enabled = False
-        tb_IngresosO2.Enabled = False
-        tb_IngresosO3.Enabled = False
-        tb_IngresosP1.Enabled = False
-        tb_IngresosP2.Enabled = False
-        tb_IngresosP3.Enabled = False
-        btn_Guardar.Enabled = False
-        btn_Modificar.Enabled = False
-        tb_Año.Focus()
 
     End Sub
     'Al apretar enter salga del textbox
@@ -439,6 +544,7 @@ Public Class ABMIngresos
     Private Sub ABMIngresos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'usamos el año mas grande de la base de datos
         tb_Año.Text = ultimoaño()
+
     End Sub
 
     'Eliminar AÑO
