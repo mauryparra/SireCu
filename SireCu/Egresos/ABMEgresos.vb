@@ -29,12 +29,6 @@ Public Class ABMEgresos
                     Else
                         'GUARDAR
                         If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
-                            conectar()
-                            'Consultamos la BD
-                            If conectar() = False Then
-                                MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
-                                Exit Sub
-                            End If
 
                             Dim sql As String = ""
                             sql = "INSERT INTO egresos (num_comprobante, pventa, proveedor, tipo_gasto, nombre, " + _
@@ -59,7 +53,7 @@ Public Class ABMEgresos
                             'Consultamos
                             consultar(sql, command)
                             'Desconectamos
-                            desconectar()
+
 
                             'Actualizamos tabla de saldos
                             'saldosUpdate()
@@ -98,12 +92,8 @@ Public Class ABMEgresos
         command.Parameters.AddWithValue("@trim", trimestre)
 
         'Consultamos la BD
-        If conectar() = False Then
-            MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
-            Return (False)
-        End If
+
         consultar(sql, command)
-        desconectar()
 
         'Sacamos el resultado
         adapter = New SqlCeDataAdapter(command)
@@ -138,12 +128,8 @@ Public Class ABMEgresos
         command.Parameters.AddWithValue("@pventa", tbPVenta.Text)
 
         'Consultamos la BD
-        If conectar() = False Then
-            MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
-            Return (True)
-        End If
+
         consultar(query, command)
-        desconectar()
 
         adapter = New SqlCeDataAdapter(command)
         adapter.Fill(dataset.Tables("egresos"))
@@ -273,12 +259,8 @@ Public Class ABMEgresos
         command.Parameters.AddWithValue("@ncomp", tbNComprobante.Text)
         command.Parameters.AddWithValue("@trimestre", trimestre)
         command.Parameters.AddWithValue("@saldo", saldo)
-        If conectar() = False Then
-            MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
-            Exit Sub
-        End If
+
         consultar(sql, command)
-        desconectar()
 
     End Sub
     
@@ -306,12 +288,8 @@ Public Class ABMEgresos
         dataset.Tables.Add("ingresos")
 
         'Consultamos la BD
-        If conectar() = False Then
-            MsgBox("No se pudo conectar a la base de datos", MsgBoxStyle.Critical, "Error")
-            Return (0)
-        End If
+
         consultar(query, command)
-        desconectar()
 
         adapter = New SqlCeDataAdapter(command)
         adapter.Fill(dataset.Tables("ingresos"))
