@@ -1,4 +1,11 @@
-﻿Public Class Principal
+﻿Imports System.Data.SqlServerCe
+
+Public Class Principal
+
+    Public dataset As New DataSet
+    Public command As New SqlCeCommand
+    Public adapter As SqlCeDataAdapter
+    Public query As String
 
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
         Application.Exit()
@@ -44,4 +51,11 @@
 
     End Sub
 
+    Private Sub Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        'Tablas
+        dataset.Tables.Add("Ingresos")
+        dataset.Tables.Add("Egresos")
+
+    End Sub
 End Class

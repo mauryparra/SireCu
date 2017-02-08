@@ -1,18 +1,10 @@
-﻿Imports System.Data.SqlServerCe
+﻿
 
 Public Class ABMIngresos
-
-    Private dataset As New DataSet
-    Private command As New SqlCeCommand
-    Private adapter As SqlCeDataAdapter
-    Private query As String
 
 #Region "Eventos"
 
     Private Sub ABMIngresos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        'Agregarle al dataset una tabla vacia
-        dataset.Tables.Add("ingresos")
 
         'usamos el año mas grande de la base de datos
         tb_Año.Text = ultimoaño()
@@ -69,6 +61,10 @@ Public Class ABMIngresos
             End If
 
             ' TODO: Modificamos el Saldo del trimestre
+            'Saldo = (ingresos + saldo final pasado) - Egresos
+
+            'Consultar egresos
+
 
             activarEdicion(False)
 
