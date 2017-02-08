@@ -203,10 +203,10 @@ Partial Class ABMIngresos
         '
         'tb_Año
         '
-        Me.tb_Año.Enabled = False
         Me.tb_Año.Location = New System.Drawing.Point(673, 31)
         Me.tb_Año.MaxLength = 4
         Me.tb_Año.Name = "tb_Año"
+        Me.tb_Año.ReadOnly = True
         Me.tb_Año.Size = New System.Drawing.Size(49, 20)
         Me.tb_Año.TabIndex = 12
         Me.tb_Año.TabStop = False
