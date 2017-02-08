@@ -1,8 +1,8 @@
 ﻿Imports System.Data.SqlServerCe
 
 Module Conexion
-    Private cadena_conexion As String = "Data Source = |DataDirectory|\DBSireCu.sdf"
-    Private conexion As New SqlCeConnection(cadena_conexion)
+
+    Private conexion As New SqlCeConnection(My.Settings.CadenaConexion)
 
     Private Sub conectar()
 
