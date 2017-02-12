@@ -130,28 +130,20 @@ Public Class ABMIngresos
     ' Activa o desactiva la edición de Ingresos
     Private Sub activarEdicion(ByVal activar As Boolean)
         If activar Then
-            tb_IngresosC1.Enabled = True
-            tb_IngresosC2.Enabled = True
-            tb_IngresosC3.Enabled = True
-            tb_IngresosP1.Enabled = True
-            tb_IngresosP2.Enabled = True
-            tb_IngresosP3.Enabled = True
-            tb_IngresosO1.Enabled = True
-            tb_IngresosO2.Enabled = True
-            tb_IngresosO3.Enabled = True
+            For Each control As Control In GroupBoxIngresos.Controls
+                If TypeOf control Is TextBox Then
+                    control.Enabled = True
+                End If
+            Next
             btn_Guardar.Enabled = True
             btn_Modificar.Enabled = False
             cb_Trimestre.Enabled = False
         Else
-            tb_IngresosC1.Enabled = False
-            tb_IngresosC2.Enabled = False
-            tb_IngresosC3.Enabled = False
-            tb_IngresosP1.Enabled = False
-            tb_IngresosP2.Enabled = False
-            tb_IngresosP3.Enabled = False
-            tb_IngresosO1.Enabled = False
-            tb_IngresosO2.Enabled = False
-            tb_IngresosO3.Enabled = False
+            For Each control As Control In GroupBoxIngresos.Controls
+                If TypeOf control Is TextBox Then
+                    control.Enabled = False
+                End If
+            Next
             btn_Guardar.Enabled = False
             btn_Modificar.Enabled = True
             cb_Trimestre.Enabled = True
@@ -164,15 +156,11 @@ Public Class ABMIngresos
             tb_Año.ReadOnly = False
             cb_Trimestre.Text = ""
             cb_Trimestre.Enabled = False
-            tb_IngresosC1.Enabled = False
-            tb_IngresosC2.Enabled = False
-            tb_IngresosC3.Enabled = False
-            tb_IngresosP1.Enabled = False
-            tb_IngresosP2.Enabled = False
-            tb_IngresosP3.Enabled = False
-            tb_IngresosO1.Enabled = False
-            tb_IngresosO2.Enabled = False
-            tb_IngresosO3.Enabled = False
+            For Each control As Control In GroupBoxIngresos.Controls
+                If TypeOf control Is TextBox Then
+                    control.Enabled = False
+                End If
+            Next
             btn_Guardar.Enabled = False
             btn_Modificar.Enabled = False
             tb_Año.Focus()
@@ -274,18 +262,15 @@ Public Class ABMIngresos
 
                 'Limpiamos si no es ninguno de los Trimestres
             Case Else
-                lb_Mes1.Text = "----"
-                lb_Mes2.Text = "----"
-                lb_Mes3.Text = "----"
-                tb_IngresosC1.Text = ""
-                tb_IngresosC2.Text = ""
-                tb_IngresosC3.Text = ""
-                tb_IngresosP1.Text = ""
-                tb_IngresosP2.Text = ""
-                tb_IngresosP3.Text = ""
-                tb_IngresosO1.Text = ""
-                tb_IngresosO2.Text = ""
-                tb_IngresosO3.Text = ""
+                For Each control As Control In GroupBoxIngresos.Controls
+                    If TypeOf control Is Label And control.Name.Contains("lb_Mes") Then
+                        control.Text = "----"
+                    End If
+
+                    If TypeOf control Is TextBox Then
+                        control.Text = ""
+                    End If
+                Next
                 btn_Modificar.Enabled = False
         End Select
 
