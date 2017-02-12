@@ -22,6 +22,7 @@ Partial Class Principal
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
         Me.ToolStripContainerPrincipal = New System.Windows.Forms.ToolStripContainer()
         Me.StatusStripPrincipal = New System.Windows.Forms.StatusStrip()
@@ -33,6 +34,7 @@ Partial Class Principal
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
@@ -42,6 +44,7 @@ Partial Class Principal
         Me.SplitContainerPrincipal.Panel1.SuspendLayout()
         Me.SplitContainerPrincipal.SuspendLayout()
         Me.MenuStripPrincipal.SuspendLayout()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStripContainerPrincipal
@@ -162,6 +165,10 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.SalirToolStripMenuItem.Text = "&Salir"
         '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
+        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -188,6 +195,7 @@ Partial Class Principal
         Me.SplitContainerPrincipal.ResumeLayout(False)
         Me.MenuStripPrincipal.ResumeLayout(False)
         Me.MenuStripPrincipal.PerformLayout()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -201,5 +209,6 @@ Partial Class Principal
     Friend WithEvents stat_Label As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents stat_Bar As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents RadioButtonEgresos As System.Windows.Forms.RadioButton
+    Friend WithEvents ErrorProvider As System.Windows.Forms.ErrorProvider
 
 End Class

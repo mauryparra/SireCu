@@ -2,6 +2,9 @@
 
 Public Class ABMIngresos
 
+
+    Dim ControlesConErrores As List(Of Control) = New List(Of Control)
+
 #Region "Eventos"
 
     Private Sub ABMIngresos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -22,11 +25,10 @@ Public Class ABMIngresos
         'Preguntamos si esta seguro
         If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
 
-            'Verificamos si esta vacío (No se puede convertir un "nothing" en double)
-            If (tb_IngresosC1.Text = "") Or (tb_IngresosP1.Text = "") Or (tb_IngresosO1.Text = "") Or
-               (tb_IngresosC2.Text = "") Or (tb_IngresosP2.Text = "") Or (tb_IngresosO2.Text = "") Or
-               (tb_IngresosC3.Text = "") Or (tb_IngresosP3.Text = "") Or (tb_IngresosO3.Text = "") Then
-                MsgBox("Por favor complete los campos vacios", MsgBoxStyle.Exclamation, "Error")
+            'Verificamos que todos los campos hayan pasado las validaciones
+            If ControlesConErrores.Count > 0 Then
+                MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+
             Else
                 Select Case cb_Trimestre.Text
                     Case "Primero"
@@ -58,18 +60,15 @@ Public Class ABMIngresos
                         'Tercer fila
                         modificar_ingreso("12", tb_Año.Text, tb_IngresosP3.Text, tb_IngresosO3.Text, tb_IngresosC3.Text)
                 End Select
+
+                activarEdicion(False)
             End If
 
             ' TODO: Modificamos el Saldo del trimestre
             'Saldo = (ingresos + saldo final pasado) - Egresos
 
             'Consultar egresos
-
-
-            activarEdicion(False)
-
         Else
-            activarEdicion(False)
             Exit Sub
         End If
 
@@ -203,6 +202,16 @@ Public Class ABMIngresos
 
     End Sub
 
+    Private Sub validarIngresos(sender As Object, e As EventArgs)
+        If Not IsNumeric(sender.Text) Or IsDBNull(sender.Text) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar un valor numérico o 0")
+            ControlesConErrores.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErrores.Remove(sender)
+        End If
+    End Sub
+
 #End Region
 
 #Region "Validaciones"
@@ -304,6 +313,42 @@ Public Class ABMIngresos
     End Sub
     Private Sub tb_IngresosO3_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_IngresosO3.KeyPress
         keyverify(e, numeros:=True, comas:=True, puntosAComas:=True)
+    End Sub
+
+    Private Sub tb_IngresosC1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosC1.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosC2_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosC2.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosC3_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosC3.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosP1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosP1.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosP2_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosP2.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosP3_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosP3.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosO1_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosO1.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosO2_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosO2.Validating
+        validarIngresos(sender, e)
+    End Sub
+
+    Private Sub tb_IngresosO3_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tb_IngresosO3.Validating
+        validarIngresos(sender, e)
     End Sub
 
 #End Region
