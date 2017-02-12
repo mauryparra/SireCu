@@ -56,6 +56,7 @@ Public Class Principal
         'Tablas
         dataset.Tables.Add("Ingresos")
         dataset.Tables.Add("Egresos")
+        dataset.Tables.Add("Saldos")
 
     End Sub
 End Class

@@ -24,7 +24,7 @@ Module Ingreso
 
         consultar(Principal.query, Principal.command)
         Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.dataset.Tables("Ingresos").Clear()
+        ClearDataset(Principal.dataset)
         Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
 
         Dim array() As String
@@ -46,7 +46,7 @@ Module Ingreso
 
         Principal.query = "SELECT fecha FROM ingresos ORDER BY fecha DESC"
         consultar(Principal.query, Principal.command)
-        Principal.dataset.Tables("Ingresos").Clear()
+        ClearDataset(Principal.dataset)
 
         Principal.adapter = New SqlCeDataAdapter(Principal.command)
         Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
@@ -57,11 +57,5 @@ Module Ingreso
         End If
 
     End Function
-
-    'TODO Modificar saldos al cambiar ingresos  #FALTA COMPLETAR
-    Private Function modSaldo(ByVal trimestre As String)
-
-    End Function
-
 
 End Module
