@@ -11,7 +11,7 @@ Module Ingreso
         Principal.command.Parameters.AddWithValue("@iOtros", iotros)
         Principal.command.Parameters.AddWithValue("@iCentral", icen)
 
-        consultar(Principal.query, Principal.command)
+        consultarNQ(Principal.query, Principal.command)
 
         Principal.command.Parameters.Clear()
 
@@ -22,7 +22,7 @@ Module Ingreso
         Principal.query = "SELECT * from ingresos where DATEPART(month, fecha) = '" & mes & "'" &
                 " And DatePart(Year, fecha) = '" & año & "'"
 
-        consultar(Principal.query, Principal.command)
+        consultarNQ(Principal.query, Principal.command)
         Principal.adapter = New SqlCeDataAdapter(Principal.command)
         ClearDataset(Principal.dataset)
         Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
@@ -45,7 +45,7 @@ Module Ingreso
     Public Function ultimoaño()
 
         Principal.query = "SELECT fecha FROM ingresos ORDER BY fecha DESC"
-        consultar(Principal.query, Principal.command)
+        consultarNQ(Principal.query, Principal.command)
         ClearDataset(Principal.dataset)
 
         Principal.adapter = New SqlCeDataAdapter(Principal.command)
@@ -61,7 +61,7 @@ Module Ingreso
     Public Function verificar_año(ByVal año As Integer)
 
         Principal.query = "SELECT * from ingresos where DATEPART(Year, fecha) = '" & año & "'"
-        consultar(Principal.query, Principal.command)
+        consultarNQ(Principal.query, Principal.command)
         ClearDataset(Principal.dataset)
         Principal.adapter = New SqlCeDataAdapter(Principal.command)
         Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
@@ -76,9 +76,9 @@ Module Ingreso
 
     Public Sub new_año(ByVal año As String)
         For i = 1 To 12
-            Principal.query = "INSERT INTO ingresos (fecha, ingresos_prov, ingresos_central, ingresos_otros) 
-                                VALUES ('" & i & "-01-" & año & "' , '0,0', '0,0', '0,0')"
-            consultar(Principal.query, Principal.command)
+            Principal.query = "INSERT INTO ingresos (fecha, ingresos_prov, ingresos_central, ingresos_otros)" &
+                              "VALUES ('" & i & "-01-" & año & "' , '0,0', '0,0', '0,0')"
+            consultarNQ(Principal.query, Principal.command)
         Next
     End Sub
 

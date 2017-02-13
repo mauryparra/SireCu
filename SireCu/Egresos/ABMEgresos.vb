@@ -51,7 +51,7 @@ Public Class ABMEgresos
                             command.Parameters.AddWithValue("@monto", tbMonto.Text)
                             command.Parameters.AddWithValue("@dia", Now)
                             'Consultamos
-                            consultar(sql, command)
+                            consultarNQ(sql, command)
                             'Desconectamos
 
 
@@ -93,7 +93,7 @@ Public Class ABMEgresos
 
         'Consultamos la BD
 
-        consultar(sql, command)
+        consultarNQ(sql, command)
 
         'Sacamos el resultado
         adapter = New SqlCeDataAdapter(command)
@@ -112,7 +112,7 @@ Public Class ABMEgresos
                    MsgBoxStyle.Critical, "Warning")
             Return (False)
         End If
-        
+
 
     End Function
     'Verificación de comprobante repetido
@@ -129,7 +129,7 @@ Public Class ABMEgresos
 
         'Consultamos la BD
 
-        consultar(query, command)
+        consultarNQ(query, command)
 
         adapter = New SqlCeDataAdapter(command)
         adapter.Fill(dataset.Tables("egresos"))
@@ -260,10 +260,10 @@ Public Class ABMEgresos
         command.Parameters.AddWithValue("@trimestre", trimestre)
         command.Parameters.AddWithValue("@saldo", saldo)
 
-        consultar(sql, command)
+        consultarNQ(sql, command)
 
     End Sub
-    
+
 
     'Cambiar el año con doble click
     Private Sub ABMIngresos_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDoubleClick
@@ -289,7 +289,7 @@ Public Class ABMEgresos
 
         'Consultamos la BD
 
-        consultar(query, command)
+        consultarNQ(query, command)
 
         adapter = New SqlCeDataAdapter(command)
         adapter.Fill(dataset.Tables("ingresos"))

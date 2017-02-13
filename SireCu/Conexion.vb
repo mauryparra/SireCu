@@ -24,18 +24,37 @@ Module Conexion
 
     End Sub
 
-    Sub consultar(ByVal sql As String, ByRef command As SqlCeCommand)
+    Function consultarNQ(ByVal sql As String, ByRef command As SqlCeCommand) As Integer
+        Dim resultado As Integer = 0
 
         Try
             conectar()
             command.CommandText = sql
             command.Connection = conexion
-            command.ExecuteNonQuery()
+            resultado = command.ExecuteNonQuery()
             desconectar()
-        Catch e As SqlCeException
-            MessageBox.Show(e.Message)
+        Catch ex As SqlCeException
+            MessageBox.Show(ex.Message)
         End Try
 
-    End Sub
+        Return resultado
+    End Function
+
+    Function consultarES(ByVal sql As String, ByRef command As SqlCeCommand) As Object
+        Dim resultado As Object = New Object
+
+        Try
+            conectar()
+            command.CommandText = sql
+            command.Connection = conexion
+            resultado = command.ExecuteScalar()
+            desconectar()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        Return resultado
+    End Function
+
 
 End Module
