@@ -257,7 +257,7 @@ Partial Class ABMIngresos
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(111, 42)
+        Me.Label2.Location = New System.Drawing.Point(107, 42)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(126, 20)
         Me.Label2.TabIndex = 17

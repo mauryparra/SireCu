@@ -58,4 +58,28 @@ Module Ingreso
 
     End Function
 
+    Public Function verificar_año(ByVal año As Integer)
+
+        Principal.query = "SELECT * from ingresos where DATEPART(Year, fecha) = '" & año & "'"
+        consultar(Principal.query, Principal.command)
+        ClearDataset(Principal.dataset)
+        Principal.adapter = New SqlCeDataAdapter(Principal.command)
+        Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
+
+        If (Principal.dataset.Tables("ingresos").Rows.Count = 0) Then
+            Return (False)
+        Else
+            Return (True)
+        End If
+
+    End Function
+
+    Public Sub new_año(ByVal año As String)
+        For i = 1 To 12
+            Principal.query = "INSERT INTO ingresos (fecha, ingresos_prov, ingresos_central, ingresos_otros) 
+                                VALUES ('" & i & "-01-" & año & "' , '0,0', '0,0', '0,0')"
+            consultar(Principal.query, Principal.command)
+        Next
+    End Sub
+
 End Module

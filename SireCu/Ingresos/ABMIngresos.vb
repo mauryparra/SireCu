@@ -28,8 +28,14 @@ Public Class ABMIngresos
             'Verificamos que todos los campos hayan pasado las validaciones
             If ControlesConErrores.Count > 0 Then
                 MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
-
+                Exit Sub
             Else
+
+                'Verificamos si el año ya está ingresado
+                If (verificar_año(tb_Año.Text) = False) Then
+                    new_año(tb_Año.Text)
+                End If
+
                 Select Case cb_Trimestre.Text
                     Case "Primero"
                         'Primera fila
@@ -62,12 +68,9 @@ Public Class ABMIngresos
                 End Select
 
                 activarEdicion(False)
+
             End If
 
-            ' TODO: Modificamos el Saldo del trimestre
-            'Saldo = (ingresos + saldo final pasado) - Egresos
-
-            'Consultar egresos
         Else
             Exit Sub
         End If
