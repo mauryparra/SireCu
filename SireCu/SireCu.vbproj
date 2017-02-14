@@ -117,6 +117,7 @@
     <Compile Include="Ingresos\ABMIngresos.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="OtrasFunciones.vb" />
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
