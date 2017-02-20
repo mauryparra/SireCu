@@ -78,7 +78,7 @@ ipch/
 *.ncb
 *.opendb
 *.opensdf
-*.sdf
+# *.sdf Archivo de BD SQL CE
 *.cachefile
 *.VC.db
 *.VC.VC.opendb
@@ -136,6 +136,7 @@ DocProject/Help/html
 
 # Click-Once directory
 publish/
+publicar/
 
 # Publish Web Output
 *.[Pp]ublish.xml

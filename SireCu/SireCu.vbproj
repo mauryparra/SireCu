@@ -25,10 +25,12 @@
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>es-AR</TargetCulture>
     <ProductName>SireCu</ProductName>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
+    <PublisherName>Team SireCu</PublisherName>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -63,12 +65,30 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>905ED4537F1C5645024E43EDA650EBD19E0CAA01</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SireCu_ClaveTemporal.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
+      <HintPath>C:\Program Files\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
     </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -92,13 +112,32 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Egreso.vb" />
+    <Compile Include="Clases\Ingreso.vb" />
+    <Compile Include="Clases\Personas\Persona.vb" />
+    <Compile Include="Clases\Personas\personaGastador.vb" />
+    <Compile Include="Clases\Personas\personaProveedor.vb" />
+    <Compile Include="Clases\Reportes\Reporte.vb" />
+    <Compile Include="Clases\Reportes\reporteEgreso.vb" />
+    <Compile Include="Clases\Reportes\reporteGeneral.vb" />
+    <Compile Include="Clases\Reportes\reporteIngreso.vb" />
+    <Compile Include="Clases\Personas\personaUsuario.vb" />
+    <Compile Include="Clases\Personas\Usuarios\usuarioAdmin.vb" />
+    <Compile Include="Clases\Personas\Usuarios\usuarioContador.vb" />
     <Compile Include="Conexion.vb" />
+    <Compile Include="Egresos\ABMEgresos.Designer.vb">
+      <DependentUpon>ABMEgresos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Egresos\ABMEgresos.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Ingresos\ABMIngresos.Designer.vb">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </Compile>
     <Compile Include="Ingresos\ABMIngresos.vb">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="OtrasFunciones.vb" />
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +162,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Egresos\ABMEgresos.resx">
+      <DependentUpon>ABMEgresos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ingresos\ABMIngresos.resx">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +179,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -147,6 +190,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="SireCu_ClaveTemporal.pfx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -166,8 +210,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Egresos\" />
     <Folder Include="Reportes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\363122-x.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBSireCu.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
