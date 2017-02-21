@@ -116,7 +116,6 @@ Partial Class Principal
         Me.RadioButtonEgresos.Appearance = System.Windows.Forms.Appearance.Button
         Me.RadioButtonEgresos.AutoSize = True
         Me.RadioButtonEgresos.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonEgresos.Enabled = False
         Me.RadioButtonEgresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButtonEgresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RadioButtonEgresos.Location = New System.Drawing.Point(3, 78)
