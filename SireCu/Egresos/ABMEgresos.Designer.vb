@@ -22,6 +22,11 @@ Partial Class ABMEgresos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.TabControl = New System.Windows.Forms.TabControl()
+        Me.TabPageAgregar = New System.Windows.Forms.TabPage()
+        Me.TabPageModificar = New System.Windows.Forms.TabPage()
+        Me.tbNComprobante = New System.Windows.Forms.TextBox()
+        Me.lb_Titulo = New System.Windows.Forms.Label()
         Me.tbTComprobante = New System.Windows.Forms.ComboBox()
         Me.bttnConsultar = New System.Windows.Forms.Button()
         Me.tbPVenta = New System.Windows.Forms.TextBox()
@@ -49,9 +54,92 @@ Partial Class ABMEgresos
         Me.lbNComprobante = New System.Windows.Forms.Label()
         Me.tbComentario = New System.Windows.Forms.TextBox()
         Me.tbProveedor = New System.Windows.Forms.TextBox()
-        Me.lb_Titulo = New System.Windows.Forms.Label()
-        Me.tbNComprobante = New System.Windows.Forms.TextBox()
+        Me.SplitContainerModificar = New System.Windows.Forms.SplitContainer()
+        Me.TabControl.SuspendLayout()
+        Me.TabPageAgregar.SuspendLayout()
+        Me.TabPageModificar.SuspendLayout()
+        CType(Me.SplitContainerModificar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerModificar.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'TabControl
+        '
+        Me.TabControl.Controls.Add(Me.TabPageAgregar)
+        Me.TabControl.Controls.Add(Me.TabPageModificar)
+        Me.TabControl.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabControl.Location = New System.Drawing.Point(0, 0)
+        Me.TabControl.Name = "TabControl"
+        Me.TabControl.SelectedIndex = 0
+        Me.TabControl.Size = New System.Drawing.Size(755, 456)
+        Me.TabControl.TabIndex = 0
+        '
+        'TabPageAgregar
+        '
+        Me.TabPageAgregar.Controls.Add(Me.tbNComprobante)
+        Me.TabPageAgregar.Controls.Add(Me.lb_Titulo)
+        Me.TabPageAgregar.Controls.Add(Me.tbTComprobante)
+        Me.TabPageAgregar.Controls.Add(Me.bttnConsultar)
+        Me.TabPageAgregar.Controls.Add(Me.tbPVenta)
+        Me.TabPageAgregar.Controls.Add(Me.tbReintegro)
+        Me.TabPageAgregar.Controls.Add(Me.lbYear)
+        Me.TabPageAgregar.Controls.Add(Me.lbMonth)
+        Me.TabPageAgregar.Controls.Add(Me.lbDay)
+        Me.TabPageAgregar.Controls.Add(Me.tbYear)
+        Me.TabPageAgregar.Controls.Add(Me.tbMonth)
+        Me.TabPageAgregar.Controls.Add(Me.tbDay)
+        Me.TabPageAgregar.Controls.Add(Me.lbSmonto)
+        Me.TabPageAgregar.Controls.Add(Me.lbTComprobante)
+        Me.TabPageAgregar.Controls.Add(Me.tbMonto)
+        Me.TabPageAgregar.Controls.Add(Me.tbGasto)
+        Me.TabPageAgregar.Controls.Add(Me.btnGuardar)
+        Me.TabPageAgregar.Controls.Add(Me.lbGasto)
+        Me.TabPageAgregar.Controls.Add(Me.ckCentral)
+        Me.TabPageAgregar.Controls.Add(Me.ckLarioja)
+        Me.TabPageAgregar.Controls.Add(Me.tbNombre)
+        Me.TabPageAgregar.Controls.Add(Me.lbMes)
+        Me.TabPageAgregar.Controls.Add(Me.lbComentario)
+        Me.TabPageAgregar.Controls.Add(Me.lbMonto)
+        Me.TabPageAgregar.Controls.Add(Me.lbProveedor)
+        Me.TabPageAgregar.Controls.Add(Me.lbNombre)
+        Me.TabPageAgregar.Controls.Add(Me.lbNComprobante)
+        Me.TabPageAgregar.Controls.Add(Me.tbComentario)
+        Me.TabPageAgregar.Controls.Add(Me.tbProveedor)
+        Me.TabPageAgregar.Location = New System.Drawing.Point(4, 25)
+        Me.TabPageAgregar.Name = "TabPageAgregar"
+        Me.TabPageAgregar.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageAgregar.Size = New System.Drawing.Size(747, 427)
+        Me.TabPageAgregar.TabIndex = 0
+        Me.TabPageAgregar.Text = "Agregar"
+        Me.TabPageAgregar.UseVisualStyleBackColor = True
+        '
+        'TabPageModificar
+        '
+        Me.TabPageModificar.Controls.Add(Me.SplitContainerModificar)
+        Me.TabPageModificar.Location = New System.Drawing.Point(4, 25)
+        Me.TabPageModificar.Name = "TabPageModificar"
+        Me.TabPageModificar.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageModificar.Size = New System.Drawing.Size(747, 427)
+        Me.TabPageModificar.TabIndex = 1
+        Me.TabPageModificar.Text = "Modificar"
+        Me.TabPageModificar.UseVisualStyleBackColor = True
+        '
+        'tbNComprobante
+        '
+        Me.tbNComprobante.Location = New System.Drawing.Point(603, 171)
+        Me.tbNComprobante.Name = "tbNComprobante"
+        Me.tbNComprobante.Size = New System.Drawing.Size(97, 22)
+        Me.tbNComprobante.TabIndex = 71
+        '
+        'lb_Titulo
+        '
+        Me.lb_Titulo.AutoSize = True
+        Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Titulo.Location = New System.Drawing.Point(284, 2)
+        Me.lb_Titulo.Name = "lb_Titulo"
+        Me.lb_Titulo.Size = New System.Drawing.Size(193, 38)
+        Me.lb_Titulo.TabIndex = 91
+        Me.lb_Titulo.Text = "Nuevo Egreso"
         '
         'tbTComprobante
         '
@@ -60,117 +148,117 @@ Partial Class ABMEgresos
         Me.tbTComprobante.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.tbTComprobante.FormattingEnabled = True
         Me.tbTComprobante.Items.AddRange(New Object() {"Factura A", "Factura B", "Factura C", "Recibo A", "Recibo B", "Recibo C", "Recibo X", "Tique Fact. A", "Tique Fact. B", "Tique Fact. C", "Tique", "Pasaje", "Extracto Bancario", "Otro"})
-        Me.tbTComprobante.Location = New System.Drawing.Point(524, 133)
+        Me.tbTComprobante.Location = New System.Drawing.Point(537, 126)
         Me.tbTComprobante.Name = "tbTComprobante"
-        Me.tbTComprobante.Size = New System.Drawing.Size(163, 21)
-        Me.tbTComprobante.TabIndex = 7
+        Me.tbTComprobante.Size = New System.Drawing.Size(163, 24)
+        Me.tbTComprobante.TabIndex = 69
         '
         'bttnConsultar
         '
         Me.bttnConsultar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bttnConsultar.Location = New System.Drawing.Point(561, 378)
+        Me.bttnConsultar.Location = New System.Drawing.Point(603, 308)
         Me.bttnConsultar.Name = "bttnConsultar"
-        Me.bttnConsultar.Size = New System.Drawing.Size(126, 59)
-        Me.bttnConsultar.TabIndex = 60
+        Me.bttnConsultar.Size = New System.Drawing.Size(126, 61)
+        Me.bttnConsultar.TabIndex = 90
         Me.bttnConsultar.TabStop = False
         Me.bttnConsultar.Text = "Consultar"
         Me.bttnConsultar.UseVisualStyleBackColor = True
         '
         'tbPVenta
         '
-        Me.tbPVenta.Location = New System.Drawing.Point(524, 180)
+        Me.tbPVenta.Location = New System.Drawing.Point(537, 171)
         Me.tbPVenta.Name = "tbPVenta"
-        Me.tbPVenta.Size = New System.Drawing.Size(59, 20)
-        Me.tbPVenta.TabIndex = 8
+        Me.tbPVenta.Size = New System.Drawing.Size(56, 22)
+        Me.tbPVenta.TabIndex = 70
         '
         'tbReintegro
         '
-        Me.tbReintegro.Location = New System.Drawing.Point(155, 228)
+        Me.tbReintegro.Location = New System.Drawing.Point(151, 215)
         Me.tbReintegro.MaxLength = 2
         Me.tbReintegro.Name = "tbReintegro"
-        Me.tbReintegro.Size = New System.Drawing.Size(156, 20)
-        Me.tbReintegro.TabIndex = 6
+        Me.tbReintegro.Size = New System.Drawing.Size(156, 22)
+        Me.tbReintegro.TabIndex = 68
         '
         'lbYear
         '
         Me.lbYear.AutoSize = True
         Me.lbYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbYear.Location = New System.Drawing.Point(682, 60)
+        Me.lbYear.Location = New System.Drawing.Point(621, 67)
         Me.lbYear.Name = "lbYear"
         Me.lbYear.Size = New System.Drawing.Size(22, 12)
-        Me.lbYear.TabIndex = 59
+        Me.lbYear.TabIndex = 89
         Me.lbYear.Text = "Año"
         '
         'lbMonth
         '
         Me.lbMonth.AutoSize = True
         Me.lbMonth.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbMonth.Location = New System.Drawing.Point(625, 60)
+        Me.lbMonth.Location = New System.Drawing.Point(578, 67)
         Me.lbMonth.Name = "lbMonth"
         Me.lbMonth.Size = New System.Drawing.Size(24, 12)
-        Me.lbMonth.TabIndex = 58
+        Me.lbMonth.TabIndex = 88
         Me.lbMonth.Text = "Mes"
         '
         'lbDay
         '
         Me.lbDay.AutoSize = True
         Me.lbDay.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbDay.Location = New System.Drawing.Point(582, 60)
+        Me.lbDay.Location = New System.Drawing.Point(535, 67)
         Me.lbDay.Name = "lbDay"
         Me.lbDay.Size = New System.Drawing.Size(19, 12)
-        Me.lbDay.TabIndex = 57
+        Me.lbDay.TabIndex = 87
         Me.lbDay.Text = "Dia"
         '
         'tbYear
         '
         Me.tbYear.Enabled = False
-        Me.tbYear.Location = New System.Drawing.Point(668, 73)
+        Me.tbYear.Location = New System.Drawing.Point(623, 82)
         Me.tbYear.MaxLength = 4
         Me.tbYear.Name = "tbYear"
-        Me.tbYear.Size = New System.Drawing.Size(54, 20)
-        Me.tbYear.TabIndex = 45
+        Me.tbYear.Size = New System.Drawing.Size(54, 22)
+        Me.tbYear.TabIndex = 81
         Me.tbYear.TabStop = False
         '
         'tbMonth
         '
-        Me.tbMonth.Location = New System.Drawing.Point(621, 73)
+        Me.tbMonth.Location = New System.Drawing.Point(580, 82)
         Me.tbMonth.MaxLength = 2
         Me.tbMonth.Name = "tbMonth"
-        Me.tbMonth.Size = New System.Drawing.Size(34, 20)
-        Me.tbMonth.TabIndex = 3
+        Me.tbMonth.Size = New System.Drawing.Size(34, 22)
+        Me.tbMonth.TabIndex = 65
         '
         'tbDay
         '
-        Me.tbDay.Location = New System.Drawing.Point(577, 73)
+        Me.tbDay.Location = New System.Drawing.Point(537, 82)
         Me.tbDay.MaxLength = 2
         Me.tbDay.Name = "tbDay"
-        Me.tbDay.Size = New System.Drawing.Size(33, 20)
-        Me.tbDay.TabIndex = 2
+        Me.tbDay.Size = New System.Drawing.Size(33, 22)
+        Me.tbDay.TabIndex = 64
         '
         'lbSmonto
         '
         Me.lbSmonto.AutoSize = True
-        Me.lbSmonto.Location = New System.Drawing.Point(505, 231)
+        Me.lbSmonto.Location = New System.Drawing.Point(516, 218)
         Me.lbSmonto.Name = "lbSmonto"
-        Me.lbSmonto.Size = New System.Drawing.Size(13, 13)
-        Me.lbSmonto.TabIndex = 55
+        Me.lbSmonto.Size = New System.Drawing.Size(15, 16)
+        Me.lbSmonto.TabIndex = 86
         Me.lbSmonto.Text = "$"
         '
         'lbTComprobante
         '
         Me.lbTComprobante.AutoSize = True
-        Me.lbTComprobante.Location = New System.Drawing.Point(403, 136)
+        Me.lbTComprobante.Location = New System.Drawing.Point(391, 129)
         Me.lbTComprobante.Name = "lbTComprobante"
-        Me.lbTComprobante.Size = New System.Drawing.Size(109, 13)
-        Me.lbTComprobante.TabIndex = 54
+        Me.lbTComprobante.Size = New System.Drawing.Size(140, 16)
+        Me.lbTComprobante.TabIndex = 85
         Me.lbTComprobante.Text = "Tipo de Comprobante"
         '
         'tbMonto
         '
-        Me.tbMonto.Location = New System.Drawing.Point(524, 228)
+        Me.tbMonto.Location = New System.Drawing.Point(537, 215)
         Me.tbMonto.Name = "tbMonto"
-        Me.tbMonto.Size = New System.Drawing.Size(163, 20)
-        Me.tbMonto.TabIndex = 10
+        Me.tbMonto.Size = New System.Drawing.Size(163, 22)
+        Me.tbMonto.TabIndex = 72
         Me.tbMonto.Tag = ""
         '
         'tbGasto
@@ -180,38 +268,38 @@ Partial Class ABMEgresos
         Me.tbGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.tbGasto.FormattingEnabled = True
         Me.tbGasto.Items.AddRange(New Object() {"Administrativos", "Alquileres", "Aplicables a Coparticipación", "Bancarios", "Coparticipación", "Desenvolvimiento", "Filiales", "Franqueo y Encomiendas", "Honorarios", "Impuestos y servicios", "Librería e impresiones", "Seguros", "Movilidad y traslado", "Prensa y difusión", "Prestaciones", "Subsidios"})
-        Me.tbGasto.Location = New System.Drawing.Point(155, 135)
+        Me.tbGasto.Location = New System.Drawing.Point(151, 126)
         Me.tbGasto.Name = "tbGasto"
-        Me.tbGasto.Size = New System.Drawing.Size(156, 21)
-        Me.tbGasto.TabIndex = 4
+        Me.tbGasto.Size = New System.Drawing.Size(156, 24)
+        Me.tbGasto.TabIndex = 66
         '
         'btnGuardar
         '
         Me.btnGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGuardar.ForeColor = System.Drawing.Color.Green
-        Me.btnGuardar.Location = New System.Drawing.Point(561, 291)
+        Me.btnGuardar.Location = New System.Drawing.Point(467, 308)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(126, 61)
-        Me.btnGuardar.TabIndex = 14
+        Me.btnGuardar.TabIndex = 76
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'lbGasto
         '
         Me.lbGasto.AutoSize = True
-        Me.lbGasto.Location = New System.Drawing.Point(55, 138)
+        Me.lbGasto.Location = New System.Drawing.Point(28, 129)
         Me.lbGasto.Name = "lbGasto"
-        Me.lbGasto.Size = New System.Drawing.Size(50, 13)
-        Me.lbGasto.TabIndex = 53
+        Me.lbGasto.Size = New System.Drawing.Size(63, 16)
+        Me.lbGasto.TabIndex = 84
         Me.lbGasto.Text = "Gasto de"
         '
         'ckCentral
         '
         Me.ckCentral.AutoSize = True
-        Me.ckCentral.Location = New System.Drawing.Point(263, 291)
+        Me.ckCentral.Location = New System.Drawing.Point(248, 282)
         Me.ckCentral.Name = "ckCentral"
-        Me.ckCentral.Size = New System.Drawing.Size(85, 17)
-        Me.ckCentral.TabIndex = 12
+        Me.ckCentral.Size = New System.Drawing.Size(101, 20)
+        Me.ckCentral.TabIndex = 74
         Me.ckCentral.Text = "UDA Central"
         Me.ckCentral.UseVisualStyleBackColor = True
         '
@@ -219,10 +307,10 @@ Partial Class ABMEgresos
         '
         Me.ckLarioja.AutoSize = True
         Me.ckLarioja.BackColor = System.Drawing.SystemColors.Control
-        Me.ckLarioja.Location = New System.Drawing.Point(96, 291)
+        Me.ckLarioja.Location = New System.Drawing.Point(110, 282)
         Me.ckLarioja.Name = "ckLarioja"
-        Me.ckLarioja.Size = New System.Drawing.Size(91, 17)
-        Me.ckLarioja.TabIndex = 11
+        Me.ckLarioja.Size = New System.Drawing.Size(109, 20)
+        Me.ckLarioja.TabIndex = 73
         Me.ckLarioja.Text = "UDA La Rioja"
         Me.ckLarioja.UseVisualStyleBackColor = False
         '
@@ -231,165 +319,139 @@ Partial Class ABMEgresos
         Me.tbNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.tbNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.tbNombre.BackColor = System.Drawing.SystemColors.Window
-        Me.tbNombre.Location = New System.Drawing.Point(44, 85)
+        Me.tbNombre.Location = New System.Drawing.Point(151, 82)
         Me.tbNombre.Name = "tbNombre"
-        Me.tbNombre.Size = New System.Drawing.Size(197, 20)
-        Me.tbNombre.TabIndex = 1
+        Me.tbNombre.Size = New System.Drawing.Size(197, 22)
+        Me.tbNombre.TabIndex = 63
         '
         'lbMes
         '
         Me.lbMes.AutoSize = True
-        Me.lbMes.Location = New System.Drawing.Point(42, 231)
+        Me.lbMes.Location = New System.Drawing.Point(28, 218)
         Me.lbMes.Name = "lbMes"
-        Me.lbMes.Size = New System.Drawing.Size(91, 13)
-        Me.lbMes.TabIndex = 48
+        Me.lbMes.Size = New System.Drawing.Size(115, 16)
+        Me.lbMes.TabIndex = 83
         Me.lbMes.Text = "Mes de Reintegro"
         '
         'lbComentario
         '
         Me.lbComentario.AutoSize = True
-        Me.lbComentario.Location = New System.Drawing.Point(32, 378)
+        Me.lbComentario.Location = New System.Drawing.Point(28, 311)
         Me.lbComentario.Name = "lbComentario"
-        Me.lbComentario.Size = New System.Drawing.Size(60, 13)
-        Me.lbComentario.TabIndex = 46
+        Me.lbComentario.Size = New System.Drawing.Size(77, 16)
+        Me.lbComentario.TabIndex = 82
         Me.lbComentario.Text = "Comentario"
         '
         'lbMonto
         '
         Me.lbMonto.AutoSize = True
-        Me.lbMonto.Location = New System.Drawing.Point(453, 231)
+        Me.lbMonto.Location = New System.Drawing.Point(391, 218)
         Me.lbMonto.Name = "lbMonto"
-        Me.lbMonto.Size = New System.Drawing.Size(37, 13)
-        Me.lbMonto.TabIndex = 44
+        Me.lbMonto.Size = New System.Drawing.Size(45, 16)
+        Me.lbMonto.TabIndex = 80
         Me.lbMonto.Text = "Monto"
         '
         'lbProveedor
         '
         Me.lbProveedor.AutoSize = True
-        Me.lbProveedor.Location = New System.Drawing.Point(55, 183)
+        Me.lbProveedor.Location = New System.Drawing.Point(28, 174)
         Me.lbProveedor.Name = "lbProveedor"
-        Me.lbProveedor.Size = New System.Drawing.Size(56, 13)
-        Me.lbProveedor.TabIndex = 42
+        Me.lbProveedor.Size = New System.Drawing.Size(72, 16)
+        Me.lbProveedor.TabIndex = 79
         Me.lbProveedor.Text = "Proveedor"
         '
         'lbNombre
         '
         Me.lbNombre.AutoSize = True
-        Me.lbNombre.Location = New System.Drawing.Point(41, 60)
+        Me.lbNombre.Location = New System.Drawing.Point(28, 85)
         Me.lbNombre.Name = "lbNombre"
-        Me.lbNombre.Size = New System.Drawing.Size(92, 13)
-        Me.lbNombre.TabIndex = 40
+        Me.lbNombre.Size = New System.Drawing.Size(120, 16)
+        Me.lbNombre.TabIndex = 78
         Me.lbNombre.Text = "Nombre y Apellido"
         '
         'lbNComprobante
         '
         Me.lbNComprobante.AutoSize = True
-        Me.lbNComprobante.Location = New System.Drawing.Point(425, 183)
+        Me.lbNComprobante.Location = New System.Drawing.Point(391, 174)
         Me.lbNComprobante.Name = "lbNComprobante"
-        Me.lbNComprobante.Size = New System.Drawing.Size(85, 13)
-        Me.lbNComprobante.TabIndex = 37
+        Me.lbNComprobante.Size = New System.Drawing.Size(107, 16)
+        Me.lbNComprobante.TabIndex = 77
         Me.lbNComprobante.Text = "N° Comprobante"
         '
         'tbComentario
         '
-        Me.tbComentario.Location = New System.Drawing.Point(114, 357)
+        Me.tbComentario.Location = New System.Drawing.Point(111, 308)
         Me.tbComentario.Multiline = True
         Me.tbComentario.Name = "tbComentario"
-        Me.tbComentario.Size = New System.Drawing.Size(317, 60)
-        Me.tbComentario.TabIndex = 13
+        Me.tbComentario.Size = New System.Drawing.Size(317, 100)
+        Me.tbComentario.TabIndex = 75
         '
         'tbProveedor
         '
-        Me.tbProveedor.Location = New System.Drawing.Point(155, 180)
+        Me.tbProveedor.Location = New System.Drawing.Point(151, 171)
         Me.tbProveedor.Name = "tbProveedor"
-        Me.tbProveedor.Size = New System.Drawing.Size(156, 20)
-        Me.tbProveedor.TabIndex = 5
+        Me.tbProveedor.Size = New System.Drawing.Size(156, 22)
+        Me.tbProveedor.TabIndex = 67
         '
-        'lb_Titulo
+        'SplitContainerModificar
         '
-        Me.lb_Titulo.AutoSize = True
-        Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Titulo.Location = New System.Drawing.Point(288, 11)
-        Me.lb_Titulo.Name = "lb_Titulo"
-        Me.lb_Titulo.Size = New System.Drawing.Size(193, 38)
-        Me.lb_Titulo.TabIndex = 62
-        Me.lb_Titulo.Text = "Nuevo Egreso"
-        '
-        'tbNComprobante
-        '
-        Me.tbNComprobante.Location = New System.Drawing.Point(590, 180)
-        Me.tbNComprobante.Name = "tbNComprobante"
-        Me.tbNComprobante.Size = New System.Drawing.Size(97, 20)
-        Me.tbNComprobante.TabIndex = 9
+        Me.SplitContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainerModificar.Location = New System.Drawing.Point(3, 3)
+        Me.SplitContainerModificar.Name = "SplitContainerModificar"
+        Me.SplitContainerModificar.Orientation = System.Windows.Forms.Orientation.Horizontal
+        Me.SplitContainerModificar.Size = New System.Drawing.Size(741, 421)
+        Me.SplitContainerModificar.SplitterDistance = 201
+        Me.SplitContainerModificar.TabIndex = 0
         '
         'ABMEgresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.Controls.Add(Me.tbNComprobante)
-        Me.Controls.Add(Me.lb_Titulo)
-        Me.Controls.Add(Me.tbTComprobante)
-        Me.Controls.Add(Me.bttnConsultar)
-        Me.Controls.Add(Me.tbPVenta)
-        Me.Controls.Add(Me.tbReintegro)
-        Me.Controls.Add(Me.lbYear)
-        Me.Controls.Add(Me.lbMonth)
-        Me.Controls.Add(Me.lbDay)
-        Me.Controls.Add(Me.tbYear)
-        Me.Controls.Add(Me.tbMonth)
-        Me.Controls.Add(Me.tbDay)
-        Me.Controls.Add(Me.lbSmonto)
-        Me.Controls.Add(Me.lbTComprobante)
-        Me.Controls.Add(Me.tbMonto)
-        Me.Controls.Add(Me.tbGasto)
-        Me.Controls.Add(Me.btnGuardar)
-        Me.Controls.Add(Me.lbGasto)
-        Me.Controls.Add(Me.ckCentral)
-        Me.Controls.Add(Me.ckLarioja)
-        Me.Controls.Add(Me.tbNombre)
-        Me.Controls.Add(Me.lbMes)
-        Me.Controls.Add(Me.lbComentario)
-        Me.Controls.Add(Me.lbMonto)
-        Me.Controls.Add(Me.lbProveedor)
-        Me.Controls.Add(Me.lbNombre)
-        Me.Controls.Add(Me.lbNComprobante)
-        Me.Controls.Add(Me.tbComentario)
-        Me.Controls.Add(Me.tbProveedor)
+        Me.Controls.Add(Me.TabControl)
         Me.Name = "ABMEgresos"
         Me.Size = New System.Drawing.Size(755, 456)
+        Me.TabControl.ResumeLayout(False)
+        Me.TabPageAgregar.ResumeLayout(False)
+        Me.TabPageAgregar.PerformLayout()
+        Me.TabPageModificar.ResumeLayout(False)
+        CType(Me.SplitContainerModificar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainerModificar.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents tbTComprobante As System.Windows.Forms.ComboBox
-    Friend WithEvents bttnConsultar As System.Windows.Forms.Button
-    Friend WithEvents tbPVenta As System.Windows.Forms.TextBox
-    Friend WithEvents tbReintegro As System.Windows.Forms.TextBox
-    Friend WithEvents lbYear As System.Windows.Forms.Label
-    Friend WithEvents lbMonth As System.Windows.Forms.Label
-    Friend WithEvents lbDay As System.Windows.Forms.Label
-    Friend WithEvents tbYear As System.Windows.Forms.TextBox
-    Friend WithEvents tbMonth As System.Windows.Forms.TextBox
-    Friend WithEvents tbDay As System.Windows.Forms.TextBox
-    Friend WithEvents lbSmonto As System.Windows.Forms.Label
-    Friend WithEvents lbTComprobante As System.Windows.Forms.Label
-    Friend WithEvents tbMonto As System.Windows.Forms.TextBox
-    Friend WithEvents tbGasto As System.Windows.Forms.ComboBox
-    Friend WithEvents btnGuardar As System.Windows.Forms.Button
-    Friend WithEvents lbGasto As System.Windows.Forms.Label
-    Friend WithEvents ckCentral As System.Windows.Forms.CheckBox
-    Friend WithEvents ckLarioja As System.Windows.Forms.CheckBox
-    Friend WithEvents tbNombre As System.Windows.Forms.TextBox
-    Friend WithEvents lbMes As System.Windows.Forms.Label
-    Friend WithEvents lbComentario As System.Windows.Forms.Label
-    Friend WithEvents lbMonto As System.Windows.Forms.Label
-    Friend WithEvents lbProveedor As System.Windows.Forms.Label
-    Friend WithEvents lbNombre As System.Windows.Forms.Label
-    Friend WithEvents lbNComprobante As System.Windows.Forms.Label
-    Friend WithEvents tbComentario As System.Windows.Forms.TextBox
-    Friend WithEvents tbProveedor As System.Windows.Forms.TextBox
-    Friend WithEvents lb_Titulo As System.Windows.Forms.Label
-    Friend WithEvents tbNComprobante As System.Windows.Forms.TextBox
 
+    Friend WithEvents TabControl As TabControl
+    Friend WithEvents TabPageAgregar As TabPage
+    Friend WithEvents tbNComprobante As TextBox
+    Friend WithEvents lb_Titulo As Label
+    Friend WithEvents tbTComprobante As ComboBox
+    Friend WithEvents bttnConsultar As Button
+    Friend WithEvents tbPVenta As TextBox
+    Friend WithEvents tbReintegro As TextBox
+    Friend WithEvents lbYear As Label
+    Friend WithEvents lbMonth As Label
+    Friend WithEvents lbDay As Label
+    Friend WithEvents tbYear As TextBox
+    Friend WithEvents tbMonth As TextBox
+    Friend WithEvents tbDay As TextBox
+    Friend WithEvents lbSmonto As Label
+    Friend WithEvents lbTComprobante As Label
+    Friend WithEvents tbMonto As TextBox
+    Friend WithEvents tbGasto As ComboBox
+    Friend WithEvents btnGuardar As Button
+    Friend WithEvents lbGasto As Label
+    Friend WithEvents ckCentral As CheckBox
+    Friend WithEvents ckLarioja As CheckBox
+    Friend WithEvents tbNombre As TextBox
+    Friend WithEvents lbMes As Label
+    Friend WithEvents lbComentario As Label
+    Friend WithEvents lbMonto As Label
+    Friend WithEvents lbProveedor As Label
+    Friend WithEvents lbNombre As Label
+    Friend WithEvents lbNComprobante As Label
+    Friend WithEvents tbComentario As TextBox
+    Friend WithEvents tbProveedor As TextBox
+    Friend WithEvents TabPageModificar As TabPage
+    Friend WithEvents SplitContainerModificar As SplitContainer
 End Class
