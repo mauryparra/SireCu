@@ -55,11 +55,17 @@ Partial Class ABMEgresos
         Me.tbComentario = New System.Windows.Forms.TextBox()
         Me.tbProveedor = New System.Windows.Forms.TextBox()
         Me.SplitContainerModificar = New System.Windows.Forms.SplitContainer()
+        Me.ToolStripContainerModificar = New System.Windows.Forms.ToolStripContainer()
+        Me.DataGridViewModificar = New System.Windows.Forms.DataGridView()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
         CType(Me.SplitContainerModificar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainerModificar.Panel1.SuspendLayout()
         Me.SplitContainerModificar.SuspendLayout()
+        Me.ToolStripContainerModificar.ContentPanel.SuspendLayout()
+        Me.ToolStripContainerModificar.SuspendLayout()
+        CType(Me.DataGridViewModificar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl
@@ -399,9 +405,38 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar.Location = New System.Drawing.Point(3, 3)
         Me.SplitContainerModificar.Name = "SplitContainerModificar"
         Me.SplitContainerModificar.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainerModificar.Panel1
+        '
+        Me.SplitContainerModificar.Panel1.Controls.Add(Me.ToolStripContainerModificar)
         Me.SplitContainerModificar.Size = New System.Drawing.Size(741, 421)
         Me.SplitContainerModificar.SplitterDistance = 201
         Me.SplitContainerModificar.TabIndex = 0
+        '
+        'ToolStripContainerModificar
+        '
+        '
+        'ToolStripContainerModificar.ContentPanel
+        '
+        Me.ToolStripContainerModificar.ContentPanel.Controls.Add(Me.DataGridViewModificar)
+        Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(741, 176)
+        Me.ToolStripContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ToolStripContainerModificar.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripContainerModificar.Name = "ToolStripContainerModificar"
+        Me.ToolStripContainerModificar.Size = New System.Drawing.Size(741, 201)
+        Me.ToolStripContainerModificar.TabIndex = 0
+        Me.ToolStripContainerModificar.Text = "ToolStripContainer1"
+        '
+        'DataGridViewModificar
+        '
+        Me.DataGridViewModificar.AllowUserToDeleteRows = False
+        Me.DataGridViewModificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewModificar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewModificar.Location = New System.Drawing.Point(0, 0)
+        Me.DataGridViewModificar.Name = "DataGridViewModificar"
+        Me.DataGridViewModificar.ReadOnly = True
+        Me.DataGridViewModificar.Size = New System.Drawing.Size(741, 176)
+        Me.DataGridViewModificar.TabIndex = 0
         '
         'ABMEgresos
         '
@@ -415,8 +450,13 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.ResumeLayout(False)
         Me.TabPageAgregar.PerformLayout()
         Me.TabPageModificar.ResumeLayout(False)
+        Me.SplitContainerModificar.Panel1.ResumeLayout(False)
         CType(Me.SplitContainerModificar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerModificar.ResumeLayout(False)
+        Me.ToolStripContainerModificar.ContentPanel.ResumeLayout(False)
+        Me.ToolStripContainerModificar.ResumeLayout(False)
+        Me.ToolStripContainerModificar.PerformLayout()
+        CType(Me.DataGridViewModificar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -454,4 +494,6 @@ Partial Class ABMEgresos
     Friend WithEvents tbProveedor As TextBox
     Friend WithEvents TabPageModificar As TabPage
     Friend WithEvents SplitContainerModificar As SplitContainer
+    Friend WithEvents ToolStripContainerModificar As ToolStripContainer
+    Friend WithEvents DataGridViewModificar As DataGridView
 End Class
