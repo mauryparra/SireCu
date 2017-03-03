@@ -42,22 +42,6 @@ Module Ingreso
 
     End Function
 
-    Public Function ultimoaño()
-
-        Principal.query = "SELECT fecha FROM ingresos ORDER BY fecha DESC"
-        consultarNQ(Principal.query, Principal.command)
-        ClearDataset(Principal.dataset)
-
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
-
-        If (Principal.dataset.Tables("ingresos").Rows.Count() = 0) Then
-            Return ("2000")
-        Else : Return (DatePart(DateInterval.Year, Principal.dataset.Tables("ingresos").Rows.Item(0).Item("fecha")))
-        End If
-
-    End Function
-
     Public Function verificar_año(ByVal año As Integer)
 
         Principal.query = "SELECT * from ingresos where DATEPART(Year, fecha) = '" & año & "'"
