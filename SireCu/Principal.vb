@@ -57,6 +57,11 @@ Public Class Principal
         dataset.Tables.Add("Ingresos")
         dataset.Tables.Add("Egresos")
         dataset.Tables.Add("Saldos")
+        dataset.Tables.Add("Proveedores")
+        dataset.Tables.Add("Personas")
+        dataset.Tables.Add("CategoriasGastos")
+        dataset.Tables.Add("TiposComprobantes")
+        dataset.Tables.Add("Seccionales")
 
     End Sub
 End Class
