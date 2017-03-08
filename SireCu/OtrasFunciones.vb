@@ -66,10 +66,12 @@ Module OtrasFunciones
     Public Sub ClearDataset(ByVal dataset As DataSet)
         Principal.dataset.Tables("Ingresos").Clear()
         Principal.dataset.Tables("Egresos").Clear()
-        Principal.dataset.Tables("Saldos").Clear()
+        Principal.dataset.Tables("Proveedores").Clear()
+        Principal.dataset.Tables("CategoriasGastos").Clear()
+        Principal.dataset.Tables("Personas").Clear()
+        Principal.dataset.Tables("TiposComprobantes").Clear()
     End Sub
 
-    'Verificación de solo entrada por teclado
     Public Sub keyverify(ByVal e As System.Windows.Forms.KeyPressEventArgs,
                          Optional ByVal letras As Boolean = False,
                          Optional ByVal numeros As Boolean = False,
@@ -114,6 +116,47 @@ Module OtrasFunciones
         If (Principal.dataset.Tables(tabla).Rows.Count() = 0) Then
             Return ("2000")
         Else : Return (DatePart(DateInterval.Year, Principal.dataset.Tables(tabla).Rows.Item(0).Item("fecha")))
+        End If
+
+    End Function
+
+    Public Sub abm_otros(ByVal tabla As String)
+
+        ClearDataset(Principal.dataset)
+
+        Principal.query = "SELECT * FROM " & tabla
+        consultarNQ(Principal.query, Principal.command)
+        Principal.adapter = New SqlCeDataAdapter(Principal.command)
+        Principal.adapter.Fill(Principal.dataset.Tables(tabla))
+
+        Dim bindSource As New BindingSource
+        bindSource.DataSource = Principal.dataset.Tables(tabla)
+        Otros_AMB.dgv_otros.DataSource = bindSource
+        Otros_AMB.dgv_otros.Columns.Item("id").Visible = False
+
+    End Sub
+
+    Public Function exist(ByVal tabla As String, ByVal campo As String, ByVal comparar As String)
+
+        Principal.query = "SELECT * FROM " & tabla
+        consultarNQ(Principal.query, Principal.command)
+        Principal.adapter = New SqlCeDataAdapter(Principal.command)
+        Principal.adapter.Fill(Principal.dataset.Tables(tabla))
+
+        Dim flag As Boolean = False
+
+        For i = 0 To Principal.dataset.Tables(tabla).Rows.Count - 1
+            If (LCase(Principal.dataset.Tables(tabla).Rows.Item(i).Item(campo)) = LCase(comparar)) Then
+                flag = True
+            End If
+        Next
+
+        ClearDataset(Principal.dataset)
+
+        If flag = True Then
+            Return (True)
+        Else
+            Return (False)
         End If
 
     End Function

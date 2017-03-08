@@ -135,39 +135,6 @@ Public Class ABMEgresos
             coleccion.Add(Convert.ToString(row.Item(Campo_a_Mostrar)))
         Next
 
-        '        Administrativos
-        '        Alquileres
-        '        Bancarios
-        '        Coparticipación
-        '        Desenvolvimiento
-        '        Filiales
-        '        Franqueo y Encomiendas
-        'Honorarios
-        '        Impuestos y servicios
-        'Librería e impresiones
-        'Seguros
-        '        Movilidad y traslado
-        'Prensa y difusión
-        'Prestaciones
-        '        Subsidios
-
-
-
-        '        Factura A
-        'Factura B
-        'Factura C
-        'Recibo A
-        'Recibo B
-        'Recibo C
-        'Recibo X
-        'Tique Fact.A
-        'Tique Fact.B
-        'Tique Fact.C
-        'Tique
-        '        Pasaje
-        '        Extracto Bancario
-        'Otro
-
         Return (coleccion)
 
     End Function

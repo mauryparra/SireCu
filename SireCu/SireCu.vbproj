@@ -125,19 +125,25 @@
     <Compile Include="Clases\Personas\Usuarios\usuarioAdmin.vb" />
     <Compile Include="Clases\Personas\Usuarios\usuarioContador.vb" />
     <Compile Include="Conexion.vb" />
-    <Compile Include="Egresos\ABMEgresos.Designer.vb">
+    <Compile Include="Paneles\ABMEgresos.Designer.vb">
       <DependentUpon>ABMEgresos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Egresos\ABMEgresos.vb">
+    <Compile Include="Paneles\ABMEgresos.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ingresos\ABMIngresos.Designer.vb">
+    <Compile Include="Paneles\ABMIngresos.Designer.vb">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Ingresos\ABMIngresos.vb">
+    <Compile Include="Paneles\ABMIngresos.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtrasFunciones.vb" />
+    <Compile Include="Paneles\Otros_AMB.Designer.vb">
+      <DependentUpon>Otros_AMB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\Otros_AMB.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -162,10 +168,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Egresos\ABMEgresos.resx">
+    <EmbeddedResource Include="Paneles\ABMEgresos.resx">
       <DependentUpon>ABMEgresos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ingresos\ABMIngresos.resx">
+    <EmbeddedResource Include="Paneles\ABMIngresos.resx">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -173,6 +179,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\Otros_AMB.resx">
+      <DependentUpon>Otros_AMB.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>

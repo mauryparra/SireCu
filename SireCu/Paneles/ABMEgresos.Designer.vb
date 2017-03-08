@@ -190,7 +190,7 @@ Partial Class ABMEgresos
         'bttnConsultar
         '
         Me.bttnConsultar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bttnConsultar.Location = New System.Drawing.Point(603, 308)
+        Me.bttnConsultar.Location = New System.Drawing.Point(603, 324)
         Me.bttnConsultar.Name = "bttnConsultar"
         Me.bttnConsultar.Size = New System.Drawing.Size(126, 61)
         Me.bttnConsultar.TabIndex = 90
@@ -313,7 +313,7 @@ Partial Class ABMEgresos
         '
         Me.btnGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGuardar.ForeColor = System.Drawing.Color.Green
-        Me.btnGuardar.Location = New System.Drawing.Point(467, 308)
+        Me.btnGuardar.Location = New System.Drawing.Point(467, 324)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(126, 61)
         Me.btnGuardar.TabIndex = 15

@@ -34,6 +34,11 @@ Partial Class Principal
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TiposDeGastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CategoríasDeGastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PersonasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
@@ -145,7 +150,7 @@ Partial Class Principal
         'MenuStripPrincipal
         '
         Me.MenuStripPrincipal.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem})
+        Me.MenuStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.EditarToolStripMenuItem})
         Me.MenuStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPrincipal.Name = "MenuStripPrincipal"
         Me.MenuStripPrincipal.Size = New System.Drawing.Size(982, 24)
@@ -164,6 +169,37 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
         Me.SalirToolStripMenuItem.Text = "&Salir"
+        '
+        'EditarToolStripMenuItem
+        '
+        Me.EditarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProveedoresToolStripMenuItem, Me.TiposDeGastosToolStripMenuItem, Me.CategoríasDeGastosToolStripMenuItem, Me.PersonasToolStripMenuItem})
+        Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
+        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
+        Me.EditarToolStripMenuItem.Text = "Editar"
+        '
+        'ProveedoresToolStripMenuItem
+        '
+        Me.ProveedoresToolStripMenuItem.Name = "ProveedoresToolStripMenuItem"
+        Me.ProveedoresToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.ProveedoresToolStripMenuItem.Text = "Proveedores"
+        '
+        'TiposDeGastosToolStripMenuItem
+        '
+        Me.TiposDeGastosToolStripMenuItem.Name = "TiposDeGastosToolStripMenuItem"
+        Me.TiposDeGastosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.TiposDeGastosToolStripMenuItem.Text = "Tipos de Comprobantes"
+        '
+        'CategoríasDeGastosToolStripMenuItem
+        '
+        Me.CategoríasDeGastosToolStripMenuItem.Name = "CategoríasDeGastosToolStripMenuItem"
+        Me.CategoríasDeGastosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.CategoríasDeGastosToolStripMenuItem.Text = "Tipos de Gastos"
+        '
+        'PersonasToolStripMenuItem
+        '
+        Me.PersonasToolStripMenuItem.Name = "PersonasToolStripMenuItem"
+        Me.PersonasToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.PersonasToolStripMenuItem.Text = "Personas"
         '
         'ErrorProvider
         '
@@ -210,5 +246,9 @@ Partial Class Principal
     Friend WithEvents stat_Bar As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents RadioButtonEgresos As System.Windows.Forms.RadioButton
     Friend WithEvents ErrorProvider As System.Windows.Forms.ErrorProvider
-
+    Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ProveedoresToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TiposDeGastosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CategoríasDeGastosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PersonasToolStripMenuItem As ToolStripMenuItem
 End Class
