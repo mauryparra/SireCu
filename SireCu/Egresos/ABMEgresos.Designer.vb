@@ -57,11 +57,51 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar = New System.Windows.Forms.SplitContainer()
         Me.ToolStripContainerModificar = New System.Windows.Forms.ToolStripContainer()
         Me.DataGridViewModificar = New System.Windows.Forms.DataGridView()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nro_comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tipo_comprobante_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tipo_comprobante_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.proveedor_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.proveedor_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.categoria_gasto_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.categoria_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.persona_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.persona_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.seccional_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.seccional_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TextBoxNroComprobante = New System.Windows.Forms.TextBox()
+        Me.ComboBoxTipoComprobante = New System.Windows.Forms.ComboBox()
+        Me.TextBoxPVenta = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextBoxMonto = New System.Windows.Forms.TextBox()
+        Me.ComboBoxCategGasto = New System.Windows.Forms.ComboBox()
+        Me.ButtonGuardar = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.TextBoxNombre = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TextBoxComentario = New System.Windows.Forms.TextBox()
+        Me.TextBoxProveedor = New System.Windows.Forms.TextBox()
+        Me.DateTimePickerFecha = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DateTimePickerMesReintegro = New System.Windows.Forms.DateTimePicker()
+        Me.ComboBoxSeccional = New System.Windows.Forms.ComboBox()
+        Me.LabelSeccional = New System.Windows.Forms.Label()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
         CType(Me.SplitContainerModificar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerModificar.Panel1.SuspendLayout()
+        Me.SplitContainerModificar.Panel2.SuspendLayout()
         Me.SplitContainerModificar.SuspendLayout()
         Me.ToolStripContainerModificar.ContentPanel.SuspendLayout()
         Me.ToolStripContainerModificar.SuspendLayout()
@@ -412,6 +452,32 @@ Partial Class ABMEgresos
         'SplitContainerModificar.Panel1
         '
         Me.SplitContainerModificar.Panel1.Controls.Add(Me.ToolStripContainerModificar)
+        '
+        'SplitContainerModificar.Panel2
+        '
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.LabelSeccional)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.ComboBoxSeccional)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.DateTimePickerMesReintegro)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label1)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.DateTimePickerFecha)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxNroComprobante)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.ComboBoxTipoComprobante)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxPVenta)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label4)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label5)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxMonto)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.ComboBoxCategGasto)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.ButtonGuardar)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label6)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxNombre)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label7)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label8)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label9)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label10)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label11)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label12)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxComentario)
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxProveedor)
         Me.SplitContainerModificar.Size = New System.Drawing.Size(741, 421)
         Me.SplitContainerModificar.SplitterDistance = 201
         Me.SplitContainerModificar.TabIndex = 0
@@ -432,14 +498,333 @@ Partial Class ABMEgresos
         '
         'DataGridViewModificar
         '
+        Me.DataGridViewModificar.AllowUserToAddRows = False
         Me.DataGridViewModificar.AllowUserToDeleteRows = False
         Me.DataGridViewModificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario})
         Me.DataGridViewModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewModificar.Location = New System.Drawing.Point(0, 0)
         Me.DataGridViewModificar.Name = "DataGridViewModificar"
         Me.DataGridViewModificar.ReadOnly = True
+        Me.DataGridViewModificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewModificar.Size = New System.Drawing.Size(741, 176)
         Me.DataGridViewModificar.TabIndex = 0
+        '
+        'id
+        '
+        Me.id.HeaderText = "Id"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
+        '
+        'nro_comprobante
+        '
+        Me.nro_comprobante.HeaderText = "Nro Comprobante"
+        Me.nro_comprobante.Name = "nro_comprobante"
+        Me.nro_comprobante.ReadOnly = True
+        '
+        'tipo_comprobante_id
+        '
+        Me.tipo_comprobante_id.HeaderText = "tipo_comprobante_id"
+        Me.tipo_comprobante_id.Name = "tipo_comprobante_id"
+        Me.tipo_comprobante_id.ReadOnly = True
+        Me.tipo_comprobante_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.tipo_comprobante_id.Visible = False
+        '
+        'tipo_comprobante_nombre
+        '
+        Me.tipo_comprobante_nombre.HeaderText = "Tipo Comprobante"
+        Me.tipo_comprobante_nombre.Name = "tipo_comprobante_nombre"
+        Me.tipo_comprobante_nombre.ReadOnly = True
+        '
+        'proveedor_id
+        '
+        Me.proveedor_id.HeaderText = "proveedor_id"
+        Me.proveedor_id.Name = "proveedor_id"
+        Me.proveedor_id.ReadOnly = True
+        Me.proveedor_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.proveedor_id.Visible = False
+        '
+        'proveedor_nombre
+        '
+        Me.proveedor_nombre.HeaderText = "Proveedor"
+        Me.proveedor_nombre.Name = "proveedor_nombre"
+        Me.proveedor_nombre.ReadOnly = True
+        '
+        'categoria_gasto_id
+        '
+        Me.categoria_gasto_id.HeaderText = "categoria_gasto_id"
+        Me.categoria_gasto_id.Name = "categoria_gasto_id"
+        Me.categoria_gasto_id.ReadOnly = True
+        Me.categoria_gasto_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.categoria_gasto_id.Visible = False
+        '
+        'categoria_nombre
+        '
+        Me.categoria_nombre.HeaderText = "Categoria Gasto"
+        Me.categoria_nombre.Name = "categoria_nombre"
+        Me.categoria_nombre.ReadOnly = True
+        '
+        'persona_id
+        '
+        Me.persona_id.HeaderText = "persona_id"
+        Me.persona_id.Name = "persona_id"
+        Me.persona_id.ReadOnly = True
+        Me.persona_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.persona_id.Visible = False
+        '
+        'persona_nombre
+        '
+        Me.persona_nombre.HeaderText = "Persona"
+        Me.persona_nombre.Name = "persona_nombre"
+        Me.persona_nombre.ReadOnly = True
+        '
+        'fecha
+        '
+        Me.fecha.HeaderText = "Fecha"
+        Me.fecha.Name = "fecha"
+        Me.fecha.ReadOnly = True
+        '
+        'seccional_id
+        '
+        Me.seccional_id.HeaderText = "seccional_id"
+        Me.seccional_id.Name = "seccional_id"
+        Me.seccional_id.ReadOnly = True
+        Me.seccional_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.seccional_id.Visible = False
+        '
+        'seccional_nombre
+        '
+        Me.seccional_nombre.HeaderText = "Seccional"
+        Me.seccional_nombre.Name = "seccional_nombre"
+        Me.seccional_nombre.ReadOnly = True
+        '
+        'mes_reintegro
+        '
+        Me.mes_reintegro.HeaderText = "Mes Reintegro"
+        Me.mes_reintegro.Name = "mes_reintegro"
+        Me.mes_reintegro.ReadOnly = True
+        '
+        'monto
+        '
+        Me.monto.HeaderText = "Monto"
+        Me.monto.Name = "monto"
+        Me.monto.ReadOnly = True
+        '
+        'comentario
+        '
+        Me.comentario.HeaderText = "Comentario"
+        Me.comentario.Name = "comentario"
+        Me.comentario.ReadOnly = True
+        '
+        'TextBoxNroComprobante
+        '
+        Me.TextBoxNroComprobante.Location = New System.Drawing.Point(595, 71)
+        Me.TextBoxNroComprobante.Name = "TextBoxNroComprobante"
+        Me.TextBoxNroComprobante.Size = New System.Drawing.Size(97, 22)
+        Me.TextBoxNroComprobante.TabIndex = 99
+        '
+        'ComboBoxTipoComprobante
+        '
+        Me.ComboBoxTipoComprobante.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxTipoComprobante.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.ComboBoxTipoComprobante.FormattingEnabled = True
+        Me.ComboBoxTipoComprobante.Items.AddRange(New Object() {"Factura A", "Factura B", "Factura C", "Recibo A", "Recibo B", "Recibo C", "Recibo X", "Tique Fact. A", "Tique Fact. B", "Tique Fact. C", "Tique", "Pasaje", "Extracto Bancario", "Otro"})
+        Me.ComboBoxTipoComprobante.Location = New System.Drawing.Point(529, 41)
+        Me.ComboBoxTipoComprobante.Name = "ComboBoxTipoComprobante"
+        Me.ComboBoxTipoComprobante.Size = New System.Drawing.Size(163, 24)
+        Me.ComboBoxTipoComprobante.TabIndex = 97
+        '
+        'TextBoxPVenta
+        '
+        Me.TextBoxPVenta.Location = New System.Drawing.Point(529, 71)
+        Me.TextBoxPVenta.Name = "TextBoxPVenta"
+        Me.TextBoxPVenta.Size = New System.Drawing.Size(56, 22)
+        Me.TextBoxPVenta.TabIndex = 98
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(508, 102)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(15, 16)
+        Me.Label4.TabIndex = 114
+        Me.Label4.Text = "$"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(383, 44)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(140, 16)
+        Me.Label5.TabIndex = 113
+        Me.Label5.Text = "Tipo de Comprobante"
+        '
+        'TextBoxMonto
+        '
+        Me.TextBoxMonto.Location = New System.Drawing.Point(529, 99)
+        Me.TextBoxMonto.Name = "TextBoxMonto"
+        Me.TextBoxMonto.Size = New System.Drawing.Size(163, 22)
+        Me.TextBoxMonto.TabIndex = 101
+        Me.TextBoxMonto.Tag = ""
+        '
+        'ComboBoxCategGasto
+        '
+        Me.ComboBoxCategGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxCategGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.ComboBoxCategGasto.FormattingEnabled = True
+        Me.ComboBoxCategGasto.Location = New System.Drawing.Point(145, 41)
+        Me.ComboBoxCategGasto.Name = "ComboBoxCategGasto"
+        Me.ComboBoxCategGasto.Size = New System.Drawing.Size(197, 24)
+        Me.ComboBoxCategGasto.TabIndex = 95
+        '
+        'ButtonGuardar
+        '
+        Me.ButtonGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonGuardar.ForeColor = System.Drawing.Color.Green
+        Me.ButtonGuardar.Location = New System.Drawing.Point(529, 157)
+        Me.ButtonGuardar.Name = "ButtonGuardar"
+        Me.ButtonGuardar.Size = New System.Drawing.Size(163, 56)
+        Me.ButtonGuardar.TabIndex = 105
+        Me.ButtonGuardar.Text = "Guardar"
+        Me.ButtonGuardar.UseVisualStyleBackColor = True
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(22, 44)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(63, 16)
+        Me.Label6.TabIndex = 112
+        Me.Label6.Text = "Gasto de"
+        '
+        'TextBoxNombre
+        '
+        Me.TextBoxNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TextBoxNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.TextBoxNombre.BackColor = System.Drawing.SystemColors.Window
+        Me.TextBoxNombre.Location = New System.Drawing.Point(145, 13)
+        Me.TextBoxNombre.Name = "TextBoxNombre"
+        Me.TextBoxNombre.Size = New System.Drawing.Size(197, 22)
+        Me.TextBoxNombre.TabIndex = 91
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(22, 101)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(115, 16)
+        Me.Label7.TabIndex = 111
+        Me.Label7.Text = "Mes de Reintegro"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(22, 161)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(77, 16)
+        Me.Label8.TabIndex = 110
+        Me.Label8.Text = "Comentario"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(383, 102)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(45, 16)
+        Me.Label9.TabIndex = 109
+        Me.Label9.Text = "Monto"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(22, 74)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(72, 16)
+        Me.Label10.TabIndex = 108
+        Me.Label10.Text = "Proveedor"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(22, 16)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(120, 16)
+        Me.Label11.TabIndex = 107
+        Me.Label11.Text = "Nombre y Apellido"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(383, 74)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(107, 16)
+        Me.Label12.TabIndex = 106
+        Me.Label12.Text = "N° Comprobante"
+        '
+        'TextBoxComentario
+        '
+        Me.TextBoxComentario.Location = New System.Drawing.Point(145, 157)
+        Me.TextBoxComentario.Multiline = True
+        Me.TextBoxComentario.Name = "TextBoxComentario"
+        Me.TextBoxComentario.Size = New System.Drawing.Size(378, 56)
+        Me.TextBoxComentario.TabIndex = 104
+        '
+        'TextBoxProveedor
+        '
+        Me.TextBoxProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TextBoxProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.TextBoxProveedor.Location = New System.Drawing.Point(145, 71)
+        Me.TextBoxProveedor.Name = "TextBoxProveedor"
+        Me.TextBoxProveedor.Size = New System.Drawing.Size(197, 22)
+        Me.TextBoxProveedor.TabIndex = 96
+        '
+        'DateTimePickerFecha
+        '
+        Me.DateTimePickerFecha.CustomFormat = ""
+        Me.DateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePickerFecha.Location = New System.Drawing.Point(529, 13)
+        Me.DateTimePickerFecha.Name = "DateTimePickerFecha"
+        Me.DateTimePickerFecha.Size = New System.Drawing.Size(163, 22)
+        Me.DateTimePickerFecha.TabIndex = 115
+        Me.DateTimePickerFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(383, 16)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(49, 16)
+        Me.Label1.TabIndex = 116
+        Me.Label1.Text = "Fecha:"
+        '
+        'DateTimePickerMesReintegro
+        '
+        Me.DateTimePickerMesReintegro.CustomFormat = ""
+        Me.DateTimePickerMesReintegro.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePickerMesReintegro.Location = New System.Drawing.Point(145, 99)
+        Me.DateTimePickerMesReintegro.Name = "DateTimePickerMesReintegro"
+        Me.DateTimePickerMesReintegro.Size = New System.Drawing.Size(197, 22)
+        Me.DateTimePickerMesReintegro.TabIndex = 117
+        Me.DateTimePickerMesReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
+        'ComboBoxSeccional
+        '
+        Me.ComboBoxSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.ComboBoxSeccional.FormattingEnabled = True
+        Me.ComboBoxSeccional.Location = New System.Drawing.Point(145, 127)
+        Me.ComboBoxSeccional.Name = "ComboBoxSeccional"
+        Me.ComboBoxSeccional.Size = New System.Drawing.Size(197, 24)
+        Me.ComboBoxSeccional.TabIndex = 118
+        '
+        'LabelSeccional
+        '
+        Me.LabelSeccional.AutoSize = True
+        Me.LabelSeccional.Location = New System.Drawing.Point(22, 130)
+        Me.LabelSeccional.Name = "LabelSeccional"
+        Me.LabelSeccional.Size = New System.Drawing.Size(68, 16)
+        Me.LabelSeccional.TabIndex = 119
+        Me.LabelSeccional.Text = "Seccional"
         '
         'ABMEgresos
         '
@@ -454,6 +839,8 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.PerformLayout()
         Me.TabPageModificar.ResumeLayout(False)
         Me.SplitContainerModificar.Panel1.ResumeLayout(False)
+        Me.SplitContainerModificar.Panel2.ResumeLayout(False)
+        Me.SplitContainerModificar.Panel2.PerformLayout()
         CType(Me.SplitContainerModificar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerModificar.ResumeLayout(False)
         Me.ToolStripContainerModificar.ContentPanel.ResumeLayout(False)
@@ -499,4 +886,43 @@ Partial Class ABMEgresos
     Friend WithEvents SplitContainerModificar As SplitContainer
     Friend WithEvents ToolStripContainerModificar As ToolStripContainer
     Friend WithEvents DataGridViewModificar As DataGridView
+    Friend WithEvents id As DataGridViewTextBoxColumn
+    Friend WithEvents nro_comprobante As DataGridViewTextBoxColumn
+    Friend WithEvents tipo_comprobante_id As DataGridViewTextBoxColumn
+    Friend WithEvents tipo_comprobante_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents proveedor_id As DataGridViewTextBoxColumn
+    Friend WithEvents proveedor_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents categoria_gasto_id As DataGridViewTextBoxColumn
+    Friend WithEvents categoria_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents persona_id As DataGridViewTextBoxColumn
+    Friend WithEvents persona_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents fecha As DataGridViewTextBoxColumn
+    Friend WithEvents seccional_id As DataGridViewTextBoxColumn
+    Friend WithEvents seccional_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents mes_reintegro As DataGridViewTextBoxColumn
+    Friend WithEvents monto As DataGridViewTextBoxColumn
+    Friend WithEvents comentario As DataGridViewTextBoxColumn
+    Friend WithEvents TextBoxNroComprobante As TextBox
+    Friend WithEvents ComboBoxTipoComprobante As ComboBox
+    Friend WithEvents TextBoxPVenta As TextBox
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label5 As Label
+    Friend WithEvents TextBoxMonto As TextBox
+    Friend WithEvents ComboBoxCategGasto As ComboBox
+    Friend WithEvents ButtonGuardar As Button
+    Friend WithEvents Label6 As Label
+    Friend WithEvents TextBoxNombre As TextBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TextBoxComentario As TextBox
+    Friend WithEvents TextBoxProveedor As TextBox
+    Friend WithEvents DateTimePickerFecha As DateTimePicker
+    Friend WithEvents Label1 As Label
+    Friend WithEvents LabelSeccional As Label
+    Friend WithEvents ComboBoxSeccional As ComboBox
+    Friend WithEvents DateTimePickerMesReintegro As DateTimePicker
 End Class

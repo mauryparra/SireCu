@@ -2,7 +2,6 @@
 
 Public Class ABMEgresos
 
-    Private data As New DataSet
 
 #Region "Eventos"
     Private Sub ABMEgresos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -12,19 +11,26 @@ Public Class ABMEgresos
         'usamos el año mas grande de la base de datos
         tbYear.Text = ultimoaño("Egresos")
 
-        data.Tables.Add("Proveedores")
-        data.Tables.Add("Personas")
-        data.Tables.Add("CategoriasGastos")
-        data.Tables.Add("TiposComprobantes")
-        data.Tables.Add("Seccionales")
-
         tbProveedor.AutoCompleteCustomSource = autocomplete("Proveedores", "nombre")
         tbNombre.AutoCompleteCustomSource = autocomplete("Personas", "nombre")
         tbTGasto.AutoCompleteCustomSource = autocomplete("CategoriasGastos", "nombre")
-        tbTComprobante.AutoCompleteCustomSource = autocomplete("tiposComprobantes", "nombre")
+        tbTComprobante.AutoCompleteCustomSource = autocomplete("TiposComprobantes", "nombre")
 
         ' Tab Modificar
+        activarModificar(False)
         Egreso.CargardDGV(DataGridViewModificar)
+        TextBoxNombre.AutoCompleteCustomSource = autocomplete("Personas", "nombre")
+        ComboBoxCategGasto.AutoCompleteCustomSource = autocomplete("CategoriasGastos", "nombre")
+        ComboBoxCategGasto.DataSource = Principal.dataset.Tables("CategoriasGastos")
+        ComboBoxCategGasto.Enabled = True
+        ComboBoxCategGasto.ValueMember = "id"
+        ComboBoxCategGasto.DisplayMember = "nombre"
+        TextBoxProveedor.AutoCompleteCustomSource = autocomplete("Proveedores", "nombre")
+        DateTimePickerMesReintegro.Value = Now
+        ComboBoxSeccional.AutoCompleteCustomSource = autocomplete("Seccionales", "nombre")
+        DateTimePickerFecha.Value = Now
+        ComboBoxTipoComprobante.AutoCompleteCustomSource = autocomplete("TiposComprobantes", "nombre")
+
 
     End Sub
 
@@ -82,6 +88,37 @@ Public Class ABMEgresos
         'End If
     End Sub
 
+    Private Sub DataGridViewModificar_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridViewModificar.CellMouseDoubleClick
+        ' Cargar el formulario con los datos para modificar
+        Try
+            TextBoxNombre.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("persona_nombre").Value
+            ComboBoxCategGasto.SelectedItem = DataGridViewModificar.Rows(e.RowIndex).Cells("categoria_nombre").Value
+            TextBoxProveedor.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("proveedor_nombre").Value
+            If DataGridViewModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value Is DBNull.Value Then
+                DateTimePickerMesReintegro.Value = CDate(DataGridViewModificar.Rows(e.RowIndex).Cells("fecha").Value)
+            Else
+                DateTimePickerMesReintegro.Value = CDate(DataGridViewModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
+            End If
+            ComboBoxSeccional.SelectedItem = DataGridViewModificar.Rows(e.RowIndex).Cells("seccional_nombre").Value
+            TextBoxComentario.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("comentario").Value.ToString
+            DateTimePickerFecha.Value = CDate(DataGridViewModificar.Rows(e.RowIndex).Cells("fecha").Value)
+            ComboBoxTipoComprobante.SelectedItem = DataGridViewModificar.Rows(e.RowIndex).Cells("tipo_comprobante_nombre").Value
+            If DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Contains("-") Then
+                TextBoxPVenta.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(0)
+                TextBoxNroComprobante.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(1)
+            Else
+                TextBoxPVenta.Text = "0"
+                TextBoxNroComprobante.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value
+            End If
+            TextBoxMonto.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("monto").Value
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error al cargar el formulario", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        activarModificar(True)
+
+    End Sub
+
 #End Region
 
 #Region "Helpers"
@@ -92,10 +129,10 @@ Public Class ABMEgresos
         Principal.query = "SELECT * FROM " & tabla
         consultarNQ(Principal.query, Principal.command)
         Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.adapter.Fill(data.Tables(tabla))
+        Principal.adapter.Fill(Principal.dataset.Tables(tabla))
 
-        For i = 0 To data.Tables(tabla).Rows.Count - 1
-            coleccion.Add(Convert.ToString(data.Tables(tabla).Rows.Item(i).Item(Campo_a_Mostrar)))
+        For Each row As DataRow In Principal.dataset.Tables(tabla).Rows
+            coleccion.Add(Convert.ToString(row.Item(Campo_a_Mostrar)))
         Next
 
         '        Administrativos
@@ -143,15 +180,36 @@ Public Class ABMEgresos
         Principal.adapter = New SqlCeDataAdapter(Principal.command)
         Principal.adapter.Fill(Principal.dataset.Tables(tabla))
 
-        For i = 0 To Principal.dataset.Tables(tabla).Rows.Count - 1
-            If (LCase(Principal.dataset.Tables(tabla).Rows.Item(i).Item("nombre")) = LCase(Campo_a_comparar)) Then
-                id = Principal.dataset.Tables(tabla).Rows.Item(i).Item("id")
+        For Each row As DataRow In Principal.dataset.Tables(tabla).Rows
+            If (LCase(row.Item("nombre")) = LCase(Campo_a_comparar)) Then
+                id = row.Item("id")
             End If
         Next
+
+
 
         Return (id)
 
     End Function
+
+    ' Activa o desactiva la modificación de un Egreso
+    Private Sub activarModificar(ByVal activar As Boolean)
+        If activar Then
+            For Each control As Control In SplitContainerModificar.Panel2.Controls
+                If TypeOf control Is TextBox Or TypeOf control Is ComboBox Then
+                    control.Enabled = True
+                End If
+            Next
+            ButtonGuardar.Enabled = True
+        Else
+            For Each control As Control In SplitContainerModificar.Panel2.Controls
+                If TypeOf control Is TextBox Or TypeOf control Is ComboBox Then
+                    control.Enabled = False
+                End If
+            Next
+            ButtonGuardar.Enabled = False
+        End If
+    End Sub
 
 #End Region
 

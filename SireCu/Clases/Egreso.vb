@@ -9,6 +9,7 @@ Module Egreso
             "fecha, tipo_comprobante_id, seccional_id, mes_reintegro, monto, comentario)" &
                               "VALUES (@nro_comprobante, @proveedor, @cat_gasto, @persona, @fecha, @t_comprobante, " &
                                 "@seccional, @reintegro, @monto, @comentario)"
+        Principal.command.Parameters.Clear()
         Principal.command.Parameters.AddWithValue("@nro_comprobante", compro)
         Principal.command.Parameters.AddWithValue("@proveedor", proveedor)
         Principal.command.Parameters.AddWithValue("@cat_gasto", categoria)
@@ -36,13 +37,12 @@ Module Egreso
     End Function
 
     Public Sub CargardDGV(ByRef dgv As DataGridView)
-        Dim cmd = New SqlCeCommand
         Dim con = New SqlCeConnection(My.Settings.CadenaConexion)
         If con.State = ConnectionState.Closed Then
             con.Open()
         End If
 
-        cmd.CommandText = "SELECT E.id AS id,
+        Principal.command.CommandText = "SELECT E.id AS id,
                                   E.nro_comprobante AS nro_comprobante,
                                   E.tipo_comprobante_id AS tipo_comprobante_id,
                                   Comp.nombre AS tipo_comprobante_nombre,
@@ -64,33 +64,33 @@ Module Egreso
                            LEFT JOIN CategoriasGastos AS Gastos ON E.categoria_gasto_id = Gastos.id
                            LEFT JOIN Personas AS Per ON E.persona_id = Per.id
                            LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id"
-        cmd.Connection = con
-        Dim tableadapter = New SqlCeDataAdapter(cmd)
-        Dim dataset = New DataSet
+        Principal.command.Connection = con
+        Dim tableadapter = New SqlCeDataAdapter(Principal.command)
 
-        tableadapter.Fill(dataset, "Egresos_Modificar")
-        Dim mybinding = New BindingSource(dataset, "Egresos_Modificar")
+        tableadapter.Fill(Principal.dataset, "Egresos_Modificar")
+        Dim mybinding = New BindingSource(Principal.dataset, "Egresos_Modificar")
 
+        dgv.AutoGenerateColumns = False
 
+        dgv.Columns.Item("id").DataPropertyName = "id"
+        dgv.Columns.Item("nro_comprobante").DataPropertyName = "nro_comprobante"
+        dgv.Columns.Item("tipo_comprobante_id").DataPropertyName = "tipo_comprobante_id"
+        dgv.Columns.Item("tipo_comprobante_nombre").DataPropertyName = "tipo_comprobante_nombre"
+        dgv.Columns.Item("proveedor_id").DataPropertyName = "proveedor_id"
+        dgv.Columns.Item("proveedor_nombre").DataPropertyName = "proveedor_nombre"
+        dgv.Columns.Item("categoria_gasto_id").DataPropertyName = "categoria_gasto_id"
+        dgv.Columns.Item("categoria_nombre").DataPropertyName = "categoria_nombre"
+        dgv.Columns.Item("persona_id").DataPropertyName = "persona_id"
+        dgv.Columns.Item("persona_nombre").DataPropertyName = "persona_nombre"
+        dgv.Columns.Item("fecha").DataPropertyName = "fecha"
+        dgv.Columns.Item("seccional_id").DataPropertyName = "seccional_id"
+        dgv.Columns.Item("seccional_nombre").DataPropertyName = "seccional_nombre"
+        dgv.Columns.Item("mes_reintegro").DataPropertyName = "mes_reintegro"
+        dgv.Columns.Item("monto").DataPropertyName = "monto"
+        dgv.Columns.Item("comentario").DataPropertyName = "comentario"
         dgv.DataSource = mybinding
 
-        dgv.Columns.Item("id").HeaderText = "Id"
-        dgv.Columns.Item("nro_comprobante").HeaderText = "Nro Comprobante"
-        dgv.Columns.Item("tipo_comprobante_nombre").HeaderText = "Tipo Comprobante"
-        dgv.Columns.Item("proveedor_nombre").HeaderText = "Proveedor"
-        dgv.Columns.Item("categoria_nombre").HeaderText = "Categoria Gasto"
-        dgv.Columns.Item("persona_nombre").HeaderText = "Persona"
-        dgv.Columns.Item("fecha").HeaderText = "Fecha"
-        dgv.Columns.Item("seccional_nombre").HeaderText = "Seccional"
-        dgv.Columns.Item("mes_reintegro").HeaderText = "Mes Reintegro"
-        dgv.Columns.Item("monto").HeaderText = "Monto"
-        dgv.Columns.Item("comentario").HeaderText = "Comentario"
 
-        dgv.Columns.Item("tipo_comprobante_id").Visible = False
-        dgv.Columns.Item("proveedor_id").Visible = False
-        dgv.Columns.Item("categoria_gasto_id").Visible = False
-        dgv.Columns.Item("persona_id").Visible = False
-        dgv.Columns.Item("seccional_id").Visible = False
 
 
     End Sub
