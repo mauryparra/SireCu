@@ -24,8 +24,32 @@ Module Egreso
         consultarNQ(Principal.query, Principal.command)
     End Sub
 
-    Public Sub modificar_egreso()
+    Public Sub modificar_egreso(ByVal id As Integer, ByVal compro As String, ByVal proveedor As Integer, ByVal categoria As Integer,
+                                ByVal persona As Integer, ByVal fecha As Date, ByVal tipo_comp As Integer, ByVal secc As Integer,
+                                ByVal reintegro As Date, ByVal monto As Decimal, ByVal comentario As String)
 
+        Principal.query = "UPDATE Egresos SET nro_comprobante = @nro_comprobante, proveedor_id = @proveedor, categoria_gasto_id = @cat_gasto, " &
+                            "persona_id = @persona, fecha = @fecha, tipo_comprobante_id = @t_comprobante, seccional_id = @seccional, " &
+                            "mes_reintegro = @reintegro, monto = @monto, comentario = @comentario " &
+                            "WHERE id = @id"
+        Principal.command.Parameters.Clear()
+        Principal.command.Parameters.AddWithValue("@nro_comprobante", compro)
+        Principal.command.Parameters.AddWithValue("@proveedor", proveedor)
+        Principal.command.Parameters.AddWithValue("@cat_gasto", categoria)
+        Principal.command.Parameters.AddWithValue("@persona", persona)
+        Principal.command.Parameters.AddWithValue("@fecha", fecha)
+        Principal.command.Parameters.AddWithValue("@t_comprobante", tipo_comp)
+        Principal.command.Parameters.AddWithValue("@seccional", secc)
+        Principal.command.Parameters.AddWithValue("@reintegro", reintegro)
+        Principal.command.Parameters.AddWithValue("@monto", monto)
+        Principal.command.Parameters.AddWithValue("@comentario", comentario)
+        Principal.command.Parameters.AddWithValue("@id", id)
+
+        If consultarNQ(Principal.query, Principal.command) > 0 Then
+            MsgBox("Egreso modificado exitosamente", MsgBoxStyle.OkOnly, "Guardar Cambios")
+        Else
+            MsgBox("Ocurrio un error al guardar los cambios", MsgBoxStyle.Exclamation, "Guardar Cambios")
+        End If
     End Sub
 
     Public Sub eliminar_egreso()
@@ -33,7 +57,7 @@ Module Egreso
     End Sub
 
     Public Function mostrar_egreso()
-
+        Throw New NotImplementedException()
     End Function
 
     Public Sub CargardDGV(ByRef dgv As DataGridView)
@@ -66,6 +90,10 @@ Module Egreso
                            LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id"
         Principal.command.Connection = con
         Dim tableadapter = New SqlCeDataAdapter(Principal.command)
+
+        If Principal.dataset.Tables.Contains("Egresos_Modificar") Then
+            Principal.dataset.Tables("Egresos_Modificar").Clear()
+        End If
 
         tableadapter.Fill(Principal.dataset, "Egresos_Modificar")
         Dim mybinding = New BindingSource(Principal.dataset, "Egresos_Modificar")

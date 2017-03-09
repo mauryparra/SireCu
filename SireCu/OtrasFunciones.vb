@@ -106,12 +106,15 @@ Module OtrasFunciones
 
     Public Function ultimoaño(ByVal tabla As String)
 
+        ' TODO reemplazar fill dataset por command.ExecuteReader
+
         Principal.query = "SELECT fecha FROM " & tabla & " ORDER BY fecha DESC"
         consultarNQ(Principal.query, Principal.command)
-        ClearDataset(Principal.dataset)
+        ' ClearDataset(Principal.dataset)  Borrar solo tabla
+        Principal.dataset.Tables(tabla).Clear()
 
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.adapter.Fill(Principal.dataset.Tables(tabla))
+        Principal.tableadapters(tabla) = New SqlCeDataAdapter(Principal.command)
+        Principal.tableadapters(tabla).Fill(Principal.dataset.Tables(tabla))
 
         If (Principal.dataset.Tables(tabla).Rows.Count() = 0) Then
             Return ("2000")
@@ -122,12 +125,10 @@ Module OtrasFunciones
 
     Public Sub abm_otros(ByVal tabla As String)
 
-        ClearDataset(Principal.dataset)
+        ' ClearDataset(Principal.dataset)
 
-        Principal.query = "SELECT * FROM " & tabla
-        consultarNQ(Principal.query, Principal.command)
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.adapter.Fill(Principal.dataset.Tables(tabla))
+        Principal.dataset.Tables(tabla).Clear()
+        cargarTablaEnDataSet(tabla)
 
         Dim bindSource As New BindingSource
         bindSource.DataSource = Principal.dataset.Tables(tabla)
@@ -138,10 +139,13 @@ Module OtrasFunciones
 
     Public Function exist(ByVal tabla As String, ByVal campo As String, ByVal comparar As String)
 
-        Principal.query = "SELECT * FROM " & tabla
-        consultarNQ(Principal.query, Principal.command)
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.adapter.Fill(Principal.dataset.Tables(tabla))
+        'Principal.query = "SELECT * FROM " & tabla
+        'consultarNQ(Principal.query, Principal.command)
+        'Principal.tableadapters(tabla) = New SqlCeDataAdapter(Principal.command)
+        'Principal.tableadapters(tabla).Fill(Principal.dataset.Tables(tabla))
+
+        ' TODO Ver si hace falta recargar la tabla en el dataset si no usar el dataset directamente
+        cargarTablaEnDataSet(tabla)
 
         Dim flag As Boolean = False
 
@@ -151,13 +155,10 @@ Module OtrasFunciones
             End If
         Next
 
-        ClearDataset(Principal.dataset)
+        ' ClearDataset(Principal.dataset)
+        Principal.dataset.Tables(tabla).Clear()
 
-        If flag = True Then
-            Return (True)
-        Else
-            Return (False)
-        End If
+        Return flag
 
     End Function
 

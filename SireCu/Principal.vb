@@ -3,8 +3,8 @@
 Public Class Principal
 
     Public dataset As New DataSet
-    Public command As New SqlCeCommand
-    Public adapter As SqlCeDataAdapter
+    Public command As New SqlCeCommand()
+    Public tableadapters As New Dictionary(Of String, SqlCeDataAdapter)
     Public query As String
 
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
@@ -53,15 +53,14 @@ Public Class Principal
 
     Private Sub Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'Tablas
-        dataset.Tables.Add("Ingresos")
-        dataset.Tables.Add("Egresos")
-        dataset.Tables.Add("Saldos")
-        dataset.Tables.Add("Proveedores")
-        dataset.Tables.Add("Personas")
-        dataset.Tables.Add("CategoriasGastos")
-        dataset.Tables.Add("TiposComprobantes")
-        dataset.Tables.Add("Seccionales")
+        'Cargar Tablas en Dataset
+        cargarTablaEnDataSet("Ingresos")
+        cargarTablaEnDataSet("Egresos")
+        cargarTablaEnDataSet("Proveedores")
+        cargarTablaEnDataSet("Personas")
+        cargarTablaEnDataSet("CategoriasGastos")
+        cargarTablaEnDataSet("TiposComprobantes")
+        cargarTablaEnDataSet("Seccionales")
 
     End Sub
 

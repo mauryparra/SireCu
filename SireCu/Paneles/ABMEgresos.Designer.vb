@@ -73,6 +73,11 @@ Partial Class ABMEgresos
         Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LabelSeccional = New System.Windows.Forms.Label()
+        Me.ComboBoxSeccional = New System.Windows.Forms.ComboBox()
+        Me.DateTimePickerMesReintegro = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DateTimePickerFecha = New System.Windows.Forms.DateTimePicker()
         Me.TextBoxNroComprobante = New System.Windows.Forms.TextBox()
         Me.ComboBoxTipoComprobante = New System.Windows.Forms.ComboBox()
         Me.TextBoxPVenta = New System.Windows.Forms.TextBox()
@@ -91,11 +96,6 @@ Partial Class ABMEgresos
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TextBoxComentario = New System.Windows.Forms.TextBox()
         Me.TextBoxProveedor = New System.Windows.Forms.TextBox()
-        Me.DateTimePickerFecha = New System.Windows.Forms.DateTimePicker()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DateTimePickerMesReintegro = New System.Windows.Forms.DateTimePicker()
-        Me.ComboBoxSeccional = New System.Windows.Forms.ComboBox()
-        Me.LabelSeccional = New System.Windows.Forms.Label()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -616,6 +616,54 @@ Partial Class ABMEgresos
         Me.comentario.Name = "comentario"
         Me.comentario.ReadOnly = True
         '
+        'LabelSeccional
+        '
+        Me.LabelSeccional.AutoSize = True
+        Me.LabelSeccional.Location = New System.Drawing.Point(22, 130)
+        Me.LabelSeccional.Name = "LabelSeccional"
+        Me.LabelSeccional.Size = New System.Drawing.Size(68, 16)
+        Me.LabelSeccional.TabIndex = 119
+        Me.LabelSeccional.Text = "Seccional"
+        '
+        'ComboBoxSeccional
+        '
+        Me.ComboBoxSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBoxSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.ComboBoxSeccional.FormattingEnabled = True
+        Me.ComboBoxSeccional.Location = New System.Drawing.Point(145, 127)
+        Me.ComboBoxSeccional.Name = "ComboBoxSeccional"
+        Me.ComboBoxSeccional.Size = New System.Drawing.Size(197, 24)
+        Me.ComboBoxSeccional.TabIndex = 118
+        '
+        'DateTimePickerMesReintegro
+        '
+        Me.DateTimePickerMesReintegro.CustomFormat = ""
+        Me.DateTimePickerMesReintegro.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePickerMesReintegro.Location = New System.Drawing.Point(145, 99)
+        Me.DateTimePickerMesReintegro.Name = "DateTimePickerMesReintegro"
+        Me.DateTimePickerMesReintegro.Size = New System.Drawing.Size(197, 22)
+        Me.DateTimePickerMesReintegro.TabIndex = 117
+        Me.DateTimePickerMesReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(383, 16)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(49, 16)
+        Me.Label1.TabIndex = 116
+        Me.Label1.Text = "Fecha:"
+        '
+        'DateTimePickerFecha
+        '
+        Me.DateTimePickerFecha.CustomFormat = ""
+        Me.DateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePickerFecha.Location = New System.Drawing.Point(529, 13)
+        Me.DateTimePickerFecha.Name = "DateTimePickerFecha"
+        Me.DateTimePickerFecha.Size = New System.Drawing.Size(163, 22)
+        Me.DateTimePickerFecha.TabIndex = 115
+        Me.DateTimePickerFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
         'TextBoxNroComprobante
         '
         Me.TextBoxNroComprobante.Location = New System.Drawing.Point(595, 71)
@@ -628,7 +676,6 @@ Partial Class ABMEgresos
         Me.ComboBoxTipoComprobante.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.ComboBoxTipoComprobante.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.ComboBoxTipoComprobante.FormattingEnabled = True
-        Me.ComboBoxTipoComprobante.Items.AddRange(New Object() {"Factura A", "Factura B", "Factura C", "Recibo A", "Recibo B", "Recibo C", "Recibo X", "Tique Fact. A", "Tique Fact. B", "Tique Fact. C", "Tique", "Pasaje", "Extracto Bancario", "Otro"})
         Me.ComboBoxTipoComprobante.Location = New System.Drawing.Point(529, 41)
         Me.ComboBoxTipoComprobante.Name = "ComboBoxTipoComprobante"
         Me.ComboBoxTipoComprobante.Size = New System.Drawing.Size(163, 24)
@@ -777,54 +824,6 @@ Partial Class ABMEgresos
         Me.TextBoxProveedor.Name = "TextBoxProveedor"
         Me.TextBoxProveedor.Size = New System.Drawing.Size(197, 22)
         Me.TextBoxProveedor.TabIndex = 96
-        '
-        'DateTimePickerFecha
-        '
-        Me.DateTimePickerFecha.CustomFormat = ""
-        Me.DateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePickerFecha.Location = New System.Drawing.Point(529, 13)
-        Me.DateTimePickerFecha.Name = "DateTimePickerFecha"
-        Me.DateTimePickerFecha.Size = New System.Drawing.Size(163, 22)
-        Me.DateTimePickerFecha.TabIndex = 115
-        Me.DateTimePickerFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(383, 16)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(49, 16)
-        Me.Label1.TabIndex = 116
-        Me.Label1.Text = "Fecha:"
-        '
-        'DateTimePickerMesReintegro
-        '
-        Me.DateTimePickerMesReintegro.CustomFormat = ""
-        Me.DateTimePickerMesReintegro.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePickerMesReintegro.Location = New System.Drawing.Point(145, 99)
-        Me.DateTimePickerMesReintegro.Name = "DateTimePickerMesReintegro"
-        Me.DateTimePickerMesReintegro.Size = New System.Drawing.Size(197, 22)
-        Me.DateTimePickerMesReintegro.TabIndex = 117
-        Me.DateTimePickerMesReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
-        '
-        'ComboBoxSeccional
-        '
-        Me.ComboBoxSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ComboBoxSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.ComboBoxSeccional.FormattingEnabled = True
-        Me.ComboBoxSeccional.Location = New System.Drawing.Point(145, 127)
-        Me.ComboBoxSeccional.Name = "ComboBoxSeccional"
-        Me.ComboBoxSeccional.Size = New System.Drawing.Size(197, 24)
-        Me.ComboBoxSeccional.TabIndex = 118
-        '
-        'LabelSeccional
-        '
-        Me.LabelSeccional.AutoSize = True
-        Me.LabelSeccional.Location = New System.Drawing.Point(22, 130)
-        Me.LabelSeccional.Name = "LabelSeccional"
-        Me.LabelSeccional.Size = New System.Drawing.Size(68, 16)
-        Me.LabelSeccional.TabIndex = 119
-        Me.LabelSeccional.Text = "Seccional"
         '
         'ABMEgresos
         '

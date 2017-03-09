@@ -2,7 +2,7 @@
 
 Module Conexion
 
-    Private conexion As New SqlCeConnection(My.Settings.CadenaConexion)
+    Public conexion As New SqlCeConnection(My.Settings.CadenaConexion)
 
     Private Sub conectar()
 
@@ -55,6 +55,24 @@ Module Conexion
 
         Return resultado
     End Function
+
+    Sub cargarTablaEnDataSet(ByVal tabla As String)
+
+        Principal.command.Connection = conexion
+
+        ' Crea tabla en dataset si no existe
+        If Not Principal.dataset.Tables.Contains(tabla) Then
+            Principal.dataset.Tables.Add(tabla)
+        End If
+
+        Principal.command.CommandText = "Select * FROM " & tabla
+
+        ' Crea tableadapter si no existe
+        If Not Principal.tableadapters.ContainsKey(tabla) Then
+            Principal.tableadapters.Add(tabla, New SqlCeDataAdapter(Principal.command))
+        End If
+        Principal.tableadapters(tabla).Fill(Principal.dataset.Tables.Item(tabla))
+    End Sub
 
 
 End Module

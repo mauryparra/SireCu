@@ -19,13 +19,15 @@ Module Ingreso
 
     Public Function mostrar_ingreso(ByVal mes As Integer, ByVal año As Integer)
 
+        ' TODO reemplazar fill dataset por command.ExecuteReader
+
         Principal.query = "SELECT * from ingresos where DATEPART(month, fecha) = '" & mes & "'" &
                 " And DatePart(Year, fecha) = '" & año & "'"
 
         consultarNQ(Principal.query, Principal.command)
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        ClearDataset(Principal.dataset)
-        Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
+        Principal.tableadapters("Ingresos") = New SqlCeDataAdapter(Principal.command)
+        ClearDataset(Principal.dataset) ' TODO limpiar solo tabla a usar
+        Principal.tableadapters("Ingresos").Fill(Principal.dataset.Tables("ingresos"))
 
         Dim array() As String
         If (Principal.dataset.Tables("ingresos").Rows.Count = 0) Then
@@ -44,11 +46,13 @@ Module Ingreso
 
     Public Function verificar_año(ByVal año As Integer)
 
+        ' TODO reemplazar fill dataset por command.ExecuteReader
+
         Principal.query = "SELECT * from ingresos where DATEPART(Year, fecha) = '" & año & "'"
         consultarNQ(Principal.query, Principal.command)
-        ClearDataset(Principal.dataset)
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
+        ClearDataset(Principal.dataset) ' TODO limpiar solo tabla a usar
+        Principal.tableadapters("Ingresos") = New SqlCeDataAdapter(Principal.command)
+        Principal.tableadapters("Ingresos").Fill(Principal.dataset.Tables("ingresos"))
 
         If (Principal.dataset.Tables("ingresos").Rows.Count = 0) Then
             Return (False)
