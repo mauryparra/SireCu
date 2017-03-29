@@ -24,10 +24,11 @@ Partial Class ABMEgresos
     Private Sub InitializeComponent()
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.TabPageAgregar = New System.Windows.Forms.TabPage()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.tbSeccional = New System.Windows.Forms.ComboBox()
         Me.tbNComprobante = New System.Windows.Forms.TextBox()
         Me.lb_Titulo = New System.Windows.Forms.Label()
         Me.tbTComprobante = New System.Windows.Forms.ComboBox()
-        Me.bttnConsultar = New System.Windows.Forms.Button()
         Me.tbPVenta = New System.Windows.Forms.TextBox()
         Me.tbReintegro = New System.Windows.Forms.TextBox()
         Me.lbYear = New System.Windows.Forms.Label()
@@ -42,8 +43,6 @@ Partial Class ABMEgresos
         Me.tbTGasto = New System.Windows.Forms.ComboBox()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.lbGasto = New System.Windows.Forms.Label()
-        Me.ckCentral = New System.Windows.Forms.CheckBox()
-        Me.ckLarioja = New System.Windows.Forms.CheckBox()
         Me.tbNombre = New System.Windows.Forms.TextBox()
         Me.lbMes = New System.Windows.Forms.Label()
         Me.lbComentario = New System.Windows.Forms.Label()
@@ -122,10 +121,11 @@ Partial Class ABMEgresos
         '
         'TabPageAgregar
         '
+        Me.TabPageAgregar.Controls.Add(Me.Label2)
+        Me.TabPageAgregar.Controls.Add(Me.tbSeccional)
         Me.TabPageAgregar.Controls.Add(Me.tbNComprobante)
         Me.TabPageAgregar.Controls.Add(Me.lb_Titulo)
         Me.TabPageAgregar.Controls.Add(Me.tbTComprobante)
-        Me.TabPageAgregar.Controls.Add(Me.bttnConsultar)
         Me.TabPageAgregar.Controls.Add(Me.tbPVenta)
         Me.TabPageAgregar.Controls.Add(Me.tbReintegro)
         Me.TabPageAgregar.Controls.Add(Me.lbYear)
@@ -140,8 +140,6 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.Controls.Add(Me.tbTGasto)
         Me.TabPageAgregar.Controls.Add(Me.btnGuardar)
         Me.TabPageAgregar.Controls.Add(Me.lbGasto)
-        Me.TabPageAgregar.Controls.Add(Me.ckCentral)
-        Me.TabPageAgregar.Controls.Add(Me.ckLarioja)
         Me.TabPageAgregar.Controls.Add(Me.tbNombre)
         Me.TabPageAgregar.Controls.Add(Me.lbMes)
         Me.TabPageAgregar.Controls.Add(Me.lbComentario)
@@ -159,12 +157,31 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.Text = "Agregar"
         Me.TabPageAgregar.UseVisualStyleBackColor = True
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(32, 264)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(68, 16)
+        Me.Label2.TabIndex = 93
+        Me.Label2.Text = "Seccional"
+        '
+        'tbSeccional
+        '
+        Me.tbSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.tbSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.tbSeccional.FormattingEnabled = True
+        Me.tbSeccional.Location = New System.Drawing.Point(151, 261)
+        Me.tbSeccional.Name = "tbSeccional"
+        Me.tbSeccional.Size = New System.Drawing.Size(156, 24)
+        Me.tbSeccional.TabIndex = 11
+        '
         'tbNComprobante
         '
         Me.tbNComprobante.Location = New System.Drawing.Point(603, 171)
         Me.tbNComprobante.Name = "tbNComprobante"
         Me.tbNComprobante.Size = New System.Drawing.Size(97, 22)
-        Me.tbNComprobante.TabIndex = 9
+        Me.tbNComprobante.TabIndex = 8
         '
         'lb_Titulo
         '
@@ -181,40 +198,25 @@ Partial Class ABMEgresos
         Me.tbTComprobante.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.tbTComprobante.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.tbTComprobante.FormattingEnabled = True
-        Me.tbTComprobante.Items.AddRange(New Object() {"Factura A", "Factura B", "Factura C", "Recibo A", "Recibo B", "Recibo C", "Recibo X", "Tique Fact. A", "Tique Fact. B", "Tique Fact. C", "Tique", "Pasaje", "Extracto Bancario", "Otro"})
         Me.tbTComprobante.Location = New System.Drawing.Point(537, 126)
         Me.tbTComprobante.Name = "tbTComprobante"
         Me.tbTComprobante.Size = New System.Drawing.Size(163, 24)
-        Me.tbTComprobante.TabIndex = 7
-        '
-        'bttnConsultar
-        '
-        Me.bttnConsultar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bttnConsultar.Location = New System.Drawing.Point(603, 324)
-        Me.bttnConsultar.Name = "bttnConsultar"
-        Me.bttnConsultar.Size = New System.Drawing.Size(126, 61)
-        Me.bttnConsultar.TabIndex = 90
-        Me.bttnConsultar.TabStop = False
-        Me.bttnConsultar.Text = "Consultar"
-        Me.bttnConsultar.UseVisualStyleBackColor = True
+        Me.tbTComprobante.TabIndex = 6
         '
         'tbPVenta
         '
         Me.tbPVenta.Location = New System.Drawing.Point(537, 171)
         Me.tbPVenta.Name = "tbPVenta"
         Me.tbPVenta.Size = New System.Drawing.Size(56, 22)
-        Me.tbPVenta.TabIndex = 8
+        Me.tbPVenta.TabIndex = 7
         '
         'tbReintegro
         '
-        Me.tbReintegro.AutoCompleteCustomSource.AddRange(New String() {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"})
-        Me.tbReintegro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbReintegro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.tbReintegro.Location = New System.Drawing.Point(151, 215)
         Me.tbReintegro.MaxLength = 2
         Me.tbReintegro.Name = "tbReintegro"
         Me.tbReintegro.Size = New System.Drawing.Size(156, 22)
-        Me.tbReintegro.TabIndex = 10
+        Me.tbReintegro.TabIndex = 9
         '
         'lbYear
         '
@@ -248,12 +250,12 @@ Partial Class ABMEgresos
         '
         'tbYear
         '
-        Me.tbYear.Enabled = False
         Me.tbYear.Location = New System.Drawing.Point(623, 82)
         Me.tbYear.MaxLength = 4
         Me.tbYear.Name = "tbYear"
+        Me.tbYear.ReadOnly = True
         Me.tbYear.Size = New System.Drawing.Size(54, 22)
-        Me.tbYear.TabIndex = 4
+        Me.tbYear.TabIndex = 454
         Me.tbYear.TabStop = False
         '
         'tbMonth
@@ -295,7 +297,7 @@ Partial Class ABMEgresos
         Me.tbMonto.Location = New System.Drawing.Point(537, 215)
         Me.tbMonto.Name = "tbMonto"
         Me.tbMonto.Size = New System.Drawing.Size(163, 22)
-        Me.tbMonto.TabIndex = 11
+        Me.tbMonto.TabIndex = 10
         Me.tbMonto.Tag = ""
         '
         'tbTGasto
@@ -303,20 +305,19 @@ Partial Class ABMEgresos
         Me.tbTGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.tbTGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.tbTGasto.FormattingEnabled = True
-        Me.tbTGasto.Items.AddRange(New Object() {"Administrativos", "Alquileres", "Aplicables a Coparticipación", "Bancarios", "Coparticipación", "Desenvolvimiento", "Filiales", "Franqueo y Encomiendas", "Honorarios", "Impuestos y servicios", "Librería e impresiones", "Seguros", "Movilidad y traslado", "Prensa y difusión", "Prestaciones", "Subsidios"})
         Me.tbTGasto.Location = New System.Drawing.Point(151, 126)
         Me.tbTGasto.Name = "tbTGasto"
         Me.tbTGasto.Size = New System.Drawing.Size(156, 24)
-        Me.tbTGasto.TabIndex = 5
+        Me.tbTGasto.TabIndex = 4
         '
         'btnGuardar
         '
         Me.btnGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGuardar.ForeColor = System.Drawing.Color.Green
-        Me.btnGuardar.Location = New System.Drawing.Point(467, 324)
+        Me.btnGuardar.Location = New System.Drawing.Point(551, 320)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(126, 61)
-        Me.btnGuardar.TabIndex = 15
+        Me.btnGuardar.TabIndex = 13
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
@@ -328,27 +329,6 @@ Partial Class ABMEgresos
         Me.lbGasto.Size = New System.Drawing.Size(63, 16)
         Me.lbGasto.TabIndex = 84
         Me.lbGasto.Text = "Gasto de"
-        '
-        'ckCentral
-        '
-        Me.ckCentral.AutoSize = True
-        Me.ckCentral.Location = New System.Drawing.Point(248, 282)
-        Me.ckCentral.Name = "ckCentral"
-        Me.ckCentral.Size = New System.Drawing.Size(101, 20)
-        Me.ckCentral.TabIndex = 13
-        Me.ckCentral.Text = "UDA Central"
-        Me.ckCentral.UseVisualStyleBackColor = True
-        '
-        'ckLarioja
-        '
-        Me.ckLarioja.AutoSize = True
-        Me.ckLarioja.BackColor = System.Drawing.Color.White
-        Me.ckLarioja.Location = New System.Drawing.Point(110, 282)
-        Me.ckLarioja.Name = "ckLarioja"
-        Me.ckLarioja.Size = New System.Drawing.Size(109, 20)
-        Me.ckLarioja.TabIndex = 12
-        Me.ckLarioja.Text = "UDA La Rioja"
-        Me.ckLarioja.UseVisualStyleBackColor = False
         '
         'tbNombre
         '
@@ -419,8 +399,8 @@ Partial Class ABMEgresos
         Me.tbComentario.Location = New System.Drawing.Point(111, 308)
         Me.tbComentario.Multiline = True
         Me.tbComentario.Name = "tbComentario"
-        Me.tbComentario.Size = New System.Drawing.Size(317, 100)
-        Me.tbComentario.TabIndex = 14
+        Me.tbComentario.Size = New System.Drawing.Size(387, 100)
+        Me.tbComentario.TabIndex = 12
         '
         'tbProveedor
         '
@@ -429,7 +409,7 @@ Partial Class ABMEgresos
         Me.tbProveedor.Location = New System.Drawing.Point(151, 171)
         Me.tbProveedor.Name = "tbProveedor"
         Me.tbProveedor.Size = New System.Drawing.Size(156, 22)
-        Me.tbProveedor.TabIndex = 6
+        Me.tbProveedor.TabIndex = 5
         '
         'TabPageModificar
         '
@@ -855,7 +835,6 @@ Partial Class ABMEgresos
     Friend WithEvents tbNComprobante As TextBox
     Friend WithEvents lb_Titulo As Label
     Friend WithEvents tbTComprobante As ComboBox
-    Friend WithEvents bttnConsultar As Button
     Friend WithEvents tbPVenta As TextBox
     Friend WithEvents tbReintegro As TextBox
     Friend WithEvents lbYear As Label
@@ -870,8 +849,6 @@ Partial Class ABMEgresos
     Friend WithEvents tbTGasto As ComboBox
     Friend WithEvents btnGuardar As Button
     Friend WithEvents lbGasto As Label
-    Friend WithEvents ckCentral As CheckBox
-    Friend WithEvents ckLarioja As CheckBox
     Friend WithEvents tbNombre As TextBox
     Friend WithEvents lbMes As Label
     Friend WithEvents lbComentario As Label
@@ -924,4 +901,6 @@ Partial Class ABMEgresos
     Friend WithEvents LabelSeccional As Label
     Friend WithEvents ComboBoxSeccional As ComboBox
     Friend WithEvents DateTimePickerMesReintegro As DateTimePicker
+    Friend WithEvents Label2 As Label
+    Friend WithEvents tbSeccional As ComboBox
 End Class

@@ -26,7 +26,7 @@ Module Ingreso
 
         consultarNQ(Principal.query, Principal.command)
         Principal.tableadapters("Ingresos") = New SqlCeDataAdapter(Principal.command)
-        ClearDataset(Principal.dataset) ' TODO limpiar solo tabla a usar
+        Principal.dataset.Tables("Ingresos").Clear()
         Principal.tableadapters("Ingresos").Fill(Principal.dataset.Tables("ingresos"))
 
         Dim array() As String
@@ -50,7 +50,7 @@ Module Ingreso
 
         Principal.query = "SELECT * from ingresos where DATEPART(Year, fecha) = '" & año & "'"
         consultarNQ(Principal.query, Principal.command)
-        ClearDataset(Principal.dataset) ' TODO limpiar solo tabla a usar
+        Principal.dataset.Tables("Ingresos").Clear()
         Principal.tableadapters("Ingresos") = New SqlCeDataAdapter(Principal.command)
         Principal.tableadapters("Ingresos").Fill(Principal.dataset.Tables("ingresos"))
 

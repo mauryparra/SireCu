@@ -123,4 +123,21 @@ Module Egreso
 
     End Sub
 
+    Public Function comprobante_repetido(ByVal nComprobante As String, ByVal proveedorID As Integer)
+
+        cargarTablaEnDataSet("Egresos")
+
+        Dim flag As Boolean = False
+
+        For i = 0 To Principal.dataset.Tables("Egresos").Rows.Count - 1
+            If (Principal.dataset.Tables("Egresos").Rows.Item(i).Item("nro_comprobante") = nComprobante) And
+               (Principal.dataset.Tables("Egresos").Rows.Item(i).Item("proveedor_id") = proveedorID) Then
+                flag = True
+            End If
+        Next
+
+        Return flag
+
+    End Function
+
 End Module

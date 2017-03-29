@@ -56,6 +56,24 @@ Module Conexion
         Return resultado
     End Function
 
+    'Function consultarReader(ByVal sql As String)
+
+    '    Dim reader As SqlCeDataReader
+    '    Dim array As String()
+
+    '    Try
+    '        conectar()
+    '        Principal.command.CommandText = sql
+    '        Principal.command.Connection = conexion
+    '        reader = Principal.command.ExecuteReader()
+    '        desconectar()
+    '    Catch ex As SqlCeException
+    '        MessageBox.Show(ex.Message)
+    '    End Try
+
+    '    Return (reader.GetString(0))
+    'End Function
+
     Sub cargarTablaEnDataSet(ByVal tabla As String)
 
         Principal.command.Connection = conexion
@@ -64,6 +82,8 @@ Module Conexion
         If Not Principal.dataset.Tables.Contains(tabla) Then
             Principal.dataset.Tables.Add(tabla)
         End If
+        'Limpiamos la tabla
+        Principal.dataset.Tables(tabla).Clear()
 
         Principal.command.CommandText = "Select * FROM " & tabla
 
@@ -71,7 +91,10 @@ Module Conexion
         If Not Principal.tableadapters.ContainsKey(tabla) Then
             Principal.tableadapters.Add(tabla, New SqlCeDataAdapter(Principal.command))
         End If
+
+        'Refrescamos el contenido
         Principal.tableadapters(tabla).Fill(Principal.dataset.Tables.Item(tabla))
+
     End Sub
 
 

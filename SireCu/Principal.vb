@@ -83,4 +83,9 @@ Public Class Principal
         Otros_AMB.cb_tabla.Text = "Persona"
         Otros_AMB.ShowDialog()
     End Sub
+
+    Private Sub SeccionalesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeccionalesToolStripMenuItem.Click
+        Otros_AMB.cb_tabla.Text = "Seccional"
+        Otros_AMB.ShowDialog()
+    End Sub
 End Class

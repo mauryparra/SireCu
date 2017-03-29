@@ -40,6 +40,7 @@ Partial Class Principal
         Me.CategoríasDeGastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PersonasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SeccionalesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
@@ -172,7 +173,7 @@ Partial Class Principal
         '
         'EditarToolStripMenuItem
         '
-        Me.EditarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProveedoresToolStripMenuItem, Me.TiposDeGastosToolStripMenuItem, Me.CategoríasDeGastosToolStripMenuItem, Me.PersonasToolStripMenuItem})
+        Me.EditarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProveedoresToolStripMenuItem, Me.TiposDeGastosToolStripMenuItem, Me.CategoríasDeGastosToolStripMenuItem, Me.PersonasToolStripMenuItem, Me.SeccionalesToolStripMenuItem})
         Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
         Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
         Me.EditarToolStripMenuItem.Text = "Editar"
@@ -204,6 +205,12 @@ Partial Class Principal
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
+        '
+        'SeccionalesToolStripMenuItem
+        '
+        Me.SeccionalesToolStripMenuItem.Name = "SeccionalesToolStripMenuItem"
+        Me.SeccionalesToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
+        Me.SeccionalesToolStripMenuItem.Text = "Seccionales"
         '
         'Principal
         '
@@ -251,4 +258,5 @@ Partial Class Principal
     Friend WithEvents TiposDeGastosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CategoríasDeGastosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PersonasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SeccionalesToolStripMenuItem As ToolStripMenuItem
 End Class

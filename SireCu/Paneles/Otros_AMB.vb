@@ -2,29 +2,24 @@
 
 Public Class Otros_AMB
 
-    Public tabla As String
+    Dim tabla As String
+    Dim ControlesConErrores As List(Of Control) = New List(Of Control)
 
 #Region "Botones"
     Private Sub btn_Cancelar_Click(sender As Object, e As EventArgs) Handles btn_Cancelar.Click
         dgv_otros.Enabled = True
         tb_editar.Text = ""
         cb_tabla.Enabled = True
-        btn_Guardar.Text = "Guardar" & vbCrLf & "Nuevo"
+        btn_Cancelar.Enabled = False
+        btn_Guardar.Text = "Guardar Nuevo"
     End Sub
     Private Sub btn_Guardar_Click(sender As Object, e As EventArgs) Handles btn_Guardar.Click
 
-        'Verificación de tabla correcta
-        If (verificarTabla() = 0) Then
-            MsgBox("Por favor, seleccione una opción correcta", MsgBoxStyle.Exclamation, "Error")
+        ' Verificamos que todos los campos hayan pasado las validaciones
+        If ControlesConErrores.Count > 0 Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
             Exit Sub
         End If
-
-        'Verificacion de campos vacios
-        If (tb_editar.Text = "") Or (cb_tabla.Text = "") Then
-            MsgBox("Por favor, complete todos los campos", MsgBoxStyle.Exclamation, "Error")
-            Exit Sub
-        End If
-
 
         If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
 
@@ -55,6 +50,9 @@ Public Class Otros_AMB
 
             MsgBox("Guardado Correctamente!", MsgBoxStyle.Information, "Guardado")
             tb_editar.Text = ""
+            btn_Cancelar.Enabled = False
+
+            'Actualizamos el Autocomplete de campos y el DataGridview
             actualizar()
 
         End If
@@ -68,8 +66,8 @@ Public Class Otros_AMB
             Exit Sub
         End If
 
-        If (verificarTabla() = 0) Then
-            MsgBox("Por favor, seleccione una opción correcta", MsgBoxStyle.Exclamation, "Error")
+        If ControlesConErrores.Count > 0 Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
             Exit Sub
         End If
 
@@ -96,43 +94,40 @@ Public Class Otros_AMB
         dgv_otros.Enabled = False
         cb_tabla.Enabled = False
         btn_Guardar.Text = "Actualizar"
+        btn_Cancelar.Enabled = True
     End Sub
     Private Sub Otros_AMB_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         dgv_otros.DataSource = Nothing
     End Sub
     Private Sub cb_tabla_TextChanged(sender As Object, e As EventArgs) Handles cb_tabla.TextChanged
         actualizar()
+
+        'Sacamos el TB de la lista de errores
+        Principal.ErrorProvider.SetError(tb_editar, "")
+        ControlesConErrores.Remove(tb_editar)
     End Sub
     Private Sub actualizar()
         Select Case cb_tabla.Text
             Case "Proveedor"
+                tabla = "Proveedores"
                 abm_otros("Proveedores")
             Case "Tipo de Comprobante"
+                tabla = "TiposComprobantes"
                 abm_otros("TiposComprobantes")
             Case "Tipo de Gasto"
+                tabla = "CategoriasGastos"
                 abm_otros("CategoriasGastos")
             Case "Persona"
+                tabla = "Personas"
                 abm_otros("Personas")
+            Case "Seccional"
+                tabla = "Seccionales"
+                abm_otros("Seccionales")
         End Select
     End Sub
     Private Sub Otros_AMB_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Select Case cb_tabla.Text
-            Case "Proveedor"
-                tabla = "Proveedores"
-            Case "Tipo de Comprobante"
-                tabla = "TiposComprobantes"
-            Case "Tipo de Gasto"
-                tabla = "CategoriasGastos"
-            Case "Persona"
-                tabla = "Personas"
-        End Select
+        actualizar()
     End Sub
-    Private Function verificarTabla()
-        If (tabla <> "Proveedores") And (tabla <> "TiposComprobantes") And (tabla <> "CategoriasGastos") And (tabla <> "Personas") Then
-            Return (0)
-        Else Return (1)
-        End If
-    End Function
 #End Region
 
 #Region "Validaciones"
@@ -142,6 +137,29 @@ Public Class Otros_AMB
     Private Sub tb_editar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_editar.KeyPress
         keyverify(e, letras:=True, espacios:=True)
     End Sub
+
+    Private Sub cb_tabla_Validating(sender As Object, e As CancelEventArgs) Handles cb_tabla.Validating
+        If (cb_tabla.Text <> "Proveedor") And (cb_tabla.Text <> "Tipo de Comprobante") And
+            (cb_tabla.Text <> "Tipo de Gasto") And (cb_tabla.Text <> "Persona") And (cb_tabla.Text <> "Seccional") Or
+            IsDBNull(sender.Text) Or (cb_tabla.Text = "") Then
+
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar una opción válida")
+            ControlesConErrores.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErrores.Remove(sender)
+        End If
+    End Sub
+    Private Sub tb_editar_Validating(sender As Object, e As CancelEventArgs) Handles tb_editar.Validating
+        If IsDBNull(sender.Text) Or (tb_editar.Text = "") Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar un nombre válido")
+            ControlesConErrores.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErrores.Remove(sender)
+        End If
+    End Sub
+
 #End Region
 
 End Class
