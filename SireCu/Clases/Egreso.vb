@@ -56,16 +56,16 @@ Module Egreso
 
     End Sub
 
-    Public Function mostrar_egreso()
-        Throw New NotImplementedException()
-    End Function
-
     Public Sub CargardDGV(ByRef dgv As DataGridView)
-        Dim con = New SqlCeConnection(My.Settings.CadenaConexion)
-        If con.State = ConnectionState.Closed Then
-            con.Open()
-        End If
 
+        'Creamos la tabla si no existe
+        If Not Principal.dataset.Tables.Contains("Egresos_Modificar") Then
+            Principal.dataset.Tables.Add("Egresos_Modificar")
+        End If
+        'Limpiamos la tabla
+        Principal.dataset.Tables("Egresos_Modificar").Clear()
+
+        'Creamos el query
         Principal.command.CommandText = "SELECT E.id AS id,
                                   E.nro_comprobante AS nro_comprobante,
                                   E.tipo_comprobante_id AS tipo_comprobante_id,
@@ -88,14 +88,16 @@ Module Egreso
                            LEFT JOIN CategoriasGastos AS Gastos ON E.categoria_gasto_id = Gastos.id
                            LEFT JOIN Personas AS Per ON E.persona_id = Per.id
                            LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id"
-        Principal.command.Connection = con
-        Dim tableadapter = New SqlCeDataAdapter(Principal.command)
 
-        If Principal.dataset.Tables.Contains("Egresos_Modificar") Then
-            Principal.dataset.Tables("Egresos_Modificar").Clear()
+        'Creamos el TableAdapter si no existe
+        If Not Principal.tableadapters.ContainsKey("Egresos_Modificar") Then
+            Principal.tableadapters.Add("Egresos_Modificar", New SqlCeDataAdapter(Principal.command))
         End If
 
-        tableadapter.Fill(Principal.dataset, "Egresos_Modificar")
+        'Actualizamos el contenido de la tabla
+        Principal.tableadapters("Egresos_Modificar").Fill(Principal.dataset.Tables.Item("Egresos_Modificar"))
+
+        'Asignamos el Bind
         Dim mybinding = New BindingSource(Principal.dataset, "Egresos_Modificar")
 
         dgv.AutoGenerateColumns = False
@@ -117,9 +119,6 @@ Module Egreso
         dgv.Columns.Item("monto").DataPropertyName = "monto"
         dgv.Columns.Item("comentario").DataPropertyName = "comentario"
         dgv.DataSource = mybinding
-
-
-
 
     End Sub
 

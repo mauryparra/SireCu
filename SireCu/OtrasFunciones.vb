@@ -131,19 +131,6 @@ Module OtrasFunciones
 
     End Function
 
-    Public Sub abm_otros(ByVal tabla As String)
-
-        cargarTablaEnDataSet(tabla)
-
-        Dim bindSource As New BindingSource
-        bindSource.DataSource = Principal.dataset.Tables(tabla)
-        Otros_AMB.dgv_otros.DataSource = bindSource
-        Otros_AMB.dgv_otros.Columns.Item("id").Visible = False
-
-        Otros_AMB.tb_editar.AutoCompleteCustomSource = autocomplete(tabla, "nombre")
-
-    End Sub
-
     Public Function exist(ByVal tabla As String, ByVal campo As String, ByVal comparar As String)
 
         cargarTablaEnDataSet(tabla)
@@ -173,15 +160,5 @@ Module OtrasFunciones
         Return (coleccion)
 
     End Function
-
-    Public Sub addColección(ByRef combobox As ComboBox, ByVal tabla As String)
-
-        cargarTablaEnDataSet(tabla)
-
-        For Each row As DataRow In Principal.dataset.Tables(tabla).Rows
-            combobox.Items.Add((Convert.ToString(row.Item("nombre"))))
-        Next
-
-    End Sub
 
 End Module

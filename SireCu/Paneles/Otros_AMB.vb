@@ -128,6 +128,18 @@ Public Class Otros_AMB
     Private Sub Otros_AMB_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actualizar()
     End Sub
+    Private Sub abm_otros(ByVal tabla As String)
+
+        cargarTablaEnDataSet(tabla)
+
+        Dim bindSource As New BindingSource
+        bindSource.DataSource = Principal.dataset.Tables(tabla)
+        dgv_otros.DataSource = bindSource
+        dgv_otros.Columns.Item("id").Visible = False
+
+        tb_editar.AutoCompleteCustomSource = autocomplete(tabla, "nombre")
+
+    End Sub
 #End Region
 
 #Region "Validaciones"

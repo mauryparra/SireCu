@@ -38,7 +38,12 @@ Public Class ABMEgresos
             End If
         End If
 
-        Dim comprobante As String = tbPVenta.Text & "-" & tbNComprobante.Text
+        Dim comprobante As String
+        If (tbPVenta.Text = 0) Or (tbPVenta.Text = "") Then
+            comprobante = tbNComprobante.Text
+        Else
+            comprobante = tbPVenta.Text & "-" & tbNComprobante.Text
+        End If
         Dim fecha As Date = tbDay.Text & "/" & tbMonth.Text & "/" & tbYear.Text
         Dim reintegro As Date
         If tbReintegro.Text = "" Then
@@ -113,59 +118,68 @@ Public Class ABMEgresos
     End Sub
     Private Sub ButtonGuardar_Click(sender As Object, e As EventArgs) Handles ButtonGuardar.Click
 
-        'Preguntamos si esta seguro
-        If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
-
-            ' Verificamos que todos los campos hayan pasado las validaciones
-            If ControlesConErroresModificar.Count > 0 Then
-                MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
-                Exit Sub
-            Else
-
-                ' TODO Verificar si Persona existe si no preguntar si desea agregarlo
-                If obtenerID(TextBoxNombre.Text, "Personas") = -1 Then
-                    If (MsgBox("Desea agregar a la Persona:" & TextBoxNombre.Text, MsgBoxStyle.OkCancel, "Agregar Persona") = MsgBoxResult.Ok) Then
-                        ' TODO Insert nueva Persona
-
-                    Else
-                        Exit Sub
-                    End If
-                End If
-
-                ' TODO Verificar si proveedor existe si no preguntar si desea agregarlo
-                If obtenerID(TextBoxProveedor.Text, "Proveedores") = -1 Then
-                    If (MsgBox("Desea agregar al Proveedor:" & TextBoxProveedor.Text, MsgBoxStyle.OkCancel, "Agregar Proveedor") = MsgBoxResult.Ok) Then
-                        ' TODO Insert nuevo Proveedor
-
-                    Else
-                        Exit Sub
-                    End If
-                End If
-
-                ' TODO Verificar si hay saldo para egreso
-
-                ' Actualizar Egreso
-                Dim comprobante As String = ""
-                If TextBoxPVenta.Text = 0 Then
-                    comprobante = TextBoxNroComprobante.Text
-                Else
-                    comprobante = TextBoxPVenta.Text & "-" & TextBoxNroComprobante.Text
-                End If
-                modificar_egreso(idModificando, comprobante, obtenerID(TextBoxProveedor.Text, "Proveedores"),
-                                 ComboBoxCategGasto.SelectedValue, obtenerID(TextBoxNombre.Text, "Personas"), DateTimePickerFecha.Value,
-                                 ComboBoxTipoComprobante.SelectedValue, ComboBoxSeccional.SelectedValue, DateTimePickerMesReintegro.Value,
-                                 CDec(TextBoxMonto.Text), TextBoxComentario.Text)
-
-                idModificando = 0
-
-                limpiarForm(SplitContainerModificar.Panel2)
-                activarModificar(False)
-                CargardDGV(DataGridViewModificar)
-
-            End If
-        Else
+        'Verificamos que todos los campos hayan pasado las validaciones
+        If ControlesConErroresModificar.Count > 0 Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
             Exit Sub
         End If
+
+        'Verificar Saldo Disponible 'OPTIMIZAR TODO
+        Dim saldo As Double
+        Select Case DatePart(DateInterval.Month, DateTimePickerFecha.Value)
+            Case 1 To 3
+                saldo = SaldoActual("Primero", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
+            Case 4 To 6
+                saldo = SaldoActual("Segundo", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
+            Case 7 To 9
+                saldo = SaldoActual("Tercero", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
+            Case 10 To 12
+                saldo = SaldoActual("Cuarto", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
+        End Select
+
+        If (saldo < TextBoxMonto.Text) Then
+            If (MsgBox("Su saldo es insuficiente." & vbCrLf & "Desea guardar de todas formas?", MsgBoxStyle.YesNo, "Saldo Insuficiente") = MsgBoxResult.No) Then
+                Exit Sub
+            End If
+        End If
+
+        Dim comprobante As String
+        If (TextBoxPVenta.Text = 0) Or (tbPVenta.Text = "") Then
+            comprobante = TextBoxNroComprobante.Text
+        Else
+            comprobante = TextBoxPVenta.Text & "-" & TextBoxNroComprobante.Text
+        End If
+        Dim reintegro As Date
+        If tbReintegro.Text = "" Then
+            reintegro = DateTimePickerFecha.Value
+        Else reintegro = DateTimePickerMesReintegro.Value
+        End If
+
+
+        ' MODIFICAR
+        If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
+
+            modificar_egreso(
+                         idModificando,
+                         comprobante,
+                         obtenerID(TextBoxProveedor.Text, "Proveedores"),
+                         ComboBoxCategGasto.SelectedValue,
+                         obtenerID(TextBoxNombre.Text, "Personas"),
+                         DateTimePickerFecha.Value,
+                         ComboBoxTipoComprobante.SelectedValue,
+                         ComboBoxSeccional.SelectedValue,
+                         DateTimePickerMesReintegro.Value,
+                         CDec(TextBoxMonto.Text),
+                         TextBoxComentario.Text
+                         )
+
+            idModificando = 0
+            limpiarForm(SplitContainerModificar.Panel2)
+            activarModificar(False)
+            CargardDGV(DataGridViewModificar)
+
+        End If
+
     End Sub
 
 #End Region
@@ -174,39 +188,53 @@ Public Class ABMEgresos
 
     Private Sub ABMEgresos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'TAB Agregar
+        ' ######################################## TAB Agregar
+
         '               Usamos el año mas grande de la base de datos
         tbYear.Text = ultimoaño("Egresos")
-        '               Colección de Items
-        addColección(tbTGasto, "CategoriasGastos")
-        addColección(tbTComprobante, "TiposComprobantes")
-        addColección(tbSeccional, "Seccionales")
         '               Autocomplete al escribir
         tbProveedor.AutoCompleteCustomSource = autocomplete("Proveedores", "nombre")
         tbNombre.AutoCompleteCustomSource = autocomplete("Personas", "nombre")
         tbTGasto.AutoCompleteCustomSource = autocomplete("CategoriasGastos", "nombre")
         tbTComprobante.AutoCompleteCustomSource = autocomplete("TiposComprobantes", "nombre")
         tbSeccional.AutoCompleteCustomSource = autocomplete("Seccionales", "nombre")
+        '               Colección de Items
+        tbTGasto.DataSource = Principal.dataset.Tables("CategoriasGastos")
+        tbTComprobante.DataSource = Principal.dataset.Tables("TiposComprobantes")
+        tbSeccional.DataSource = Principal.dataset.Tables("Seccionales")
+        tbTGasto.ValueMember = "id"
+        tbTGasto.DisplayMember = "nombre"
+        tbTComprobante.ValueMember = "id"
+        tbTComprobante.DisplayMember = "nombre"
+        tbSeccional.ValueMember = "id"
+        tbSeccional.DisplayMember = "nombre"
 
-        ' TAB Modificar
+
+        ' ######################################## TAB Modificar
+
         activarModificar(False)
-        Egreso.CargardDGV(DataGridViewModificar)
+        CargardDGV(DataGridViewModificar)
+
+        '               Autocomplete al escribir
         TextBoxNombre.AutoCompleteCustomSource = autocomplete("Personas", "nombre")
         ComboBoxCategGasto.AutoCompleteCustomSource = autocomplete("CategoriasGastos", "nombre")
+        TextBoxProveedor.AutoCompleteCustomSource = autocomplete("Proveedores", "nombre")
+        ComboBoxSeccional.AutoCompleteCustomSource = autocomplete("Seccionales", "nombre")
+        ComboBoxTipoComprobante.AutoCompleteCustomSource = autocomplete("TiposComprobantes", "nombre")
+        '               Colección de Items
         ComboBoxCategGasto.DataSource = Principal.dataset.Tables("CategoriasGastos")
+        ComboBoxSeccional.DataSource = Principal.dataset.Tables("Seccionales")
+        ComboBoxTipoComprobante.DataSource = Principal.dataset.Tables("TiposComprobantes")
         ComboBoxCategGasto.ValueMember = "id"
         ComboBoxCategGasto.DisplayMember = "nombre"
-        TextBoxProveedor.AutoCompleteCustomSource = autocomplete("Proveedores", "nombre")
-        DateTimePickerMesReintegro.Value = Now
-        ComboBoxSeccional.AutoCompleteCustomSource = autocomplete("Seccionales", "nombre")
-        ComboBoxSeccional.DataSource = Principal.dataset.Tables("Seccionales")
         ComboBoxSeccional.ValueMember = "id"
         ComboBoxSeccional.DisplayMember = "nombre"
-        DateTimePickerFecha.Value = Now
-        ComboBoxTipoComprobante.AutoCompleteCustomSource = autocomplete("TiposComprobantes", "nombre")
-        ComboBoxTipoComprobante.DataSource = Principal.dataset.Tables("TiposComprobantes")
         ComboBoxTipoComprobante.ValueMember = "id"
         ComboBoxTipoComprobante.DisplayMember = "nombre"
+        '               Setup Panel
+        DateTimePickerMesReintegro.Value = Now
+        DateTimePickerFecha.Value = Now
+
 
 
     End Sub
@@ -274,6 +302,7 @@ Public Class ABMEgresos
 
 #Region "Validaciones TAB Agregar"
 
+    'Keypress
     Private Sub tbDay_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbDay.KeyPress
         keyverify(e, numeros:=True)
     End Sub
@@ -293,7 +322,7 @@ Public Class ABMEgresos
         keyverify(e, letras:=True, numeros:=True, espacios:=True)
     End Sub
     Private Sub tbProveedor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbProveedor.KeyPress
-        keyverify(e, letras:=True, numeros:=True)
+        keyverify(e, letras:=True, numeros:=True, espacios:=True)
     End Sub
     Private Sub tbPVenta_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbPVenta.KeyPress
         keyverify(e, numeros:=True)
@@ -315,6 +344,7 @@ Public Class ABMEgresos
         keyverify(e, letras:=True, numeros:=True, espacios:=True)
     End Sub
 
+    'Validating
     Private Sub tbNombre_Validating(sender As Object, e As CancelEventArgs) Handles tbNombre.Validating
         If (sender.Text = "") Or (exist("Personas", "nombre", sender.text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
@@ -390,6 +420,12 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub tbNComprobante_Validating(sender As Object, e As CancelEventArgs) Handles tbNComprobante.Validating
+        Dim comprobante As String
+        If (tbPVenta.Text = 0) Or (tbPVenta.Text = "") Then
+            comprobante = tbNComprobante.Text
+        Else
+            comprobante = tbPVenta.Text & "-" & tbNComprobante.Text
+        End If
         If (sender.text = "") Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar número de comprobante")
             ControlesConErroresModificar.Add(sender)
@@ -399,7 +435,7 @@ Public Class ABMEgresos
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresModificar.Add(sender)
             Exit Sub
-        ElseIf (comprobante_repetido(tbPVenta.Text & "-" & tbNComprobante.Text, obtenerID(tbProveedor.Text, "Proveedores"))) Then
+        ElseIf (comprobante_repetido(comprobante, obtenerID(tbProveedor.Text, "Proveedores"))) Then
             Principal.ErrorProvider.SetError(sender, "Ese comprobante ya fué cargado para ese Proveedor")
             ControlesConErroresModificar.Add(sender)
         Else
@@ -421,41 +457,116 @@ Public Class ABMEgresos
 
 #Region "Validaciones TAB Modificar"
 
-    Private Sub TextBoxNombre_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxNombre.Validating
-        If sender.Text = "" Then
-            Principal.ErrorProvider.SetError(sender, "Debe ingresar un nombre")
-            ControlesConErroresModificar.Add(sender)
-        Else
-            Principal.ErrorProvider.SetError(sender, "")
-            ControlesConErroresModificar.Remove(sender)
-        End If
-    End Sub
-
-    Private Sub TextBoxProveedor_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxProveedor.Validating
-        If sender.Text = "" Then
-            Principal.ErrorProvider.SetError(sender, "Debe ingresar un nombre")
-            ControlesConErroresModificar.Add(sender)
-        Else
-            Principal.ErrorProvider.SetError(sender, "")
-            ControlesConErroresModificar.Remove(sender)
-        End If
-    End Sub
-
-    Private Sub TextBoxMonto_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxMonto.Validating
-        If Not IsNumeric(sender.Text) Or IsDBNull(sender.Text) Then
-            Principal.ErrorProvider.SetError(sender, "Debe ingresar un valor numérico o 0")
-            ControlesConErroresModificar.Add(sender)
-        Else
-            Principal.ErrorProvider.SetError(sender, "")
-            ControlesConErroresModificar.Remove(sender)
-        End If
-    End Sub
-
+    'Keypress
     Private Sub TextBoxMonto_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxMonto.KeyPress
         keyverify(e, numeros:=True, comas:=True, puntosAComas:=True)
     End Sub
+    Private Sub TextBoxNombre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxNombre.KeyPress
+        keyverify(e, letras:=True, numeros:=True, espacios:=True)
+    End Sub
+    Private Sub TextBoxNroComprobante_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxNroComprobante.KeyPress
+        keyverify(e, numeros:=True)
+    End Sub
+    Private Sub TextBoxProveedor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxProveedor.KeyPress
+        keyverify(e, letras:=True, numeros:=True, espacios:=True)
+    End Sub
+    Private Sub TextBoxPVenta_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxPVenta.KeyPress
+        keyverify(e, numeros:=True)
+    End Sub
+    Private Sub ComboBoxCategGasto_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBoxCategGasto.KeyPress
+        keyverify(e, letras:=True)
+    End Sub
+    Private Sub ComboBoxSeccional_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBoxSeccional.KeyPress
+        keyverify(e, letras:=True, numeros:=True, espacios:=True)
+    End Sub
+    Private Sub ComboBoxTipoComprobante_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBoxTipoComprobante.KeyPress
+        keyverify(e, letras:=True, espacios:=True)
+    End Sub
 
-
+    'Validating
+    Private Sub TextBoxNombre_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxNombre.Validating
+        If (sender.Text = "") Or (exist("Personas", "nombre", sender.text) = False) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
+                                             "Puede agregar una nueva en el menú Editar")
+            ControlesConErroresModificar.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErroresModificar.Remove(sender)
+        End If
+    End Sub
+    Private Sub TextBoxProveedor_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxProveedor.Validating
+        If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.text) = False) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
+                                             "Puede agregar uno nuevo en el menú Editar")
+            ControlesConErroresModificar.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErroresModificar.Remove(sender)
+        End If
+    End Sub
+    Private Sub TextBoxMonto_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxMonto.Validating
+        If Not IsNumeric(sender.Text) Or IsDBNull(sender.Text) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar un valor numérico o cero")
+            ControlesConErroresModificar.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErroresModificar.Remove(sender)
+        End If
+    End Sub
+    Private Sub TextBoxNroComprobante_Validating(sender As Object, e As CancelEventArgs) Handles TextBoxNroComprobante.Validating
+        Dim comprobante As String
+        If (TextBoxPVenta.Text = 0) Or (TextBoxPVenta.Text = "") Then
+            comprobante = TextBoxNroComprobante.Text
+        Else
+            comprobante = TextBoxPVenta.Text & "-" & TextBoxNroComprobante.Text
+        End If
+        If (sender.text = "") Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar número de comprobante")
+            ControlesConErroresModificar.Add(sender)
+            Exit Sub
+        ElseIf (obtenerID(TextBoxProveedor.Text, "Proveedores") = -1) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
+                                             "Puede agregar uno nuevo en el menú Editar")
+            ControlesConErroresModificar.Add(sender)
+            Exit Sub
+        ElseIf (comprobante_repetido(comprobante, obtenerID(tbProveedor.Text, "Proveedores"))) Then
+            Principal.ErrorProvider.SetError(sender, "Ese comprobante ya fué cargado para ese Proveedor")
+            ControlesConErroresModificar.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErroresModificar.Remove(sender)
+        End If
+    End Sub
+    Private Sub ComboBoxSeccional_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxSeccional.Validating
+        If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.text) = False) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
+                                             "Puede agregar una nueva en el menú Editar")
+            ControlesConErroresModificar.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErroresModificar.Remove(sender)
+        End If
+    End Sub
+    Private Sub ComboBoxTipoComprobante_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxTipoComprobante.Validating
+        If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.text) = False) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
+                                             "Puede agregar uno nuevo en el menú Editar")
+            ControlesConErroresModificar.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErroresModificar.Remove(sender)
+        End If
+    End Sub
+    Private Sub ComboBoxCategGasto_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxCategGasto.Validating
+        If (sender.Text = "") Or (exist("CategoriasGastos", "nombre", sender.text) = False) Then
+            Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
+                                             "Puede agregar una nueva en el menú Editar")
+            ControlesConErroresModificar.Add(sender)
+        Else
+            Principal.ErrorProvider.SetError(sender, "")
+            ControlesConErroresModificar.Remove(sender)
+        End If
+    End Sub
 
 
 
