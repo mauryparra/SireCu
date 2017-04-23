@@ -24,19 +24,12 @@ Partial Class ABMEgresos
     Private Sub InitializeComponent()
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.TabPageAgregar = New System.Windows.Forms.TabPage()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lbSeccional = New System.Windows.Forms.Label()
         Me.tbSeccional = New System.Windows.Forms.ComboBox()
         Me.tbNComprobante = New System.Windows.Forms.TextBox()
         Me.lb_Titulo = New System.Windows.Forms.Label()
         Me.tbTComprobante = New System.Windows.Forms.ComboBox()
         Me.tbPVenta = New System.Windows.Forms.TextBox()
-        Me.tbReintegro = New System.Windows.Forms.TextBox()
-        Me.lbYear = New System.Windows.Forms.Label()
-        Me.lbMonth = New System.Windows.Forms.Label()
-        Me.lbDay = New System.Windows.Forms.Label()
-        Me.tbYear = New System.Windows.Forms.TextBox()
-        Me.tbMonth = New System.Windows.Forms.TextBox()
-        Me.tbDay = New System.Windows.Forms.TextBox()
         Me.lbSmonto = New System.Windows.Forms.Label()
         Me.lbTComprobante = New System.Windows.Forms.Label()
         Me.tbMonto = New System.Windows.Forms.TextBox()
@@ -95,6 +88,9 @@ Partial Class ABMEgresos
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TextBoxComentario = New System.Windows.Forms.TextBox()
         Me.TextBoxProveedor = New System.Windows.Forms.TextBox()
+        Me.dtpReintegro = New System.Windows.Forms.DateTimePicker()
+        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
+        Me.lbFecha = New System.Windows.Forms.Label()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -121,19 +117,15 @@ Partial Class ABMEgresos
         '
         'TabPageAgregar
         '
-        Me.TabPageAgregar.Controls.Add(Me.Label2)
+        Me.TabPageAgregar.Controls.Add(Me.lbFecha)
+        Me.TabPageAgregar.Controls.Add(Me.dtpFecha)
+        Me.TabPageAgregar.Controls.Add(Me.dtpReintegro)
+        Me.TabPageAgregar.Controls.Add(Me.lbSeccional)
         Me.TabPageAgregar.Controls.Add(Me.tbSeccional)
         Me.TabPageAgregar.Controls.Add(Me.tbNComprobante)
         Me.TabPageAgregar.Controls.Add(Me.lb_Titulo)
         Me.TabPageAgregar.Controls.Add(Me.tbTComprobante)
         Me.TabPageAgregar.Controls.Add(Me.tbPVenta)
-        Me.TabPageAgregar.Controls.Add(Me.tbReintegro)
-        Me.TabPageAgregar.Controls.Add(Me.lbYear)
-        Me.TabPageAgregar.Controls.Add(Me.lbMonth)
-        Me.TabPageAgregar.Controls.Add(Me.lbDay)
-        Me.TabPageAgregar.Controls.Add(Me.tbYear)
-        Me.TabPageAgregar.Controls.Add(Me.tbMonth)
-        Me.TabPageAgregar.Controls.Add(Me.tbDay)
         Me.TabPageAgregar.Controls.Add(Me.lbSmonto)
         Me.TabPageAgregar.Controls.Add(Me.lbTComprobante)
         Me.TabPageAgregar.Controls.Add(Me.tbMonto)
@@ -157,14 +149,14 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.Text = "Agregar"
         Me.TabPageAgregar.UseVisualStyleBackColor = True
         '
-        'Label2
+        'lbSeccional
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(32, 264)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(68, 16)
-        Me.Label2.TabIndex = 93
-        Me.Label2.Text = "Seccional"
+        Me.lbSeccional.AutoSize = True
+        Me.lbSeccional.Location = New System.Drawing.Point(32, 264)
+        Me.lbSeccional.Name = "lbSeccional"
+        Me.lbSeccional.Size = New System.Drawing.Size(68, 16)
+        Me.lbSeccional.TabIndex = 93
+        Me.lbSeccional.Text = "Seccional"
         '
         'tbSeccional
         '
@@ -209,70 +201,6 @@ Partial Class ABMEgresos
         Me.tbPVenta.Name = "tbPVenta"
         Me.tbPVenta.Size = New System.Drawing.Size(56, 22)
         Me.tbPVenta.TabIndex = 7
-        '
-        'tbReintegro
-        '
-        Me.tbReintegro.Location = New System.Drawing.Point(151, 215)
-        Me.tbReintegro.MaxLength = 2
-        Me.tbReintegro.Name = "tbReintegro"
-        Me.tbReintegro.Size = New System.Drawing.Size(156, 22)
-        Me.tbReintegro.TabIndex = 9
-        '
-        'lbYear
-        '
-        Me.lbYear.AutoSize = True
-        Me.lbYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbYear.Location = New System.Drawing.Point(621, 67)
-        Me.lbYear.Name = "lbYear"
-        Me.lbYear.Size = New System.Drawing.Size(22, 12)
-        Me.lbYear.TabIndex = 89
-        Me.lbYear.Text = "Año"
-        '
-        'lbMonth
-        '
-        Me.lbMonth.AutoSize = True
-        Me.lbMonth.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbMonth.Location = New System.Drawing.Point(578, 67)
-        Me.lbMonth.Name = "lbMonth"
-        Me.lbMonth.Size = New System.Drawing.Size(24, 12)
-        Me.lbMonth.TabIndex = 88
-        Me.lbMonth.Text = "Mes"
-        '
-        'lbDay
-        '
-        Me.lbDay.AutoSize = True
-        Me.lbDay.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbDay.Location = New System.Drawing.Point(535, 67)
-        Me.lbDay.Name = "lbDay"
-        Me.lbDay.Size = New System.Drawing.Size(19, 12)
-        Me.lbDay.TabIndex = 87
-        Me.lbDay.Text = "Dia"
-        '
-        'tbYear
-        '
-        Me.tbYear.Location = New System.Drawing.Point(623, 82)
-        Me.tbYear.MaxLength = 4
-        Me.tbYear.Name = "tbYear"
-        Me.tbYear.ReadOnly = True
-        Me.tbYear.Size = New System.Drawing.Size(54, 22)
-        Me.tbYear.TabIndex = 454
-        Me.tbYear.TabStop = False
-        '
-        'tbMonth
-        '
-        Me.tbMonth.Location = New System.Drawing.Point(580, 82)
-        Me.tbMonth.MaxLength = 2
-        Me.tbMonth.Name = "tbMonth"
-        Me.tbMonth.Size = New System.Drawing.Size(34, 22)
-        Me.tbMonth.TabIndex = 3
-        '
-        'tbDay
-        '
-        Me.tbDay.Location = New System.Drawing.Point(537, 82)
-        Me.tbDay.MaxLength = 2
-        Me.tbDay.Name = "tbDay"
-        Me.tbDay.Size = New System.Drawing.Size(33, 22)
-        Me.tbDay.TabIndex = 2
         '
         'lbSmonto
         '
@@ -617,10 +545,13 @@ Partial Class ABMEgresos
         '
         'DateTimePickerMesReintegro
         '
-        Me.DateTimePickerMesReintegro.CustomFormat = ""
-        Me.DateTimePickerMesReintegro.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DateTimePickerMesReintegro.Checked = False
+        Me.DateTimePickerMesReintegro.CustomFormat = "MM/yyyy"
+        Me.DateTimePickerMesReintegro.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.DateTimePickerMesReintegro.Location = New System.Drawing.Point(145, 99)
         Me.DateTimePickerMesReintegro.Name = "DateTimePickerMesReintegro"
+        Me.DateTimePickerMesReintegro.ShowCheckBox = True
+        Me.DateTimePickerMesReintegro.ShowUpDown = True
         Me.DateTimePickerMesReintegro.Size = New System.Drawing.Size(197, 22)
         Me.DateTimePickerMesReintegro.TabIndex = 117
         Me.DateTimePickerMesReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
@@ -805,6 +736,38 @@ Partial Class ABMEgresos
         Me.TextBoxProveedor.Size = New System.Drawing.Size(197, 22)
         Me.TextBoxProveedor.TabIndex = 96
         '
+        'dtpReintegro
+        '
+        Me.dtpReintegro.Checked = False
+        Me.dtpReintegro.CustomFormat = "MM/yyyy"
+        Me.dtpReintegro.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpReintegro.Location = New System.Drawing.Point(151, 213)
+        Me.dtpReintegro.Name = "dtpReintegro"
+        Me.dtpReintegro.ShowCheckBox = True
+        Me.dtpReintegro.ShowUpDown = True
+        Me.dtpReintegro.Size = New System.Drawing.Size(156, 22)
+        Me.dtpReintegro.TabIndex = 455
+        Me.dtpReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
+        'dtpFecha
+        '
+        Me.dtpFecha.CustomFormat = ""
+        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFecha.Location = New System.Drawing.Point(537, 82)
+        Me.dtpFecha.Name = "dtpFecha"
+        Me.dtpFecha.Size = New System.Drawing.Size(163, 22)
+        Me.dtpFecha.TabIndex = 456
+        Me.dtpFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
+        'lbFecha
+        '
+        Me.lbFecha.AutoSize = True
+        Me.lbFecha.Location = New System.Drawing.Point(391, 87)
+        Me.lbFecha.Name = "lbFecha"
+        Me.lbFecha.Size = New System.Drawing.Size(49, 16)
+        Me.lbFecha.TabIndex = 457
+        Me.lbFecha.Text = "Fecha:"
+        '
         'ABMEgresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -836,13 +799,6 @@ Partial Class ABMEgresos
     Friend WithEvents lb_Titulo As Label
     Friend WithEvents tbTComprobante As ComboBox
     Friend WithEvents tbPVenta As TextBox
-    Friend WithEvents tbReintegro As TextBox
-    Friend WithEvents lbYear As Label
-    Friend WithEvents lbMonth As Label
-    Friend WithEvents lbDay As Label
-    Friend WithEvents tbYear As TextBox
-    Friend WithEvents tbMonth As TextBox
-    Friend WithEvents tbDay As TextBox
     Friend WithEvents lbSmonto As Label
     Friend WithEvents lbTComprobante As Label
     Friend WithEvents tbMonto As TextBox
@@ -901,6 +857,9 @@ Partial Class ABMEgresos
     Friend WithEvents LabelSeccional As Label
     Friend WithEvents ComboBoxSeccional As ComboBox
     Friend WithEvents DateTimePickerMesReintegro As DateTimePicker
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lbSeccional As Label
     Friend WithEvents tbSeccional As ComboBox
+    Friend WithEvents lbFecha As Label
+    Friend WithEvents dtpFecha As DateTimePicker
+    Friend WithEvents dtpReintegro As DateTimePicker
 End Class
