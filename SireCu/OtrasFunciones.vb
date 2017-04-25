@@ -61,20 +61,14 @@ Module OtrasFunciones
         saldoAnterior = consultarES(Principal.query, Principal.command)
 
         ' 2)
-
-        If IsDBNull(consultarES(queryIngresos, Principal.command)) Then
-            ingresos = 0
-        Else
-            ingresos = consultarES(queryIngresos, Principal.command)
-        End If
+        Dim resultadoConsulta = consultarES(queryIngresos, Principal.command)
+        ingresos = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
 
 
         ' 3)
-        If IsDBNull(consultarES(queryEgresos, Principal.command)) Then
-            egresos = 0
-        Else
-            egresos = consultarES(queryEgresos, Principal.command)
-        End If
+        resultadoConsulta = Nothing
+        resultadoConsulta = consultarES(queryEgresos, Principal.command)
+        egresos = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
 
         Return (saldoAnterior + ingresos - egresos)
 
@@ -160,5 +154,29 @@ Module OtrasFunciones
         Return (coleccion)
 
     End Function
+
+    Public Sub ActualizarSaldo()
+        Dim saldo As Double
+        Select Case Now.Date.Month
+            Case 1 To 3
+                saldo = SaldoActual("Primero", Now.Date.Year)
+            Case 4 To 6
+                saldo = SaldoActual("Segundo", Now.Date.Year)
+            Case 7 To 9
+                saldo = SaldoActual("Tercero", Now.Date.Year)
+            Case 10 To 12
+                saldo = SaldoActual("Cuarto", Now.Date.Year)
+            Case Else
+                Exit Sub
+        End Select
+
+        If saldo >= 0 Then
+            Principal.TStripLabelSaldo.ForeColor = Color.Green
+        Else
+            Principal.TStripLabelSaldo.ForeColor = Color.Red
+        End If
+        Principal.TStripLabelSaldo.Text = "Saldo: $" & saldo & "    (" & Now.Month & "/" & Now.Year & ")"
+
+    End Sub
 
 End Module

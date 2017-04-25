@@ -39,8 +39,9 @@ Partial Class Principal
         Me.TiposDeGastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CategoríasDeGastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PersonasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SeccionalesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.TStripLabelSaldo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
@@ -80,7 +81,7 @@ Partial Class Principal
         'StatusStripPrincipal
         '
         Me.StatusStripPrincipal.Dock = System.Windows.Forms.DockStyle.None
-        Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar})
+        Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar, Me.TStripLabelSaldo})
         Me.StatusStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.StatusStripPrincipal.Name = "StatusStripPrincipal"
         Me.StatusStripPrincipal.Size = New System.Drawing.Size(982, 22)
@@ -89,8 +90,10 @@ Partial Class Principal
         'stat_Label
         '
         Me.stat_Label.Name = "stat_Label"
-        Me.stat_Label.Size = New System.Drawing.Size(65, 17)
+        Me.stat_Label.Size = New System.Drawing.Size(795, 17)
+        Me.stat_Label.Spring = True
         Me.stat_Label.Text = "Conectado"
+        Me.stat_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'stat_Bar
         '
@@ -202,15 +205,21 @@ Partial Class Principal
         Me.PersonasToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.PersonasToolStripMenuItem.Text = "Personas"
         '
-        'ErrorProvider
-        '
-        Me.ErrorProvider.ContainerControl = Me
-        '
         'SeccionalesToolStripMenuItem
         '
         Me.SeccionalesToolStripMenuItem.Name = "SeccionalesToolStripMenuItem"
         Me.SeccionalesToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.SeccionalesToolStripMenuItem.Text = "Seccionales"
+        '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
+        '
+        'TStripLabelSaldo
+        '
+        Me.TStripLabelSaldo.Name = "TStripLabelSaldo"
+        Me.TStripLabelSaldo.Size = New System.Drawing.Size(39, 17)
+        Me.TStripLabelSaldo.Text = "Saldo:"
         '
         'Principal
         '
@@ -259,4 +268,5 @@ Partial Class Principal
     Friend WithEvents CategoríasDeGastosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PersonasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SeccionalesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TStripLabelSaldo As ToolStripStatusLabel
 End Class

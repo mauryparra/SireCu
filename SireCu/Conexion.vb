@@ -68,6 +68,7 @@ Module Conexion
             desconectar()
         Catch ex As SqlCeException
             MessageBox.Show(ex.Message)
+            reader = Nothing
         End Try
 
         Return (reader.GetString(0))

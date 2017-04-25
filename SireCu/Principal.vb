@@ -62,6 +62,8 @@ Public Class Principal
         cargarTablaEnDataSet("TiposComprobantes")
         cargarTablaEnDataSet("Seccionales")
 
+        ActualizarSaldo()
+
     End Sub
 
     Private Sub ProveedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProveedoresToolStripMenuItem.Click

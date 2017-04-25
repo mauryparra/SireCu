@@ -48,7 +48,7 @@ Partial Class ABMEgresos
         Me.TabPageModificar = New System.Windows.Forms.TabPage()
         Me.SplitContainerModificar = New System.Windows.Forms.SplitContainer()
         Me.ToolStripContainerModificar = New System.Windows.Forms.ToolStripContainer()
-        Me.DataGridViewModificar = New System.Windows.Forms.DataGridView()
+        Me.DGVModificar = New System.Windows.Forms.DataGridView()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.nro_comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tipo_comprobante_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -100,7 +100,7 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar.SuspendLayout()
         Me.ToolStripContainerModificar.ContentPanel.SuspendLayout()
         Me.ToolStripContainerModificar.SuspendLayout()
-        CType(Me.DataGridViewModificar, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DGVModificar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl
@@ -395,7 +395,7 @@ Partial Class ABMEgresos
         '
         'ToolStripContainerModificar.ContentPanel
         '
-        Me.ToolStripContainerModificar.ContentPanel.Controls.Add(Me.DataGridViewModificar)
+        Me.ToolStripContainerModificar.ContentPanel.Controls.Add(Me.DGVModificar)
         Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(741, 176)
         Me.ToolStripContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerModificar.Location = New System.Drawing.Point(0, 0)
@@ -404,19 +404,19 @@ Partial Class ABMEgresos
         Me.ToolStripContainerModificar.TabIndex = 0
         Me.ToolStripContainerModificar.Text = "ToolStripContainer1"
         '
-        'DataGridViewModificar
+        'DGVModificar
         '
-        Me.DataGridViewModificar.AllowUserToAddRows = False
-        Me.DataGridViewModificar.AllowUserToDeleteRows = False
-        Me.DataGridViewModificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario})
-        Me.DataGridViewModificar.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewModificar.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridViewModificar.Name = "DataGridViewModificar"
-        Me.DataGridViewModificar.ReadOnly = True
-        Me.DataGridViewModificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewModificar.Size = New System.Drawing.Size(741, 176)
-        Me.DataGridViewModificar.TabIndex = 0
+        Me.DGVModificar.AllowUserToAddRows = False
+        Me.DGVModificar.AllowUserToDeleteRows = False
+        Me.DGVModificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGVModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario})
+        Me.DGVModificar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DGVModificar.Location = New System.Drawing.Point(0, 0)
+        Me.DGVModificar.Name = "DGVModificar"
+        Me.DGVModificar.ReadOnly = True
+        Me.DGVModificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DGVModificar.Size = New System.Drawing.Size(741, 176)
+        Me.DGVModificar.TabIndex = 0
         '
         'id
         '
@@ -788,7 +788,7 @@ Partial Class ABMEgresos
         Me.ToolStripContainerModificar.ContentPanel.ResumeLayout(False)
         Me.ToolStripContainerModificar.ResumeLayout(False)
         Me.ToolStripContainerModificar.PerformLayout()
-        CType(Me.DataGridViewModificar, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DGVModificar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -817,7 +817,7 @@ Partial Class ABMEgresos
     Friend WithEvents TabPageModificar As TabPage
     Friend WithEvents SplitContainerModificar As SplitContainer
     Friend WithEvents ToolStripContainerModificar As ToolStripContainer
-    Friend WithEvents DataGridViewModificar As DataGridView
+    Friend WithEvents DGVModificar As DataGridView
     Friend WithEvents id As DataGridViewTextBoxColumn
     Friend WithEvents nro_comprobante As DataGridViewTextBoxColumn
     Friend WithEvents tipo_comprobante_id As DataGridViewTextBoxColumn

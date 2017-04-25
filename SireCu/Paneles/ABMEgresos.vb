@@ -68,8 +68,8 @@ Public Class ABMEgresos
         End If
         Dim reintegro As Date
         If dtpReintegro.Checked Then
-            reintegro = dtpReintegro.Value
-        Else reintegro = dtpFecha.Value
+            reintegro = dtpReintegro.Value.Date
+        Else reintegro = dtpFecha.Value.Date
         End If
 
 
@@ -81,7 +81,7 @@ Public Class ABMEgresos
                          obtenerID(tbProveedor.Text, "Proveedores"),
                          obtenerID(tbTGasto.Text, "CategoriasGastos"),
                          obtenerID(tbNombre.Text, "Personas"),
-                         dtpFecha.Value,
+                         dtpFecha.Value.Date,
                          obtenerID(tbTComprobante.Text, "TiposComprobantes"),
                          obtenerID(tbSeccional.Text, "Seccionales"),
                          reintegro,
@@ -91,7 +91,7 @@ Public Class ABMEgresos
 
             limpiarForm(TabPageAgregar)
             dtpReintegro.Checked = False
-
+            ActualizarSaldo()
         End If
 
     End Sub
@@ -100,33 +100,38 @@ Public Class ABMEgresos
 
 #Region "TAB Modificar - Eventos"
 
-    Private Sub DataGridViewModificar_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridViewModificar.CellMouseDoubleClick
+    Private Sub DataGridViewModificar_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVModificar.CellMouseDoubleClick
         ' Cargar el formulario con los datos para modificar
         Try
-            idModificando = CInt(DataGridViewModificar.Rows(e.RowIndex).Cells("id").Value)
+            idModificando = CInt(DGVModificar.Rows(e.RowIndex).Cells("id").Value)
 
-            TextBoxNombre.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("persona_nombre").Value
-            ComboBoxCategGasto.SelectedItem = DataGridViewModificar.Rows(e.RowIndex).Cells("categoria_nombre").Value
-            TextBoxProveedor.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("proveedor_nombre").Value
-            If DataGridViewModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value Is DBNull.Value Then
-                DateTimePickerMesReintegro.Value = CDate(DataGridViewModificar.Rows(e.RowIndex).Cells("fecha").Value)
+            TextBoxNombre.Text = DGVModificar.Rows(e.RowIndex).Cells("persona_nombre").Value
+            ComboBoxCategGasto.SelectedItem = DGVModificar.Rows(e.RowIndex).Cells("categoria_nombre").Value
+            TextBoxProveedor.Text = DGVModificar.Rows(e.RowIndex).Cells("proveedor_nombre").Value
+            If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value Is DBNull.Value Then
+                DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
                 DateTimePickerMesReintegro.Checked = False
             Else
-                DateTimePickerMesReintegro.Value = CDate(DataGridViewModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
-                DateTimePickerMesReintegro.Checked = True
+                If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value = DGVModificar.Rows(e.RowIndex).Cells("fecha").Value Then
+                    DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
+                    DateTimePickerMesReintegro.Checked = False
+                Else
+                    DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
+                    DateTimePickerMesReintegro.Checked = True
+                End If
             End If
-            ComboBoxSeccional.SelectedItem = DataGridViewModificar.Rows(e.RowIndex).Cells("seccional_nombre").Value
-            TextBoxComentario.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("comentario").Value.ToString
-            DateTimePickerFecha.Value = CDate(DataGridViewModificar.Rows(e.RowIndex).Cells("fecha").Value)
-            ComboBoxTipoComprobante.SelectedItem = DataGridViewModificar.Rows(e.RowIndex).Cells("tipo_comprobante_nombre").Value
-            If DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Contains("-") Then
-                TextBoxPVenta.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(0)
-                TextBoxNroComprobante.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(1)
+            ComboBoxSeccional.SelectedItem = DGVModificar.Rows(e.RowIndex).Cells("seccional_nombre").Value
+            TextBoxComentario.Text = DGVModificar.Rows(e.RowIndex).Cells("comentario").Value.ToString
+            DateTimePickerFecha.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
+            ComboBoxTipoComprobante.SelectedItem = DGVModificar.Rows(e.RowIndex).Cells("tipo_comprobante_nombre").Value
+            If DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Contains("-") Then
+                TextBoxPVenta.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(0)
+                TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(1)
             Else
                 TextBoxPVenta.Text = "0"
-                TextBoxNroComprobante.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value
+                TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value
             End If
-            TextBoxMonto.Text = DataGridViewModificar.Rows(e.RowIndex).Cells("monto").Value
+            TextBoxMonto.Text = DGVModificar.Rows(e.RowIndex).Cells("monto").Value
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error al cargar el formulario", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -169,8 +174,8 @@ Public Class ABMEgresos
         End If
         Dim reintegro As Date
         If DateTimePickerMesReintegro.Checked Then
-            reintegro = DateTimePickerMesReintegro.Value
-        Else reintegro = DateTimePickerFecha.Value
+            reintegro = DateTimePickerMesReintegro.Value.Date
+        Else reintegro = DateTimePickerFecha.Value.Date
         End If
 
 
@@ -183,7 +188,7 @@ Public Class ABMEgresos
                          obtenerID(TextBoxProveedor.Text, "Proveedores"),
                          ComboBoxCategGasto.SelectedValue,
                          obtenerID(TextBoxNombre.Text, "Personas"),
-                         DateTimePickerFecha.Value,
+                         DateTimePickerFecha.Value.Date,
                          ComboBoxTipoComprobante.SelectedValue,
                          ComboBoxSeccional.SelectedValue,
                          reintegro,
@@ -194,8 +199,8 @@ Public Class ABMEgresos
             idModificando = 0
             limpiarForm(SplitContainerModificar.Panel2)
             activarModificar(False)
-            CargardDGV(DataGridViewModificar)
-
+            CargardDGV(DGVModificar)
+            ActualizarSaldo()
         End If
 
     End Sub
@@ -241,7 +246,7 @@ Public Class ABMEgresos
         ' ######################################## TAB Modificar
 
         activarModificar(False)
-        CargardDGV(DataGridViewModificar)
+        CargardDGV(DGVModificar)
 
         '               Autocomplete al escribir
         TextBoxNombre.AutoCompleteCustomSource = autocomplete("Personas", "nombre")

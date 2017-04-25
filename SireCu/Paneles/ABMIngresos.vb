@@ -68,6 +68,7 @@ Public Class ABMIngresos
                 End Select
 
                 activarEdicion(False)
+                ActualizarSaldo()
 
             End If
 
