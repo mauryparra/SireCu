@@ -119,7 +119,7 @@ Module OtrasFunciones
         Principal.tableadapters(tabla).Fill(Principal.dataset.Tables(tabla))
 
         If (Principal.dataset.Tables(tabla).Rows.Count() = 0) Then
-            Return ("2000")
+            Return (Now.Date.Year.ToString)
         Else : Return (DatePart(DateInterval.Year, Principal.dataset.Tables(tabla).Rows.Item(0).Item("fecha")))
         End If
 
