@@ -56,22 +56,24 @@ Module Conexion
         Return resultado
     End Function
 
-    Function consultarReader(ByVal sql As String)
+    Function consultarReader(ByVal sql As String) As DataTable
 
         Dim reader As SqlCeDataReader
+        Dim dt As New DataTable
 
         Try
             conectar()
             Principal.command.CommandText = sql
             Principal.command.Connection = conexion
             reader = Principal.command.ExecuteReader()
+            dt.Load(reader)
             desconectar()
         Catch ex As SqlCeException
             MessageBox.Show(ex.Message)
             reader = Nothing
         End Try
 
-        Return (reader.GetString(0))
+        Return dt
     End Function
 
     Sub cargarTablaEnDataSet(ByVal tabla As String)

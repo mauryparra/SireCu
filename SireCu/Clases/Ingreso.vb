@@ -46,19 +46,10 @@ Module Ingreso
 
     Public Function verificar_año(ByVal año As Integer)
 
-        ' TODO reemplazar fill dataset por command.ExecuteReader
-
         Principal.query = "SELECT * from ingresos where DATEPART(Year, fecha) = '" & año & "'"
-        consultarNQ(Principal.query, Principal.command)
-        Principal.dataset.Tables("Ingresos").Clear()
-        Principal.tableadapters("Ingresos") = New SqlCeDataAdapter(Principal.command)
-        Principal.tableadapters("Ingresos").Fill(Principal.dataset.Tables("ingresos"))
+        Dim dt As DataTable = consultarReader(Principal.query)
 
-        If (Principal.dataset.Tables("ingresos").Rows.Count = 0) Then
-            Return (False)
-        Else
-            Return (True)
-        End If
+        Return IIf(dt.Rows.Count > 0, True, False)
 
     End Function
 
