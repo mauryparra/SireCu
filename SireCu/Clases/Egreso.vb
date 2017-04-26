@@ -6,9 +6,9 @@ Module Egreso
     ByVal fecha As Date, ByVal tipo_comp As String, ByVal secc As String, ByVal reintegro As Date, ByVal monto As Double,
                             ByVal comentario As String)
         Principal.query = "INSERT INTO egresos (nro_comprobante, proveedor_id, categoria_gasto_id, persona_id, " &
-            "fecha, tipo_comprobante_id, seccional_id, mes_reintegro, monto, comentario)" &
+            "fecha, tipo_comprobante_id, seccional_id, mes_reintegro, monto, comentario, eliminado)" &
                               "VALUES (@nro_comprobante, @proveedor, @cat_gasto, @persona, @fecha, @t_comprobante, " &
-                                "@seccional, @reintegro, @monto, @comentario)"
+                                "@seccional, @reintegro, @monto, @comentario, 0)"
         Principal.command.Parameters.Clear()
         Principal.command.Parameters.AddWithValue("@nro_comprobante", compro)
         Principal.command.Parameters.AddWithValue("@proveedor", proveedor)
@@ -52,8 +52,16 @@ Module Egreso
         End If
     End Sub
 
-    Public Sub eliminar_egreso()
+    Public Sub eliminar_egreso(ByVal id As Integer)
+        Principal.query = "UPDATE Egresos SET eliminado = 1 WHERE id = @id"
+        Principal.command.Parameters.Clear()
+        Principal.command.Parameters.AddWithValue("@id", id)
 
+        If consultarNQ(Principal.query, Principal.command) > 0 Then
+            MsgBox("Egreso eliminado exitosamente", MsgBoxStyle.OkOnly, "Eliminar Egreso")
+        Else
+            MsgBox("Ocurrio un error al eliminar el egreso", MsgBoxStyle.Exclamation, "Eliminar Egreso")
+        End If
     End Sub
 
     Public Sub CargardDGV(ByRef dgv As DataGridView)
@@ -87,7 +95,8 @@ Module Egreso
                            LEFT JOIN Proveedores AS Pro ON E.proveedor_id = Pro.id
                            LEFT JOIN CategoriasGastos AS Gastos ON E.categoria_gasto_id = Gastos.id
                            LEFT JOIN Personas AS Per ON E.persona_id = Per.id
-                           LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id"
+                           LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id
+                           WHERE E.eliminado = 0"
 
         'Creamos el TableAdapter si no existe
         If Not Principal.tableadapters.ContainsKey("Egresos_Modificar") Then

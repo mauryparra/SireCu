@@ -24,6 +24,9 @@ Partial Class ABMEgresos
     Private Sub InitializeComponent()
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.TabPageAgregar = New System.Windows.Forms.TabPage()
+        Me.lbFecha = New System.Windows.Forms.Label()
+        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
+        Me.dtpReintegro = New System.Windows.Forms.DateTimePicker()
         Me.lbSeccional = New System.Windows.Forms.Label()
         Me.tbSeccional = New System.Windows.Forms.ComboBox()
         Me.tbNComprobante = New System.Windows.Forms.TextBox()
@@ -88,9 +91,7 @@ Partial Class ABMEgresos
         Me.Label12 = New System.Windows.Forms.Label()
         Me.TextBoxComentario = New System.Windows.Forms.TextBox()
         Me.TextBoxProveedor = New System.Windows.Forms.TextBox()
-        Me.dtpReintegro = New System.Windows.Forms.DateTimePicker()
-        Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
-        Me.lbFecha = New System.Windows.Forms.Label()
+        Me.ButtonEliminar = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -149,6 +150,38 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.Text = "Agregar"
         Me.TabPageAgregar.UseVisualStyleBackColor = True
         '
+        'lbFecha
+        '
+        Me.lbFecha.AutoSize = True
+        Me.lbFecha.Location = New System.Drawing.Point(391, 87)
+        Me.lbFecha.Name = "lbFecha"
+        Me.lbFecha.Size = New System.Drawing.Size(49, 16)
+        Me.lbFecha.TabIndex = 457
+        Me.lbFecha.Text = "Fecha:"
+        '
+        'dtpFecha
+        '
+        Me.dtpFecha.CustomFormat = ""
+        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFecha.Location = New System.Drawing.Point(537, 82)
+        Me.dtpFecha.Name = "dtpFecha"
+        Me.dtpFecha.Size = New System.Drawing.Size(163, 22)
+        Me.dtpFecha.TabIndex = 8
+        Me.dtpFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
+        'dtpReintegro
+        '
+        Me.dtpReintegro.Checked = False
+        Me.dtpReintegro.CustomFormat = "MM/yyyy"
+        Me.dtpReintegro.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpReintegro.Location = New System.Drawing.Point(151, 213)
+        Me.dtpReintegro.Name = "dtpReintegro"
+        Me.dtpReintegro.ShowCheckBox = True
+        Me.dtpReintegro.ShowUpDown = True
+        Me.dtpReintegro.Size = New System.Drawing.Size(156, 22)
+        Me.dtpReintegro.TabIndex = 6
+        Me.dtpReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
+        '
         'lbSeccional
         '
         Me.lbSeccional.AutoSize = True
@@ -166,14 +199,14 @@ Partial Class ABMEgresos
         Me.tbSeccional.Location = New System.Drawing.Point(151, 261)
         Me.tbSeccional.Name = "tbSeccional"
         Me.tbSeccional.Size = New System.Drawing.Size(156, 24)
-        Me.tbSeccional.TabIndex = 11
+        Me.tbSeccional.TabIndex = 7
         '
         'tbNComprobante
         '
         Me.tbNComprobante.Location = New System.Drawing.Point(603, 171)
         Me.tbNComprobante.Name = "tbNComprobante"
         Me.tbNComprobante.Size = New System.Drawing.Size(97, 22)
-        Me.tbNComprobante.TabIndex = 8
+        Me.tbNComprobante.TabIndex = 11
         '
         'lb_Titulo
         '
@@ -193,14 +226,14 @@ Partial Class ABMEgresos
         Me.tbTComprobante.Location = New System.Drawing.Point(537, 126)
         Me.tbTComprobante.Name = "tbTComprobante"
         Me.tbTComprobante.Size = New System.Drawing.Size(163, 24)
-        Me.tbTComprobante.TabIndex = 6
+        Me.tbTComprobante.TabIndex = 9
         '
         'tbPVenta
         '
         Me.tbPVenta.Location = New System.Drawing.Point(537, 171)
         Me.tbPVenta.Name = "tbPVenta"
         Me.tbPVenta.Size = New System.Drawing.Size(56, 22)
-        Me.tbPVenta.TabIndex = 7
+        Me.tbPVenta.TabIndex = 10
         '
         'lbSmonto
         '
@@ -225,7 +258,7 @@ Partial Class ABMEgresos
         Me.tbMonto.Location = New System.Drawing.Point(537, 215)
         Me.tbMonto.Name = "tbMonto"
         Me.tbMonto.Size = New System.Drawing.Size(163, 22)
-        Me.tbMonto.TabIndex = 10
+        Me.tbMonto.TabIndex = 12
         Me.tbMonto.Tag = ""
         '
         'tbTGasto
@@ -245,7 +278,7 @@ Partial Class ABMEgresos
         Me.btnGuardar.Location = New System.Drawing.Point(551, 320)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(126, 61)
-        Me.btnGuardar.TabIndex = 13
+        Me.btnGuardar.TabIndex = 14
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
@@ -328,7 +361,7 @@ Partial Class ABMEgresos
         Me.tbComentario.Multiline = True
         Me.tbComentario.Name = "tbComentario"
         Me.tbComentario.Size = New System.Drawing.Size(387, 100)
-        Me.tbComentario.TabIndex = 12
+        Me.tbComentario.TabIndex = 13
         '
         'tbProveedor
         '
@@ -363,6 +396,7 @@ Partial Class ABMEgresos
         '
         'SplitContainerModificar.Panel2
         '
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.ButtonEliminar)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.LabelSeccional)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.ComboBoxSeccional)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.DateTimePickerMesReintegro)
@@ -541,7 +575,7 @@ Partial Class ABMEgresos
         Me.ComboBoxSeccional.Location = New System.Drawing.Point(145, 127)
         Me.ComboBoxSeccional.Name = "ComboBoxSeccional"
         Me.ComboBoxSeccional.Size = New System.Drawing.Size(197, 24)
-        Me.ComboBoxSeccional.TabIndex = 118
+        Me.ComboBoxSeccional.TabIndex = 95
         '
         'DateTimePickerMesReintegro
         '
@@ -553,7 +587,7 @@ Partial Class ABMEgresos
         Me.DateTimePickerMesReintegro.ShowCheckBox = True
         Me.DateTimePickerMesReintegro.ShowUpDown = True
         Me.DateTimePickerMesReintegro.Size = New System.Drawing.Size(197, 22)
-        Me.DateTimePickerMesReintegro.TabIndex = 117
+        Me.DateTimePickerMesReintegro.TabIndex = 94
         Me.DateTimePickerMesReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
         '
         'Label1
@@ -572,7 +606,7 @@ Partial Class ABMEgresos
         Me.DateTimePickerFecha.Location = New System.Drawing.Point(529, 13)
         Me.DateTimePickerFecha.Name = "DateTimePickerFecha"
         Me.DateTimePickerFecha.Size = New System.Drawing.Size(163, 22)
-        Me.DateTimePickerFecha.TabIndex = 115
+        Me.DateTimePickerFecha.TabIndex = 96
         Me.DateTimePickerFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
         '
         'TextBoxNroComprobante
@@ -622,7 +656,7 @@ Partial Class ABMEgresos
         Me.TextBoxMonto.Location = New System.Drawing.Point(529, 99)
         Me.TextBoxMonto.Name = "TextBoxMonto"
         Me.TextBoxMonto.Size = New System.Drawing.Size(163, 22)
-        Me.TextBoxMonto.TabIndex = 101
+        Me.TextBoxMonto.TabIndex = 100
         Me.TextBoxMonto.Tag = ""
         '
         'ComboBoxCategGasto
@@ -633,16 +667,16 @@ Partial Class ABMEgresos
         Me.ComboBoxCategGasto.Location = New System.Drawing.Point(145, 41)
         Me.ComboBoxCategGasto.Name = "ComboBoxCategGasto"
         Me.ComboBoxCategGasto.Size = New System.Drawing.Size(197, 24)
-        Me.ComboBoxCategGasto.TabIndex = 95
+        Me.ComboBoxCategGasto.TabIndex = 92
         '
         'ButtonGuardar
         '
         Me.ButtonGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGuardar.ForeColor = System.Drawing.Color.Green
-        Me.ButtonGuardar.Location = New System.Drawing.Point(529, 157)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(529, 145)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(163, 56)
-        Me.ButtonGuardar.TabIndex = 105
+        Me.ButtonGuardar.Size = New System.Drawing.Size(163, 31)
+        Me.ButtonGuardar.TabIndex = 102
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
         '
@@ -725,7 +759,7 @@ Partial Class ABMEgresos
         Me.TextBoxComentario.Multiline = True
         Me.TextBoxComentario.Name = "TextBoxComentario"
         Me.TextBoxComentario.Size = New System.Drawing.Size(378, 56)
-        Me.TextBoxComentario.TabIndex = 104
+        Me.TextBoxComentario.TabIndex = 101
         '
         'TextBoxProveedor
         '
@@ -734,39 +768,18 @@ Partial Class ABMEgresos
         Me.TextBoxProveedor.Location = New System.Drawing.Point(145, 71)
         Me.TextBoxProveedor.Name = "TextBoxProveedor"
         Me.TextBoxProveedor.Size = New System.Drawing.Size(197, 22)
-        Me.TextBoxProveedor.TabIndex = 96
+        Me.TextBoxProveedor.TabIndex = 93
         '
-        'dtpReintegro
+        'ButtonEliminar
         '
-        Me.dtpReintegro.Checked = False
-        Me.dtpReintegro.CustomFormat = "MM/yyyy"
-        Me.dtpReintegro.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpReintegro.Location = New System.Drawing.Point(151, 213)
-        Me.dtpReintegro.Name = "dtpReintegro"
-        Me.dtpReintegro.ShowCheckBox = True
-        Me.dtpReintegro.ShowUpDown = True
-        Me.dtpReintegro.Size = New System.Drawing.Size(156, 22)
-        Me.dtpReintegro.TabIndex = 455
-        Me.dtpReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
-        '
-        'dtpFecha
-        '
-        Me.dtpFecha.CustomFormat = ""
-        Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFecha.Location = New System.Drawing.Point(537, 82)
-        Me.dtpFecha.Name = "dtpFecha"
-        Me.dtpFecha.Size = New System.Drawing.Size(163, 22)
-        Me.dtpFecha.TabIndex = 456
-        Me.dtpFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
-        '
-        'lbFecha
-        '
-        Me.lbFecha.AutoSize = True
-        Me.lbFecha.Location = New System.Drawing.Point(391, 87)
-        Me.lbFecha.Name = "lbFecha"
-        Me.lbFecha.Size = New System.Drawing.Size(49, 16)
-        Me.lbFecha.TabIndex = 457
-        Me.lbFecha.Text = "Fecha:"
+        Me.ButtonEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonEliminar.ForeColor = System.Drawing.Color.Red
+        Me.ButtonEliminar.Location = New System.Drawing.Point(529, 182)
+        Me.ButtonEliminar.Name = "ButtonEliminar"
+        Me.ButtonEliminar.Size = New System.Drawing.Size(163, 31)
+        Me.ButtonEliminar.TabIndex = 103
+        Me.ButtonEliminar.Text = "Eliminar"
+        Me.ButtonEliminar.UseVisualStyleBackColor = True
         '
         'ABMEgresos
         '
@@ -862,4 +875,5 @@ Partial Class ABMEgresos
     Friend WithEvents lbFecha As Label
     Friend WithEvents dtpFecha As DateTimePicker
     Friend WithEvents dtpReintegro As DateTimePicker
+    Friend WithEvents ButtonEliminar As Button
 End Class

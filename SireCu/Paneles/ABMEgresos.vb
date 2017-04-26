@@ -91,6 +91,7 @@ Public Class ABMEgresos
 
             limpiarForm(TabPageAgregar)
             dtpReintegro.Checked = False
+            CargardDGV(DGVModificar)
             ActualizarSaldo()
         End If
 
@@ -205,6 +206,19 @@ Public Class ABMEgresos
 
     End Sub
 
+    Private Sub ButtonEliminar_Click(sender As Object, e As EventArgs) Handles ButtonEliminar.Click
+        If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Eliminar?") = MsgBoxResult.Ok) Then
+
+            eliminar_egreso(idModificando)
+
+            idModificando = 0
+            limpiarForm(SplitContainerModificar.Panel2)
+            activarModificar(False)
+            CargardDGV(DGVModificar)
+            ActualizarSaldo()
+        End If
+    End Sub
+
 #End Region
 
 #Region "Eventos"
@@ -300,6 +314,7 @@ Public Class ABMEgresos
                 End If
             Next
             ButtonGuardar.Enabled = True
+            ButtonEliminar.Enabled = True
         Else
             For Each control As Control In SplitContainerModificar.Panel2.Controls
                 If TypeOf control Is TextBox Or TypeOf control Is ComboBox Or TypeOf control Is DateTimePicker Then
@@ -307,6 +322,7 @@ Public Class ABMEgresos
                 End If
             Next
             ButtonGuardar.Enabled = False
+            ButtonEliminar.Enabled = False
         End If
     End Sub
 
@@ -584,8 +600,6 @@ Public Class ABMEgresos
             ControlesConErroresModificar.Remove(sender)
         End If
     End Sub
-
-
 
 #End Region
 

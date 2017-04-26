@@ -24,28 +24,28 @@ Module OtrasFunciones
                                 " WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & añoAnterior
 
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3" &
-                               " AND DATEPART(year, [fecha]) = " & año
+                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
             Case "Segundo"
                 trimAnterior = "Primero"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
                                 " WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
 
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6" &
-                               " AND DATEPART(year, [fecha]) = " & año
+                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
             Case "Tercero"
                 trimAnterior = "Segundo"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
                                 " WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
 
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9" &
-                               " AND DATEPART(year, [fecha]) = " & año
+                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
             Case "Cuarto"
                 trimAnterior = "Tercero"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
                                  "WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
 
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12" &
-                               " AND DATEPART(year, [fecha]) = " & año
+                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
         End Select
 
         ' 1)

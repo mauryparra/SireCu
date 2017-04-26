@@ -226,7 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DBSireCu.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
   </ItemGroup>
