@@ -220,6 +220,109 @@ Public Class ABMEgresos
         End If
     End Sub
 
+    Private Sub TSButtonFiltrar_Click(sender As Object, e As EventArgs) Handles TSButtonFiltrar.Click
+        Dim filtros As List(Of KeyValuePair(Of String, String)) = New List(Of KeyValuePair(Of String, String))
+        Dim sql As String = ""
+
+        ' Se guardan todos los filtros activos para crear el SQL
+        If Not TSComboBoxTrimestre.SelectedItem = "" Then
+            filtros.Add(New KeyValuePair(Of String, String)("trimestre", TSComboBoxTrimestre.SelectedItem))
+        End If
+
+        If Not TSTextBoxAño.Text = "" Then
+            filtros.Add(New KeyValuePair(Of String, String)("año", TSTextBoxAño.Text))
+        End If
+
+        If Not (TSComboBoxFiltro1.SelectedItem = "" Or TSTextBoxFiltro1.Text = "") Then
+            filtros.Add(New KeyValuePair(Of String, String)(TSComboBoxFiltro1.SelectedItem, TSTextBoxFiltro1.Text))
+        End If
+
+        ' SQL Basico
+        sql = "SELECT TOP (500) E.id AS id,
+                                  E.nro_comprobante AS nro_comprobante,
+                                  E.tipo_comprobante_id AS tipo_comprobante_id,
+                                  Comp.nombre AS tipo_comprobante_nombre,
+                                  E.proveedor_id AS proveedor_id,
+                                  Pro.nombre AS proveedor_nombre,
+                                  E.categoria_gasto_id AS categoria_gasto_id,
+                                  Gastos.nombre AS categoria_nombre,
+                                  E.persona_id AS persona_id,
+                                  Per.nombre AS persona_nombre,
+                                  E.fecha AS fecha,
+                                  E.seccional_id AS seccional_id,
+                                  Secc.nombre AS seccional_nombre,
+                                  E.mes_reintegro AS mes_reintegro,
+                                  E.monto AS monto,
+                                  E.comentario AS comentario
+                           FROM Egresos AS E
+                           LEFT JOIN TiposComprobantes AS Comp ON E.tipo_comprobante_id = Comp.id
+                           LEFT JOIN Proveedores AS Pro ON E.proveedor_id = Pro.id
+                           LEFT JOIN CategoriasGastos AS Gastos ON E.categoria_gasto_id = Gastos.id
+                           LEFT JOIN Personas AS Per ON E.persona_id = Per.id
+                           LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id
+                           WHERE E.eliminado = 0"
+
+        ' Aplicar Filtros al SQL
+        For Each keyv As KeyValuePair(Of String, String) In filtros
+
+            ' Filtrar por trimestre
+            If keyv.Key = "trimestre" Then
+                Select Case keyv.Value
+                    Case "Primero"
+                        sql += " AND DATEPART(month, [fecha]) BETWEEN 1 AND 3"
+                    Case "Segundo"
+                        sql += " AND DATEPART(month, [fecha]) BETWEEN 4 AND 6"
+                    Case "Tercero"
+                        sql += " AND DATEPART(month, [fecha]) BETWEEN 7 AND 9"
+                    Case "Cuarto"
+                        sql += " AND DATEPART(month, [fecha]) BETWEEN 10 AND 12"
+                    Case Else
+                        Exit Select
+                End Select
+
+            ElseIf keyv.Key = "año" Then
+
+                ' Filtrar por año
+                sql += " AND DATEPART(year, [fecha]) = " & keyv.Value
+
+            Else
+
+                ' Filtros adicionales
+                Select Case keyv.Key
+                    Case "Id"
+                        sql += " AND E.id = " & keyv.Value
+                    Case "Nro Comprobante"
+                        sql += " AND E.nro_comprobante = '" & keyv.Value & "'"
+                    Case "Tipo Comprobante"
+                        sql += " AND Comp.nombre = '" & keyv.Value & "'"
+                    Case "Proveedor"
+                        sql += " AND Pro.nombre = '" & keyv.Value & "'"
+                    Case "Categoria Gasto"
+                        sql += " AND Gastos.nombre = '" & keyv.Value & "'"
+                    Case "Persona"
+                        sql += " AND Per.nombre = '" & keyv.Value & "'"
+                    Case "Fecha"
+                        sql += " AND E.fecha = " & keyv.Value
+                    Case "Seccional"
+                        sql += " AND Secc.nombre = '" & keyv.Value & "'"
+                    Case "Mes Reintegro"
+                        sql += " AND E.mes_reintegro = " & keyv.Value
+                    Case "Monto"
+                        sql += " AND E.monto = " & keyv.Value
+                    Case "Comentario"
+                        sql += " AND E.comentario = '" & keyv.Value & "'"
+                    Case Else
+                        Exit Select
+                End Select
+            End If
+        Next
+
+        sql += " ORDER BY E.id DESC"
+
+        FiltrarDGV(DGVModificar, sql)
+
+    End Sub
+
 #End Region
 
 #Region "TAB Papelera - Eventos"
@@ -659,7 +762,6 @@ Public Class ABMEgresos
             ControlesConErroresModificar.Remove(sender)
         End If
     End Sub
-
 #End Region
 
 End Class

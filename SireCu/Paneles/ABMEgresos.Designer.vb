@@ -22,6 +22,7 @@ Partial Class ABMEgresos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ABMEgresos))
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.TabPageAgregar = New System.Windows.Forms.TabPage()
         Me.lbFecha = New System.Windows.Forms.Label()
@@ -68,6 +69,7 @@ Partial Class ABMEgresos
         Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolStripModificar = New System.Windows.Forms.ToolStrip()
         Me.ButtonEliminar = New System.Windows.Forms.Button()
         Me.LabelSeccional = New System.Windows.Forms.Label()
         Me.ComboBoxSeccional = New System.Windows.Forms.ComboBox()
@@ -96,6 +98,25 @@ Partial Class ABMEgresos
         Me.SplitContainerPapelera = New System.Windows.Forms.SplitContainer()
         Me.ToolStripContainerPapelera = New System.Windows.Forms.ToolStripContainer()
         Me.DGVPapelera = New System.Windows.Forms.DataGridView()
+        Me.PapeleraId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraNroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraTComprobanteId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraTipoComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraProveedorId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraCategoriaGastoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraCategoriaGasto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraPersonaId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraSeccionalId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraSeccional = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tbPapeleraTipoComprobante = New System.Windows.Forms.TextBox()
+        Me.tbPapeleraSeccional = New System.Windows.Forms.TextBox()
+        Me.tbPapeleraTipoGasto = New System.Windows.Forms.TextBox()
         Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpPapeleraReintegro = New System.Windows.Forms.DateTimePicker()
@@ -116,25 +137,14 @@ Partial Class ABMEgresos
         Me.Label21 = New System.Windows.Forms.Label()
         Me.tbPapeleraComentario = New System.Windows.Forms.TextBox()
         Me.tbPapeleraProveedor = New System.Windows.Forms.TextBox()
-        Me.tbPapeleraTipoGasto = New System.Windows.Forms.TextBox()
-        Me.tbPapeleraSeccional = New System.Windows.Forms.TextBox()
-        Me.tbPapeleraTipoComprobante = New System.Windows.Forms.TextBox()
-        Me.PapeleraId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraNroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraTComprobanteId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraTipoComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraProveedorId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraCategoriaGastoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraCategoriaGasto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraPersonaId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraSeccionalId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraSeccional = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TSLabelTrimestre = New System.Windows.Forms.ToolStripLabel()
+        Me.TSComboBoxTrimestre = New System.Windows.Forms.ToolStripComboBox()
+        Me.TSLabelAño = New System.Windows.Forms.ToolStripLabel()
+        Me.TSTextBoxAño = New System.Windows.Forms.ToolStripTextBox()
+        Me.TSButtonFiltrar = New System.Windows.Forms.ToolStripButton()
+        Me.TSLabelFiltro1 = New System.Windows.Forms.ToolStripLabel()
+        Me.TSComboBoxFiltro1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.TSTextBoxFiltro1 = New System.Windows.Forms.ToolStripTextBox()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -143,8 +153,10 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar.Panel2.SuspendLayout()
         Me.SplitContainerModificar.SuspendLayout()
         Me.ToolStripContainerModificar.ContentPanel.SuspendLayout()
+        Me.ToolStripContainerModificar.TopToolStripPanel.SuspendLayout()
         Me.ToolStripContainerModificar.SuspendLayout()
         CType(Me.DGVModificar, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStripModificar.SuspendLayout()
         Me.TabPagePapelera.SuspendLayout()
         CType(Me.SplitContainerPapelera, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerPapelera.Panel1.SuspendLayout()
@@ -479,17 +491,24 @@ Partial Class ABMEgresos
         '
         'ToolStripContainerModificar
         '
+        Me.ToolStripContainerModificar.BottomToolStripPanelVisible = False
         '
         'ToolStripContainerModificar.ContentPanel
         '
         Me.ToolStripContainerModificar.ContentPanel.Controls.Add(Me.DGVModificar)
         Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(741, 176)
         Me.ToolStripContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ToolStripContainerModificar.LeftToolStripPanelVisible = False
         Me.ToolStripContainerModificar.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainerModificar.Name = "ToolStripContainerModificar"
+        Me.ToolStripContainerModificar.RightToolStripPanelVisible = False
         Me.ToolStripContainerModificar.Size = New System.Drawing.Size(741, 201)
         Me.ToolStripContainerModificar.TabIndex = 0
         Me.ToolStripContainerModificar.Text = "ToolStripContainer1"
+        '
+        'ToolStripContainerModificar.TopToolStripPanel
+        '
+        Me.ToolStripContainerModificar.TopToolStripPanel.Controls.Add(Me.ToolStripModificar)
         '
         'DGVModificar
         '
@@ -610,6 +629,16 @@ Partial Class ABMEgresos
         Me.comentario.HeaderText = "Comentario"
         Me.comentario.Name = "comentario"
         Me.comentario.ReadOnly = True
+        '
+        'ToolStripModificar
+        '
+        Me.ToolStripModificar.Dock = System.Windows.Forms.DockStyle.None
+        Me.ToolStripModificar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripModificar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSLabelTrimestre, Me.TSComboBoxTrimestre, Me.TSLabelAño, Me.TSTextBoxAño, Me.TSLabelFiltro1, Me.TSComboBoxFiltro1, Me.TSTextBoxFiltro1, Me.TSButtonFiltrar})
+        Me.ToolStripModificar.Location = New System.Drawing.Point(3, 0)
+        Me.ToolStripModificar.Name = "ToolStripModificar"
+        Me.ToolStripModificar.Size = New System.Drawing.Size(683, 25)
+        Me.ToolStripModificar.TabIndex = 0
         '
         'ButtonEliminar
         '
@@ -913,6 +942,143 @@ Partial Class ABMEgresos
         Me.DGVPapelera.Size = New System.Drawing.Size(741, 176)
         Me.DGVPapelera.TabIndex = 0
         '
+        'PapeleraId
+        '
+        Me.PapeleraId.HeaderText = "Id"
+        Me.PapeleraId.Name = "PapeleraId"
+        Me.PapeleraId.ReadOnly = True
+        '
+        'PapeleraNroComprobante
+        '
+        Me.PapeleraNroComprobante.HeaderText = "Nro Comprobante"
+        Me.PapeleraNroComprobante.Name = "PapeleraNroComprobante"
+        Me.PapeleraNroComprobante.ReadOnly = True
+        '
+        'PapeleraTComprobanteId
+        '
+        Me.PapeleraTComprobanteId.HeaderText = "tipo_comprobante_id"
+        Me.PapeleraTComprobanteId.Name = "PapeleraTComprobanteId"
+        Me.PapeleraTComprobanteId.ReadOnly = True
+        Me.PapeleraTComprobanteId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraTComprobanteId.Visible = False
+        '
+        'PapeleraTipoComprobante
+        '
+        Me.PapeleraTipoComprobante.HeaderText = "Tipo Comprobante"
+        Me.PapeleraTipoComprobante.Name = "PapeleraTipoComprobante"
+        Me.PapeleraTipoComprobante.ReadOnly = True
+        '
+        'PapeleraProveedorId
+        '
+        Me.PapeleraProveedorId.HeaderText = "proveedor_id"
+        Me.PapeleraProveedorId.Name = "PapeleraProveedorId"
+        Me.PapeleraProveedorId.ReadOnly = True
+        Me.PapeleraProveedorId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraProveedorId.Visible = False
+        '
+        'PapeleraProveedor
+        '
+        Me.PapeleraProveedor.HeaderText = "Proveedor"
+        Me.PapeleraProveedor.Name = "PapeleraProveedor"
+        Me.PapeleraProveedor.ReadOnly = True
+        '
+        'PapeleraCategoriaGastoId
+        '
+        Me.PapeleraCategoriaGastoId.HeaderText = "categoria_gasto_id"
+        Me.PapeleraCategoriaGastoId.Name = "PapeleraCategoriaGastoId"
+        Me.PapeleraCategoriaGastoId.ReadOnly = True
+        Me.PapeleraCategoriaGastoId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraCategoriaGastoId.Visible = False
+        '
+        'PapeleraCategoriaGasto
+        '
+        Me.PapeleraCategoriaGasto.HeaderText = "Categoria Gasto"
+        Me.PapeleraCategoriaGasto.Name = "PapeleraCategoriaGasto"
+        Me.PapeleraCategoriaGasto.ReadOnly = True
+        '
+        'PapeleraPersonaId
+        '
+        Me.PapeleraPersonaId.HeaderText = "persona_id"
+        Me.PapeleraPersonaId.Name = "PapeleraPersonaId"
+        Me.PapeleraPersonaId.ReadOnly = True
+        Me.PapeleraPersonaId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraPersonaId.Visible = False
+        '
+        'PapeleraPersona
+        '
+        Me.PapeleraPersona.HeaderText = "Persona"
+        Me.PapeleraPersona.Name = "PapeleraPersona"
+        Me.PapeleraPersona.ReadOnly = True
+        '
+        'PapeleraFecha
+        '
+        Me.PapeleraFecha.HeaderText = "Fecha"
+        Me.PapeleraFecha.Name = "PapeleraFecha"
+        Me.PapeleraFecha.ReadOnly = True
+        '
+        'PapeleraSeccionalId
+        '
+        Me.PapeleraSeccionalId.HeaderText = "seccional_id"
+        Me.PapeleraSeccionalId.Name = "PapeleraSeccionalId"
+        Me.PapeleraSeccionalId.ReadOnly = True
+        Me.PapeleraSeccionalId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraSeccionalId.Visible = False
+        '
+        'PapeleraSeccional
+        '
+        Me.PapeleraSeccional.HeaderText = "Seccional"
+        Me.PapeleraSeccional.Name = "PapeleraSeccional"
+        Me.PapeleraSeccional.ReadOnly = True
+        '
+        'PapeleraReintegro
+        '
+        Me.PapeleraReintegro.HeaderText = "Mes Reintegro"
+        Me.PapeleraReintegro.Name = "PapeleraReintegro"
+        Me.PapeleraReintegro.ReadOnly = True
+        '
+        'PapeleraMonto
+        '
+        Me.PapeleraMonto.HeaderText = "Monto"
+        Me.PapeleraMonto.Name = "PapeleraMonto"
+        Me.PapeleraMonto.ReadOnly = True
+        '
+        'PapeleraComentario
+        '
+        Me.PapeleraComentario.HeaderText = "Comentario"
+        Me.PapeleraComentario.Name = "PapeleraComentario"
+        Me.PapeleraComentario.ReadOnly = True
+        '
+        'tbPapeleraTipoComprobante
+        '
+        Me.tbPapeleraTipoComprobante.Enabled = False
+        Me.tbPapeleraTipoComprobante.Location = New System.Drawing.Point(529, 41)
+        Me.tbPapeleraTipoComprobante.Name = "tbPapeleraTipoComprobante"
+        Me.tbPapeleraTipoComprobante.Size = New System.Drawing.Size(163, 22)
+        Me.tbPapeleraTipoComprobante.TabIndex = 122
+        Me.tbPapeleraTipoComprobante.Tag = ""
+        '
+        'tbPapeleraSeccional
+        '
+        Me.tbPapeleraSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.tbPapeleraSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.tbPapeleraSeccional.BackColor = System.Drawing.SystemColors.Window
+        Me.tbPapeleraSeccional.Enabled = False
+        Me.tbPapeleraSeccional.Location = New System.Drawing.Point(145, 127)
+        Me.tbPapeleraSeccional.Name = "tbPapeleraSeccional"
+        Me.tbPapeleraSeccional.Size = New System.Drawing.Size(197, 22)
+        Me.tbPapeleraSeccional.TabIndex = 121
+        '
+        'tbPapeleraTipoGasto
+        '
+        Me.tbPapeleraTipoGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.tbPapeleraTipoGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.tbPapeleraTipoGasto.BackColor = System.Drawing.SystemColors.Window
+        Me.tbPapeleraTipoGasto.Enabled = False
+        Me.tbPapeleraTipoGasto.Location = New System.Drawing.Point(145, 41)
+        Me.tbPapeleraTipoGasto.Name = "tbPapeleraTipoGasto"
+        Me.tbPapeleraTipoGasto.Size = New System.Drawing.Size(197, 22)
+        Me.tbPapeleraTipoGasto.TabIndex = 120
+        '
         'bPapeleraRestaurar
         '
         Me.bPapeleraRestaurar.Enabled = False
@@ -1104,142 +1270,61 @@ Partial Class ABMEgresos
         Me.tbPapeleraProveedor.Size = New System.Drawing.Size(197, 22)
         Me.tbPapeleraProveedor.TabIndex = 93
         '
-        'tbPapeleraTipoGasto
+        'TSLabelTrimestre
         '
-        Me.tbPapeleraTipoGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbPapeleraTipoGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbPapeleraTipoGasto.BackColor = System.Drawing.SystemColors.Window
-        Me.tbPapeleraTipoGasto.Enabled = False
-        Me.tbPapeleraTipoGasto.Location = New System.Drawing.Point(145, 41)
-        Me.tbPapeleraTipoGasto.Name = "tbPapeleraTipoGasto"
-        Me.tbPapeleraTipoGasto.Size = New System.Drawing.Size(197, 22)
-        Me.tbPapeleraTipoGasto.TabIndex = 120
+        Me.TSLabelTrimestre.Name = "TSLabelTrimestre"
+        Me.TSLabelTrimestre.Size = New System.Drawing.Size(62, 22)
+        Me.TSLabelTrimestre.Text = "Trimestre: "
         '
-        'tbPapeleraSeccional
+        'TSComboBoxTrimestre
         '
-        Me.tbPapeleraSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbPapeleraSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbPapeleraSeccional.BackColor = System.Drawing.SystemColors.Window
-        Me.tbPapeleraSeccional.Enabled = False
-        Me.tbPapeleraSeccional.Location = New System.Drawing.Point(145, 127)
-        Me.tbPapeleraSeccional.Name = "tbPapeleraSeccional"
-        Me.tbPapeleraSeccional.Size = New System.Drawing.Size(197, 22)
-        Me.tbPapeleraSeccional.TabIndex = 121
+        Me.TSComboBoxTrimestre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TSComboBoxTrimestre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TSComboBoxTrimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
+        Me.TSComboBoxTrimestre.Name = "TSComboBoxTrimestre"
+        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(121, 25)
         '
-        'tbPapeleraTipoComprobante
+        'TSLabelAño
         '
-        Me.tbPapeleraTipoComprobante.Enabled = False
-        Me.tbPapeleraTipoComprobante.Location = New System.Drawing.Point(529, 41)
-        Me.tbPapeleraTipoComprobante.Name = "tbPapeleraTipoComprobante"
-        Me.tbPapeleraTipoComprobante.Size = New System.Drawing.Size(163, 22)
-        Me.tbPapeleraTipoComprobante.TabIndex = 122
-        Me.tbPapeleraTipoComprobante.Tag = ""
+        Me.TSLabelAño.Name = "TSLabelAño"
+        Me.TSLabelAño.Size = New System.Drawing.Size(35, 22)
+        Me.TSLabelAño.Text = "Año: "
         '
-        'PapeleraId
+        'TSTextBoxAño
         '
-        Me.PapeleraId.HeaderText = "Id"
-        Me.PapeleraId.Name = "PapeleraId"
-        Me.PapeleraId.ReadOnly = True
+        Me.TSTextBoxAño.Name = "TSTextBoxAño"
+        Me.TSTextBoxAño.Size = New System.Drawing.Size(100, 25)
         '
-        'PapeleraNroComprobante
+        'TSButtonFiltrar
         '
-        Me.PapeleraNroComprobante.HeaderText = "Nro Comprobante"
-        Me.PapeleraNroComprobante.Name = "PapeleraNroComprobante"
-        Me.PapeleraNroComprobante.ReadOnly = True
+        Me.TSButtonFiltrar.BackColor = System.Drawing.Color.LightGreen
+        Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
+        Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
+        Me.TSButtonFiltrar.Size = New System.Drawing.Size(41, 22)
+        Me.TSButtonFiltrar.Text = "Filtrar"
         '
-        'PapeleraTComprobanteId
+        'TSLabelFiltro1
         '
-        Me.PapeleraTComprobanteId.HeaderText = "tipo_comprobante_id"
-        Me.PapeleraTComprobanteId.Name = "PapeleraTComprobanteId"
-        Me.PapeleraTComprobanteId.ReadOnly = True
-        Me.PapeleraTComprobanteId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraTComprobanteId.Visible = False
+        Me.TSLabelFiltro1.Name = "TSLabelFiltro1"
+        Me.TSLabelFiltro1.Size = New System.Drawing.Size(61, 22)
+        Me.TSLabelFiltro1.Text = "Filtrar Por:"
         '
-        'PapeleraTipoComprobante
+        'TSComboBoxFiltro1
         '
-        Me.PapeleraTipoComprobante.HeaderText = "Tipo Comprobante"
-        Me.PapeleraTipoComprobante.Name = "PapeleraTipoComprobante"
-        Me.PapeleraTipoComprobante.ReadOnly = True
+        Me.TSComboBoxFiltro1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TSComboBoxFiltro1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"Id", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario"})
+        Me.TSComboBoxFiltro1.Name = "TSComboBoxFiltro1"
+        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(121, 25)
+        Me.TSComboBoxFiltro1.ToolTipText = "Seleccione columna por la cual desea filtrar"
         '
-        'PapeleraProveedorId
+        'TSTextBoxFiltro1
         '
-        Me.PapeleraProveedorId.HeaderText = "proveedor_id"
-        Me.PapeleraProveedorId.Name = "PapeleraProveedorId"
-        Me.PapeleraProveedorId.ReadOnly = True
-        Me.PapeleraProveedorId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraProveedorId.Visible = False
-        '
-        'PapeleraProveedor
-        '
-        Me.PapeleraProveedor.HeaderText = "Proveedor"
-        Me.PapeleraProveedor.Name = "PapeleraProveedor"
-        Me.PapeleraProveedor.ReadOnly = True
-        '
-        'PapeleraCategoriaGastoId
-        '
-        Me.PapeleraCategoriaGastoId.HeaderText = "categoria_gasto_id"
-        Me.PapeleraCategoriaGastoId.Name = "PapeleraCategoriaGastoId"
-        Me.PapeleraCategoriaGastoId.ReadOnly = True
-        Me.PapeleraCategoriaGastoId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraCategoriaGastoId.Visible = False
-        '
-        'PapeleraCategoriaGasto
-        '
-        Me.PapeleraCategoriaGasto.HeaderText = "Categoria Gasto"
-        Me.PapeleraCategoriaGasto.Name = "PapeleraCategoriaGasto"
-        Me.PapeleraCategoriaGasto.ReadOnly = True
-        '
-        'PapeleraPersonaId
-        '
-        Me.PapeleraPersonaId.HeaderText = "persona_id"
-        Me.PapeleraPersonaId.Name = "PapeleraPersonaId"
-        Me.PapeleraPersonaId.ReadOnly = True
-        Me.PapeleraPersonaId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraPersonaId.Visible = False
-        '
-        'PapeleraPersona
-        '
-        Me.PapeleraPersona.HeaderText = "Persona"
-        Me.PapeleraPersona.Name = "PapeleraPersona"
-        Me.PapeleraPersona.ReadOnly = True
-        '
-        'PapeleraFecha
-        '
-        Me.PapeleraFecha.HeaderText = "Fecha"
-        Me.PapeleraFecha.Name = "PapeleraFecha"
-        Me.PapeleraFecha.ReadOnly = True
-        '
-        'PapeleraSeccionalId
-        '
-        Me.PapeleraSeccionalId.HeaderText = "seccional_id"
-        Me.PapeleraSeccionalId.Name = "PapeleraSeccionalId"
-        Me.PapeleraSeccionalId.ReadOnly = True
-        Me.PapeleraSeccionalId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraSeccionalId.Visible = False
-        '
-        'PapeleraSeccional
-        '
-        Me.PapeleraSeccional.HeaderText = "Seccional"
-        Me.PapeleraSeccional.Name = "PapeleraSeccional"
-        Me.PapeleraSeccional.ReadOnly = True
-        '
-        'PapeleraReintegro
-        '
-        Me.PapeleraReintegro.HeaderText = "Mes Reintegro"
-        Me.PapeleraReintegro.Name = "PapeleraReintegro"
-        Me.PapeleraReintegro.ReadOnly = True
-        '
-        'PapeleraMonto
-        '
-        Me.PapeleraMonto.HeaderText = "Monto"
-        Me.PapeleraMonto.Name = "PapeleraMonto"
-        Me.PapeleraMonto.ReadOnly = True
-        '
-        'PapeleraComentario
-        '
-        Me.PapeleraComentario.HeaderText = "Comentario"
-        Me.PapeleraComentario.Name = "PapeleraComentario"
-        Me.PapeleraComentario.ReadOnly = True
+        Me.TSTextBoxFiltro1.Name = "TSTextBoxFiltro1"
+        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(100, 25)
+        Me.TSTextBoxFiltro1.ToolTipText = "Ingresar valores por los cuales quiere filtrar la tabla."
         '
         'ABMEgresos
         '
@@ -1259,9 +1344,13 @@ Partial Class ABMEgresos
         CType(Me.SplitContainerModificar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerModificar.ResumeLayout(False)
         Me.ToolStripContainerModificar.ContentPanel.ResumeLayout(False)
+        Me.ToolStripContainerModificar.TopToolStripPanel.ResumeLayout(False)
+        Me.ToolStripContainerModificar.TopToolStripPanel.PerformLayout()
         Me.ToolStripContainerModificar.ResumeLayout(False)
         Me.ToolStripContainerModificar.PerformLayout()
         CType(Me.DGVModificar, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStripModificar.ResumeLayout(False)
+        Me.ToolStripModificar.PerformLayout()
         Me.TabPagePapelera.ResumeLayout(False)
         Me.SplitContainerPapelera.Panel1.ResumeLayout(False)
         Me.SplitContainerPapelera.Panel2.ResumeLayout(False)
@@ -1389,4 +1478,13 @@ Partial Class ABMEgresos
     Friend WithEvents PapeleraReintegro As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraMonto As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraComentario As DataGridViewTextBoxColumn
+    Friend WithEvents ToolStripModificar As ToolStrip
+    Friend WithEvents TSLabelTrimestre As ToolStripLabel
+    Friend WithEvents TSComboBoxTrimestre As ToolStripComboBox
+    Friend WithEvents TSLabelAño As ToolStripLabel
+    Friend WithEvents TSTextBoxAño As ToolStripTextBox
+    Friend WithEvents TSButtonFiltrar As ToolStripButton
+    Friend WithEvents TSLabelFiltro1 As ToolStripLabel
+    Friend WithEvents TSComboBoxFiltro1 As ToolStripComboBox
+    Friend WithEvents TSTextBoxFiltro1 As ToolStripTextBox
 End Class

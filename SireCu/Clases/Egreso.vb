@@ -86,7 +86,7 @@ Module Egreso
         Principal.dataset.Tables(nombreDataSet).Clear()
 
         'Creamos el query
-        Principal.command.CommandText = "SELECT E.id AS id,
+        Principal.command.CommandText = "SELECT TOP (500) E.id AS id,
                                   E.nro_comprobante AS nro_comprobante,
                                   E.tipo_comprobante_id AS tipo_comprobante_id,
                                   Comp.nombre AS tipo_comprobante_nombre,
@@ -108,7 +108,52 @@ Module Egreso
                            LEFT JOIN CategoriasGastos AS Gastos ON E.categoria_gasto_id = Gastos.id
                            LEFT JOIN Personas AS Per ON E.persona_id = Per.id
                            LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id
-                           WHERE E.eliminado = " & eliminado
+                           WHERE E.eliminado = " & eliminado & " ORDER BY E.id DESC"
+
+        'Creamos el TableAdapter si no existe
+        If Not Principal.tableadapters.ContainsKey(nombreDataSet) Then
+            Principal.tableadapters.Add(nombreDataSet, New SqlCeDataAdapter(Principal.command))
+        End If
+
+        'Actualizamos el contenido de la tabla
+        Principal.tableadapters(nombreDataSet).Fill(Principal.dataset.Tables.Item(nombreDataSet))
+
+        'Asignamos el Bind
+        Dim mybinding = New BindingSource(Principal.dataset, nombreDataSet)
+
+        dgv.AutoGenerateColumns = False
+
+        dgv.Columns.Item(0).DataPropertyName = "id"
+        dgv.Columns.Item(1).DataPropertyName = "nro_comprobante"
+        dgv.Columns.Item(2).DataPropertyName = "tipo_comprobante_id"
+        dgv.Columns.Item(3).DataPropertyName = "tipo_comprobante_nombre"
+        dgv.Columns.Item(4).DataPropertyName = "proveedor_id"
+        dgv.Columns.Item(5).DataPropertyName = "proveedor_nombre"
+        dgv.Columns.Item(6).DataPropertyName = "categoria_gasto_id"
+        dgv.Columns.Item(7).DataPropertyName = "categoria_nombre"
+        dgv.Columns.Item(8).DataPropertyName = "persona_id"
+        dgv.Columns.Item(9).DataPropertyName = "persona_nombre"
+        dgv.Columns.Item(10).DataPropertyName = "fecha"
+        dgv.Columns.Item(11).DataPropertyName = "seccional_id"
+        dgv.Columns.Item(12).DataPropertyName = "seccional_nombre"
+        dgv.Columns.Item(13).DataPropertyName = "mes_reintegro"
+        dgv.Columns.Item(14).DataPropertyName = "monto"
+        dgv.Columns.Item(15).DataPropertyName = "comentario"
+        dgv.DataSource = mybinding
+
+    End Sub
+
+    Public Sub FiltrarDGV(ByRef dgv As DataGridView, ByVal sql As String, Optional ByVal eliminado As Integer = 0, Optional ByVal nombreDataSet As String = "Egresos_Modificar")
+
+        'Creamos la tabla si no existe
+        If Not Principal.dataset.Tables.Contains(nombreDataSet) Then
+            Principal.dataset.Tables.Add(nombreDataSet)
+        End If
+        'Limpiamos la tabla
+        Principal.dataset.Tables(nombreDataSet).Clear()
+
+        'Creamos el query
+        Principal.command.CommandText = sql
 
         'Creamos el TableAdapter si no existe
         If Not Principal.tableadapters.ContainsKey(nombreDataSet) Then
