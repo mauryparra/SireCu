@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Principal
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Principal
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
@@ -28,6 +28,7 @@ Partial Class Principal
         Me.StatusStripPrincipal = New System.Windows.Forms.StatusStrip()
         Me.stat_Label = New System.Windows.Forms.ToolStripStatusLabel()
         Me.stat_Bar = New System.Windows.Forms.ToolStripProgressBar()
+        Me.TStripLabelSaldo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
         Me.RadioButtonEgresos = New System.Windows.Forms.RadioButton()
         Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
@@ -41,7 +42,7 @@ Partial Class Principal
         Me.PersonasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SeccionalesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TStripLabelSaldo = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
@@ -81,7 +82,7 @@ Partial Class Principal
         'StatusStripPrincipal
         '
         Me.StatusStripPrincipal.Dock = System.Windows.Forms.DockStyle.None
-        Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar, Me.TStripLabelSaldo})
+        Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar, Me.TStripLabelSaldo, Me.ToolStripStatusLabel1})
         Me.StatusStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.StatusStripPrincipal.Name = "StatusStripPrincipal"
         Me.StatusStripPrincipal.Size = New System.Drawing.Size(982, 22)
@@ -100,6 +101,12 @@ Partial Class Principal
         Me.stat_Bar.Name = "stat_Bar"
         Me.stat_Bar.Size = New System.Drawing.Size(100, 16)
         Me.stat_Bar.Visible = False
+        '
+        'TStripLabelSaldo
+        '
+        Me.TStripLabelSaldo.Name = "TStripLabelSaldo"
+        Me.TStripLabelSaldo.Size = New System.Drawing.Size(39, 17)
+        Me.TStripLabelSaldo.Text = "Saldo:"
         '
         'SplitContainerPrincipal
         '
@@ -215,11 +222,12 @@ Partial Class Principal
         '
         Me.ErrorProvider.ContainerControl = Me
         '
-        'TStripLabelSaldo
+        'ToolStripStatusLabel1
         '
-        Me.TStripLabelSaldo.Name = "TStripLabelSaldo"
-        Me.TStripLabelSaldo.Size = New System.Drawing.Size(39, 17)
-        Me.TStripLabelSaldo.Text = "Saldo:"
+        Me.ToolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(0, 17)
+        Me.ToolStripStatusLabel1.Text = "ToolStripStatusLabel1"
         '
         'Principal
         '
@@ -269,4 +277,5 @@ Partial Class Principal
     Friend WithEvents PersonasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SeccionalesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TStripLabelSaldo As ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
 End Class

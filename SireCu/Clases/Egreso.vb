@@ -64,14 +64,26 @@ Module Egreso
         End If
     End Sub
 
-    Public Sub CargardDGV(ByRef dgv As DataGridView)
+    Public Sub restaurar_egreso(ByVal id As Integer)
+        Principal.query = "UPDATE Egresos SET eliminado = 0 WHERE id = @id"
+        Principal.command.Parameters.Clear()
+        Principal.command.Parameters.AddWithValue("@id", id)
+
+        If consultarNQ(Principal.query, Principal.command) > 0 Then
+            MsgBox("Egreso restaurado exitosamente", MsgBoxStyle.OkOnly, "Restaurar Egreso")
+        Else
+            MsgBox("Ocurrio un error al restaurar el egreso", MsgBoxStyle.Exclamation, "Restaurar Egreso")
+        End If
+    End Sub
+
+    Public Sub CargardDGV(ByRef dgv As DataGridView, Optional ByVal eliminado As Integer = 0, Optional ByVal nombreDataSet As String = "Egresos_Modificar")
 
         'Creamos la tabla si no existe
-        If Not Principal.dataset.Tables.Contains("Egresos_Modificar") Then
-            Principal.dataset.Tables.Add("Egresos_Modificar")
+        If Not Principal.dataset.Tables.Contains(nombreDataSet) Then
+            Principal.dataset.Tables.Add(nombreDataSet)
         End If
         'Limpiamos la tabla
-        Principal.dataset.Tables("Egresos_Modificar").Clear()
+        Principal.dataset.Tables(nombreDataSet).Clear()
 
         'Creamos el query
         Principal.command.CommandText = "SELECT E.id AS id,
@@ -96,37 +108,37 @@ Module Egreso
                            LEFT JOIN CategoriasGastos AS Gastos ON E.categoria_gasto_id = Gastos.id
                            LEFT JOIN Personas AS Per ON E.persona_id = Per.id
                            LEFT JOIN Seccionales AS Secc ON E.seccional_id = Secc.id
-                           WHERE E.eliminado = 0"
+                           WHERE E.eliminado = " & eliminado
 
         'Creamos el TableAdapter si no existe
-        If Not Principal.tableadapters.ContainsKey("Egresos_Modificar") Then
-            Principal.tableadapters.Add("Egresos_Modificar", New SqlCeDataAdapter(Principal.command))
+        If Not Principal.tableadapters.ContainsKey(nombreDataSet) Then
+            Principal.tableadapters.Add(nombreDataSet, New SqlCeDataAdapter(Principal.command))
         End If
 
         'Actualizamos el contenido de la tabla
-        Principal.tableadapters("Egresos_Modificar").Fill(Principal.dataset.Tables.Item("Egresos_Modificar"))
+        Principal.tableadapters(nombreDataSet).Fill(Principal.dataset.Tables.Item(nombreDataSet))
 
         'Asignamos el Bind
-        Dim mybinding = New BindingSource(Principal.dataset, "Egresos_Modificar")
+        Dim mybinding = New BindingSource(Principal.dataset, nombreDataSet)
 
         dgv.AutoGenerateColumns = False
 
-        dgv.Columns.Item("id").DataPropertyName = "id"
-        dgv.Columns.Item("nro_comprobante").DataPropertyName = "nro_comprobante"
-        dgv.Columns.Item("tipo_comprobante_id").DataPropertyName = "tipo_comprobante_id"
-        dgv.Columns.Item("tipo_comprobante_nombre").DataPropertyName = "tipo_comprobante_nombre"
-        dgv.Columns.Item("proveedor_id").DataPropertyName = "proveedor_id"
-        dgv.Columns.Item("proveedor_nombre").DataPropertyName = "proveedor_nombre"
-        dgv.Columns.Item("categoria_gasto_id").DataPropertyName = "categoria_gasto_id"
-        dgv.Columns.Item("categoria_nombre").DataPropertyName = "categoria_nombre"
-        dgv.Columns.Item("persona_id").DataPropertyName = "persona_id"
-        dgv.Columns.Item("persona_nombre").DataPropertyName = "persona_nombre"
-        dgv.Columns.Item("fecha").DataPropertyName = "fecha"
-        dgv.Columns.Item("seccional_id").DataPropertyName = "seccional_id"
-        dgv.Columns.Item("seccional_nombre").DataPropertyName = "seccional_nombre"
-        dgv.Columns.Item("mes_reintegro").DataPropertyName = "mes_reintegro"
-        dgv.Columns.Item("monto").DataPropertyName = "monto"
-        dgv.Columns.Item("comentario").DataPropertyName = "comentario"
+        dgv.Columns.Item(0).DataPropertyName = "id"
+        dgv.Columns.Item(1).DataPropertyName = "nro_comprobante"
+        dgv.Columns.Item(2).DataPropertyName = "tipo_comprobante_id"
+        dgv.Columns.Item(3).DataPropertyName = "tipo_comprobante_nombre"
+        dgv.Columns.Item(4).DataPropertyName = "proveedor_id"
+        dgv.Columns.Item(5).DataPropertyName = "proveedor_nombre"
+        dgv.Columns.Item(6).DataPropertyName = "categoria_gasto_id"
+        dgv.Columns.Item(7).DataPropertyName = "categoria_nombre"
+        dgv.Columns.Item(8).DataPropertyName = "persona_id"
+        dgv.Columns.Item(9).DataPropertyName = "persona_nombre"
+        dgv.Columns.Item(10).DataPropertyName = "fecha"
+        dgv.Columns.Item(11).DataPropertyName = "seccional_id"
+        dgv.Columns.Item(12).DataPropertyName = "seccional_nombre"
+        dgv.Columns.Item(13).DataPropertyName = "mes_reintegro"
+        dgv.Columns.Item(14).DataPropertyName = "monto"
+        dgv.Columns.Item(15).DataPropertyName = "comentario"
         dgv.DataSource = mybinding
 
     End Sub

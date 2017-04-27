@@ -7,6 +7,7 @@ Public Class ABMEgresos
     Dim ControlesConErroresModificar As List(Of Control) = New List(Of Control)
 
     Dim idModificando As Integer = 0
+    Dim idPapelera As Integer = 0
 
 
 #Region "TAB Agregar - Eventos"
@@ -221,6 +222,62 @@ Public Class ABMEgresos
 
 #End Region
 
+#Region "TAB Papelera - Eventos"
+    Private Sub DGVPapelera_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVPapelera.CellMouseDoubleClick
+        ' Cargar el formulario con los datos para restaurar
+        Try
+            idPapelera = CInt(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraId").Value)
+
+            tbPapeleraNombre.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraPersona").Value
+            tbPapeleraTipoGasto.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraCategoriaGasto").Value
+            tbPapeleraProveedor.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraProveedor").Value
+            If DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value Is DBNull.Value Then
+                dtpPapeleraReintegro.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraFecha").Value)
+                dtpPapeleraReintegro.Checked = False
+            Else
+                If DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraFecha").Value Then
+                    dtpPapeleraReintegro.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value)
+                    dtpPapeleraReintegro.Checked = False
+                Else
+                    dtpPapeleraReintegro.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value)
+                    dtpPapeleraReintegro.Checked = True
+                End If
+            End If
+            tbPapeleraSeccional.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraSeccional").Value
+            tbPapeleraComentario.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraComentario").Value.ToString
+            dtpPapeleraFecha.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraFecha").Value)
+            tbPapeleraTipoComprobante.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraTipoComprobante").Value
+            If DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value.ToString.Contains("-") Then
+                tbPapeleraPVenta.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value.ToString.Split("-")(0)
+                tbPapeleraNComprobante.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value.ToString.Split("-")(1)
+            Else
+                tbPapeleraPVenta.Text = "0"
+                tbPapeleraNComprobante.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value
+            End If
+            tbPapeleraMonto.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraMonto").Value
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error al cargar el formulario", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        bPapeleraRestaurar.Enabled = True
+
+    End Sub
+
+    Private Sub bPapeleraRestaurar_Click(sender As Object, e As EventArgs) Handles bPapeleraRestaurar.Click
+        If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Restaurar?") = MsgBoxResult.Ok) Then
+
+            restaurar_egreso(idPapelera)
+
+            idPapelera = 0
+            limpiarForm(SplitContainerPapelera.Panel2)
+            CargardDGV(DGVPapelera, 1, "Egresos_Papelera")
+            ActualizarSaldo()
+            bPapeleraRestaurar.Enabled = False
+        End If
+    End Sub
+
+#End Region
+
 #Region "Eventos"
 
     Private Sub ABMEgresos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -283,6 +340,8 @@ Public Class ABMEgresos
         DateTimePickerFecha.Value = Now
 
 
+        ' ######################################## TAB Papelera
+        CargardDGV(DGVPapelera, 1, "Egresos_Papelera")
 
     End Sub
 
