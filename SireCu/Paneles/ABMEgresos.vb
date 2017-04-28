@@ -216,6 +216,7 @@ Public Class ABMEgresos
             limpiarForm(SplitContainerModificar.Panel2)
             activarModificar(False)
             CargardDGV(DGVModificar)
+            CargardDGV(DGVPapelera, 1, "Egresos_Papelera")
             ActualizarSaldo()
         End If
     End Sub
@@ -327,41 +328,8 @@ Public Class ABMEgresos
 
 #Region "TAB Papelera - Eventos"
     Private Sub DGVPapelera_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVPapelera.CellMouseDoubleClick
-        ' Cargar el formulario con los datos para restaurar
-        Try
-            idPapelera = CInt(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraId").Value)
-
-            tbPapeleraNombre.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraPersona").Value
-            tbPapeleraTipoGasto.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraCategoriaGasto").Value
-            tbPapeleraProveedor.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraProveedor").Value
-            If DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value Is DBNull.Value Then
-                dtpPapeleraReintegro.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraFecha").Value)
-                dtpPapeleraReintegro.Checked = False
-            Else
-                If DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraFecha").Value Then
-                    dtpPapeleraReintegro.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value)
-                    dtpPapeleraReintegro.Checked = False
-                Else
-                    dtpPapeleraReintegro.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraReintegro").Value)
-                    dtpPapeleraReintegro.Checked = True
-                End If
-            End If
-            tbPapeleraSeccional.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraSeccional").Value
-            tbPapeleraComentario.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraComentario").Value.ToString
-            dtpPapeleraFecha.Value = CDate(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraFecha").Value)
-            tbPapeleraTipoComprobante.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraTipoComprobante").Value
-            If DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value.ToString.Contains("-") Then
-                tbPapeleraPVenta.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value.ToString.Split("-")(0)
-                tbPapeleraNComprobante.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value.ToString.Split("-")(1)
-            Else
-                tbPapeleraPVenta.Text = "0"
-                tbPapeleraNComprobante.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraNroComprobante").Value
-            End If
-            tbPapeleraMonto.Text = DGVPapelera.Rows(e.RowIndex).Cells("PapeleraMonto").Value
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Error al cargar el formulario", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
+        ' Asignar el id a restaurar
+        idPapelera = CInt(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraId").Value)
         bPapeleraRestaurar.Enabled = True
 
     End Sub
@@ -372,8 +340,21 @@ Public Class ABMEgresos
             restaurar_egreso(idPapelera)
 
             idPapelera = 0
-            limpiarForm(SplitContainerPapelera.Panel2)
             CargardDGV(DGVPapelera, 1, "Egresos_Papelera")
+            CargardDGV(DGVModificar)
+            ActualizarSaldo()
+            bPapeleraRestaurar.Enabled = False
+        End If
+    End Sub
+
+    Private Sub bPapeleraVaciarPapelera_Click(sender As Object, e As EventArgs) Handles bPapeleraVaciarPapelera.Click
+        If (MsgBox("Está seguro? Esta opción no se puede deshacer!", MsgBoxStyle.OkCancel, "Vaciar Papelera?") = MsgBoxResult.Ok) Then
+
+            vaciar_papelera()
+
+            idPapelera = 0
+            CargardDGV(DGVPapelera, 1, "Egresos_Papelera")
+            CargardDGV(DGVModificar)
             ActualizarSaldo()
             bPapeleraRestaurar.Enabled = False
         End If

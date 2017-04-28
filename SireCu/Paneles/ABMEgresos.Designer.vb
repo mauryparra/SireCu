@@ -114,29 +114,7 @@ Partial Class ABMEgresos
         Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tbPapeleraTipoComprobante = New System.Windows.Forms.TextBox()
-        Me.tbPapeleraSeccional = New System.Windows.Forms.TextBox()
-        Me.tbPapeleraTipoGasto = New System.Windows.Forms.TextBox()
         Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.dtpPapeleraReintegro = New System.Windows.Forms.DateTimePicker()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.dtpPapeleraFecha = New System.Windows.Forms.DateTimePicker()
-        Me.tbPapeleraNComprobante = New System.Windows.Forms.TextBox()
-        Me.tbPapeleraPVenta = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.tbPapeleraMonto = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.tbPapeleraNombre = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.tbPapeleraComentario = New System.Windows.Forms.TextBox()
-        Me.tbPapeleraProveedor = New System.Windows.Forms.TextBox()
         Me.TSLabelTrimestre = New System.Windows.Forms.ToolStripLabel()
         Me.TSComboBoxTrimestre = New System.Windows.Forms.ToolStripComboBox()
         Me.TSLabelAño = New System.Windows.Forms.ToolStripLabel()
@@ -145,6 +123,7 @@ Partial Class ABMEgresos
         Me.TSLabelFiltro1 = New System.Windows.Forms.ToolStripLabel()
         Me.TSComboBoxFiltro1 = New System.Windows.Forms.ToolStripComboBox()
         Me.TSTextBoxFiltro1 = New System.Windows.Forms.ToolStripTextBox()
+        Me.bPapeleraVaciarPapelera = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -637,7 +616,7 @@ Partial Class ABMEgresos
         Me.ToolStripModificar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSLabelTrimestre, Me.TSComboBoxTrimestre, Me.TSLabelAño, Me.TSTextBoxAño, Me.TSLabelFiltro1, Me.TSComboBoxFiltro1, Me.TSTextBoxFiltro1, Me.TSButtonFiltrar})
         Me.ToolStripModificar.Location = New System.Drawing.Point(3, 0)
         Me.ToolStripModificar.Name = "ToolStripModificar"
-        Me.ToolStripModificar.Size = New System.Drawing.Size(683, 25)
+        Me.ToolStripModificar.Size = New System.Drawing.Size(652, 25)
         Me.ToolStripModificar.TabIndex = 0
         '
         'ButtonEliminar
@@ -887,31 +866,10 @@ Partial Class ABMEgresos
         '
         'SplitContainerPapelera.Panel2
         '
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraTipoComprobante)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraSeccional)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraTipoGasto)
+        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraVaciarPapelera)
         Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraRestaurar)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label2)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.dtpPapeleraReintegro)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label3)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.dtpPapeleraFecha)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraNComprobante)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraPVenta)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label13)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label14)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraMonto)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label15)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraNombre)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label16)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label17)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label18)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label19)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label20)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.Label21)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraComentario)
-        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.tbPapeleraProveedor)
         Me.SplitContainerPapelera.Size = New System.Drawing.Size(741, 421)
-        Me.SplitContainerPapelera.SplitterDistance = 201
+        Me.SplitContainerPapelera.SplitterDistance = 350
         Me.SplitContainerPapelera.TabIndex = 1
         '
         'ToolStripContainerPapelera
@@ -920,11 +878,11 @@ Partial Class ABMEgresos
         'ToolStripContainerPapelera.ContentPanel
         '
         Me.ToolStripContainerPapelera.ContentPanel.Controls.Add(Me.DGVPapelera)
-        Me.ToolStripContainerPapelera.ContentPanel.Size = New System.Drawing.Size(741, 176)
+        Me.ToolStripContainerPapelera.ContentPanel.Size = New System.Drawing.Size(741, 325)
         Me.ToolStripContainerPapelera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerPapelera.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainerPapelera.Name = "ToolStripContainerPapelera"
-        Me.ToolStripContainerPapelera.Size = New System.Drawing.Size(741, 201)
+        Me.ToolStripContainerPapelera.Size = New System.Drawing.Size(741, 350)
         Me.ToolStripContainerPapelera.TabIndex = 0
         Me.ToolStripContainerPapelera.Text = "ToolStripContainer1"
         '
@@ -939,7 +897,7 @@ Partial Class ABMEgresos
         Me.DGVPapelera.Name = "DGVPapelera"
         Me.DGVPapelera.ReadOnly = True
         Me.DGVPapelera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVPapelera.Size = New System.Drawing.Size(741, 176)
+        Me.DGVPapelera.Size = New System.Drawing.Size(741, 325)
         Me.DGVPapelera.TabIndex = 0
         '
         'PapeleraId
@@ -1048,227 +1006,17 @@ Partial Class ABMEgresos
         Me.PapeleraComentario.Name = "PapeleraComentario"
         Me.PapeleraComentario.ReadOnly = True
         '
-        'tbPapeleraTipoComprobante
-        '
-        Me.tbPapeleraTipoComprobante.Enabled = False
-        Me.tbPapeleraTipoComprobante.Location = New System.Drawing.Point(529, 41)
-        Me.tbPapeleraTipoComprobante.Name = "tbPapeleraTipoComprobante"
-        Me.tbPapeleraTipoComprobante.Size = New System.Drawing.Size(163, 22)
-        Me.tbPapeleraTipoComprobante.TabIndex = 122
-        Me.tbPapeleraTipoComprobante.Tag = ""
-        '
-        'tbPapeleraSeccional
-        '
-        Me.tbPapeleraSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbPapeleraSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbPapeleraSeccional.BackColor = System.Drawing.SystemColors.Window
-        Me.tbPapeleraSeccional.Enabled = False
-        Me.tbPapeleraSeccional.Location = New System.Drawing.Point(145, 127)
-        Me.tbPapeleraSeccional.Name = "tbPapeleraSeccional"
-        Me.tbPapeleraSeccional.Size = New System.Drawing.Size(197, 22)
-        Me.tbPapeleraSeccional.TabIndex = 121
-        '
-        'tbPapeleraTipoGasto
-        '
-        Me.tbPapeleraTipoGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbPapeleraTipoGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbPapeleraTipoGasto.BackColor = System.Drawing.SystemColors.Window
-        Me.tbPapeleraTipoGasto.Enabled = False
-        Me.tbPapeleraTipoGasto.Location = New System.Drawing.Point(145, 41)
-        Me.tbPapeleraTipoGasto.Name = "tbPapeleraTipoGasto"
-        Me.tbPapeleraTipoGasto.Size = New System.Drawing.Size(197, 22)
-        Me.tbPapeleraTipoGasto.TabIndex = 120
-        '
         'bPapeleraRestaurar
         '
         Me.bPapeleraRestaurar.Enabled = False
         Me.bPapeleraRestaurar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.bPapeleraRestaurar.ForeColor = System.Drawing.Color.Red
-        Me.bPapeleraRestaurar.Location = New System.Drawing.Point(529, 157)
+        Me.bPapeleraRestaurar.Location = New System.Drawing.Point(91, 5)
         Me.bPapeleraRestaurar.Name = "bPapeleraRestaurar"
         Me.bPapeleraRestaurar.Size = New System.Drawing.Size(163, 56)
         Me.bPapeleraRestaurar.TabIndex = 103
         Me.bPapeleraRestaurar.Text = "Restaurar"
         Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(22, 130)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(68, 16)
-        Me.Label2.TabIndex = 119
-        Me.Label2.Text = "Seccional"
-        '
-        'dtpPapeleraReintegro
-        '
-        Me.dtpPapeleraReintegro.Checked = False
-        Me.dtpPapeleraReintegro.CustomFormat = "MM/yyyy"
-        Me.dtpPapeleraReintegro.Enabled = False
-        Me.dtpPapeleraReintegro.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpPapeleraReintegro.Location = New System.Drawing.Point(145, 99)
-        Me.dtpPapeleraReintegro.Name = "dtpPapeleraReintegro"
-        Me.dtpPapeleraReintegro.ShowCheckBox = True
-        Me.dtpPapeleraReintegro.ShowUpDown = True
-        Me.dtpPapeleraReintegro.Size = New System.Drawing.Size(197, 22)
-        Me.dtpPapeleraReintegro.TabIndex = 94
-        Me.dtpPapeleraReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(383, 16)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(49, 16)
-        Me.Label3.TabIndex = 116
-        Me.Label3.Text = "Fecha:"
-        '
-        'dtpPapeleraFecha
-        '
-        Me.dtpPapeleraFecha.CustomFormat = ""
-        Me.dtpPapeleraFecha.Enabled = False
-        Me.dtpPapeleraFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpPapeleraFecha.Location = New System.Drawing.Point(529, 13)
-        Me.dtpPapeleraFecha.Name = "dtpPapeleraFecha"
-        Me.dtpPapeleraFecha.Size = New System.Drawing.Size(163, 22)
-        Me.dtpPapeleraFecha.TabIndex = 96
-        Me.dtpPapeleraFecha.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
-        '
-        'tbPapeleraNComprobante
-        '
-        Me.tbPapeleraNComprobante.Enabled = False
-        Me.tbPapeleraNComprobante.Location = New System.Drawing.Point(595, 71)
-        Me.tbPapeleraNComprobante.Name = "tbPapeleraNComprobante"
-        Me.tbPapeleraNComprobante.Size = New System.Drawing.Size(97, 22)
-        Me.tbPapeleraNComprobante.TabIndex = 99
-        '
-        'tbPapeleraPVenta
-        '
-        Me.tbPapeleraPVenta.Enabled = False
-        Me.tbPapeleraPVenta.Location = New System.Drawing.Point(529, 71)
-        Me.tbPapeleraPVenta.Name = "tbPapeleraPVenta"
-        Me.tbPapeleraPVenta.Size = New System.Drawing.Size(56, 22)
-        Me.tbPapeleraPVenta.TabIndex = 98
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(508, 102)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(15, 16)
-        Me.Label13.TabIndex = 114
-        Me.Label13.Text = "$"
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(383, 44)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(140, 16)
-        Me.Label14.TabIndex = 113
-        Me.Label14.Text = "Tipo de Comprobante"
-        '
-        'tbPapeleraMonto
-        '
-        Me.tbPapeleraMonto.Enabled = False
-        Me.tbPapeleraMonto.Location = New System.Drawing.Point(529, 99)
-        Me.tbPapeleraMonto.Name = "tbPapeleraMonto"
-        Me.tbPapeleraMonto.Size = New System.Drawing.Size(163, 22)
-        Me.tbPapeleraMonto.TabIndex = 100
-        Me.tbPapeleraMonto.Tag = ""
-        '
-        'Label15
-        '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(22, 44)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(63, 16)
-        Me.Label15.TabIndex = 112
-        Me.Label15.Text = "Gasto de"
-        '
-        'tbPapeleraNombre
-        '
-        Me.tbPapeleraNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbPapeleraNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbPapeleraNombre.BackColor = System.Drawing.SystemColors.Window
-        Me.tbPapeleraNombre.Enabled = False
-        Me.tbPapeleraNombre.Location = New System.Drawing.Point(145, 13)
-        Me.tbPapeleraNombre.Name = "tbPapeleraNombre"
-        Me.tbPapeleraNombre.Size = New System.Drawing.Size(197, 22)
-        Me.tbPapeleraNombre.TabIndex = 91
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(22, 101)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(115, 16)
-        Me.Label16.TabIndex = 111
-        Me.Label16.Text = "Mes de Reintegro"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(22, 161)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(77, 16)
-        Me.Label17.TabIndex = 110
-        Me.Label17.Text = "Comentario"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(383, 102)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(45, 16)
-        Me.Label18.TabIndex = 109
-        Me.Label18.Text = "Monto"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(22, 74)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(72, 16)
-        Me.Label19.TabIndex = 108
-        Me.Label19.Text = "Proveedor"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(22, 16)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(120, 16)
-        Me.Label20.TabIndex = 107
-        Me.Label20.Text = "Nombre y Apellido"
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(383, 74)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(107, 16)
-        Me.Label21.TabIndex = 106
-        Me.Label21.Text = "N° Comprobante"
-        '
-        'tbPapeleraComentario
-        '
-        Me.tbPapeleraComentario.Enabled = False
-        Me.tbPapeleraComentario.Location = New System.Drawing.Point(145, 157)
-        Me.tbPapeleraComentario.Multiline = True
-        Me.tbPapeleraComentario.Name = "tbPapeleraComentario"
-        Me.tbPapeleraComentario.Size = New System.Drawing.Size(378, 56)
-        Me.tbPapeleraComentario.TabIndex = 101
-        '
-        'tbPapeleraProveedor
-        '
-        Me.tbPapeleraProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbPapeleraProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbPapeleraProveedor.Enabled = False
-        Me.tbPapeleraProveedor.Location = New System.Drawing.Point(145, 71)
-        Me.tbPapeleraProveedor.Name = "tbPapeleraProveedor"
-        Me.tbPapeleraProveedor.Size = New System.Drawing.Size(197, 22)
-        Me.tbPapeleraProveedor.TabIndex = 93
         '
         'TSLabelTrimestre
         '
@@ -1326,6 +1074,17 @@ Partial Class ABMEgresos
         Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(100, 25)
         Me.TSTextBoxFiltro1.ToolTipText = "Ingresar valores por los cuales quiere filtrar la tabla."
         '
+        'bPapeleraVaciarPapelera
+        '
+        Me.bPapeleraVaciarPapelera.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bPapeleraVaciarPapelera.ForeColor = System.Drawing.Color.Red
+        Me.bPapeleraVaciarPapelera.Location = New System.Drawing.Point(486, 5)
+        Me.bPapeleraVaciarPapelera.Name = "bPapeleraVaciarPapelera"
+        Me.bPapeleraVaciarPapelera.Size = New System.Drawing.Size(163, 56)
+        Me.bPapeleraVaciarPapelera.TabIndex = 104
+        Me.bPapeleraVaciarPapelera.Text = "Vaciar Papelera"
+        Me.bPapeleraVaciarPapelera.UseVisualStyleBackColor = True
+        '
         'ABMEgresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1354,7 +1113,6 @@ Partial Class ABMEgresos
         Me.TabPagePapelera.ResumeLayout(False)
         Me.SplitContainerPapelera.Panel1.ResumeLayout(False)
         Me.SplitContainerPapelera.Panel2.ResumeLayout(False)
-        Me.SplitContainerPapelera.Panel2.PerformLayout()
         CType(Me.SplitContainerPapelera, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerPapelera.ResumeLayout(False)
         Me.ToolStripContainerPapelera.ContentPanel.ResumeLayout(False)
@@ -1440,28 +1198,6 @@ Partial Class ABMEgresos
     Friend WithEvents ToolStripContainerPapelera As ToolStripContainer
     Friend WithEvents DGVPapelera As DataGridView
     Friend WithEvents bPapeleraRestaurar As Button
-    Friend WithEvents Label2 As Label
-    Friend WithEvents dtpPapeleraReintegro As DateTimePicker
-    Friend WithEvents Label3 As Label
-    Friend WithEvents dtpPapeleraFecha As DateTimePicker
-    Friend WithEvents tbPapeleraNComprobante As TextBox
-    Friend WithEvents tbPapeleraPVenta As TextBox
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents tbPapeleraMonto As TextBox
-    Friend WithEvents Label15 As Label
-    Friend WithEvents tbPapeleraNombre As TextBox
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents tbPapeleraComentario As TextBox
-    Friend WithEvents tbPapeleraProveedor As TextBox
-    Friend WithEvents tbPapeleraTipoComprobante As TextBox
-    Friend WithEvents tbPapeleraSeccional As TextBox
-    Friend WithEvents tbPapeleraTipoGasto As TextBox
     Friend WithEvents PapeleraId As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraNroComprobante As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraTComprobanteId As DataGridViewTextBoxColumn
@@ -1487,4 +1223,5 @@ Partial Class ABMEgresos
     Friend WithEvents TSLabelFiltro1 As ToolStripLabel
     Friend WithEvents TSComboBoxFiltro1 As ToolStripComboBox
     Friend WithEvents TSTextBoxFiltro1 As ToolStripTextBox
+    Friend WithEvents bPapeleraVaciarPapelera As Button
 End Class

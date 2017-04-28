@@ -76,6 +76,16 @@ Module Egreso
         End If
     End Sub
 
+    Public Sub vaciar_papelera()
+        Principal.query = "DELETE FROM Egresos WHERE eliminado = 1"
+
+        If consultarNQ(Principal.query, Principal.command) > 0 Then
+            MsgBox("Papelera vaciada exitosamente", MsgBoxStyle.OkOnly, "Vaciar Papelera")
+        Else
+            MsgBox("Ocurrio un error al vaciar la papelera", MsgBoxStyle.Exclamation, "Vaciar Papelera")
+        End If
+    End Sub
+
     Public Sub CargardDGV(ByRef dgv As DataGridView, Optional ByVal eliminado As Integer = 0, Optional ByVal nombreDataSet As String = "Egresos_Modificar")
 
         'Creamos la tabla si no existe
