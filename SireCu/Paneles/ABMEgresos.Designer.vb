@@ -25,19 +25,19 @@ Partial Class ABMEgresos
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ABMEgresos))
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.TabPageAgregar = New System.Windows.Forms.TabPage()
+        Me.cbTComprobante = New System.Windows.Forms.ComboBox()
+        Me.cbSeccional = New System.Windows.Forms.ComboBox()
+        Me.cbTGasto = New System.Windows.Forms.ComboBox()
         Me.lbFecha = New System.Windows.Forms.Label()
         Me.dtpFecha = New System.Windows.Forms.DateTimePicker()
         Me.dtpReintegro = New System.Windows.Forms.DateTimePicker()
         Me.lbSeccional = New System.Windows.Forms.Label()
-        Me.tbSeccional = New System.Windows.Forms.ComboBox()
         Me.tbNComprobante = New System.Windows.Forms.TextBox()
         Me.lb_Titulo = New System.Windows.Forms.Label()
-        Me.tbTComprobante = New System.Windows.Forms.ComboBox()
         Me.tbPVenta = New System.Windows.Forms.TextBox()
         Me.lbSmonto = New System.Windows.Forms.Label()
         Me.lbTComprobante = New System.Windows.Forms.Label()
         Me.tbMonto = New System.Windows.Forms.TextBox()
-        Me.tbTGasto = New System.Windows.Forms.ComboBox()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.lbGasto = New System.Windows.Forms.Label()
         Me.tbNombre = New System.Windows.Forms.TextBox()
@@ -70,6 +70,14 @@ Partial Class ABMEgresos
         Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStripModificar = New System.Windows.Forms.ToolStrip()
+        Me.TSLabelTrimestre = New System.Windows.Forms.ToolStripLabel()
+        Me.TSComboBoxTrimestre = New System.Windows.Forms.ToolStripComboBox()
+        Me.TSLabelAño = New System.Windows.Forms.ToolStripLabel()
+        Me.TSTextBoxAño = New System.Windows.Forms.ToolStripTextBox()
+        Me.TSLabelFiltro1 = New System.Windows.Forms.ToolStripLabel()
+        Me.TSComboBoxFiltro1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.TSTextBoxFiltro1 = New System.Windows.Forms.ToolStripTextBox()
+        Me.TSButtonFiltrar = New System.Windows.Forms.ToolStripButton()
         Me.ButtonEliminar = New System.Windows.Forms.Button()
         Me.LabelSeccional = New System.Windows.Forms.Label()
         Me.ComboBoxSeccional = New System.Windows.Forms.ComboBox()
@@ -114,16 +122,9 @@ Partial Class ABMEgresos
         Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
-        Me.TSLabelTrimestre = New System.Windows.Forms.ToolStripLabel()
-        Me.TSComboBoxTrimestre = New System.Windows.Forms.ToolStripComboBox()
-        Me.TSLabelAño = New System.Windows.Forms.ToolStripLabel()
-        Me.TSTextBoxAño = New System.Windows.Forms.ToolStripTextBox()
-        Me.TSButtonFiltrar = New System.Windows.Forms.ToolStripButton()
-        Me.TSLabelFiltro1 = New System.Windows.Forms.ToolStripLabel()
-        Me.TSComboBoxFiltro1 = New System.Windows.Forms.ToolStripComboBox()
-        Me.TSTextBoxFiltro1 = New System.Windows.Forms.ToolStripTextBox()
+        Me.bPapeleraEliminar = New System.Windows.Forms.Button()
         Me.bPapeleraVaciarPapelera = New System.Windows.Forms.Button()
+        Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -162,19 +163,19 @@ Partial Class ABMEgresos
         '
         'TabPageAgregar
         '
+        Me.TabPageAgregar.Controls.Add(Me.cbTComprobante)
+        Me.TabPageAgregar.Controls.Add(Me.cbSeccional)
+        Me.TabPageAgregar.Controls.Add(Me.cbTGasto)
         Me.TabPageAgregar.Controls.Add(Me.lbFecha)
         Me.TabPageAgregar.Controls.Add(Me.dtpFecha)
         Me.TabPageAgregar.Controls.Add(Me.dtpReintegro)
         Me.TabPageAgregar.Controls.Add(Me.lbSeccional)
-        Me.TabPageAgregar.Controls.Add(Me.tbSeccional)
         Me.TabPageAgregar.Controls.Add(Me.tbNComprobante)
         Me.TabPageAgregar.Controls.Add(Me.lb_Titulo)
-        Me.TabPageAgregar.Controls.Add(Me.tbTComprobante)
         Me.TabPageAgregar.Controls.Add(Me.tbPVenta)
         Me.TabPageAgregar.Controls.Add(Me.lbSmonto)
         Me.TabPageAgregar.Controls.Add(Me.lbTComprobante)
         Me.TabPageAgregar.Controls.Add(Me.tbMonto)
-        Me.TabPageAgregar.Controls.Add(Me.tbTGasto)
         Me.TabPageAgregar.Controls.Add(Me.btnGuardar)
         Me.TabPageAgregar.Controls.Add(Me.lbGasto)
         Me.TabPageAgregar.Controls.Add(Me.tbNombre)
@@ -193,6 +194,36 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.TabIndex = 0
         Me.TabPageAgregar.Text = "Agregar"
         Me.TabPageAgregar.UseVisualStyleBackColor = True
+        '
+        'cbTComprobante
+        '
+        Me.cbTComprobante.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbTComprobante.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.cbTComprobante.FormattingEnabled = True
+        Me.cbTComprobante.Location = New System.Drawing.Point(537, 126)
+        Me.cbTComprobante.Name = "cbTComprobante"
+        Me.cbTComprobante.Size = New System.Drawing.Size(163, 24)
+        Me.cbTComprobante.TabIndex = 9
+        '
+        'cbSeccional
+        '
+        Me.cbSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.cbSeccional.FormattingEnabled = True
+        Me.cbSeccional.Location = New System.Drawing.Point(151, 261)
+        Me.cbSeccional.Name = "cbSeccional"
+        Me.cbSeccional.Size = New System.Drawing.Size(156, 24)
+        Me.cbSeccional.TabIndex = 7
+        '
+        'cbTGasto
+        '
+        Me.cbTGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.cbTGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.cbTGasto.FormattingEnabled = True
+        Me.cbTGasto.Location = New System.Drawing.Point(151, 126)
+        Me.cbTGasto.Name = "cbTGasto"
+        Me.cbTGasto.Size = New System.Drawing.Size(156, 24)
+        Me.cbTGasto.TabIndex = 2
         '
         'lbFecha
         '
@@ -235,16 +266,6 @@ Partial Class ABMEgresos
         Me.lbSeccional.TabIndex = 93
         Me.lbSeccional.Text = "Seccional"
         '
-        'tbSeccional
-        '
-        Me.tbSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbSeccional.FormattingEnabled = True
-        Me.tbSeccional.Location = New System.Drawing.Point(151, 261)
-        Me.tbSeccional.Name = "tbSeccional"
-        Me.tbSeccional.Size = New System.Drawing.Size(156, 24)
-        Me.tbSeccional.TabIndex = 7
-        '
         'tbNComprobante
         '
         Me.tbNComprobante.Location = New System.Drawing.Point(603, 171)
@@ -261,16 +282,6 @@ Partial Class ABMEgresos
         Me.lb_Titulo.Size = New System.Drawing.Size(193, 38)
         Me.lb_Titulo.TabIndex = 91
         Me.lb_Titulo.Text = "Nuevo Egreso"
-        '
-        'tbTComprobante
-        '
-        Me.tbTComprobante.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbTComprobante.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbTComprobante.FormattingEnabled = True
-        Me.tbTComprobante.Location = New System.Drawing.Point(537, 126)
-        Me.tbTComprobante.Name = "tbTComprobante"
-        Me.tbTComprobante.Size = New System.Drawing.Size(163, 24)
-        Me.tbTComprobante.TabIndex = 9
         '
         'tbPVenta
         '
@@ -304,16 +315,6 @@ Partial Class ABMEgresos
         Me.tbMonto.Size = New System.Drawing.Size(163, 22)
         Me.tbMonto.TabIndex = 12
         Me.tbMonto.Tag = ""
-        '
-        'tbTGasto
-        '
-        Me.tbTGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.tbTGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbTGasto.FormattingEnabled = True
-        Me.tbTGasto.Location = New System.Drawing.Point(151, 126)
-        Me.tbTGasto.Name = "tbTGasto"
-        Me.tbTGasto.Size = New System.Drawing.Size(156, 24)
-        Me.tbTGasto.TabIndex = 4
         '
         'btnGuardar
         '
@@ -619,6 +620,62 @@ Partial Class ABMEgresos
         Me.ToolStripModificar.Size = New System.Drawing.Size(652, 25)
         Me.ToolStripModificar.TabIndex = 0
         '
+        'TSLabelTrimestre
+        '
+        Me.TSLabelTrimestre.Name = "TSLabelTrimestre"
+        Me.TSLabelTrimestre.Size = New System.Drawing.Size(62, 22)
+        Me.TSLabelTrimestre.Text = "Trimestre: "
+        '
+        'TSComboBoxTrimestre
+        '
+        Me.TSComboBoxTrimestre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TSComboBoxTrimestre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TSComboBoxTrimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
+        Me.TSComboBoxTrimestre.Name = "TSComboBoxTrimestre"
+        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(121, 25)
+        '
+        'TSLabelAño
+        '
+        Me.TSLabelAño.Name = "TSLabelAño"
+        Me.TSLabelAño.Size = New System.Drawing.Size(35, 22)
+        Me.TSLabelAño.Text = "Año: "
+        '
+        'TSTextBoxAño
+        '
+        Me.TSTextBoxAño.Name = "TSTextBoxAño"
+        Me.TSTextBoxAño.Size = New System.Drawing.Size(100, 25)
+        '
+        'TSLabelFiltro1
+        '
+        Me.TSLabelFiltro1.Name = "TSLabelFiltro1"
+        Me.TSLabelFiltro1.Size = New System.Drawing.Size(61, 22)
+        Me.TSLabelFiltro1.Text = "Filtrar Por:"
+        '
+        'TSComboBoxFiltro1
+        '
+        Me.TSComboBoxFiltro1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.TSComboBoxFiltro1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"Id", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario"})
+        Me.TSComboBoxFiltro1.Name = "TSComboBoxFiltro1"
+        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(121, 25)
+        Me.TSComboBoxFiltro1.ToolTipText = "Seleccione columna por la cual desea filtrar"
+        '
+        'TSTextBoxFiltro1
+        '
+        Me.TSTextBoxFiltro1.Name = "TSTextBoxFiltro1"
+        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(100, 25)
+        Me.TSTextBoxFiltro1.ToolTipText = "Ingresar valores por los cuales quiere filtrar la tabla."
+        '
+        'TSButtonFiltrar
+        '
+        Me.TSButtonFiltrar.BackColor = System.Drawing.Color.LightGreen
+        Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
+        Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
+        Me.TSButtonFiltrar.Size = New System.Drawing.Size(41, 22)
+        Me.TSButtonFiltrar.Text = "Filtrar"
+        '
         'ButtonEliminar
         '
         Me.ButtonEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -866,6 +923,7 @@ Partial Class ABMEgresos
         '
         'SplitContainerPapelera.Panel2
         '
+        Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraEliminar)
         Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraVaciarPapelera)
         Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraRestaurar)
         Me.SplitContainerPapelera.Size = New System.Drawing.Size(741, 421)
@@ -1006,73 +1064,17 @@ Partial Class ABMEgresos
         Me.PapeleraComentario.Name = "PapeleraComentario"
         Me.PapeleraComentario.ReadOnly = True
         '
-        'bPapeleraRestaurar
+        'bPapeleraEliminar
         '
-        Me.bPapeleraRestaurar.Enabled = False
-        Me.bPapeleraRestaurar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bPapeleraRestaurar.ForeColor = System.Drawing.Color.Red
-        Me.bPapeleraRestaurar.Location = New System.Drawing.Point(91, 5)
-        Me.bPapeleraRestaurar.Name = "bPapeleraRestaurar"
-        Me.bPapeleraRestaurar.Size = New System.Drawing.Size(163, 56)
-        Me.bPapeleraRestaurar.TabIndex = 103
-        Me.bPapeleraRestaurar.Text = "Restaurar"
-        Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
-        '
-        'TSLabelTrimestre
-        '
-        Me.TSLabelTrimestre.Name = "TSLabelTrimestre"
-        Me.TSLabelTrimestre.Size = New System.Drawing.Size(62, 22)
-        Me.TSLabelTrimestre.Text = "Trimestre: "
-        '
-        'TSComboBoxTrimestre
-        '
-        Me.TSComboBoxTrimestre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.TSComboBoxTrimestre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.TSComboBoxTrimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
-        Me.TSComboBoxTrimestre.Name = "TSComboBoxTrimestre"
-        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(121, 25)
-        '
-        'TSLabelAño
-        '
-        Me.TSLabelAño.Name = "TSLabelAño"
-        Me.TSLabelAño.Size = New System.Drawing.Size(35, 22)
-        Me.TSLabelAño.Text = "Año: "
-        '
-        'TSTextBoxAño
-        '
-        Me.TSTextBoxAño.Name = "TSTextBoxAño"
-        Me.TSTextBoxAño.Size = New System.Drawing.Size(100, 25)
-        '
-        'TSButtonFiltrar
-        '
-        Me.TSButtonFiltrar.BackColor = System.Drawing.Color.LightGreen
-        Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
-        Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
-        Me.TSButtonFiltrar.Size = New System.Drawing.Size(41, 22)
-        Me.TSButtonFiltrar.Text = "Filtrar"
-        '
-        'TSLabelFiltro1
-        '
-        Me.TSLabelFiltro1.Name = "TSLabelFiltro1"
-        Me.TSLabelFiltro1.Size = New System.Drawing.Size(61, 22)
-        Me.TSLabelFiltro1.Text = "Filtrar Por:"
-        '
-        'TSComboBoxFiltro1
-        '
-        Me.TSComboBoxFiltro1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.TSComboBoxFiltro1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"Id", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario"})
-        Me.TSComboBoxFiltro1.Name = "TSComboBoxFiltro1"
-        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(121, 25)
-        Me.TSComboBoxFiltro1.ToolTipText = "Seleccione columna por la cual desea filtrar"
-        '
-        'TSTextBoxFiltro1
-        '
-        Me.TSTextBoxFiltro1.Name = "TSTextBoxFiltro1"
-        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(100, 25)
-        Me.TSTextBoxFiltro1.ToolTipText = "Ingresar valores por los cuales quiere filtrar la tabla."
+        Me.bPapeleraEliminar.Enabled = False
+        Me.bPapeleraEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bPapeleraEliminar.ForeColor = System.Drawing.Color.Red
+        Me.bPapeleraEliminar.Location = New System.Drawing.Point(289, 5)
+        Me.bPapeleraEliminar.Name = "bPapeleraEliminar"
+        Me.bPapeleraEliminar.Size = New System.Drawing.Size(163, 56)
+        Me.bPapeleraEliminar.TabIndex = 105
+        Me.bPapeleraEliminar.Text = "Eliminar Permanetemente"
+        Me.bPapeleraEliminar.UseVisualStyleBackColor = True
         '
         'bPapeleraVaciarPapelera
         '
@@ -1084,6 +1086,18 @@ Partial Class ABMEgresos
         Me.bPapeleraVaciarPapelera.TabIndex = 104
         Me.bPapeleraVaciarPapelera.Text = "Vaciar Papelera"
         Me.bPapeleraVaciarPapelera.UseVisualStyleBackColor = True
+        '
+        'bPapeleraRestaurar
+        '
+        Me.bPapeleraRestaurar.Enabled = False
+        Me.bPapeleraRestaurar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bPapeleraRestaurar.ForeColor = System.Drawing.Color.Red
+        Me.bPapeleraRestaurar.Location = New System.Drawing.Point(91, 5)
+        Me.bPapeleraRestaurar.Name = "bPapeleraRestaurar"
+        Me.bPapeleraRestaurar.Size = New System.Drawing.Size(163, 56)
+        Me.bPapeleraRestaurar.TabIndex = 103
+        Me.bPapeleraRestaurar.Text = "Restaurar"
+        Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
         '
         'ABMEgresos
         '
@@ -1127,12 +1141,10 @@ Partial Class ABMEgresos
     Friend WithEvents TabPageAgregar As TabPage
     Friend WithEvents tbNComprobante As TextBox
     Friend WithEvents lb_Titulo As Label
-    Friend WithEvents tbTComprobante As ComboBox
     Friend WithEvents tbPVenta As TextBox
     Friend WithEvents lbSmonto As Label
     Friend WithEvents lbTComprobante As Label
     Friend WithEvents tbMonto As TextBox
-    Friend WithEvents tbTGasto As ComboBox
     Friend WithEvents btnGuardar As Button
     Friend WithEvents lbGasto As Label
     Friend WithEvents tbNombre As TextBox
@@ -1188,7 +1200,6 @@ Partial Class ABMEgresos
     Friend WithEvents ComboBoxSeccional As ComboBox
     Friend WithEvents DateTimePickerMesReintegro As DateTimePicker
     Friend WithEvents lbSeccional As Label
-    Friend WithEvents tbSeccional As ComboBox
     Friend WithEvents lbFecha As Label
     Friend WithEvents dtpFecha As DateTimePicker
     Friend WithEvents dtpReintegro As DateTimePicker
@@ -1224,4 +1235,8 @@ Partial Class ABMEgresos
     Friend WithEvents TSComboBoxFiltro1 As ToolStripComboBox
     Friend WithEvents TSTextBoxFiltro1 As ToolStripTextBox
     Friend WithEvents bPapeleraVaciarPapelera As Button
+    Friend WithEvents bPapeleraEliminar As Button
+    Friend WithEvents cbTGasto As ComboBox
+    Friend WithEvents cbSeccional As ComboBox
+    Friend WithEvents cbTComprobante As ComboBox
 End Class

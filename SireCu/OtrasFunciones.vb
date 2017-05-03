@@ -127,8 +127,6 @@ Module OtrasFunciones
 
     Public Function exist(ByVal tabla As String, ByVal campo As String, ByVal comparar As String)
 
-        cargarTablaEnDataSet(tabla)
-
         Dim flag As Boolean = False
 
         For i = 0 To Principal.dataset.Tables(tabla).Rows.Count - 1

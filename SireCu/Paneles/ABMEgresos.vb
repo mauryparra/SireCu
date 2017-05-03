@@ -80,11 +80,11 @@ Public Class ABMEgresos
             nuevo_egreso(
                          comprobante,
                          obtenerID(tbProveedor.Text, "Proveedores"),
-                         obtenerID(tbTGasto.Text, "CategoriasGastos"),
+                         cbTGasto.SelectedValue,
                          obtenerID(tbNombre.Text, "Personas"),
                          dtpFecha.Value.Date,
-                         obtenerID(tbTComprobante.Text, "TiposComprobantes"),
-                         obtenerID(tbSeccional.Text, "Seccionales"),
+                         cbTComprobante.SelectedValue,
+                         cbSeccional.SelectedValue,
                          reintegro,
                          CDbl(tbMonto.Text),
                          tbComentario.Text
@@ -108,7 +108,7 @@ Public Class ABMEgresos
             idModificando = CInt(DGVModificar.Rows(e.RowIndex).Cells("id").Value)
 
             TextBoxNombre.Text = DGVModificar.Rows(e.RowIndex).Cells("persona_nombre").Value
-            ComboBoxCategGasto.SelectedItem = DGVModificar.Rows(e.RowIndex).Cells("categoria_nombre").Value
+            ComboBoxCategGasto.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("categoria_gasto_id").Value
             TextBoxProveedor.Text = DGVModificar.Rows(e.RowIndex).Cells("proveedor_nombre").Value
             If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value Is DBNull.Value Then
                 DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
@@ -122,10 +122,10 @@ Public Class ABMEgresos
                     DateTimePickerMesReintegro.Checked = True
                 End If
             End If
-            ComboBoxSeccional.SelectedItem = DGVModificar.Rows(e.RowIndex).Cells("seccional_nombre").Value
+            ComboBoxSeccional.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("seccional_id").Value
             TextBoxComentario.Text = DGVModificar.Rows(e.RowIndex).Cells("comentario").Value.ToString
             DateTimePickerFecha.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
-            ComboBoxTipoComprobante.SelectedItem = DGVModificar.Rows(e.RowIndex).Cells("tipo_comprobante_nombre").Value
+            ComboBoxTipoComprobante.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("tipo_comprobante_id").Value
             If DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Contains("-") Then
                 TextBoxPVenta.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(0)
                 TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(1)
@@ -210,7 +210,7 @@ Public Class ABMEgresos
     Private Sub ButtonEliminar_Click(sender As Object, e As EventArgs) Handles ButtonEliminar.Click
         If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Eliminar?") = MsgBoxResult.Ok) Then
 
-            eliminar_egreso(idModificando)
+            eliminar_egreso_soft(idModificando)
 
             idModificando = 0
             limpiarForm(SplitContainerModificar.Panel2)
@@ -331,6 +331,7 @@ Public Class ABMEgresos
         ' Asignar el id a restaurar
         idPapelera = CInt(DGVPapelera.Rows(e.RowIndex).Cells("PapeleraId").Value)
         bPapeleraRestaurar.Enabled = True
+        bPapeleraEliminar.Enabled = True
 
     End Sub
 
@@ -344,6 +345,21 @@ Public Class ABMEgresos
             CargardDGV(DGVModificar)
             ActualizarSaldo()
             bPapeleraRestaurar.Enabled = False
+            bPapeleraEliminar.Enabled = False
+        End If
+    End Sub
+
+    Private Sub bPapeleraEliminar_Click(sender As Object, e As EventArgs) Handles bPapeleraEliminar.Click
+        If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Eliminar Permanentemente?") = MsgBoxResult.Ok) Then
+
+            eliminar_egreso_hard(idPapelera)
+
+            idPapelera = 0
+            CargardDGV(DGVPapelera, 1, "Egresos_Papelera")
+            CargardDGV(DGVModificar)
+            ActualizarSaldo()
+            bPapeleraRestaurar.Enabled = False
+            bPapeleraEliminar.Enabled = False
         End If
     End Sub
 
@@ -357,6 +373,7 @@ Public Class ABMEgresos
             CargardDGV(DGVModificar)
             ActualizarSaldo()
             bPapeleraRestaurar.Enabled = False
+            bPapeleraEliminar.Enabled = False
         End If
     End Sub
 
@@ -370,12 +387,12 @@ Public Class ABMEgresos
 
         '               Campos Obligatorios
         CamposObligatios.AddRange({tbNombre,
-                                   tbTGasto,
-                                   tbTComprobante,
+                                   cbTGasto,
+                                   cbTComprobante,
                                    tbProveedor,
                                    tbNComprobante,
                                    tbMonto,
-                                   tbSeccional})
+                                   cbSeccional})
 
         dtpFecha.Value = Now
         dtpReintegro.Value = Now
@@ -383,19 +400,19 @@ Public Class ABMEgresos
         '               Autocomplete al escribir
         tbProveedor.AutoCompleteCustomSource = autocomplete("Proveedores", "nombre")
         tbNombre.AutoCompleteCustomSource = autocomplete("Personas", "nombre")
-        tbTGasto.AutoCompleteCustomSource = autocomplete("CategoriasGastos", "nombre")
-        tbTComprobante.AutoCompleteCustomSource = autocomplete("TiposComprobantes", "nombre")
-        tbSeccional.AutoCompleteCustomSource = autocomplete("Seccionales", "nombre")
+        cbTGasto.AutoCompleteCustomSource = autocomplete("CategoriasGastos", "nombre")
+        cbTComprobante.AutoCompleteCustomSource = autocomplete("TiposComprobantes", "nombre")
+        cbSeccional.AutoCompleteCustomSource = autocomplete("Seccionales", "nombre")
         '               Colección de Items
-        tbTGasto.DataSource = Principal.dataset.Tables("CategoriasGastos")
-        tbTComprobante.DataSource = Principal.dataset.Tables("TiposComprobantes")
-        tbSeccional.DataSource = Principal.dataset.Tables("Seccionales")
-        tbTGasto.ValueMember = "id"
-        tbTGasto.DisplayMember = "nombre"
-        tbTComprobante.ValueMember = "id"
-        tbTComprobante.DisplayMember = "nombre"
-        tbSeccional.ValueMember = "id"
-        tbSeccional.DisplayMember = "nombre"
+        cbTGasto.DataSource = Principal.dataset.Tables("CategoriasGastos")
+        cbTComprobante.DataSource = Principal.dataset.Tables("TiposComprobantes")
+        cbSeccional.DataSource = Principal.dataset.Tables("Seccionales")
+        cbTGasto.ValueMember = "id"
+        cbTGasto.DisplayMember = "nombre"
+        cbTComprobante.ValueMember = "id"
+        cbTComprobante.DisplayMember = "nombre"
+        cbSeccional.ValueMember = "id"
+        cbSeccional.DisplayMember = "nombre"
 
 
         ' ######################################## TAB Modificar
@@ -435,8 +452,6 @@ Public Class ABMEgresos
 
     Private Function obtenerID(ByVal Campo_a_comparar As String, ByVal tabla As String) As Integer
         Dim id As Integer = -1
-
-        cargarTablaEnDataSet(tabla)
 
         For Each row As DataRow In Principal.dataset.Tables(tabla).Rows
             If (LCase(row.Item("nombre")) = LCase(Campo_a_comparar)) Then
@@ -498,7 +513,7 @@ Public Class ABMEgresos
     Private Sub tbDay_KeyPress(sender As Object, e As KeyPressEventArgs)
         keyverify(e, numeros:=True)
     End Sub
-    Private Sub tbTGasto_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTGasto.KeyPress
+    Private Sub tbTGasto_KeyPress(sender As Object, e As KeyPressEventArgs)
         keyverify(e, letras:=True)
     End Sub
     Private Sub tbMonth_KeyPress(sender As Object, e As KeyPressEventArgs)
@@ -522,10 +537,10 @@ Public Class ABMEgresos
     Private Sub tbReintegro_KeyPress(sender As Object, e As KeyPressEventArgs)
         keyverify(e, numeros:=True)
     End Sub
-    Private Sub tbTComprobante_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbTComprobante.KeyPress
+    Private Sub tbTComprobante_KeyPress(sender As Object, e As KeyPressEventArgs)
         keyverify(e, letras:=True, espacios:=True)
     End Sub
-    Private Sub tbSeccional_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbSeccional.KeyPress
+    Private Sub tbSeccional_KeyPress(sender As Object, e As KeyPressEventArgs)
         keyverify(e, letras:=True, numeros:=True, espacios:=True)
     End Sub
 
@@ -540,8 +555,10 @@ Public Class ABMEgresos
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
-    Private Sub tbTGasto_Validating(sender As Object, e As CancelEventArgs) Handles tbTGasto.Validating
-        If (sender.Text = "") Or (exist("CategoriasGastos", "nombre", sender.text) = False) Then
+    Private Sub cbTGasto_Validating(sender As Object, e As CancelEventArgs) Handles cbTGasto.Validating
+        ' TODO Revisar
+        If (sender.Text = "") Or (exist("CategoriasGastos", "nombre", sender.Text) = False) Then
+            Dim var As String = cbTGasto.SelectedText
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -550,6 +567,7 @@ Public Class ABMEgresos
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
+
     Private Sub tbProveedor_Validating(sender As Object, e As CancelEventArgs) Handles tbProveedor.Validating
         If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
@@ -560,7 +578,8 @@ Public Class ABMEgresos
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
-    Private Sub tbTComprobante_Validating(sender As Object, e As CancelEventArgs) Handles tbTComprobante.Validating
+    Private Sub cbTComprobante_Validating(sender As Object, e As CancelEventArgs) Handles cbTComprobante.Validating
+        ' TODO revisar
         If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
@@ -579,22 +598,8 @@ Public Class ABMEgresos
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
-    Private Sub tbReintegro_Validating(sender As Object, e As CancelEventArgs)
-        If sender.text = "" Then
-            Principal.ErrorProvider.SetError(sender, "")
-            ControlesConErroresAgregar.Remove(sender)
-            Exit Sub
-        End If
-
-        If (CDbl(sender.Text) < 1) Or (CDbl(sender.Text) > 12) Then
-            Principal.ErrorProvider.SetError(sender, "Debe ingresar un mes de reintegro válido")
-            ControlesConErroresAgregar.Add(sender)
-        Else
-            Principal.ErrorProvider.SetError(sender, "")
-            ControlesConErroresAgregar.Remove(sender)
-        End If
-    End Sub
-    Private Sub tbSeccional_Validating(sender As Object, e As CancelEventArgs) Handles tbSeccional.Validating
+    Private Sub cbSeccional_Validating(sender As Object, e As CancelEventArgs) Handles cbSeccional.Validating
+        ' TODO Revisar
         If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")

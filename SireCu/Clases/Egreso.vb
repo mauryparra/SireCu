@@ -52,7 +52,7 @@ Module Egreso
         End If
     End Sub
 
-    Public Sub eliminar_egreso(ByVal id As Integer)
+    Public Sub eliminar_egreso_soft(ByVal id As Integer)
         Principal.query = "UPDATE Egresos SET eliminado = 1 WHERE id = @id"
         Principal.command.Parameters.Clear()
         Principal.command.Parameters.AddWithValue("@id", id)
@@ -73,6 +73,18 @@ Module Egreso
             MsgBox("Egreso restaurado exitosamente", MsgBoxStyle.OkOnly, "Restaurar Egreso")
         Else
             MsgBox("Ocurrio un error al restaurar el egreso", MsgBoxStyle.Exclamation, "Restaurar Egreso")
+        End If
+    End Sub
+
+    Public Sub eliminar_egreso_hard(ByVal id As Integer)
+        Principal.query = "DELETE FROM Egresos WHERE id = @id"
+        Principal.command.Parameters.Clear()
+        Principal.command.Parameters.AddWithValue("@id", id)
+
+        If consultarNQ(Principal.query, Principal.command) > 0 Then
+            MsgBox("Egreso eliminado exitosamente", MsgBoxStyle.OkOnly, "Eliminar Egreso Permanentemente")
+        Else
+            MsgBox("Ocurrio un error al eliminar el egreso", MsgBoxStyle.Exclamation, "Eliminar Egreso Permanentemente")
         End If
     End Sub
 
@@ -200,7 +212,7 @@ Module Egreso
 
     Public Function comprobante_repetido(ByVal nComprobante As String, ByVal proveedorID As Integer)
 
-        cargarTablaEnDataSet("Egresos")
+        ' cargarTablaEnDataSet("Egresos")
 
         Dim flag As Boolean = False
 
