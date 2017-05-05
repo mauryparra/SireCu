@@ -16,36 +16,35 @@ Module OtrasFunciones
         Dim ingresos As Double = 0
         Dim egresos As Double = 0
 
-        'TODO En gresos hay que obtener no solo lo del trimestre actual sino tambièn lo que entre por mes de reintegro a ese trimestre
         Select Case trimestre
             Case "Primero"
                 trimAnterior = "Cuarto"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
-                                " WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & añoAnterior
+                                " WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
 
-                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3" &
-                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
+                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 AND 3" &
+                               " AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
             Case "Segundo"
                 trimAnterior = "Primero"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
                                 " WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
 
-                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6" &
-                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
+                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 AND 6" &
+                               " AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
             Case "Tercero"
                 trimAnterior = "Segundo"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
                                 " WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
 
-                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9" &
-                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
+                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 7 AND 9" &
+                               " AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
             Case "Cuarto"
                 trimAnterior = "Tercero"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
                                  "WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
 
-                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12" &
-                               " AND DATEPART(year, [fecha]) = " & año & " AND [eliminado] = 0"
+                queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 10 AND 12" &
+                               " AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
         End Select
 
         ' 1)
@@ -108,19 +107,13 @@ Module OtrasFunciones
 
     Public Function ultimoaño(ByVal tabla As String)
 
-        ' TODO reemplazar fill dataset por command.ExecuteReader
-
         Principal.query = "SELECT fecha FROM " & tabla & " ORDER BY fecha DESC"
-        consultarNQ(Principal.query, Principal.command)
 
-        Principal.dataset.Tables(tabla).Clear()
+        Dim data As DataTable = consultarReader(Principal.query)
 
-        Principal.tableadapters(tabla) = New SqlCeDataAdapter(Principal.command)
-        Principal.tableadapters(tabla).Fill(Principal.dataset.Tables(tabla))
-
-        If (Principal.dataset.Tables(tabla).Rows.Count() = 0) Then
+        If (data.Rows.Count() = 0) Then
             Return (Now.Date.Year.ToString)
-        Else : Return (DatePart(DateInterval.Year, Principal.dataset.Tables(tabla).Rows.Item(0).Item("fecha")))
+        Else : Return (DatePart(DateInterval.Year, data.Rows.Item(0).Item("fecha")))
         End If
 
     End Function

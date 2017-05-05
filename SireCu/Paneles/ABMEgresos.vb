@@ -39,7 +39,7 @@ Public Class ABMEgresos
             Exit Sub
         End If
 
-        'Verificar Saldo Disponible 'OPTIMIZAR TODO
+        'Verificar Saldo Disponible 
         Dim saldo As Double
         Select Case DatePart(DateInterval.Month, dtpFecha.Value)
             Case 1 To 3
@@ -149,7 +149,7 @@ Public Class ABMEgresos
             Exit Sub
         End If
 
-        'Verificar Saldo Disponible 'OPTIMIZAR TODO
+        'Verificar Saldo Disponible 
         Dim saldo As Double
         Select Case DatePart(DateInterval.Month, DateTimePickerFecha.Value)
             Case 1 To 3
