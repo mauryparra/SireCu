@@ -6,9 +6,9 @@ Module Egreso
     ByVal fecha As Date, ByVal tipo_comp As String, ByVal secc As String, ByVal reintegro As Date, ByVal monto As Double,
                             ByVal comentario As String)
         Principal.query = "INSERT INTO egresos (nro_comprobante, proveedor_id, categoria_gasto_id, persona_id, " &
-            "fecha, tipo_comprobante_id, seccional_id, mes_reintegro, monto, comentario, eliminado)" &
+            "fecha, tipo_comprobante_id, seccional_id, mes_reintegro, monto, comentario, eliminado, seleccionado)" &
                               "VALUES (@nro_comprobante, @proveedor, @cat_gasto, @persona, @fecha, @t_comprobante, " &
-                                "@seccional, @reintegro, @monto, @comentario, 0)"
+                                "@seccional, @reintegro, @monto, @comentario, 0, 0)"
         Principal.command.Parameters.Clear()
         Principal.command.Parameters.AddWithValue("@nro_comprobante", compro)
         Principal.command.Parameters.AddWithValue("@proveedor", proveedor)
@@ -123,7 +123,8 @@ Module Egreso
                                   Secc.nombre AS seccional_nombre,
                                   E.mes_reintegro AS mes_reintegro,
                                   E.monto AS monto,
-                                  E.comentario AS comentario
+                                  E.comentario AS comentario,
+                                  E.seleccionado AS seleccionado
                            FROM Egresos AS E
                            LEFT JOIN TiposComprobantes AS Comp ON E.tipo_comprobante_id = Comp.id
                            LEFT JOIN Proveedores AS Pro ON E.proveedor_id = Pro.id
@@ -161,6 +162,7 @@ Module Egreso
         dgv.Columns.Item(13).DataPropertyName = "mes_reintegro"
         dgv.Columns.Item(14).DataPropertyName = "monto"
         dgv.Columns.Item(15).DataPropertyName = "comentario"
+        dgv.Columns.Item(16).DataPropertyName = "seleccionado"
         dgv.DataSource = mybinding
 
     End Sub
@@ -206,13 +208,12 @@ Module Egreso
         dgv.Columns.Item(13).DataPropertyName = "mes_reintegro"
         dgv.Columns.Item(14).DataPropertyName = "monto"
         dgv.Columns.Item(15).DataPropertyName = "comentario"
+        dgv.Columns.Item(16).DataPropertyName = "seleccionado"
         dgv.DataSource = mybinding
 
     End Sub
 
     Public Function comprobante_repetido(ByVal nComprobante As String, ByVal proveedorID As Integer)
-
-        ' cargarTablaEnDataSet("Egresos")
 
         Dim flag As Boolean = False
 

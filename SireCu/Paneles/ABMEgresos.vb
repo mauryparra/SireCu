@@ -141,6 +141,26 @@ Public Class ABMEgresos
         activarModificar(True)
 
     End Sub
+
+    Private Sub DGVModificar_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVModificar.CellContentClick
+        If e.ColumnIndex = 16 Then
+            Dim id As Integer = DGVModificar.Rows(e.RowIndex).Cells("id").Value
+            Dim seleccionado As Integer
+            If DGVModificar.Rows(e.RowIndex).Cells("seleccionado").Value = 0 Then
+                seleccionado = 1
+            Else
+                seleccionado = 0
+            End If
+
+            Dim sql As String = "UPDATE Egresos SET seleccionado = " & seleccionado & " WHERE id = " & id
+            If consultarNQ(sql, Principal.command) < 1 Then
+                MsgBox("Error al actualizar la selección", MsgBoxStyle.Exclamation, "Actualizar selección de egreso")
+            Else
+                DGVModificar.Rows(e.RowIndex).Cells("seleccionado").Value = seleccionado
+            End If
+        End If
+    End Sub
+
     Private Sub ButtonGuardar_Click(sender As Object, e As EventArgs) Handles ButtonGuardar.Click
 
         'Verificamos que todos los campos hayan pasado las validaciones
@@ -169,7 +189,7 @@ Public Class ABMEgresos
         End If
 
         Dim comprobante As String
-        If (TextBoxPVenta.Text = 0) Or (tbPVenta.Text = "") Then
+        If (TextBoxPVenta.Text = 0) Or (TextBoxPVenta.Text = "") Then
             comprobante = TextBoxNroComprobante.Text
         Else
             comprobante = TextBoxPVenta.Text & "-" & TextBoxNroComprobante.Text
@@ -254,7 +274,8 @@ Public Class ABMEgresos
                                   Secc.nombre AS seccional_nombre,
                                   E.mes_reintegro AS mes_reintegro,
                                   E.monto AS monto,
-                                  E.comentario AS comentario
+                                  E.comentario AS comentario,
+                                  E.seleccionado AS seleccionado
                            FROM Egresos AS E
                            LEFT JOIN TiposComprobantes AS Comp ON E.tipo_comprobante_id = Comp.id
                            LEFT JOIN Proveedores AS Pro ON E.proveedor_id = Pro.id
@@ -312,6 +333,8 @@ Public Class ABMEgresos
                         sql += " AND E.monto = " & keyv.Value
                     Case "Comentario"
                         sql += " AND E.comentario = '" & keyv.Value & "'"
+                    Case "Seleccionado"
+                        sql += " AND E.seleccionado = " & keyv.Value
                     Case Else
                         Exit Select
                 End Select
@@ -546,7 +569,7 @@ Public Class ABMEgresos
 
     'Validating
     Private Sub tbNombre_Validating(sender As Object, e As CancelEventArgs) Handles tbNombre.Validating
-        If (sender.Text = "") Or (tbNombre.AutoCompleteCustomSource.Contains(sender.text) = False) Then
+        If (sender.Text = "") Or (exist("Personas", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -569,7 +592,7 @@ Public Class ABMEgresos
     End Sub
 
     Private Sub tbProveedor_Validating(sender As Object, e As CancelEventArgs) Handles tbProveedor.Validating
-        If (sender.Text = "") Or (tbProveedor.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -580,7 +603,7 @@ Public Class ABMEgresos
     End Sub
     Private Sub cbTComprobante_Validating(sender As Object, e As CancelEventArgs) Handles cbTComprobante.Validating
         ' Verifica que haya un item seleccionado y corresponda a la colección de opciones
-        If (sender.Text = "") Or (cbTGasto.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (cbTComprobante.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -666,7 +689,7 @@ Public Class ABMEgresos
 
     'Validating
     Private Sub TextBoxNombre_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxNombre.Validating
-        If (sender.Text = "") Or (TextBoxNombre.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (exist("Personas", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -676,7 +699,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub TextBoxProveedor_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxProveedor.Validating
-        If (sender.Text = "") Or (TextBoxProveedor.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -747,6 +770,10 @@ Public Class ABMEgresos
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)
         End If
+    End Sub
+
+    Private Sub TSTextBoxFiltro1_Validating(sender As Object, e As CancelEventArgs) Handles TSTextBoxFiltro1.Validating
+        ' TODO validación segun tipo de campo seleccionado
     End Sub
 #End Region
 

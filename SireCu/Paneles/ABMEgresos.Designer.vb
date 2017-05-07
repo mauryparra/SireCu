@@ -53,22 +53,6 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar = New System.Windows.Forms.SplitContainer()
         Me.ToolStripContainerModificar = New System.Windows.Forms.ToolStripContainer()
         Me.DGVModificar = New System.Windows.Forms.DataGridView()
-        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nro_comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tipo_comprobante_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tipo_comprobante_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.proveedor_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.proveedor_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.categoria_gasto_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.categoria_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.persona_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.persona_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.seccional_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.seccional_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStripModificar = New System.Windows.Forms.ToolStrip()
         Me.TSLabelTrimestre = New System.Windows.Forms.ToolStripLabel()
         Me.TSComboBoxTrimestre = New System.Windows.Forms.ToolStripComboBox()
@@ -106,6 +90,9 @@ Partial Class ABMEgresos
         Me.SplitContainerPapelera = New System.Windows.Forms.SplitContainer()
         Me.ToolStripContainerPapelera = New System.Windows.Forms.ToolStripContainer()
         Me.DGVPapelera = New System.Windows.Forms.DataGridView()
+        Me.bPapeleraEliminar = New System.Windows.Forms.Button()
+        Me.bPapeleraVaciarPapelera = New System.Windows.Forms.Button()
+        Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
         Me.PapeleraId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraNroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraTComprobanteId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -122,9 +109,24 @@ Partial Class ABMEgresos
         Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bPapeleraEliminar = New System.Windows.Forms.Button()
-        Me.bPapeleraVaciarPapelera = New System.Windows.Forms.Button()
-        Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
+        Me.PapeleraSeleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.nro_comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tipo_comprobante_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tipo_comprobante_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.proveedor_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.proveedor_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.categoria_gasto_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.categoria_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.persona_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.persona_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.seccional_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.seccional_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.seleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -495,7 +497,7 @@ Partial Class ABMEgresos
         Me.DGVModificar.AllowUserToAddRows = False
         Me.DGVModificar.AllowUserToDeleteRows = False
         Me.DGVModificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario})
+        Me.DGVModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario, Me.seleccionado})
         Me.DGVModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGVModificar.Location = New System.Drawing.Point(0, 0)
         Me.DGVModificar.Name = "DGVModificar"
@@ -504,112 +506,6 @@ Partial Class ABMEgresos
         Me.DGVModificar.Size = New System.Drawing.Size(741, 176)
         Me.DGVModificar.TabIndex = 0
         '
-        'id
-        '
-        Me.id.HeaderText = "Id"
-        Me.id.Name = "id"
-        Me.id.ReadOnly = True
-        '
-        'nro_comprobante
-        '
-        Me.nro_comprobante.HeaderText = "Nro Comprobante"
-        Me.nro_comprobante.Name = "nro_comprobante"
-        Me.nro_comprobante.ReadOnly = True
-        '
-        'tipo_comprobante_id
-        '
-        Me.tipo_comprobante_id.HeaderText = "tipo_comprobante_id"
-        Me.tipo_comprobante_id.Name = "tipo_comprobante_id"
-        Me.tipo_comprobante_id.ReadOnly = True
-        Me.tipo_comprobante_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.tipo_comprobante_id.Visible = False
-        '
-        'tipo_comprobante_nombre
-        '
-        Me.tipo_comprobante_nombre.HeaderText = "Tipo Comprobante"
-        Me.tipo_comprobante_nombre.Name = "tipo_comprobante_nombre"
-        Me.tipo_comprobante_nombre.ReadOnly = True
-        '
-        'proveedor_id
-        '
-        Me.proveedor_id.HeaderText = "proveedor_id"
-        Me.proveedor_id.Name = "proveedor_id"
-        Me.proveedor_id.ReadOnly = True
-        Me.proveedor_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.proveedor_id.Visible = False
-        '
-        'proveedor_nombre
-        '
-        Me.proveedor_nombre.HeaderText = "Proveedor"
-        Me.proveedor_nombre.Name = "proveedor_nombre"
-        Me.proveedor_nombre.ReadOnly = True
-        '
-        'categoria_gasto_id
-        '
-        Me.categoria_gasto_id.HeaderText = "categoria_gasto_id"
-        Me.categoria_gasto_id.Name = "categoria_gasto_id"
-        Me.categoria_gasto_id.ReadOnly = True
-        Me.categoria_gasto_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.categoria_gasto_id.Visible = False
-        '
-        'categoria_nombre
-        '
-        Me.categoria_nombre.HeaderText = "Categoria Gasto"
-        Me.categoria_nombre.Name = "categoria_nombre"
-        Me.categoria_nombre.ReadOnly = True
-        '
-        'persona_id
-        '
-        Me.persona_id.HeaderText = "persona_id"
-        Me.persona_id.Name = "persona_id"
-        Me.persona_id.ReadOnly = True
-        Me.persona_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.persona_id.Visible = False
-        '
-        'persona_nombre
-        '
-        Me.persona_nombre.HeaderText = "Persona"
-        Me.persona_nombre.Name = "persona_nombre"
-        Me.persona_nombre.ReadOnly = True
-        '
-        'fecha
-        '
-        Me.fecha.HeaderText = "Fecha"
-        Me.fecha.Name = "fecha"
-        Me.fecha.ReadOnly = True
-        '
-        'seccional_id
-        '
-        Me.seccional_id.HeaderText = "seccional_id"
-        Me.seccional_id.Name = "seccional_id"
-        Me.seccional_id.ReadOnly = True
-        Me.seccional_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.seccional_id.Visible = False
-        '
-        'seccional_nombre
-        '
-        Me.seccional_nombre.HeaderText = "Seccional"
-        Me.seccional_nombre.Name = "seccional_nombre"
-        Me.seccional_nombre.ReadOnly = True
-        '
-        'mes_reintegro
-        '
-        Me.mes_reintegro.HeaderText = "Mes Reintegro"
-        Me.mes_reintegro.Name = "mes_reintegro"
-        Me.mes_reintegro.ReadOnly = True
-        '
-        'monto
-        '
-        Me.monto.HeaderText = "Monto"
-        Me.monto.Name = "monto"
-        Me.monto.ReadOnly = True
-        '
-        'comentario
-        '
-        Me.comentario.HeaderText = "Comentario"
-        Me.comentario.Name = "comentario"
-        Me.comentario.ReadOnly = True
-        '
         'ToolStripModificar
         '
         Me.ToolStripModificar.Dock = System.Windows.Forms.DockStyle.None
@@ -617,7 +513,7 @@ Partial Class ABMEgresos
         Me.ToolStripModificar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSLabelTrimestre, Me.TSComboBoxTrimestre, Me.TSLabelAño, Me.TSTextBoxAño, Me.TSLabelFiltro1, Me.TSComboBoxFiltro1, Me.TSTextBoxFiltro1, Me.TSButtonFiltrar})
         Me.ToolStripModificar.Location = New System.Drawing.Point(3, 0)
         Me.ToolStripModificar.Name = "ToolStripModificar"
-        Me.ToolStripModificar.Size = New System.Drawing.Size(652, 25)
+        Me.ToolStripModificar.Size = New System.Drawing.Size(683, 25)
         Me.ToolStripModificar.TabIndex = 0
         '
         'TSLabelTrimestre
@@ -655,7 +551,7 @@ Partial Class ABMEgresos
         '
         Me.TSComboBoxFiltro1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.TSComboBoxFiltro1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"Id", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario"})
+        Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"Id", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
         Me.TSComboBoxFiltro1.Name = "TSComboBoxFiltro1"
         Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(121, 25)
         Me.TSComboBoxFiltro1.ToolTipText = "Seleccione columna por la cual desea filtrar"
@@ -949,7 +845,7 @@ Partial Class ABMEgresos
         Me.DGVPapelera.AllowUserToAddRows = False
         Me.DGVPapelera.AllowUserToDeleteRows = False
         Me.DGVPapelera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVPapelera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PapeleraId, Me.PapeleraNroComprobante, Me.PapeleraTComprobanteId, Me.PapeleraTipoComprobante, Me.PapeleraProveedorId, Me.PapeleraProveedor, Me.PapeleraCategoriaGastoId, Me.PapeleraCategoriaGasto, Me.PapeleraPersonaId, Me.PapeleraPersona, Me.PapeleraFecha, Me.PapeleraSeccionalId, Me.PapeleraSeccional, Me.PapeleraReintegro, Me.PapeleraMonto, Me.PapeleraComentario})
+        Me.DGVPapelera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PapeleraId, Me.PapeleraNroComprobante, Me.PapeleraTComprobanteId, Me.PapeleraTipoComprobante, Me.PapeleraProveedorId, Me.PapeleraProveedor, Me.PapeleraCategoriaGastoId, Me.PapeleraCategoriaGasto, Me.PapeleraPersonaId, Me.PapeleraPersona, Me.PapeleraFecha, Me.PapeleraSeccionalId, Me.PapeleraSeccional, Me.PapeleraReintegro, Me.PapeleraMonto, Me.PapeleraComentario, Me.PapeleraSeleccionado})
         Me.DGVPapelera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGVPapelera.Location = New System.Drawing.Point(0, 0)
         Me.DGVPapelera.Name = "DGVPapelera"
@@ -957,6 +853,41 @@ Partial Class ABMEgresos
         Me.DGVPapelera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGVPapelera.Size = New System.Drawing.Size(741, 325)
         Me.DGVPapelera.TabIndex = 0
+        '
+        'bPapeleraEliminar
+        '
+        Me.bPapeleraEliminar.Enabled = False
+        Me.bPapeleraEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bPapeleraEliminar.ForeColor = System.Drawing.Color.Red
+        Me.bPapeleraEliminar.Location = New System.Drawing.Point(289, 5)
+        Me.bPapeleraEliminar.Name = "bPapeleraEliminar"
+        Me.bPapeleraEliminar.Size = New System.Drawing.Size(163, 56)
+        Me.bPapeleraEliminar.TabIndex = 105
+        Me.bPapeleraEliminar.Text = "Eliminar Permanetemente"
+        Me.bPapeleraEliminar.UseVisualStyleBackColor = True
+        '
+        'bPapeleraVaciarPapelera
+        '
+        Me.bPapeleraVaciarPapelera.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bPapeleraVaciarPapelera.ForeColor = System.Drawing.Color.Red
+        Me.bPapeleraVaciarPapelera.Location = New System.Drawing.Point(486, 5)
+        Me.bPapeleraVaciarPapelera.Name = "bPapeleraVaciarPapelera"
+        Me.bPapeleraVaciarPapelera.Size = New System.Drawing.Size(163, 56)
+        Me.bPapeleraVaciarPapelera.TabIndex = 104
+        Me.bPapeleraVaciarPapelera.Text = "Vaciar Papelera"
+        Me.bPapeleraVaciarPapelera.UseVisualStyleBackColor = True
+        '
+        'bPapeleraRestaurar
+        '
+        Me.bPapeleraRestaurar.Enabled = False
+        Me.bPapeleraRestaurar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bPapeleraRestaurar.ForeColor = System.Drawing.Color.Red
+        Me.bPapeleraRestaurar.Location = New System.Drawing.Point(91, 5)
+        Me.bPapeleraRestaurar.Name = "bPapeleraRestaurar"
+        Me.bPapeleraRestaurar.Size = New System.Drawing.Size(163, 56)
+        Me.bPapeleraRestaurar.TabIndex = 103
+        Me.bPapeleraRestaurar.Text = "Restaurar"
+        Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
         '
         'PapeleraId
         '
@@ -1064,40 +995,123 @@ Partial Class ABMEgresos
         Me.PapeleraComentario.Name = "PapeleraComentario"
         Me.PapeleraComentario.ReadOnly = True
         '
-        'bPapeleraEliminar
+        'PapeleraSeleccionado
         '
-        Me.bPapeleraEliminar.Enabled = False
-        Me.bPapeleraEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bPapeleraEliminar.ForeColor = System.Drawing.Color.Red
-        Me.bPapeleraEliminar.Location = New System.Drawing.Point(289, 5)
-        Me.bPapeleraEliminar.Name = "bPapeleraEliminar"
-        Me.bPapeleraEliminar.Size = New System.Drawing.Size(163, 56)
-        Me.bPapeleraEliminar.TabIndex = 105
-        Me.bPapeleraEliminar.Text = "Eliminar Permanetemente"
-        Me.bPapeleraEliminar.UseVisualStyleBackColor = True
+        Me.PapeleraSeleccionado.HeaderText = "Seleccionado"
+        Me.PapeleraSeleccionado.Name = "PapeleraSeleccionado"
+        Me.PapeleraSeleccionado.ReadOnly = True
         '
-        'bPapeleraVaciarPapelera
+        'id
         '
-        Me.bPapeleraVaciarPapelera.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bPapeleraVaciarPapelera.ForeColor = System.Drawing.Color.Red
-        Me.bPapeleraVaciarPapelera.Location = New System.Drawing.Point(486, 5)
-        Me.bPapeleraVaciarPapelera.Name = "bPapeleraVaciarPapelera"
-        Me.bPapeleraVaciarPapelera.Size = New System.Drawing.Size(163, 56)
-        Me.bPapeleraVaciarPapelera.TabIndex = 104
-        Me.bPapeleraVaciarPapelera.Text = "Vaciar Papelera"
-        Me.bPapeleraVaciarPapelera.UseVisualStyleBackColor = True
+        Me.id.HeaderText = "Id"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
         '
-        'bPapeleraRestaurar
+        'nro_comprobante
         '
-        Me.bPapeleraRestaurar.Enabled = False
-        Me.bPapeleraRestaurar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.bPapeleraRestaurar.ForeColor = System.Drawing.Color.Red
-        Me.bPapeleraRestaurar.Location = New System.Drawing.Point(91, 5)
-        Me.bPapeleraRestaurar.Name = "bPapeleraRestaurar"
-        Me.bPapeleraRestaurar.Size = New System.Drawing.Size(163, 56)
-        Me.bPapeleraRestaurar.TabIndex = 103
-        Me.bPapeleraRestaurar.Text = "Restaurar"
-        Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
+        Me.nro_comprobante.HeaderText = "Nro Comprobante"
+        Me.nro_comprobante.Name = "nro_comprobante"
+        Me.nro_comprobante.ReadOnly = True
+        '
+        'tipo_comprobante_id
+        '
+        Me.tipo_comprobante_id.HeaderText = "tipo_comprobante_id"
+        Me.tipo_comprobante_id.Name = "tipo_comprobante_id"
+        Me.tipo_comprobante_id.ReadOnly = True
+        Me.tipo_comprobante_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.tipo_comprobante_id.Visible = False
+        '
+        'tipo_comprobante_nombre
+        '
+        Me.tipo_comprobante_nombre.HeaderText = "Tipo Comprobante"
+        Me.tipo_comprobante_nombre.Name = "tipo_comprobante_nombre"
+        Me.tipo_comprobante_nombre.ReadOnly = True
+        '
+        'proveedor_id
+        '
+        Me.proveedor_id.HeaderText = "proveedor_id"
+        Me.proveedor_id.Name = "proveedor_id"
+        Me.proveedor_id.ReadOnly = True
+        Me.proveedor_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.proveedor_id.Visible = False
+        '
+        'proveedor_nombre
+        '
+        Me.proveedor_nombre.HeaderText = "Proveedor"
+        Me.proveedor_nombre.Name = "proveedor_nombre"
+        Me.proveedor_nombre.ReadOnly = True
+        '
+        'categoria_gasto_id
+        '
+        Me.categoria_gasto_id.HeaderText = "categoria_gasto_id"
+        Me.categoria_gasto_id.Name = "categoria_gasto_id"
+        Me.categoria_gasto_id.ReadOnly = True
+        Me.categoria_gasto_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.categoria_gasto_id.Visible = False
+        '
+        'categoria_nombre
+        '
+        Me.categoria_nombre.HeaderText = "Categoria Gasto"
+        Me.categoria_nombre.Name = "categoria_nombre"
+        Me.categoria_nombre.ReadOnly = True
+        '
+        'persona_id
+        '
+        Me.persona_id.HeaderText = "persona_id"
+        Me.persona_id.Name = "persona_id"
+        Me.persona_id.ReadOnly = True
+        Me.persona_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.persona_id.Visible = False
+        '
+        'persona_nombre
+        '
+        Me.persona_nombre.HeaderText = "Persona"
+        Me.persona_nombre.Name = "persona_nombre"
+        Me.persona_nombre.ReadOnly = True
+        '
+        'fecha
+        '
+        Me.fecha.HeaderText = "Fecha"
+        Me.fecha.Name = "fecha"
+        Me.fecha.ReadOnly = True
+        '
+        'seccional_id
+        '
+        Me.seccional_id.HeaderText = "seccional_id"
+        Me.seccional_id.Name = "seccional_id"
+        Me.seccional_id.ReadOnly = True
+        Me.seccional_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.seccional_id.Visible = False
+        '
+        'seccional_nombre
+        '
+        Me.seccional_nombre.HeaderText = "Seccional"
+        Me.seccional_nombre.Name = "seccional_nombre"
+        Me.seccional_nombre.ReadOnly = True
+        '
+        'mes_reintegro
+        '
+        Me.mes_reintegro.HeaderText = "Mes Reintegro"
+        Me.mes_reintegro.Name = "mes_reintegro"
+        Me.mes_reintegro.ReadOnly = True
+        '
+        'monto
+        '
+        Me.monto.HeaderText = "Monto"
+        Me.monto.Name = "monto"
+        Me.monto.ReadOnly = True
+        '
+        'comentario
+        '
+        Me.comentario.HeaderText = "Comentario"
+        Me.comentario.Name = "comentario"
+        Me.comentario.ReadOnly = True
+        '
+        'seleccionado
+        '
+        Me.seleccionado.HeaderText = "Seleccionado"
+        Me.seleccionado.Name = "seleccionado"
+        Me.seleccionado.ReadOnly = True
         '
         'ABMEgresos
         '
@@ -1160,22 +1174,6 @@ Partial Class ABMEgresos
     Friend WithEvents SplitContainerModificar As SplitContainer
     Friend WithEvents ToolStripContainerModificar As ToolStripContainer
     Friend WithEvents DGVModificar As DataGridView
-    Friend WithEvents id As DataGridViewTextBoxColumn
-    Friend WithEvents nro_comprobante As DataGridViewTextBoxColumn
-    Friend WithEvents tipo_comprobante_id As DataGridViewTextBoxColumn
-    Friend WithEvents tipo_comprobante_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents proveedor_id As DataGridViewTextBoxColumn
-    Friend WithEvents proveedor_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents categoria_gasto_id As DataGridViewTextBoxColumn
-    Friend WithEvents categoria_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents persona_id As DataGridViewTextBoxColumn
-    Friend WithEvents persona_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents fecha As DataGridViewTextBoxColumn
-    Friend WithEvents seccional_id As DataGridViewTextBoxColumn
-    Friend WithEvents seccional_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents mes_reintegro As DataGridViewTextBoxColumn
-    Friend WithEvents monto As DataGridViewTextBoxColumn
-    Friend WithEvents comentario As DataGridViewTextBoxColumn
     Friend WithEvents TextBoxNroComprobante As TextBox
     Friend WithEvents ComboBoxTipoComprobante As ComboBox
     Friend WithEvents TextBoxPVenta As TextBox
@@ -1209,6 +1207,20 @@ Partial Class ABMEgresos
     Friend WithEvents ToolStripContainerPapelera As ToolStripContainer
     Friend WithEvents DGVPapelera As DataGridView
     Friend WithEvents bPapeleraRestaurar As Button
+    Friend WithEvents ToolStripModificar As ToolStrip
+    Friend WithEvents TSLabelTrimestre As ToolStripLabel
+    Friend WithEvents TSComboBoxTrimestre As ToolStripComboBox
+    Friend WithEvents TSLabelAño As ToolStripLabel
+    Friend WithEvents TSTextBoxAño As ToolStripTextBox
+    Friend WithEvents TSButtonFiltrar As ToolStripButton
+    Friend WithEvents TSLabelFiltro1 As ToolStripLabel
+    Friend WithEvents TSComboBoxFiltro1 As ToolStripComboBox
+    Friend WithEvents TSTextBoxFiltro1 As ToolStripTextBox
+    Friend WithEvents bPapeleraVaciarPapelera As Button
+    Friend WithEvents bPapeleraEliminar As Button
+    Friend WithEvents cbTGasto As ComboBox
+    Friend WithEvents cbSeccional As ComboBox
+    Friend WithEvents cbTComprobante As ComboBox
     Friend WithEvents PapeleraId As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraNroComprobante As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraTComprobanteId As DataGridViewTextBoxColumn
@@ -1225,18 +1237,22 @@ Partial Class ABMEgresos
     Friend WithEvents PapeleraReintegro As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraMonto As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraComentario As DataGridViewTextBoxColumn
-    Friend WithEvents ToolStripModificar As ToolStrip
-    Friend WithEvents TSLabelTrimestre As ToolStripLabel
-    Friend WithEvents TSComboBoxTrimestre As ToolStripComboBox
-    Friend WithEvents TSLabelAño As ToolStripLabel
-    Friend WithEvents TSTextBoxAño As ToolStripTextBox
-    Friend WithEvents TSButtonFiltrar As ToolStripButton
-    Friend WithEvents TSLabelFiltro1 As ToolStripLabel
-    Friend WithEvents TSComboBoxFiltro1 As ToolStripComboBox
-    Friend WithEvents TSTextBoxFiltro1 As ToolStripTextBox
-    Friend WithEvents bPapeleraVaciarPapelera As Button
-    Friend WithEvents bPapeleraEliminar As Button
-    Friend WithEvents cbTGasto As ComboBox
-    Friend WithEvents cbSeccional As ComboBox
-    Friend WithEvents cbTComprobante As ComboBox
+    Friend WithEvents PapeleraSeleccionado As DataGridViewCheckBoxColumn
+    Friend WithEvents id As DataGridViewTextBoxColumn
+    Friend WithEvents nro_comprobante As DataGridViewTextBoxColumn
+    Friend WithEvents tipo_comprobante_id As DataGridViewTextBoxColumn
+    Friend WithEvents tipo_comprobante_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents proveedor_id As DataGridViewTextBoxColumn
+    Friend WithEvents proveedor_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents categoria_gasto_id As DataGridViewTextBoxColumn
+    Friend WithEvents categoria_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents persona_id As DataGridViewTextBoxColumn
+    Friend WithEvents persona_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents fecha As DataGridViewTextBoxColumn
+    Friend WithEvents seccional_id As DataGridViewTextBoxColumn
+    Friend WithEvents seccional_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents mes_reintegro As DataGridViewTextBoxColumn
+    Friend WithEvents monto As DataGridViewTextBoxColumn
+    Friend WithEvents comentario As DataGridViewTextBoxColumn
+    Friend WithEvents seleccionado As DataGridViewCheckBoxColumn
 End Class
