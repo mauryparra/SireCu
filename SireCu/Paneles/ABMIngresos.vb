@@ -96,8 +96,24 @@ Public Class ABMIngresos
 #Region "Helpers"
 
     Private Sub cargar(ByVal mes As Integer, ByVal fila As Integer)
-        Dim array = mostrar_ingreso(mes, tb_Año.Text)
-        If (array.Length = 1) Then
+        Dim dt As DataTable = mostrar_ingreso(mes, tb_Año.Text)
+
+        If dt.Rows.Count > 0 Then
+            Select Case fila
+                Case 1
+                    tb_IngresosC1.Text = dt.Rows(0).Item("ingresos_central")
+                    tb_IngresosO1.Text = dt.Rows(0).Item("ingresos_otros")
+                    tb_IngresosP1.Text = dt.Rows(0).Item("ingresos_prov")
+                Case 2
+                    tb_IngresosC2.Text = dt.Rows(0).Item("ingresos_central")
+                    tb_IngresosO2.Text = dt.Rows(0).Item("ingresos_otros")
+                    tb_IngresosP2.Text = dt.Rows(0).Item("ingresos_prov")
+                Case 3
+                    tb_IngresosC3.Text = dt.Rows(0).Item("ingresos_central")
+                    tb_IngresosO3.Text = dt.Rows(0).Item("ingresos_otros")
+                    tb_IngresosP3.Text = dt.Rows(0).Item("ingresos_prov")
+            End Select
+        Else
             Select Case fila
                 Case 1
                     tb_IngresosC1.Text = "0.0"
@@ -111,21 +127,6 @@ Public Class ABMIngresos
                     tb_IngresosC3.Text = "0.0"
                     tb_IngresosO3.Text = "0.0"
                     tb_IngresosP3.Text = "0.0"
-            End Select
-        Else
-            Select Case fila
-                Case 1
-                    tb_IngresosC1.Text = array(1)
-                    tb_IngresosO1.Text = array(2)
-                    tb_IngresosP1.Text = array(0)
-                Case 2
-                    tb_IngresosC2.Text = array(1)
-                    tb_IngresosO2.Text = array(2)
-                    tb_IngresosP2.Text = array(0)
-                Case 3
-                    tb_IngresosC3.Text = array(1)
-                    tb_IngresosO3.Text = array(2)
-                    tb_IngresosP3.Text = array(0)
             End Select
         End If
     End Sub

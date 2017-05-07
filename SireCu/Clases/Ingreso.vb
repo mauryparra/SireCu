@@ -17,30 +17,14 @@ Module Ingreso
 
     End Sub
 
-    Public Function mostrar_ingreso(ByVal mes As Integer, ByVal año As Integer)
-
-        ' TODO reemplazar fill dataset por command.ExecuteReader
+    Public Function mostrar_ingreso(ByVal mes As Integer, ByVal año As Integer) As DataTable
 
         Principal.query = "SELECT * from ingresos where DATEPART(month, fecha) = '" & mes & "'" &
                 " And DatePart(Year, fecha) = '" & año & "'"
 
-        consultarNQ(Principal.query, Principal.command)
-        Principal.tableadapters("Ingresos") = New SqlCeDataAdapter(Principal.command)
-        Principal.dataset.Tables("Ingresos").Clear()
-        Principal.tableadapters("Ingresos").Fill(Principal.dataset.Tables("ingresos"))
+        Dim dt As DataTable = consultarReader(Principal.query)
 
-        Dim array() As String
-        If (Principal.dataset.Tables("ingresos").Rows.Count = 0) Then
-            array = {0}
-            Return (array)
-        Else
-            array = {
-                Principal.dataset.Tables("ingresos").Rows.Item(0).Item("ingresos_prov"),
-                Principal.dataset.Tables("ingresos").Rows.Item(0).Item("ingresos_central"),
-                Principal.dataset.Tables("ingresos").Rows.Item(0).Item("ingresos_otros")
-            }
-            Return array
-        End If
+        Return dt
 
     End Function
 

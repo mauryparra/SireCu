@@ -546,7 +546,7 @@ Public Class ABMEgresos
 
     'Validating
     Private Sub tbNombre_Validating(sender As Object, e As CancelEventArgs) Handles tbNombre.Validating
-        If (sender.Text = "") Or (exist("Personas", "nombre", sender.text) = False) Then
+        If (sender.Text = "") Or (tbNombre.AutoCompleteCustomSource.Contains(sender.text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -556,8 +556,8 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub cbTGasto_Validating(sender As Object, e As CancelEventArgs) Handles cbTGasto.Validating
-        ' TODO Revisar
-        If (sender.Text = "") Or (exist("CategoriasGastos", "nombre", sender.Text) = False) Then
+        ' Verifica que haya un item seleccionado y corresponda a la colección de opciones
+        If (sender.Text = "") Or (cbTGasto.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Dim var As String = cbTGasto.SelectedText
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
@@ -569,7 +569,7 @@ Public Class ABMEgresos
     End Sub
 
     Private Sub tbProveedor_Validating(sender As Object, e As CancelEventArgs) Handles tbProveedor.Validating
-        If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.text) = False) Then
+        If (sender.Text = "") Or (tbProveedor.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -579,8 +579,8 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub cbTComprobante_Validating(sender As Object, e As CancelEventArgs) Handles cbTComprobante.Validating
-        ' TODO revisar
-        If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.text) = False) Then
+        ' Verifica que haya un item seleccionado y corresponda a la colección de opciones
+        If (sender.Text = "") Or (cbTGasto.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -599,8 +599,8 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub cbSeccional_Validating(sender As Object, e As CancelEventArgs) Handles cbSeccional.Validating
-        ' TODO Revisar
-        If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.text) = False) Then
+        ' Verifica que haya un item seleccionado y corresponda a la colección de opciones
+        If (sender.Text = "") Or (cbSeccional.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -666,7 +666,7 @@ Public Class ABMEgresos
 
     'Validating
     Private Sub TextBoxNombre_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxNombre.Validating
-        If (sender.Text = "") Or (exist("Personas", "nombre", sender.text) = False) Then
+        If (sender.Text = "") Or (TextBoxNombre.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -676,7 +676,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub TextBoxProveedor_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxProveedor.Validating
-        If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.text) = False) Then
+        If (sender.Text = "") Or (TextBoxProveedor.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -719,7 +719,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub ComboBoxSeccional_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxSeccional.Validating
-        If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.text) = False) Then
+        If (sender.Text = "") Or (ComboBoxSeccional.AutoCompleteCustomSource.Contains(sender.text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -729,7 +729,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub ComboBoxTipoComprobante_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxTipoComprobante.Validating
-        If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.text) = False) Then
+        If (sender.Text = "") Or (ComboBoxTipoComprobante.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -739,7 +739,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub ComboBoxCategGasto_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxCategGasto.Validating
-        If (sender.Text = "") Or (exist("CategoriasGastos", "nombre", sender.text) = False) Then
+        If (sender.Text = "") Or (ComboBoxCategGasto.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresModificar.Add(sender)
