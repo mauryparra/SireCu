@@ -104,46 +104,48 @@ Public Class ABMEgresos
 
     Private Sub DataGridViewModificar_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVModificar.CellMouseDoubleClick
         ' Cargar el formulario con los datos para modificar
-        Try
-            idModificando = CInt(DGVModificar.Rows(e.RowIndex).Cells("id").Value)
+        If e.RowIndex > 0 Then ' Evita los encabezados de la tabla
+            Try
+                idModificando = CInt(DGVModificar.Rows(e.RowIndex).Cells("id").Value)
 
-            TextBoxNombre.Text = DGVModificar.Rows(e.RowIndex).Cells("persona_nombre").Value
-            ComboBoxCategGasto.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("categoria_gasto_id").Value
-            TextBoxProveedor.Text = DGVModificar.Rows(e.RowIndex).Cells("proveedor_nombre").Value
-            If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value Is DBNull.Value Then
-                DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
-                DateTimePickerMesReintegro.Checked = False
-            Else
-                If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value = DGVModificar.Rows(e.RowIndex).Cells("fecha").Value Then
-                    DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
+                TextBoxNombre.Text = DGVModificar.Rows(e.RowIndex).Cells("persona_nombre").Value
+                ComboBoxCategGasto.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("categoria_gasto_id").Value
+                TextBoxProveedor.Text = DGVModificar.Rows(e.RowIndex).Cells("proveedor_nombre").Value
+                If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value Is DBNull.Value Then
+                    DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
                     DateTimePickerMesReintegro.Checked = False
                 Else
-                    DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
-                    DateTimePickerMesReintegro.Checked = True
+                    If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value = DGVModificar.Rows(e.RowIndex).Cells("fecha").Value Then
+                        DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
+                        DateTimePickerMesReintegro.Checked = False
+                    Else
+                        DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
+                        DateTimePickerMesReintegro.Checked = True
+                    End If
                 End If
-            End If
-            ComboBoxSeccional.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("seccional_id").Value
-            TextBoxComentario.Text = DGVModificar.Rows(e.RowIndex).Cells("comentario").Value.ToString
-            DateTimePickerFecha.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
-            ComboBoxTipoComprobante.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("tipo_comprobante_id").Value
-            If DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Contains("-") Then
-                TextBoxPVenta.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(0)
-                TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(1)
-            Else
-                TextBoxPVenta.Text = "0"
-                TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value
-            End If
-            TextBoxMonto.Text = DGVModificar.Rows(e.RowIndex).Cells("monto").Value
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Error al cargar el formulario", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+                ComboBoxSeccional.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("seccional_id").Value
+                TextBoxComentario.Text = DGVModificar.Rows(e.RowIndex).Cells("comentario").Value.ToString
+                DateTimePickerFecha.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
+                ComboBoxTipoComprobante.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("tipo_comprobante_id").Value
+                If DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Contains("-") Then
+                    TextBoxPVenta.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(0)
+                    TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(1)
+                Else
+                    TextBoxPVenta.Text = "0"
+                    TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value
+                End If
+                TextBoxMonto.Text = DGVModificar.Rows(e.RowIndex).Cells("monto").Value
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Error al cargar el formulario", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
 
-        activarModificar(True)
+            activarModificar(True)
+        End If
 
     End Sub
 
     Private Sub DGVModificar_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVModificar.CellContentClick
-        If e.ColumnIndex = 1 Then
+        If e.ColumnIndex = 1 And e.RowIndex > 0 Then
             Dim id As Integer = DGVModificar.Rows(e.RowIndex).Cells("id").Value
             Dim seleccionado As Integer
             If DGVModificar.Rows(e.RowIndex).Cells("seleccionado").Value = 0 Then
@@ -165,10 +167,10 @@ Public Class ABMEgresos
 
         Dim dgvRow As DataGridViewRow = DGVModificar.Rows(e.RowIndex)
 
-        If dgvRow.Cells(1).Value = False Then
-            dgvRow.DefaultCellStyle.BackColor = Color.LavenderBlush
-        ElseIf dgvRow.Cells(1).Value = True Then
+        If dgvRow.Cells(1).Value = True Then
             dgvRow.DefaultCellStyle.BackColor = Color.Honeydew
+        Else
+            dgvRow.DefaultCellStyle.BackColor = Color.White
         End If
 
     End Sub
