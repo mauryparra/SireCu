@@ -143,7 +143,7 @@ Public Class ABMEgresos
     End Sub
 
     Private Sub DGVModificar_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVModificar.CellContentClick
-        If e.ColumnIndex = 16 Then
+        If e.ColumnIndex = 1 Then
             Dim id As Integer = DGVModificar.Rows(e.RowIndex).Cells("id").Value
             Dim seleccionado As Integer
             If DGVModificar.Rows(e.RowIndex).Cells("seleccionado").Value = 0 Then
@@ -159,6 +159,18 @@ Public Class ABMEgresos
                 DGVModificar.Rows(e.RowIndex).Cells("seleccionado").Value = seleccionado
             End If
         End If
+    End Sub
+
+    Private Sub DGVModificar_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles DGVModificar.RowPostPaint
+
+        Dim dgvRow As DataGridViewRow = DGVModificar.Rows(e.RowIndex)
+
+        If dgvRow.Cells(1).Value = False Then
+            dgvRow.DefaultCellStyle.BackColor = Color.LavenderBlush
+        ElseIf dgvRow.Cells(1).Value = True Then
+            dgvRow.DefaultCellStyle.BackColor = Color.Honeydew
+        End If
+
     End Sub
 
     Private Sub ButtonGuardar_Click(sender As Object, e As EventArgs) Handles ButtonGuardar.Click

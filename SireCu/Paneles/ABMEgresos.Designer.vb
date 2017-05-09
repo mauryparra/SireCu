@@ -93,24 +93,8 @@ Partial Class ABMEgresos
         Me.bPapeleraEliminar = New System.Windows.Forms.Button()
         Me.bPapeleraVaciarPapelera = New System.Windows.Forms.Button()
         Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
-        Me.PapeleraId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraNroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraTComprobanteId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraTipoComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraProveedorId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraCategoriaGastoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraCategoriaGasto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraPersonaId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraSeccionalId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraSeccional = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraSeleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.seleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.nro_comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tipo_comprobante_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tipo_comprobante_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -126,7 +110,23 @@ Partial Class ABMEgresos
         Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.seleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.PapeleraId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraSeleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.PapeleraNroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraTComprobanteId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraTipoComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraProveedorId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraCategoriaGastoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraCategoriaGasto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraPersonaId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraSeccionalId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraSeccional = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -497,7 +497,7 @@ Partial Class ABMEgresos
         Me.DGVModificar.AllowUserToAddRows = False
         Me.DGVModificar.AllowUserToDeleteRows = False
         Me.DGVModificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario, Me.seleccionado})
+        Me.DGVModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.seleccionado, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario})
         Me.DGVModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGVModificar.Location = New System.Drawing.Point(0, 0)
         Me.DGVModificar.Name = "DGVModificar"
@@ -513,7 +513,7 @@ Partial Class ABMEgresos
         Me.ToolStripModificar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSLabelTrimestre, Me.TSComboBoxTrimestre, Me.TSLabelAño, Me.TSTextBoxAño, Me.TSLabelFiltro1, Me.TSComboBoxFiltro1, Me.TSTextBoxFiltro1, Me.TSButtonFiltrar})
         Me.ToolStripModificar.Location = New System.Drawing.Point(3, 0)
         Me.ToolStripModificar.Name = "ToolStripModificar"
-        Me.ToolStripModificar.Size = New System.Drawing.Size(683, 25)
+        Me.ToolStripModificar.Size = New System.Drawing.Size(652, 25)
         Me.ToolStripModificar.TabIndex = 0
         '
         'TSLabelTrimestre
@@ -845,7 +845,7 @@ Partial Class ABMEgresos
         Me.DGVPapelera.AllowUserToAddRows = False
         Me.DGVPapelera.AllowUserToDeleteRows = False
         Me.DGVPapelera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVPapelera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PapeleraId, Me.PapeleraNroComprobante, Me.PapeleraTComprobanteId, Me.PapeleraTipoComprobante, Me.PapeleraProveedorId, Me.PapeleraProveedor, Me.PapeleraCategoriaGastoId, Me.PapeleraCategoriaGasto, Me.PapeleraPersonaId, Me.PapeleraPersona, Me.PapeleraFecha, Me.PapeleraSeccionalId, Me.PapeleraSeccional, Me.PapeleraReintegro, Me.PapeleraMonto, Me.PapeleraComentario, Me.PapeleraSeleccionado})
+        Me.DGVPapelera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PapeleraId, Me.PapeleraSeleccionado, Me.PapeleraNroComprobante, Me.PapeleraTComprobanteId, Me.PapeleraTipoComprobante, Me.PapeleraProveedorId, Me.PapeleraProveedor, Me.PapeleraCategoriaGastoId, Me.PapeleraCategoriaGasto, Me.PapeleraPersonaId, Me.PapeleraPersona, Me.PapeleraFecha, Me.PapeleraSeccionalId, Me.PapeleraSeccional, Me.PapeleraReintegro, Me.PapeleraMonto, Me.PapeleraComentario})
         Me.DGVPapelera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGVPapelera.Location = New System.Drawing.Point(0, 0)
         Me.DGVPapelera.Name = "DGVPapelera"
@@ -889,123 +889,18 @@ Partial Class ABMEgresos
         Me.bPapeleraRestaurar.Text = "Restaurar"
         Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
         '
-        'PapeleraId
-        '
-        Me.PapeleraId.HeaderText = "Id"
-        Me.PapeleraId.Name = "PapeleraId"
-        Me.PapeleraId.ReadOnly = True
-        '
-        'PapeleraNroComprobante
-        '
-        Me.PapeleraNroComprobante.HeaderText = "Nro Comprobante"
-        Me.PapeleraNroComprobante.Name = "PapeleraNroComprobante"
-        Me.PapeleraNroComprobante.ReadOnly = True
-        '
-        'PapeleraTComprobanteId
-        '
-        Me.PapeleraTComprobanteId.HeaderText = "tipo_comprobante_id"
-        Me.PapeleraTComprobanteId.Name = "PapeleraTComprobanteId"
-        Me.PapeleraTComprobanteId.ReadOnly = True
-        Me.PapeleraTComprobanteId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraTComprobanteId.Visible = False
-        '
-        'PapeleraTipoComprobante
-        '
-        Me.PapeleraTipoComprobante.HeaderText = "Tipo Comprobante"
-        Me.PapeleraTipoComprobante.Name = "PapeleraTipoComprobante"
-        Me.PapeleraTipoComprobante.ReadOnly = True
-        '
-        'PapeleraProveedorId
-        '
-        Me.PapeleraProveedorId.HeaderText = "proveedor_id"
-        Me.PapeleraProveedorId.Name = "PapeleraProveedorId"
-        Me.PapeleraProveedorId.ReadOnly = True
-        Me.PapeleraProveedorId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraProveedorId.Visible = False
-        '
-        'PapeleraProveedor
-        '
-        Me.PapeleraProveedor.HeaderText = "Proveedor"
-        Me.PapeleraProveedor.Name = "PapeleraProveedor"
-        Me.PapeleraProveedor.ReadOnly = True
-        '
-        'PapeleraCategoriaGastoId
-        '
-        Me.PapeleraCategoriaGastoId.HeaderText = "categoria_gasto_id"
-        Me.PapeleraCategoriaGastoId.Name = "PapeleraCategoriaGastoId"
-        Me.PapeleraCategoriaGastoId.ReadOnly = True
-        Me.PapeleraCategoriaGastoId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraCategoriaGastoId.Visible = False
-        '
-        'PapeleraCategoriaGasto
-        '
-        Me.PapeleraCategoriaGasto.HeaderText = "Categoria Gasto"
-        Me.PapeleraCategoriaGasto.Name = "PapeleraCategoriaGasto"
-        Me.PapeleraCategoriaGasto.ReadOnly = True
-        '
-        'PapeleraPersonaId
-        '
-        Me.PapeleraPersonaId.HeaderText = "persona_id"
-        Me.PapeleraPersonaId.Name = "PapeleraPersonaId"
-        Me.PapeleraPersonaId.ReadOnly = True
-        Me.PapeleraPersonaId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraPersonaId.Visible = False
-        '
-        'PapeleraPersona
-        '
-        Me.PapeleraPersona.HeaderText = "Persona"
-        Me.PapeleraPersona.Name = "PapeleraPersona"
-        Me.PapeleraPersona.ReadOnly = True
-        '
-        'PapeleraFecha
-        '
-        Me.PapeleraFecha.HeaderText = "Fecha"
-        Me.PapeleraFecha.Name = "PapeleraFecha"
-        Me.PapeleraFecha.ReadOnly = True
-        '
-        'PapeleraSeccionalId
-        '
-        Me.PapeleraSeccionalId.HeaderText = "seccional_id"
-        Me.PapeleraSeccionalId.Name = "PapeleraSeccionalId"
-        Me.PapeleraSeccionalId.ReadOnly = True
-        Me.PapeleraSeccionalId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraSeccionalId.Visible = False
-        '
-        'PapeleraSeccional
-        '
-        Me.PapeleraSeccional.HeaderText = "Seccional"
-        Me.PapeleraSeccional.Name = "PapeleraSeccional"
-        Me.PapeleraSeccional.ReadOnly = True
-        '
-        'PapeleraReintegro
-        '
-        Me.PapeleraReintegro.HeaderText = "Mes Reintegro"
-        Me.PapeleraReintegro.Name = "PapeleraReintegro"
-        Me.PapeleraReintegro.ReadOnly = True
-        '
-        'PapeleraMonto
-        '
-        Me.PapeleraMonto.HeaderText = "Monto"
-        Me.PapeleraMonto.Name = "PapeleraMonto"
-        Me.PapeleraMonto.ReadOnly = True
-        '
-        'PapeleraComentario
-        '
-        Me.PapeleraComentario.HeaderText = "Comentario"
-        Me.PapeleraComentario.Name = "PapeleraComentario"
-        Me.PapeleraComentario.ReadOnly = True
-        '
-        'PapeleraSeleccionado
-        '
-        Me.PapeleraSeleccionado.HeaderText = "Seleccionado"
-        Me.PapeleraSeleccionado.Name = "PapeleraSeleccionado"
-        Me.PapeleraSeleccionado.ReadOnly = True
-        '
         'id
         '
         Me.id.HeaderText = "Id"
         Me.id.Name = "id"
         Me.id.ReadOnly = True
+        Me.id.Visible = False
+        '
+        'seleccionado
+        '
+        Me.seleccionado.HeaderText = "Seleccionado"
+        Me.seleccionado.Name = "seleccionado"
+        Me.seleccionado.ReadOnly = True
         '
         'nro_comprobante
         '
@@ -1107,11 +1002,118 @@ Partial Class ABMEgresos
         Me.comentario.Name = "comentario"
         Me.comentario.ReadOnly = True
         '
-        'seleccionado
+        'PapeleraId
         '
-        Me.seleccionado.HeaderText = "Seleccionado"
-        Me.seleccionado.Name = "seleccionado"
-        Me.seleccionado.ReadOnly = True
+        Me.PapeleraId.HeaderText = "Id"
+        Me.PapeleraId.Name = "PapeleraId"
+        Me.PapeleraId.ReadOnly = True
+        Me.PapeleraId.Visible = False
+        '
+        'PapeleraSeleccionado
+        '
+        Me.PapeleraSeleccionado.HeaderText = "Seleccionado"
+        Me.PapeleraSeleccionado.Name = "PapeleraSeleccionado"
+        Me.PapeleraSeleccionado.ReadOnly = True
+        '
+        'PapeleraNroComprobante
+        '
+        Me.PapeleraNroComprobante.HeaderText = "Nro Comprobante"
+        Me.PapeleraNroComprobante.Name = "PapeleraNroComprobante"
+        Me.PapeleraNroComprobante.ReadOnly = True
+        '
+        'PapeleraTComprobanteId
+        '
+        Me.PapeleraTComprobanteId.HeaderText = "tipo_comprobante_id"
+        Me.PapeleraTComprobanteId.Name = "PapeleraTComprobanteId"
+        Me.PapeleraTComprobanteId.ReadOnly = True
+        Me.PapeleraTComprobanteId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraTComprobanteId.Visible = False
+        '
+        'PapeleraTipoComprobante
+        '
+        Me.PapeleraTipoComprobante.HeaderText = "Tipo Comprobante"
+        Me.PapeleraTipoComprobante.Name = "PapeleraTipoComprobante"
+        Me.PapeleraTipoComprobante.ReadOnly = True
+        '
+        'PapeleraProveedorId
+        '
+        Me.PapeleraProveedorId.HeaderText = "proveedor_id"
+        Me.PapeleraProveedorId.Name = "PapeleraProveedorId"
+        Me.PapeleraProveedorId.ReadOnly = True
+        Me.PapeleraProveedorId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraProveedorId.Visible = False
+        '
+        'PapeleraProveedor
+        '
+        Me.PapeleraProveedor.HeaderText = "Proveedor"
+        Me.PapeleraProveedor.Name = "PapeleraProveedor"
+        Me.PapeleraProveedor.ReadOnly = True
+        '
+        'PapeleraCategoriaGastoId
+        '
+        Me.PapeleraCategoriaGastoId.HeaderText = "categoria_gasto_id"
+        Me.PapeleraCategoriaGastoId.Name = "PapeleraCategoriaGastoId"
+        Me.PapeleraCategoriaGastoId.ReadOnly = True
+        Me.PapeleraCategoriaGastoId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraCategoriaGastoId.Visible = False
+        '
+        'PapeleraCategoriaGasto
+        '
+        Me.PapeleraCategoriaGasto.HeaderText = "Categoria Gasto"
+        Me.PapeleraCategoriaGasto.Name = "PapeleraCategoriaGasto"
+        Me.PapeleraCategoriaGasto.ReadOnly = True
+        '
+        'PapeleraPersonaId
+        '
+        Me.PapeleraPersonaId.HeaderText = "persona_id"
+        Me.PapeleraPersonaId.Name = "PapeleraPersonaId"
+        Me.PapeleraPersonaId.ReadOnly = True
+        Me.PapeleraPersonaId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraPersonaId.Visible = False
+        '
+        'PapeleraPersona
+        '
+        Me.PapeleraPersona.HeaderText = "Persona"
+        Me.PapeleraPersona.Name = "PapeleraPersona"
+        Me.PapeleraPersona.ReadOnly = True
+        '
+        'PapeleraFecha
+        '
+        Me.PapeleraFecha.HeaderText = "Fecha"
+        Me.PapeleraFecha.Name = "PapeleraFecha"
+        Me.PapeleraFecha.ReadOnly = True
+        '
+        'PapeleraSeccionalId
+        '
+        Me.PapeleraSeccionalId.HeaderText = "seccional_id"
+        Me.PapeleraSeccionalId.Name = "PapeleraSeccionalId"
+        Me.PapeleraSeccionalId.ReadOnly = True
+        Me.PapeleraSeccionalId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraSeccionalId.Visible = False
+        '
+        'PapeleraSeccional
+        '
+        Me.PapeleraSeccional.HeaderText = "Seccional"
+        Me.PapeleraSeccional.Name = "PapeleraSeccional"
+        Me.PapeleraSeccional.ReadOnly = True
+        '
+        'PapeleraReintegro
+        '
+        Me.PapeleraReintegro.HeaderText = "Mes Reintegro"
+        Me.PapeleraReintegro.Name = "PapeleraReintegro"
+        Me.PapeleraReintegro.ReadOnly = True
+        '
+        'PapeleraMonto
+        '
+        Me.PapeleraMonto.HeaderText = "Monto"
+        Me.PapeleraMonto.Name = "PapeleraMonto"
+        Me.PapeleraMonto.ReadOnly = True
+        '
+        'PapeleraComentario
+        '
+        Me.PapeleraComentario.HeaderText = "Comentario"
+        Me.PapeleraComentario.Name = "PapeleraComentario"
+        Me.PapeleraComentario.ReadOnly = True
         '
         'ABMEgresos
         '
@@ -1221,24 +1223,8 @@ Partial Class ABMEgresos
     Friend WithEvents cbTGasto As ComboBox
     Friend WithEvents cbSeccional As ComboBox
     Friend WithEvents cbTComprobante As ComboBox
-    Friend WithEvents PapeleraId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraNroComprobante As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraTComprobanteId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraTipoComprobante As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraProveedorId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraProveedor As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraCategoriaGastoId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraCategoriaGasto As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraPersonaId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraPersona As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraFecha As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraSeccionalId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraSeccional As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraReintegro As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraMonto As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraComentario As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraSeleccionado As DataGridViewCheckBoxColumn
     Friend WithEvents id As DataGridViewTextBoxColumn
+    Friend WithEvents seleccionado As DataGridViewCheckBoxColumn
     Friend WithEvents nro_comprobante As DataGridViewTextBoxColumn
     Friend WithEvents tipo_comprobante_id As DataGridViewTextBoxColumn
     Friend WithEvents tipo_comprobante_nombre As DataGridViewTextBoxColumn
@@ -1254,5 +1240,21 @@ Partial Class ABMEgresos
     Friend WithEvents mes_reintegro As DataGridViewTextBoxColumn
     Friend WithEvents monto As DataGridViewTextBoxColumn
     Friend WithEvents comentario As DataGridViewTextBoxColumn
-    Friend WithEvents seleccionado As DataGridViewCheckBoxColumn
+    Friend WithEvents PapeleraId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraSeleccionado As DataGridViewCheckBoxColumn
+    Friend WithEvents PapeleraNroComprobante As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraTComprobanteId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraTipoComprobante As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraProveedorId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraProveedor As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraCategoriaGastoId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraCategoriaGasto As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraPersonaId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraPersona As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraFecha As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraSeccionalId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraSeccional As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraReintegro As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraMonto As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraComentario As DataGridViewTextBoxColumn
 End Class
