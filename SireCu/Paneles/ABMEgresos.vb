@@ -104,7 +104,7 @@ Public Class ABMEgresos
 
     Private Sub DataGridViewModificar_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVModificar.CellMouseDoubleClick
         ' Cargar el formulario con los datos para modificar
-        If e.RowIndex > 0 Then ' Evita los encabezados de la tabla
+        If e.RowIndex >= 0 Then ' Evita los encabezados de la tabla
             Try
                 idModificando = CInt(DGVModificar.Rows(e.RowIndex).Cells("id").Value)
 
@@ -145,7 +145,7 @@ Public Class ABMEgresos
     End Sub
 
     Private Sub DGVModificar_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGVModificar.CellContentClick
-        If e.ColumnIndex = 1 And e.RowIndex > 0 Then
+        If e.ColumnIndex = 1 And e.RowIndex >= 0 Then
             Dim id As Integer = DGVModificar.Rows(e.RowIndex).Cells("id").Value
             Dim seleccionado As Integer
             If DGVModificar.Rows(e.RowIndex).Cells("seleccionado").Value = 0 Then
@@ -269,7 +269,11 @@ Public Class ABMEgresos
         End If
 
         If Not (TSComboBoxFiltro1.SelectedItem = "" Or TSTextBoxFiltro1.Text = "") Then
-            filtros.Add(New KeyValuePair(Of String, String)(TSComboBoxFiltro1.SelectedItem, TSTextBoxFiltro1.Text))
+            filtros.Add(New KeyValuePair(Of String, String)(TSComboBoxFiltro1.SelectedItem & TSComboBoxOpera1.SelectedItem, TSTextBoxFiltro1.Text))
+        End If
+
+        If Not (TSComboBoxFiltro2.SelectedItem = "" Or TSTextBoxFiltro2.Text = "") Then
+            filtros.Add(New KeyValuePair(Of String, String)(TSComboBoxFiltro2.SelectedItem & TSComboBoxOpera2.SelectedItem, TSTextBoxFiltro2.Text))
         End If
 
         ' SQL Basico
@@ -325,29 +329,66 @@ Public Class ABMEgresos
 
                 ' Filtros adicionales
                 Select Case keyv.Key
-                    Case "Id"
-                        sql += " AND E.id = " & keyv.Value
-                    Case "Nro Comprobante"
+                    Case "Nro Comprobante="
                         sql += " AND E.nro_comprobante = '" & keyv.Value & "'"
-                    Case "Tipo Comprobante"
+                    Case "Nro Comprobante*"
+                        sql += " AND E.nro_comprobante LIKE '%" & keyv.Value & "%'"
+
+                    Case "Tipo Comprobante="
                         sql += " AND Comp.nombre = '" & keyv.Value & "'"
-                    Case "Proveedor"
+                    Case "Tipo Comprobante*"
+                        sql += " AND Comp.nombre LIKE '%" & keyv.Value & "%'"
+
+                    Case "Proveedor="
                         sql += " AND Pro.nombre = '" & keyv.Value & "'"
-                    Case "Categoria Gasto"
+                    Case "Proveedor*"
+                        sql += " AND Pro.nombre LIKE '%" & keyv.Value & "%'"
+
+                    Case "Categoria Gasto="
                         sql += " AND Gastos.nombre = '" & keyv.Value & "'"
-                    Case "Persona"
+                    Case "Categoria Gasto*"
+                        sql += " AND Gastos.nombre LIKE '%" & keyv.Value & "%'"
+
+                    Case "Persona="
                         sql += " AND Per.nombre = '" & keyv.Value & "'"
-                    Case "Fecha"
-                        sql += " AND E.fecha = " & keyv.Value
-                    Case "Seccional"
+                    Case "Persona*"
+                        sql += " AND Per.nombre LIKE '%" & keyv.Value & "%'"
+
+                    Case "Fecha="
+                    Case "Fecha*"
+                        Dim fecha As Date
+                        If Date.TryParse(keyv.Value, fecha) Then
+                            sql += " AND E.fecha > '" & fecha.AddDays(-1).ToString("yyyy-MM-dd") & "' AND E.fecha < '" & fecha.AddDays(1).ToString("yyyy-MM-dd") & "'"
+                        Else
+                            MsgBox("No se pudo convertir el filtro a una fecha valida", MsgBoxStyle.Exclamation, "Filtrar")
+                        End If
+
+                    Case "Seccional="
                         sql += " AND Secc.nombre = '" & keyv.Value & "'"
-                    Case "Mes Reintegro"
-                        sql += " AND E.mes_reintegro = " & keyv.Value
-                    Case "Monto"
-                        sql += " AND E.monto = " & keyv.Value
-                    Case "Comentario"
+                    Case "Seccional*"
+                        sql += " AND Secc.nombre LIKE '%" & keyv.Value & "%'"
+
+                    Case "Mes Reintegro="
+                    Case "Mes Reintegro*"
+                        Dim fecha As Date
+                        If Date.TryParse(keyv.Value, fecha) Then
+                            sql += " AND DATEPART(month, E.mes_reintegro) = '" & fecha.Month & "' AND DATEPART(year, E.mes_reintegro) = '" & fecha.Year & "'"
+                        Else
+                            MsgBox("No se pudo convertir el filtro a una fecha valida", MsgBoxStyle.Exclamation, "Filtrar")
+                        End If
+
+                    Case "Monto="
+                        sql += " AND E.monto = '" & keyv.Value & "'"
+                    Case "Monto*"
+                        sql += " AND E.monto LIKE '%" & keyv.Value & "%'"
+
+                    Case "Comentario="
                         sql += " AND E.comentario = '" & keyv.Value & "'"
-                    Case "Seleccionado"
+                    Case "Comentario*"
+                        sql += " AND E.comentario LIKE '%" & keyv.Value & "%'"
+
+                    Case "Seleccionado="
+                    Case "Seleccionado*"
                         sql += " AND E.seleccionado = " & keyv.Value
                     Case Else
                         Exit Select
@@ -358,6 +399,22 @@ Public Class ABMEgresos
         sql += " ORDER BY E.id DESC"
 
         FiltrarDGV(DGVModificar, sql)
+
+    End Sub
+
+
+    Private Sub TSButtonQuitarFiltros_Click(sender As Object, e As EventArgs) Handles TSButtonQuitarFiltros.Click
+
+        TSComboBoxTrimestre.SelectedIndex = -1
+        TSTextBoxAño.Text = ""
+        TSComboBoxFiltro1.SelectedIndex = -1
+        TSComboBoxOpera1.SelectedIndex = 0
+        TSTextBoxFiltro1.Text = ""
+        TSComboBoxFiltro2.SelectedIndex = -1
+        TSComboBoxOpera2.SelectedIndex = 0
+        TSTextBoxFiltro2.Text = ""
+
+        CargardDGV(DGVModificar)
 
     End Sub
 

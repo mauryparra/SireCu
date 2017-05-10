@@ -127,6 +127,12 @@ Partial Class ABMEgresos
         Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TSComboBoxOpera1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.TSComboBoxFiltro2 = New System.Windows.Forms.ToolStripComboBox()
+        Me.TSComboBoxOpera2 = New System.Windows.Forms.ToolStripComboBox()
+        Me.TSTextBoxFiltro2 = New System.Windows.Forms.ToolStripTextBox()
+        Me.TSLabelFiltro2 = New System.Windows.Forms.ToolStripLabel()
+        Me.TSButtonQuitarFiltros = New System.Windows.Forms.ToolStripButton()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.TabPageModificar.SuspendLayout()
@@ -478,7 +484,7 @@ Partial Class ABMEgresos
         'ToolStripContainerModificar.ContentPanel
         '
         Me.ToolStripContainerModificar.ContentPanel.Controls.Add(Me.DGVModificar)
-        Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(741, 176)
+        Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(741, 143)
         Me.ToolStripContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerModificar.LeftToolStripPanelVisible = False
         Me.ToolStripContainerModificar.Location = New System.Drawing.Point(0, 0)
@@ -503,63 +509,80 @@ Partial Class ABMEgresos
         Me.DGVModificar.Name = "DGVModificar"
         Me.DGVModificar.ReadOnly = True
         Me.DGVModificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVModificar.Size = New System.Drawing.Size(741, 176)
+        Me.DGVModificar.Size = New System.Drawing.Size(741, 143)
         Me.DGVModificar.TabIndex = 0
         '
         'ToolStripModificar
         '
+        Me.ToolStripModificar.AutoSize = False
         Me.ToolStripModificar.Dock = System.Windows.Forms.DockStyle.None
         Me.ToolStripModificar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStripModificar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSLabelTrimestre, Me.TSComboBoxTrimestre, Me.TSLabelAño, Me.TSTextBoxAño, Me.TSLabelFiltro1, Me.TSComboBoxFiltro1, Me.TSTextBoxFiltro1, Me.TSButtonFiltrar})
+        Me.ToolStripModificar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSLabelTrimestre, Me.TSComboBoxTrimestre, Me.TSLabelAño, Me.TSTextBoxAño, Me.TSLabelFiltro1, Me.TSComboBoxFiltro1, Me.TSComboBoxOpera1, Me.TSTextBoxFiltro1, Me.TSLabelFiltro2, Me.TSComboBoxFiltro2, Me.TSComboBoxOpera2, Me.TSTextBoxFiltro2, Me.TSButtonFiltrar, Me.TSButtonQuitarFiltros})
+        Me.ToolStripModificar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow
         Me.ToolStripModificar.Location = New System.Drawing.Point(3, 0)
         Me.ToolStripModificar.Name = "ToolStripModificar"
-        Me.ToolStripModificar.Size = New System.Drawing.Size(652, 25)
+        Me.ToolStripModificar.Padding = New System.Windows.Forms.Padding(0)
+        Me.ToolStripModificar.Size = New System.Drawing.Size(738, 58)
         Me.ToolStripModificar.TabIndex = 0
         '
         'TSLabelTrimestre
         '
+        Me.TSLabelTrimestre.Margin = New System.Windows.Forms.Padding(3)
         Me.TSLabelTrimestre.Name = "TSLabelTrimestre"
-        Me.TSLabelTrimestre.Size = New System.Drawing.Size(62, 22)
+        Me.TSLabelTrimestre.Padding = New System.Windows.Forms.Padding(0, 6, 0, 0)
+        Me.TSLabelTrimestre.Size = New System.Drawing.Size(62, 21)
         Me.TSLabelTrimestre.Text = "Trimestre: "
         '
         'TSComboBoxTrimestre
         '
         Me.TSComboBoxTrimestre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.TSComboBoxTrimestre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.TSComboBoxTrimestre.FlatStyle = System.Windows.Forms.FlatStyle.Standard
         Me.TSComboBoxTrimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
+        Me.TSComboBoxTrimestre.Margin = New System.Windows.Forms.Padding(3)
         Me.TSComboBoxTrimestre.Name = "TSComboBoxTrimestre"
-        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(121, 25)
+        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(121, 23)
         '
         'TSLabelAño
         '
+        Me.TSLabelAño.Margin = New System.Windows.Forms.Padding(3)
         Me.TSLabelAño.Name = "TSLabelAño"
-        Me.TSLabelAño.Size = New System.Drawing.Size(35, 22)
+        Me.TSLabelAño.Padding = New System.Windows.Forms.Padding(0, 6, 0, 0)
+        Me.TSLabelAño.Size = New System.Drawing.Size(35, 21)
         Me.TSLabelAño.Text = "Año: "
         '
         'TSTextBoxAño
         '
+        Me.TSTextBoxAño.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TSTextBoxAño.Margin = New System.Windows.Forms.Padding(3)
         Me.TSTextBoxAño.Name = "TSTextBoxAño"
-        Me.TSTextBoxAño.Size = New System.Drawing.Size(100, 25)
+        Me.TSTextBoxAño.Size = New System.Drawing.Size(100, 23)
         '
         'TSLabelFiltro1
         '
+        Me.TSLabelFiltro1.Margin = New System.Windows.Forms.Padding(3)
         Me.TSLabelFiltro1.Name = "TSLabelFiltro1"
-        Me.TSLabelFiltro1.Size = New System.Drawing.Size(61, 22)
+        Me.TSLabelFiltro1.Padding = New System.Windows.Forms.Padding(0, 6, 0, 0)
+        Me.TSLabelFiltro1.Size = New System.Drawing.Size(61, 21)
         Me.TSLabelFiltro1.Text = "Filtrar Por:"
         '
         'TSComboBoxFiltro1
         '
         Me.TSComboBoxFiltro1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.TSComboBoxFiltro1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"Id", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
+        Me.TSComboBoxFiltro1.FlatStyle = System.Windows.Forms.FlatStyle.Standard
+        Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
+        Me.TSComboBoxFiltro1.Margin = New System.Windows.Forms.Padding(3)
         Me.TSComboBoxFiltro1.Name = "TSComboBoxFiltro1"
-        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(121, 25)
+        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(121, 23)
         Me.TSComboBoxFiltro1.ToolTipText = "Seleccione columna por la cual desea filtrar"
         '
         'TSTextBoxFiltro1
         '
+        Me.TSTextBoxFiltro1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TSTextBoxFiltro1.Margin = New System.Windows.Forms.Padding(3)
         Me.TSTextBoxFiltro1.Name = "TSTextBoxFiltro1"
-        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(100, 25)
+        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(100, 23)
         Me.TSTextBoxFiltro1.ToolTipText = "Ingresar valores por los cuales quiere filtrar la tabla."
         '
         'TSButtonFiltrar
@@ -568,8 +591,10 @@ Partial Class ABMEgresos
         Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
         Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonFiltrar.Margin = New System.Windows.Forms.Padding(3)
         Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
-        Me.TSButtonFiltrar.Size = New System.Drawing.Size(41, 22)
+        Me.TSButtonFiltrar.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
+        Me.TSButtonFiltrar.Size = New System.Drawing.Size(61, 23)
         Me.TSButtonFiltrar.Text = "Filtrar"
         '
         'ButtonEliminar
@@ -1115,6 +1140,62 @@ Partial Class ABMEgresos
         Me.PapeleraComentario.Name = "PapeleraComentario"
         Me.PapeleraComentario.ReadOnly = True
         '
+        'TSComboBoxOpera1
+        '
+        Me.TSComboBoxOpera1.FlatStyle = System.Windows.Forms.FlatStyle.Standard
+        Me.TSComboBoxOpera1.Items.AddRange(New Object() {"*", "="})
+        Me.TSComboBoxOpera1.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSComboBoxOpera1.Name = "TSComboBoxOpera1"
+        Me.TSComboBoxOpera1.Size = New System.Drawing.Size(75, 23)
+        Me.TSComboBoxOpera1.Text = "*"
+        Me.TSComboBoxOpera1.ToolTipText = "Elija entre buscar resultados apróximados o exactos"
+        '
+        'TSComboBoxFiltro2
+        '
+        Me.TSComboBoxFiltro2.FlatStyle = System.Windows.Forms.FlatStyle.Standard
+        Me.TSComboBoxFiltro2.Items.AddRange(New Object() {"Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
+        Me.TSComboBoxFiltro2.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSComboBoxFiltro2.Name = "TSComboBoxFiltro2"
+        Me.TSComboBoxFiltro2.Size = New System.Drawing.Size(121, 23)
+        Me.TSComboBoxFiltro2.ToolTipText = "Seleccione columna por la cual desea filtrar"
+        '
+        'TSComboBoxOpera2
+        '
+        Me.TSComboBoxOpera2.FlatStyle = System.Windows.Forms.FlatStyle.Standard
+        Me.TSComboBoxOpera2.Items.AddRange(New Object() {"*", "="})
+        Me.TSComboBoxOpera2.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSComboBoxOpera2.Name = "TSComboBoxOpera2"
+        Me.TSComboBoxOpera2.Size = New System.Drawing.Size(75, 23)
+        Me.TSComboBoxOpera2.Text = "*"
+        Me.TSComboBoxOpera2.ToolTipText = "Elija entre buscar resultados apróximados o exactos"
+        '
+        'TSTextBoxFiltro2
+        '
+        Me.TSTextBoxFiltro2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TSTextBoxFiltro2.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSTextBoxFiltro2.Name = "TSTextBoxFiltro2"
+        Me.TSTextBoxFiltro2.Size = New System.Drawing.Size(100, 23)
+        '
+        'TSLabelFiltro2
+        '
+        Me.TSLabelFiltro2.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSLabelFiltro2.Name = "TSLabelFiltro2"
+        Me.TSLabelFiltro2.Padding = New System.Windows.Forms.Padding(0, 6, 0, 0)
+        Me.TSLabelFiltro2.Size = New System.Drawing.Size(93, 21)
+        Me.TSLabelFiltro2.Text = "Filtro Adicional: "
+        '
+        'TSButtonQuitarFiltros
+        '
+        Me.TSButtonQuitarFiltros.BackColor = System.Drawing.Color.LightBlue
+        Me.TSButtonQuitarFiltros.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSButtonQuitarFiltros.Image = CType(resources.GetObject("TSButtonQuitarFiltros.Image"), System.Drawing.Image)
+        Me.TSButtonQuitarFiltros.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonQuitarFiltros.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSButtonQuitarFiltros.Name = "TSButtonQuitarFiltros"
+        Me.TSButtonQuitarFiltros.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
+        Me.TSButtonQuitarFiltros.Size = New System.Drawing.Size(99, 23)
+        Me.TSButtonQuitarFiltros.Text = "Quitar Filtros"
+        '
         'ABMEgresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1134,7 +1215,6 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar.ResumeLayout(False)
         Me.ToolStripContainerModificar.ContentPanel.ResumeLayout(False)
         Me.ToolStripContainerModificar.TopToolStripPanel.ResumeLayout(False)
-        Me.ToolStripContainerModificar.TopToolStripPanel.PerformLayout()
         Me.ToolStripContainerModificar.ResumeLayout(False)
         Me.ToolStripContainerModificar.PerformLayout()
         CType(Me.DGVModificar, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1257,4 +1337,10 @@ Partial Class ABMEgresos
     Friend WithEvents PapeleraReintegro As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraMonto As DataGridViewTextBoxColumn
     Friend WithEvents PapeleraComentario As DataGridViewTextBoxColumn
+    Friend WithEvents TSComboBoxOpera1 As ToolStripComboBox
+    Friend WithEvents TSComboBoxFiltro2 As ToolStripComboBox
+    Friend WithEvents TSComboBoxOpera2 As ToolStripComboBox
+    Friend WithEvents TSTextBoxFiltro2 As ToolStripTextBox
+    Friend WithEvents TSLabelFiltro2 As ToolStripLabel
+    Friend WithEvents TSButtonQuitarFiltros As ToolStripButton
 End Class
