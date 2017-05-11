@@ -368,8 +368,7 @@ Public Class ABMEgresos
                     Case "Seccional*"
                         sql += " AND Secc.nombre LIKE '%" & keyv.Value & "%'"
 
-                    Case "Mes Reintegro="
-                    Case "Mes Reintegro*"
+                    Case "Mes Reintegro=", "Mes Reintegro*"
                         Dim fecha As Date
                         If Date.TryParse(keyv.Value, fecha) Then
                             sql += " AND DATEPART(month, E.mes_reintegro) = '" & fecha.Month & "' AND DATEPART(year, E.mes_reintegro) = '" & fecha.Year & "'"
@@ -387,8 +386,7 @@ Public Class ABMEgresos
                     Case "Comentario*"
                         sql += " AND E.comentario LIKE '%" & keyv.Value & "%'"
 
-                    Case "Seleccionado="
-                    Case "Seleccionado*"
+                    Case "Seleccionado=", "Seleccionado*"
                         sql += " AND E.seleccionado = " & keyv.Value
                     Case Else
                         Exit Select
@@ -757,6 +755,9 @@ Public Class ABMEgresos
     Private Sub ComboBoxTipoComprobante_KeyPress(sender As Object, e As KeyPressEventArgs) Handles ComboBoxTipoComprobante.KeyPress
         keyverify(e, letras:=True, espacios:=True)
     End Sub
+    Private Sub TSTextBoxAño_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TSTextBoxAño.KeyPress
+        keyverify(e, numeros:=True)
+    End Sub
 
     'Validating
     Private Sub TextBoxNombre_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxNombre.Validating
@@ -844,7 +845,94 @@ Public Class ABMEgresos
     End Sub
 
     Private Sub TSTextBoxFiltro1_Validating(sender As Object, e As CancelEventArgs) Handles TSTextBoxFiltro1.Validating
-        ' TODO validación segun tipo de campo seleccionado
+        Select Case TSComboBoxFiltro1.SelectedItem
+            Case "Fecha", "Mes Reintegro"
+                If Not (Date.TryParse(sender.Text, New Date) Or sender.Text = "") Then
+                    System.Media.SystemSounds.Beep.Play()
+                    sender.BackColor = Color.MistyRose
+                    TSComboBoxFiltro1.BackColor = Color.MistyRose
+                Else
+                    sender.BackColor = SystemColors.Window
+                    TSComboBoxFiltro1.BackColor = SystemColors.Window
+                End If
+            Case "Monto"
+                If Not (IsNumeric(sender.Text) Or sender.Text = "") Then
+                    System.Media.SystemSounds.Beep.Play()
+                    sender.BackColor = Color.MistyRose
+                    TSComboBoxFiltro1.BackColor = Color.MistyRose
+                Else
+                    sender.BackColor = SystemColors.Window
+                    TSComboBoxFiltro1.BackColor = SystemColors.Window
+                End If
+            Case "Seleccionado"
+                If Not (sender.text = "0" Or sender.Text = "1" Or sender.Text = "") Then
+                    System.Media.SystemSounds.Beep.Play()
+                    sender.BackColor = Color.MistyRose
+                    TSComboBoxFiltro1.BackColor = Color.MistyRose
+                Else
+                    sender.BackColor = SystemColors.Window
+                    TSComboBoxFiltro1.BackColor = SystemColors.Window
+                End If
+            Case Else
+                sender.BackColor = SystemColors.Window
+                TSComboBoxFiltro1.BackColor = SystemColors.Window
+                Exit Select
+        End Select
+    End Sub
+    Private Sub TSTextBoxFiltro2_Validating(sender As Object, e As CancelEventArgs) Handles TSTextBoxFiltro2.Validating
+        Select Case TSComboBoxFiltro2.SelectedItem
+            Case "Fecha", "Mes Reintegro"
+                If Not (Date.TryParse(sender.Text, New Date) Or sender.Text = "") Then
+                    System.Media.SystemSounds.Beep.Play()
+                    sender.BackColor = Color.MistyRose
+                    TSComboBoxFiltro2.BackColor = Color.MistyRose
+                Else
+                    sender.BackColor = SystemColors.Window
+                    TSComboBoxFiltro2.BackColor = SystemColors.Window
+                End If
+            Case "Monto"
+                If Not (IsNumeric(sender.Text) Or sender.Text = "") Then
+                    System.Media.SystemSounds.Beep.Play()
+                    sender.BackColor = Color.MistyRose
+                    TSComboBoxFiltro2.BackColor = Color.MistyRose
+                Else
+                    sender.BackColor = SystemColors.Window
+                    TSComboBoxFiltro2.BackColor = SystemColors.Window
+                End If
+            Case "Seleccionado"
+                If Not (sender.text = "0" Or sender.Text = "1" Or sender.Text = "") Then
+                    System.Media.SystemSounds.Beep.Play()
+                    sender.BackColor = Color.MistyRose
+                    TSComboBoxFiltro2.BackColor = Color.MistyRose
+                Else
+                    sender.BackColor = SystemColors.Window
+                    TSComboBoxFiltro2.BackColor = SystemColors.Window
+                End If
+            Case Else
+                sender.BackColor = SystemColors.Window
+                TSComboBoxFiltro2.BackColor = SystemColors.Window
+                Exit Select
+        End Select
+    End Sub
+    Private Sub TSComboBoxTrimestre_Validating(sender As Object, e As CancelEventArgs) Handles TSComboBoxTrimestre.Validating
+        If TSComboBoxTrimestre.Items.Contains(TSComboBoxTrimestre.Text) Or TSComboBoxTrimestre.Text = "" Then
+            TSComboBoxTrimestre.BackColor = SystemColors.Window
+        Else
+            TSComboBoxTrimestre.SelectedIndex = -1
+            TSComboBoxTrimestre.Text = ""
+            System.Media.SystemSounds.Beep.Play()
+            TSComboBoxTrimestre.BackColor = Color.MistyRose
+        End If
+    End Sub
+    Private Sub TSComboBoxFiltro1_Validating(sender As Object, e As CancelEventArgs) Handles TSComboBoxFiltro1.Validating
+        If TSComboBoxFiltro1.Items.Contains(TSComboBoxFiltro1.Text) Or TSComboBoxFiltro1.Text = "" Then
+            TSComboBoxFiltro1.BackColor = SystemColors.Window
+        Else
+            TSComboBoxFiltro1.SelectedIndex = -1
+            TSComboBoxFiltro1.Text = ""
+            System.Media.SystemSounds.Beep.Play()
+            TSComboBoxFiltro1.BackColor = Color.MistyRose
+        End If
     End Sub
 #End Region
 
