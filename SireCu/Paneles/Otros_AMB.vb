@@ -147,7 +147,7 @@ Public Class Otros_AMB
         keyverify(e, letras:=True, espacios:=True)
     End Sub
     Private Sub tb_editar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tb_editar.KeyPress
-        keyverify(e, letras:=True, espacios:=True)
+        keyverify(e, letras:=True, espacios:=True, numeros:=True)
     End Sub
 
     Private Sub cb_tabla_Validating(sender As Object, e As CancelEventArgs) Handles cb_tabla.Validating

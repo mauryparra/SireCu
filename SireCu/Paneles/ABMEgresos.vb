@@ -648,9 +648,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub cbTGasto_Validating(sender As Object, e As CancelEventArgs) Handles cbTGasto.Validating
-        ' Verifica que haya un item seleccionado y corresponda a la colección de opciones
-        If (sender.Text = "") Or (cbTGasto.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
-            Dim var As String = cbTGasto.SelectedText
+        If (sender.Text = "") Or (exist("CategoriasGastos", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -671,8 +669,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub cbTComprobante_Validating(sender As Object, e As CancelEventArgs) Handles cbTComprobante.Validating
-        ' Verifica que haya un item seleccionado y corresponda a la colección de opciones
-        If (sender.Text = "") Or (cbTComprobante.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -691,8 +688,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub cbSeccional_Validating(sender As Object, e As CancelEventArgs) Handles cbSeccional.Validating
-        ' Verifica que haya un item seleccionado y corresponda a la colección de opciones
-        If (sender.Text = "") Or (cbSeccional.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresAgregar.Add(sender)
@@ -814,7 +810,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub ComboBoxSeccional_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxSeccional.Validating
-        If (sender.Text = "") Or (ComboBoxSeccional.AutoCompleteCustomSource.Contains(sender.text) = False) Then
+        If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -824,7 +820,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub ComboBoxTipoComprobante_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxTipoComprobante.Validating
-        If (sender.Text = "") Or (ComboBoxTipoComprobante.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en el menú Editar")
             ControlesConErroresModificar.Add(sender)
@@ -834,7 +830,7 @@ Public Class ABMEgresos
         End If
     End Sub
     Private Sub ComboBoxCategGasto_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxCategGasto.Validating
-        If (sender.Text = "") Or (ComboBoxCategGasto.AutoCompleteCustomSource.Contains(sender.Text) = False) Then
+        If (sender.Text = "") Or (exist("Categoriasgastos", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
                                              "Puede agregar una nueva en el menú Editar")
             ControlesConErroresModificar.Add(sender)
