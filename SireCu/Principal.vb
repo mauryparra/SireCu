@@ -17,11 +17,15 @@ Public Class Principal
     Private Sub RadioButtonEgresos_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonEgresos.CheckedChanged
         AdminPantallas("ABMEgresos")
     End Sub
+    Private Sub RadioButtonABMAdmin_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonABMAdmin.CheckedChanged
+        AdminPantallas("ABMAdmin")
+    End Sub
 
     Private Sub AdminPantallas(ByVal pantalla As String)
         Dim bandera As Boolean = False
 
         ' Si la pantalla no se encuentra cargada, la hace visible
+        ' TODO Revisar
         For Each ctrl As Control In SplitContainerPrincipal.Panel2.Controls
             If pantalla = ctrl.Name Then
                 ctrl.Show()
@@ -42,6 +46,10 @@ Public Class Principal
                     Dim pantallaABMEgresos As ABMEgresos = New ABMEgresos()
                     pantallaABMEgresos.Dock = DockStyle.Fill
                     SplitContainerPrincipal.Panel2.Controls.Add(pantallaABMEgresos)
+                Case "ABMAdmin"
+                    Dim pantallaABMAdmin As ABMAdmin = New ABMAdmin()
+                    pantallaABMAdmin.Dock = DockStyle.Fill
+                    SplitContainerPrincipal.Panel2.Controls.Add(pantallaABMAdmin)
                 Case Else
                     MessageBox.Show("Error del administrador de pantallas")
 

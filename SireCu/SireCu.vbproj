@@ -125,6 +125,12 @@
     <Compile Include="Clases\Personas\Usuarios\usuarioAdmin.vb" />
     <Compile Include="Clases\Personas\Usuarios\usuarioContador.vb" />
     <Compile Include="Conexion.vb" />
+    <Compile Include="Paneles\ABMAdmin.Designer.vb">
+      <DependentUpon>ABMAdmin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\ABMAdmin.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Paneles\ABMEgresos.Designer.vb">
       <DependentUpon>ABMEgresos.vb</DependentUpon>
     </Compile>
@@ -168,6 +174,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Paneles\ABMAdmin.resx">
+      <DependentUpon>ABMAdmin.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Paneles\ABMEgresos.resx">
       <DependentUpon>ABMEgresos.vb</DependentUpon>
     </EmbeddedResource>
