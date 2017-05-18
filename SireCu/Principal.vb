@@ -73,29 +73,4 @@ Public Class Principal
         ActualizarSaldo()
 
     End Sub
-
-    Private Sub ProveedoresToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProveedoresToolStripMenuItem.Click
-        Otros_AMB.cb_tabla.Text = "Proveedor"
-        Otros_AMB.ShowDialog()
-    End Sub
-
-    Private Sub TiposDeGastosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TiposDeGastosToolStripMenuItem.Click
-        Otros_AMB.cb_tabla.Text = "Tipo de Comprobante"
-        Otros_AMB.ShowDialog()
-    End Sub
-
-    Private Sub CategoríasDeGastosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CategoríasDeGastosToolStripMenuItem.Click
-        Otros_AMB.cb_tabla.Text = "Tipo de Gasto"
-        Otros_AMB.ShowDialog()
-    End Sub
-
-    Private Sub PersonasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PersonasToolStripMenuItem.Click
-        Otros_AMB.cb_tabla.Text = "Persona"
-        Otros_AMB.ShowDialog()
-    End Sub
-
-    Private Sub SeccionalesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeccionalesToolStripMenuItem.Click
-        Otros_AMB.cb_tabla.Text = "Seccional"
-        Otros_AMB.ShowDialog()
-    End Sub
 End Class

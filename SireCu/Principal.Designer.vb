@@ -31,19 +31,13 @@ Partial Class Principal
         Me.TStripLabelSaldo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
+        Me.RadioButtonABMAdmin = New System.Windows.Forms.RadioButton()
         Me.RadioButtonEgresos = New System.Windows.Forms.RadioButton()
         Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProveedoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TiposDeGastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CategoríasDeGastosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PersonasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SeccionalesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.RadioButtonABMAdmin = New System.Windows.Forms.RadioButton()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
@@ -136,6 +130,22 @@ Partial Class Principal
         Me.SplitContainerPrincipal.SplitterWidth = 1
         Me.SplitContainerPrincipal.TabIndex = 0
         '
+        'RadioButtonABMAdmin
+        '
+        Me.RadioButtonABMAdmin.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButtonABMAdmin.AutoSize = True
+        Me.RadioButtonABMAdmin.BackColor = System.Drawing.SystemColors.Control
+        Me.RadioButtonABMAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButtonABMAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButtonABMAdmin.Location = New System.Drawing.Point(3, 127)
+        Me.RadioButtonABMAdmin.MinimumSize = New System.Drawing.Size(190, 30)
+        Me.RadioButtonABMAdmin.Name = "RadioButtonABMAdmin"
+        Me.RadioButtonABMAdmin.Size = New System.Drawing.Size(190, 30)
+        Me.RadioButtonABMAdmin.TabIndex = 2
+        Me.RadioButtonABMAdmin.Text = "Administrar"
+        Me.RadioButtonABMAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButtonABMAdmin.UseVisualStyleBackColor = False
+        '
         'RadioButtonEgresos
         '
         Me.RadioButtonEgresos.Appearance = System.Windows.Forms.Appearance.Button
@@ -170,7 +180,7 @@ Partial Class Principal
         'MenuStripPrincipal
         '
         Me.MenuStripPrincipal.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.EditarToolStripMenuItem})
+        Me.MenuStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem})
         Me.MenuStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPrincipal.Name = "MenuStripPrincipal"
         Me.MenuStripPrincipal.Size = New System.Drawing.Size(982, 24)
@@ -187,65 +197,12 @@ Partial Class Principal
         'SalirToolStripMenuItem
         '
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SalirToolStripMenuItem.Text = "&Salir"
-        '
-        'EditarToolStripMenuItem
-        '
-        Me.EditarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProveedoresToolStripMenuItem, Me.TiposDeGastosToolStripMenuItem, Me.CategoríasDeGastosToolStripMenuItem, Me.PersonasToolStripMenuItem, Me.SeccionalesToolStripMenuItem})
-        Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
-        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
-        Me.EditarToolStripMenuItem.Text = "Editar"
-        '
-        'ProveedoresToolStripMenuItem
-        '
-        Me.ProveedoresToolStripMenuItem.Name = "ProveedoresToolStripMenuItem"
-        Me.ProveedoresToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.ProveedoresToolStripMenuItem.Text = "Proveedores"
-        '
-        'TiposDeGastosToolStripMenuItem
-        '
-        Me.TiposDeGastosToolStripMenuItem.Name = "TiposDeGastosToolStripMenuItem"
-        Me.TiposDeGastosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.TiposDeGastosToolStripMenuItem.Text = "Tipos de Comprobantes"
-        '
-        'CategoríasDeGastosToolStripMenuItem
-        '
-        Me.CategoríasDeGastosToolStripMenuItem.Name = "CategoríasDeGastosToolStripMenuItem"
-        Me.CategoríasDeGastosToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.CategoríasDeGastosToolStripMenuItem.Text = "Tipos de Gastos"
-        '
-        'PersonasToolStripMenuItem
-        '
-        Me.PersonasToolStripMenuItem.Name = "PersonasToolStripMenuItem"
-        Me.PersonasToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.PersonasToolStripMenuItem.Text = "Personas"
-        '
-        'SeccionalesToolStripMenuItem
-        '
-        Me.SeccionalesToolStripMenuItem.Name = "SeccionalesToolStripMenuItem"
-        Me.SeccionalesToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
-        Me.SeccionalesToolStripMenuItem.Text = "Seccionales"
         '
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
-        '
-        'RadioButtonABMAdmin
-        '
-        Me.RadioButtonABMAdmin.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonABMAdmin.AutoSize = True
-        Me.RadioButtonABMAdmin.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonABMAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonABMAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonABMAdmin.Location = New System.Drawing.Point(3, 127)
-        Me.RadioButtonABMAdmin.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonABMAdmin.Name = "RadioButtonABMAdmin"
-        Me.RadioButtonABMAdmin.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonABMAdmin.TabIndex = 2
-        Me.RadioButtonABMAdmin.Text = "ABM Admin"
-        Me.RadioButtonABMAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonABMAdmin.UseVisualStyleBackColor = False
         '
         'Principal
         '
@@ -288,12 +245,6 @@ Partial Class Principal
     Friend WithEvents stat_Bar As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents RadioButtonEgresos As System.Windows.Forms.RadioButton
     Friend WithEvents ErrorProvider As System.Windows.Forms.ErrorProvider
-    Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ProveedoresToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TiposDeGastosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CategoríasDeGastosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents PersonasToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SeccionalesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TStripLabelSaldo As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents RadioButtonABMAdmin As RadioButton
