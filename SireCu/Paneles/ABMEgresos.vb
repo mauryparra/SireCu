@@ -90,7 +90,7 @@ Public Class ABMEgresos
                          tbComentario.Text
                         )
 
-            limpiarForm(TabPageAgregar)
+            limpiarForm(GroupBoxAgregar)
             dtpReintegro.Checked = False
             CargardDGV(DGVModificar)
             ActualizarSaldo()
@@ -268,6 +268,10 @@ Public Class ABMEgresos
             filtros.Add(New KeyValuePair(Of String, String)("año", TSTextBoxAño.Text))
         End If
 
+        If Not TSComboBoxMes.SelectedItem = "" Then
+            filtros.Add(New KeyValuePair(Of String, String)("mes", TSComboBoxMes.SelectedItem.ToString.Split(" ")(0)))
+        End If
+
         If Not (TSComboBoxFiltro1.SelectedItem = "" Or TSTextBoxFiltro1.Text = "") Then
             filtros.Add(New KeyValuePair(Of String, String)(TSComboBoxFiltro1.SelectedItem & TSComboBoxOpera1.SelectedItem, TSTextBoxFiltro1.Text))
         End If
@@ -324,6 +328,11 @@ Public Class ABMEgresos
 
                 ' Filtrar por año
                 sql += " AND DATEPART(year, [fecha]) = " & keyv.Value
+
+            ElseIf keyv.Key = "mes" Then
+
+                ' Filtrar por mes
+                sql += " AND DATEPART(month, [fecha]) = " & keyv.Value
 
             Else
 
@@ -928,6 +937,25 @@ Public Class ABMEgresos
             TSComboBoxFiltro1.Text = ""
             System.Media.SystemSounds.Beep.Play()
             TSComboBoxFiltro1.BackColor = Color.MistyRose
+        End If
+    End Sub
+
+    Private Sub TSComboBoxFiltro1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TSComboBoxFiltro1.SelectedIndexChanged
+        TSTextBoxFiltro1.Text = ""
+    End Sub
+
+    Private Sub TSComboBoxFiltro2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TSComboBoxFiltro2.SelectedIndexChanged
+        TSTextBoxFiltro2.Text = ""
+    End Sub
+
+    Private Sub TSComboBoxMes_Validating(sender As Object, e As CancelEventArgs) Handles TSComboBoxMes.Validating
+        If TSComboBoxMes.Items.Contains(TSComboBoxMes.Text) Or TSComboBoxMes.Text = "" Then
+            TSComboBoxMes.BackColor = SystemColors.Window
+        Else
+            TSComboBoxMes.SelectedIndex = -1
+            TSComboBoxMes.Text = ""
+            System.Media.SystemSounds.Beep.Play()
+            TSComboBoxMes.BackColor = Color.MistyRose
         End If
     End Sub
 #End Region
