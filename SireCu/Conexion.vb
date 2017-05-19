@@ -2,7 +2,7 @@
 
 Module Conexion
 
-    Private conexion As New SqlCeConnection(My.Settings.CadenaConexion)
+    Public conexion As New SqlCeConnection(My.Settings.CadenaConexion)
 
     Private Sub conectar()
 
@@ -55,6 +55,49 @@ Module Conexion
 
         Return resultado
     End Function
+
+    Function consultarReader(ByVal sql As String) As DataTable
+
+        Dim reader As SqlCeDataReader
+        Dim dt As New DataTable
+
+        Try
+            conectar()
+            Principal.command.CommandText = sql
+            Principal.command.Connection = conexion
+            reader = Principal.command.ExecuteReader()
+            dt.Load(reader)
+            desconectar()
+        Catch ex As SqlCeException
+            MessageBox.Show(ex.Message)
+            reader = Nothing
+        End Try
+
+        Return dt
+    End Function
+
+    Sub cargarTablaEnDataSet(ByVal tabla As String)
+
+        Principal.command.Connection = conexion
+
+        ' Crea tabla en dataset si no existe
+        If Not Principal.dataset.Tables.Contains(tabla) Then
+            Principal.dataset.Tables.Add(tabla)
+        End If
+        'Limpiamos la tabla
+        Principal.dataset.Tables(tabla).Clear()
+
+        Principal.command.CommandText = "Select * FROM " & tabla
+
+        ' Crea tableadapter si no existe
+        If Not Principal.tableadapters.ContainsKey(tabla) Then
+            Principal.tableadapters.Add(tabla, New SqlCeDataAdapter(Principal.command))
+        End If
+
+        'Refrescamos el contenido
+        Principal.tableadapters(tabla).Fill(Principal.dataset.Tables.Item(tabla))
+
+    End Sub
 
 
 End Module

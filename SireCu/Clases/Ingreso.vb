@@ -17,44 +17,23 @@ Module Ingreso
 
     End Sub
 
-    Public Function mostrar_ingreso(ByVal mes As Integer, ByVal año As Integer)
+    Public Function mostrar_ingreso(ByVal mes As Integer, ByVal año As Integer) As DataTable
 
         Principal.query = "SELECT * from ingresos where DATEPART(month, fecha) = '" & mes & "'" &
                 " And DatePart(Year, fecha) = '" & año & "'"
 
-        consultarNQ(Principal.query, Principal.command)
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        ClearDataset(Principal.dataset)
-        Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
+        Dim dt As DataTable = consultarReader(Principal.query)
 
-        Dim array() As String
-        If (Principal.dataset.Tables("ingresos").Rows.Count = 0) Then
-            array = {0}
-            Return (array)
-        Else
-            array = {
-                Principal.dataset.Tables("ingresos").Rows.Item(0).Item("ingresos_prov"),
-                Principal.dataset.Tables("ingresos").Rows.Item(0).Item("ingresos_central"),
-                Principal.dataset.Tables("ingresos").Rows.Item(0).Item("ingresos_otros")
-            }
-            Return array
-        End If
+        Return dt
 
     End Function
 
     Public Function verificar_año(ByVal año As Integer)
 
         Principal.query = "SELECT * from ingresos where DATEPART(Year, fecha) = '" & año & "'"
-        consultarNQ(Principal.query, Principal.command)
-        ClearDataset(Principal.dataset)
-        Principal.adapter = New SqlCeDataAdapter(Principal.command)
-        Principal.adapter.Fill(Principal.dataset.Tables("ingresos"))
+        Dim dt As DataTable = consultarReader(Principal.query)
 
-        If (Principal.dataset.Tables("ingresos").Rows.Count = 0) Then
-            Return (False)
-        Else
-            Return (True)
-        End If
+        Return IIf(dt.Rows.Count > 0, True, False)
 
     End Function
 
