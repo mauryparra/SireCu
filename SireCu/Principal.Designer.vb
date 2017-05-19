@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Principal
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Principal
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Principal))
@@ -28,7 +28,10 @@ Partial Class Principal
         Me.StatusStripPrincipal = New System.Windows.Forms.StatusStrip()
         Me.stat_Label = New System.Windows.Forms.ToolStripStatusLabel()
         Me.stat_Bar = New System.Windows.Forms.ToolStripProgressBar()
+        Me.TStripLabelSaldo = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
+        Me.RadioButtonABMAdmin = New System.Windows.Forms.RadioButton()
         Me.RadioButtonEgresos = New System.Windows.Forms.RadioButton()
         Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
@@ -74,7 +77,7 @@ Partial Class Principal
         'StatusStripPrincipal
         '
         Me.StatusStripPrincipal.Dock = System.Windows.Forms.DockStyle.None
-        Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar})
+        Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar, Me.TStripLabelSaldo, Me.ToolStripStatusLabel1})
         Me.StatusStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.StatusStripPrincipal.Name = "StatusStripPrincipal"
         Me.StatusStripPrincipal.Size = New System.Drawing.Size(982, 22)
@@ -83,14 +86,29 @@ Partial Class Principal
         'stat_Label
         '
         Me.stat_Label.Name = "stat_Label"
-        Me.stat_Label.Size = New System.Drawing.Size(65, 17)
+        Me.stat_Label.Size = New System.Drawing.Size(928, 17)
+        Me.stat_Label.Spring = True
         Me.stat_Label.Text = "Conectado"
+        Me.stat_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'stat_Bar
         '
         Me.stat_Bar.Name = "stat_Bar"
         Me.stat_Bar.Size = New System.Drawing.Size(100, 16)
         Me.stat_Bar.Visible = False
+        '
+        'TStripLabelSaldo
+        '
+        Me.TStripLabelSaldo.Name = "TStripLabelSaldo"
+        Me.TStripLabelSaldo.Size = New System.Drawing.Size(39, 17)
+        Me.TStripLabelSaldo.Text = "Saldo:"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(0, 17)
+        Me.ToolStripStatusLabel1.Text = "ToolStripStatusLabel1"
         '
         'SplitContainerPrincipal
         '
@@ -104,6 +122,7 @@ Partial Class Principal
         '
         'SplitContainerPrincipal.Panel1
         '
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonABMAdmin)
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonEgresos)
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonIngresos)
         Me.SplitContainerPrincipal.Size = New System.Drawing.Size(982, 465)
@@ -111,15 +130,30 @@ Partial Class Principal
         Me.SplitContainerPrincipal.SplitterWidth = 1
         Me.SplitContainerPrincipal.TabIndex = 0
         '
+        'RadioButtonABMAdmin
+        '
+        Me.RadioButtonABMAdmin.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButtonABMAdmin.AutoSize = True
+        Me.RadioButtonABMAdmin.BackColor = System.Drawing.SystemColors.Control
+        Me.RadioButtonABMAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButtonABMAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButtonABMAdmin.Location = New System.Drawing.Point(3, 127)
+        Me.RadioButtonABMAdmin.MinimumSize = New System.Drawing.Size(190, 30)
+        Me.RadioButtonABMAdmin.Name = "RadioButtonABMAdmin"
+        Me.RadioButtonABMAdmin.Size = New System.Drawing.Size(190, 30)
+        Me.RadioButtonABMAdmin.TabIndex = 2
+        Me.RadioButtonABMAdmin.Text = "Administrar"
+        Me.RadioButtonABMAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButtonABMAdmin.UseVisualStyleBackColor = False
+        '
         'RadioButtonEgresos
         '
         Me.RadioButtonEgresos.Appearance = System.Windows.Forms.Appearance.Button
         Me.RadioButtonEgresos.AutoSize = True
         Me.RadioButtonEgresos.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonEgresos.Enabled = False
         Me.RadioButtonEgresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButtonEgresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonEgresos.Location = New System.Drawing.Point(3, 78)
+        Me.RadioButtonEgresos.Location = New System.Drawing.Point(3, 70)
         Me.RadioButtonEgresos.MinimumSize = New System.Drawing.Size(190, 30)
         Me.RadioButtonEgresos.Name = "RadioButtonEgresos"
         Me.RadioButtonEgresos.Size = New System.Drawing.Size(190, 30)
@@ -211,5 +245,7 @@ Partial Class Principal
     Friend WithEvents stat_Bar As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents RadioButtonEgresos As System.Windows.Forms.RadioButton
     Friend WithEvents ErrorProvider As System.Windows.Forms.ErrorProvider
-
+    Friend WithEvents TStripLabelSaldo As ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents RadioButtonABMAdmin As RadioButton
 End Class

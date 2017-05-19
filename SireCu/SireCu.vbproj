@@ -125,16 +125,22 @@
     <Compile Include="Clases\Personas\Usuarios\usuarioAdmin.vb" />
     <Compile Include="Clases\Personas\Usuarios\usuarioContador.vb" />
     <Compile Include="Conexion.vb" />
-    <Compile Include="Egresos\ABMEgresos.Designer.vb">
-      <DependentUpon>ABMEgresos.vb</DependentUpon>
+    <Compile Include="Paneles\ABMAdmin.Designer.vb">
+      <DependentUpon>ABMAdmin.vb</DependentUpon>
     </Compile>
-    <Compile Include="Egresos\ABMEgresos.vb">
+    <Compile Include="Paneles\ABMAdmin.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Ingresos\ABMIngresos.Designer.vb">
+    <Compile Include="Paneles\ABMEgresos.Designer.vb">
+      <DependentUpon>ABMEgresos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\ABMEgresos.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Paneles\ABMIngresos.Designer.vb">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Ingresos\ABMIngresos.vb">
+    <Compile Include="Paneles\ABMIngresos.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtrasFunciones.vb" />
@@ -162,10 +168,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Egresos\ABMEgresos.resx">
+    <EmbeddedResource Include="Paneles\ABMAdmin.resx">
+      <DependentUpon>ABMAdmin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\ABMEgresos.resx">
       <DependentUpon>ABMEgresos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ingresos\ABMIngresos.resx">
+    <EmbeddedResource Include="Paneles\ABMIngresos.resx">
       <DependentUpon>ABMIngresos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

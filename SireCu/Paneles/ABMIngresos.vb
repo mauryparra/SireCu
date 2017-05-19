@@ -10,7 +10,7 @@ Public Class ABMIngresos
     Private Sub ABMIngresos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'usamos el año mas grande de la base de datos
-        tb_Año.Text = ultimoaño()
+        tb_Año.Text = ultimoaño("Ingresos")
 
     End Sub
 
@@ -68,6 +68,7 @@ Public Class ABMIngresos
                 End Select
 
                 activarEdicion(False)
+                ActualizarSaldo()
 
             End If
 
@@ -95,8 +96,24 @@ Public Class ABMIngresos
 #Region "Helpers"
 
     Private Sub cargar(ByVal mes As Integer, ByVal fila As Integer)
-        Dim array = mostrar_ingreso(mes, tb_Año.Text)
-        If (array.Length = 1) Then
+        Dim dt As DataTable = mostrar_ingreso(mes, tb_Año.Text)
+
+        If dt.Rows.Count > 0 Then
+            Select Case fila
+                Case 1
+                    tb_IngresosC1.Text = dt.Rows(0).Item("ingresos_central")
+                    tb_IngresosO1.Text = dt.Rows(0).Item("ingresos_otros")
+                    tb_IngresosP1.Text = dt.Rows(0).Item("ingresos_prov")
+                Case 2
+                    tb_IngresosC2.Text = dt.Rows(0).Item("ingresos_central")
+                    tb_IngresosO2.Text = dt.Rows(0).Item("ingresos_otros")
+                    tb_IngresosP2.Text = dt.Rows(0).Item("ingresos_prov")
+                Case 3
+                    tb_IngresosC3.Text = dt.Rows(0).Item("ingresos_central")
+                    tb_IngresosO3.Text = dt.Rows(0).Item("ingresos_otros")
+                    tb_IngresosP3.Text = dt.Rows(0).Item("ingresos_prov")
+            End Select
+        Else
             Select Case fila
                 Case 1
                     tb_IngresosC1.Text = "0.0"
@@ -110,21 +127,6 @@ Public Class ABMIngresos
                     tb_IngresosC3.Text = "0.0"
                     tb_IngresosO3.Text = "0.0"
                     tb_IngresosP3.Text = "0.0"
-            End Select
-        Else
-            Select Case fila
-                Case 1
-                    tb_IngresosC1.Text = array(1)
-                    tb_IngresosO1.Text = array(2)
-                    tb_IngresosP1.Text = array(0)
-                Case 2
-                    tb_IngresosC2.Text = array(1)
-                    tb_IngresosO2.Text = array(2)
-                    tb_IngresosP2.Text = array(0)
-                Case 3
-                    tb_IngresosC3.Text = array(1)
-                    tb_IngresosO3.Text = array(2)
-                    tb_IngresosP3.Text = array(0)
             End Select
         End If
     End Sub
@@ -170,39 +172,6 @@ Public Class ABMIngresos
             tb_Año.ReadOnly = True
             cb_Trimestre.Enabled = True
         End If
-    End Sub
-
-    'Verificación de solo entrada por teclado
-    Public Sub keyverify(ByVal e As System.Windows.Forms.KeyPressEventArgs,
-                         Optional ByVal letras As Boolean = False,
-                         Optional ByVal numeros As Boolean = False,
-                         Optional ByVal comas As Boolean = False,
-                         Optional ByVal puntosAComas As Boolean = False,
-                         Optional ByVal espacios As Boolean = False,
-                         Optional ByVal control As Boolean = True,
-                         Optional ByVal otros As Boolean = False)
-
-        If Char.IsLetter(e.KeyChar) Then        ' Permite o cancela ingreso de letras
-            e.Handled = Not letras
-        ElseIf Char.IsDigit(e.KeyChar) Then     ' Permite o cancela ingreso de numeros
-            e.Handled = Not numeros
-        ElseIf e.KeyChar = "," Then             ' Permite o cancela ingreso de comas
-            e.Handled = Not comas
-        ElseIf comas And e.KeyChar = "." Then   ' Si se permiten comas y el caracter es un punto
-            If puntosAComas Then                ' Permite o cancela la sustitución de punto por coma
-                e.KeyChar = ","
-                e.Handled = False
-            Else
-                e.Handled = True
-            End If
-        ElseIf Char.IsSeparator(e.KeyChar) Then ' Permite o cancela ingreso de espacios
-            e.Handled = Not espacios
-        ElseIf Char.IsControl(e.KeyChar) Then   ' Permite o cancela ingreso caracteres de control
-            e.Handled = Not control
-        Else
-            e.Handled = Not otros               ' Permite o cancela ingreso de otros caracteres
-        End If
-
     End Sub
 
     Private Sub validarIngresos(sender As Object, e As EventArgs)
