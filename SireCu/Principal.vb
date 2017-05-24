@@ -20,6 +20,12 @@ Public Class Principal
     Private Sub RadioButtonABMAdmin_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonABMAdmin.CheckedChanged
         AdminPantallas("ABMAdmin")
     End Sub
+    Private Sub RadioButtonCrearReporte_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonCrearReporte.CheckedChanged
+        AdminPantallas("CrearReporte")
+    End Sub
+    Private Sub RadioButtonVerReporte_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonVerReporte.CheckedChanged
+        AdminPantallas("VerReporte")
+    End Sub
 
     Private Sub AdminPantallas(ByVal pantalla As String)
         Dim bandera As Boolean = False
@@ -50,6 +56,14 @@ Public Class Principal
                     Dim pantallaABMAdmin As ABMAdmin = New ABMAdmin()
                     pantallaABMAdmin.Dock = DockStyle.Fill
                     SplitContainerPrincipal.Panel2.Controls.Add(pantallaABMAdmin)
+                Case "CrearReporte"
+                    Dim pantallaCrearReporte As CrearReporte = New CrearReporte()
+                    pantallaCrearReporte.Dock = DockStyle.Fill
+                    SplitContainerPrincipal.Panel2.Controls.Add(pantallaCrearReporte)
+                Case "VerReporte"
+                    Dim pantallaVerReporte As VerReporte = New VerReporte()
+                    pantallaVerReporte.Dock = DockStyle.Fill
+                    SplitContainerPrincipal.Panel2.Controls.Add(pantallaVerReporte)
                 Case Else
                     MessageBox.Show("Error del administrador de pantallas")
 
@@ -73,4 +87,5 @@ Public Class Principal
         ActualizarSaldo()
 
     End Sub
+
 End Class

@@ -117,13 +117,34 @@
     <Compile Include="Clases\Personas\Persona.vb" />
     <Compile Include="Clases\Personas\personaGastador.vb" />
     <Compile Include="Clases\Personas\personaProveedor.vb" />
-    <Compile Include="Clases\Reportes\Reporte.vb" />
-    <Compile Include="Clases\Reportes\reporteEgreso.vb" />
-    <Compile Include="Clases\Reportes\reporteGeneral.vb" />
-    <Compile Include="Clases\Reportes\reporteIngreso.vb" />
+    <Compile Include="Clases\Reporte.vb" />
+    <Compile Include="Clases\Reportes\ReporteEgresoCen.Designer.vb">
+      <DependentUpon>ReporteEgresoCen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Reportes\ReporteEgresoCen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clases\Reportes\ReporteEgresoSec.Designer.vb">
+      <DependentUpon>ReporteEgresoSec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Reportes\ReporteEgresoSec.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Clases\Personas\personaUsuario.vb" />
     <Compile Include="Clases\Personas\Usuarios\usuarioAdmin.vb" />
     <Compile Include="Clases\Personas\Usuarios\usuarioContador.vb" />
+    <Compile Include="Clases\Reportes\ReporteIngreso.Designer.vb">
+      <DependentUpon>ReporteIngreso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Reportes\ReporteIngreso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clases\Reportes\ReporteIngresoGasto.Designer.vb">
+      <DependentUpon>ReporteIngresoGasto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Reportes\ReporteIngresoGasto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Conexion.vb" />
     <Compile Include="Paneles\ABMAdmin.Designer.vb">
       <DependentUpon>ABMAdmin.vb</DependentUpon>
@@ -144,6 +165,18 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtrasFunciones.vb" />
+    <Compile Include="Paneles\CrearReporte.Designer.vb">
+      <DependentUpon>CrearReporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\CrearReporte.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Paneles\VerReporte.Designer.vb">
+      <DependentUpon>VerReporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\VerReporte.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Principal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +201,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Clases\Reportes\ReporteEgresoCen.resx">
+      <DependentUpon>ReporteEgresoCen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clases\Reportes\ReporteEgresoSec.resx">
+      <DependentUpon>ReporteEgresoSec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clases\Reportes\ReporteIngreso.resx">
+      <DependentUpon>ReporteIngreso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clases\Reportes\ReporteIngresoGasto.resx">
+      <DependentUpon>ReporteIngresoGasto.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Paneles\ABMAdmin.resx">
       <DependentUpon>ABMAdmin.vb</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +227,12 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\CrearReporte.resx">
+      <DependentUpon>CrearReporte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\VerReporte.resx">
+      <DependentUpon>VerReporte.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
@@ -218,9 +269,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reportes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\363122-x.jpg" />
   </ItemGroup>
