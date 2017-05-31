@@ -22,7 +22,7 @@ Partial Class VerReporte
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupBoxTrimestre = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxSeleccion = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cb_Reporte = New System.Windows.Forms.ComboBox()
         Me.btn_Abrir = New System.Windows.Forms.Button()
@@ -30,25 +30,25 @@ Partial Class VerReporte
         Me.lb_Año = New System.Windows.Forms.Label()
         Me.tb_Año = New System.Windows.Forms.TextBox()
         Me.cb_Trimestre = New System.Windows.Forms.ComboBox()
-        Me.GroupBoxTrimestre.SuspendLayout()
+        Me.GroupBoxSeleccion.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBoxTrimestre
+        'GroupBoxSeleccion
         '
-        Me.GroupBoxTrimestre.Controls.Add(Me.Label1)
-        Me.GroupBoxTrimestre.Controls.Add(Me.cb_Reporte)
-        Me.GroupBoxTrimestre.Controls.Add(Me.btn_Abrir)
-        Me.GroupBoxTrimestre.Controls.Add(Me.lb_Trimestre)
-        Me.GroupBoxTrimestre.Controls.Add(Me.lb_Año)
-        Me.GroupBoxTrimestre.Controls.Add(Me.tb_Año)
-        Me.GroupBoxTrimestre.Controls.Add(Me.cb_Trimestre)
-        Me.GroupBoxTrimestre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBoxTrimestre.Location = New System.Drawing.Point(29, 81)
-        Me.GroupBoxTrimestre.Name = "GroupBoxTrimestre"
-        Me.GroupBoxTrimestre.Size = New System.Drawing.Size(695, 304)
-        Me.GroupBoxTrimestre.TabIndex = 23
-        Me.GroupBoxTrimestre.TabStop = False
-        Me.GroupBoxTrimestre.Text = "Selección de Reporte"
+        Me.GroupBoxSeleccion.Controls.Add(Me.Label1)
+        Me.GroupBoxSeleccion.Controls.Add(Me.cb_Reporte)
+        Me.GroupBoxSeleccion.Controls.Add(Me.btn_Abrir)
+        Me.GroupBoxSeleccion.Controls.Add(Me.lb_Trimestre)
+        Me.GroupBoxSeleccion.Controls.Add(Me.lb_Año)
+        Me.GroupBoxSeleccion.Controls.Add(Me.tb_Año)
+        Me.GroupBoxSeleccion.Controls.Add(Me.cb_Trimestre)
+        Me.GroupBoxSeleccion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxSeleccion.Location = New System.Drawing.Point(29, 81)
+        Me.GroupBoxSeleccion.Name = "GroupBoxSeleccion"
+        Me.GroupBoxSeleccion.Size = New System.Drawing.Size(695, 304)
+        Me.GroupBoxSeleccion.TabIndex = 23
+        Me.GroupBoxSeleccion.TabStop = False
+        Me.GroupBoxSeleccion.Text = "Selección de Reporte"
         '
         'Label1
         '
@@ -74,7 +74,7 @@ Partial Class VerReporte
         Me.cb_Reporte.Location = New System.Drawing.Point(294, 128)
         Me.cb_Reporte.Name = "cb_Reporte"
         Me.cb_Reporte.Size = New System.Drawing.Size(203, 24)
-        Me.cb_Reporte.TabIndex = 13
+        Me.cb_Reporte.TabIndex = 3
         '
         'btn_Abrir
         '
@@ -138,16 +138,16 @@ Partial Class VerReporte
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.Controls.Add(Me.GroupBoxTrimestre)
+        Me.Controls.Add(Me.GroupBoxSeleccion)
         Me.Name = "VerReporte"
         Me.Size = New System.Drawing.Size(755, 456)
-        Me.GroupBoxTrimestre.ResumeLayout(False)
-        Me.GroupBoxTrimestre.PerformLayout()
+        Me.GroupBoxSeleccion.ResumeLayout(False)
+        Me.GroupBoxSeleccion.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents GroupBoxTrimestre As GroupBox
+    Friend WithEvents GroupBoxSeleccion As GroupBox
     Friend WithEvents btn_Abrir As Button
     Friend WithEvents lb_Trimestre As Label
     Friend WithEvents lb_Año As Label

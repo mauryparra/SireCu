@@ -28,15 +28,23 @@
         Select Case cb_Reporte.Text
             Case "Ingresos"
                 Dim repIng As New ReporteIngreso
+                repIng.trimestre = cb_Trimestre.Text
+                repIng.año = tb_Año.Text
                 repIng.Show()
             Case "Egresos Seccional"
                 Dim repSec As New ReporteEgresoSec
+                repSec.trimestre = cb_Trimestre.Text
+                repSec.año = tb_Año.Text
                 repSec.Show()
             Case "Egresos Central"
                 Dim repCen As New ReporteEgresoCen
+                repCen.trimestre = cb_Trimestre.Text
+                repCen.año = tb_Año.Text
                 repCen.Show()
             Case "Ingresos -Gastos"
                 Dim repIngGas As New ReporteIngresoGasto
+                repIngGas.trimestre = cb_Trimestre.Text
+                repIngGas.año = tb_Año.Text
                 repIngGas.Show()
         End Select
 

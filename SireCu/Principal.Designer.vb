@@ -31,6 +31,7 @@ Partial Class Principal
         Me.TStripLabelSaldo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
+        Me.RadioButtonSubirReporte = New System.Windows.Forms.RadioButton()
         Me.RadioButtonVerReporte = New System.Windows.Forms.RadioButton()
         Me.RadioButtonCrearReporte = New System.Windows.Forms.RadioButton()
         Me.RadioButtonABMAdmin = New System.Windows.Forms.RadioButton()
@@ -40,7 +41,6 @@ Partial Class Principal
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.RadioButtonSubirReporte = New System.Windows.Forms.RadioButton()
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.TopToolStripPanel.SuspendLayout()
@@ -135,6 +135,22 @@ Partial Class Principal
         Me.SplitContainerPrincipal.SplitterDistance = 200
         Me.SplitContainerPrincipal.SplitterWidth = 1
         Me.SplitContainerPrincipal.TabIndex = 0
+        '
+        'RadioButtonSubirReporte
+        '
+        Me.RadioButtonSubirReporte.Appearance = System.Windows.Forms.Appearance.Button
+        Me.RadioButtonSubirReporte.AutoSize = True
+        Me.RadioButtonSubirReporte.BackColor = System.Drawing.SystemColors.Control
+        Me.RadioButtonSubirReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RadioButtonSubirReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RadioButtonSubirReporte.Location = New System.Drawing.Point(3, 287)
+        Me.RadioButtonSubirReporte.MinimumSize = New System.Drawing.Size(190, 30)
+        Me.RadioButtonSubirReporte.Name = "RadioButtonSubirReporte"
+        Me.RadioButtonSubirReporte.Size = New System.Drawing.Size(190, 30)
+        Me.RadioButtonSubirReporte.TabIndex = 5
+        Me.RadioButtonSubirReporte.Text = "Subir Reporte"
+        Me.RadioButtonSubirReporte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.RadioButtonSubirReporte.UseVisualStyleBackColor = False
         '
         'RadioButtonVerReporte
         '
@@ -241,22 +257,6 @@ Partial Class Principal
         'ErrorProvider
         '
         Me.ErrorProvider.ContainerControl = Me
-        '
-        'RadioButtonSubirReporte
-        '
-        Me.RadioButtonSubirReporte.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonSubirReporte.AutoSize = True
-        Me.RadioButtonSubirReporte.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonSubirReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonSubirReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonSubirReporte.Location = New System.Drawing.Point(3, 287)
-        Me.RadioButtonSubirReporte.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonSubirReporte.Name = "RadioButtonSubirReporte"
-        Me.RadioButtonSubirReporte.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonSubirReporte.TabIndex = 5
-        Me.RadioButtonSubirReporte.Text = "Subir Reporte"
-        Me.RadioButtonSubirReporte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonSubirReporte.UseVisualStyleBackColor = False
         '
         'Principal
         '
