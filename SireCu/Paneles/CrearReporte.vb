@@ -25,9 +25,6 @@
         CrearRepSeccional(trimid, tb_Año.Text)
         CrearRepIngresos(trimid, tb_Año.Text)
 
-        'Abrimos los reportes creados
-
-
     End Sub
 
 End Class

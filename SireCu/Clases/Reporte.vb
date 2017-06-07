@@ -73,4 +73,25 @@ Module Reporte
 
     End Function
 
+    Public Sub ActualizarTablasdeReporte()
+
+    End Sub
+
+    Public Sub CrearRepCentral(ByVal trimestre As Integer, ByVal año As Integer)
+
+    End Sub
+
+    Public Sub CrearRepSeccional(ByVal trimestre As Integer, ByVal año As Integer)
+
+    End Sub
+
+    Public Sub CrearRepIngresos(ByVal trimestre As Integer, ByVal año As Integer)
+
+    End Sub
+
+    Public Sub CrearRepTrimestrales(ByVal trimestre As Integer, ByVal año As Integer)
+
+    End Sub
+
+
 End Module
