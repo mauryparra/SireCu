@@ -271,9 +271,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\363122-x.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="DBSireCu.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

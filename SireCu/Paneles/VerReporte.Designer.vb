@@ -22,7 +22,7 @@ Partial Class VerReporte
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GroupBoxTrimestre = New System.Windows.Forms.GroupBox()
         Me.btn_Ver = New System.Windows.Forms.Button()
@@ -31,6 +31,7 @@ Partial Class VerReporte
         Me.tb_Año = New System.Windows.Forms.TextBox()
         Me.cb_Trimestre = New System.Windows.Forms.ComboBox()
         Me.dgv_Reportes = New System.Windows.Forms.DataGridView()
+        Me.bttn_Qfiltro = New System.Windows.Forms.Button()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
@@ -59,6 +60,7 @@ Partial Class VerReporte
         '
         'GroupBoxTrimestre
         '
+        Me.GroupBoxTrimestre.Controls.Add(Me.bttn_Qfiltro)
         Me.GroupBoxTrimestre.Controls.Add(Me.btn_Ver)
         Me.GroupBoxTrimestre.Controls.Add(Me.lb_Trimestre)
         Me.GroupBoxTrimestre.Controls.Add(Me.lb_Año)
@@ -76,9 +78,9 @@ Partial Class VerReporte
         '
         Me.btn_Ver.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Ver.ForeColor = System.Drawing.Color.Green
-        Me.btn_Ver.Location = New System.Drawing.Point(433, 33)
+        Me.btn_Ver.Location = New System.Drawing.Point(441, 30)
         Me.btn_Ver.Name = "btn_Ver"
-        Me.btn_Ver.Size = New System.Drawing.Size(81, 41)
+        Me.btn_Ver.Size = New System.Drawing.Size(81, 52)
         Me.btn_Ver.TabIndex = 4
         Me.btn_Ver.Text = "Ver"
         Me.btn_Ver.UseVisualStyleBackColor = True
@@ -89,7 +91,7 @@ Partial Class VerReporte
         Me.lb_Trimestre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lb_Trimestre.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lb_Trimestre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.lb_Trimestre.Location = New System.Drawing.Point(90, 70)
+        Me.lb_Trimestre.Location = New System.Drawing.Point(144, 65)
         Me.lb_Trimestre.Name = "lb_Trimestre"
         Me.lb_Trimestre.Size = New System.Drawing.Size(89, 25)
         Me.lb_Trimestre.TabIndex = 2
@@ -100,7 +102,7 @@ Partial Class VerReporte
         Me.lb_Año.AutoSize = True
         Me.lb_Año.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lb_Año.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Año.Location = New System.Drawing.Point(139, 33)
+        Me.lb_Año.Location = New System.Drawing.Point(174, 28)
         Me.lb_Año.Name = "lb_Año"
         Me.lb_Año.Size = New System.Drawing.Size(40, 25)
         Me.lb_Año.TabIndex = 11
@@ -109,11 +111,12 @@ Partial Class VerReporte
         'tb_Año
         '
         Me.tb_Año.BackColor = System.Drawing.SystemColors.Window
-        Me.tb_Año.Location = New System.Drawing.Point(185, 32)
+        Me.tb_Año.Location = New System.Drawing.Point(246, 27)
         Me.tb_Año.MaxLength = 4
         Me.tb_Año.Name = "tb_Año"
-        Me.tb_Año.Size = New System.Drawing.Size(49, 26)
+        Me.tb_Año.Size = New System.Drawing.Size(121, 26)
         Me.tb_Año.TabIndex = 1
+        Me.tb_Año.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'cb_Trimestre
         '
@@ -124,7 +127,7 @@ Partial Class VerReporte
         Me.cb_Trimestre.FormattingEnabled = True
         Me.cb_Trimestre.ItemHeight = 16
         Me.cb_Trimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
-        Me.cb_Trimestre.Location = New System.Drawing.Point(192, 70)
+        Me.cb_Trimestre.Location = New System.Drawing.Point(246, 65)
         Me.cb_Trimestre.Name = "cb_Trimestre"
         Me.cb_Trimestre.Size = New System.Drawing.Size(121, 24)
         Me.cb_Trimestre.TabIndex = 2
@@ -136,14 +139,14 @@ Partial Class VerReporte
         Me.dgv_Reportes.AllowUserToResizeColumns = False
         Me.dgv_Reportes.AllowUserToResizeRows = False
         Me.dgv_Reportes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgv_Reportes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_Reportes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgv_Reportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgv_Reportes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgv_Reportes.Location = New System.Drawing.Point(0, 0)
@@ -151,6 +154,18 @@ Partial Class VerReporte
         Me.dgv_Reportes.ReadOnly = True
         Me.dgv_Reportes.Size = New System.Drawing.Size(755, 335)
         Me.dgv_Reportes.TabIndex = 0
+        '
+        'bttn_Qfiltro
+        '
+        Me.bttn_Qfiltro.Enabled = False
+        Me.bttn_Qfiltro.Font = New System.Drawing.Font("Comic Sans MS", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bttn_Qfiltro.ForeColor = System.Drawing.Color.Green
+        Me.bttn_Qfiltro.Location = New System.Drawing.Point(571, 30)
+        Me.bttn_Qfiltro.Name = "bttn_Qfiltro"
+        Me.bttn_Qfiltro.Size = New System.Drawing.Size(81, 52)
+        Me.bttn_Qfiltro.TabIndex = 12
+        Me.bttn_Qfiltro.Text = "Quitar Filtros"
+        Me.bttn_Qfiltro.UseVisualStyleBackColor = True
         '
         'VerReporte
         '
@@ -179,4 +194,5 @@ Partial Class VerReporte
     Friend WithEvents tb_Año As TextBox
     Friend WithEvents cb_Trimestre As ComboBox
     Friend WithEvents dgv_Reportes As DataGridView
+    Friend WithEvents bttn_Qfiltro As Button
 End Class

@@ -2,7 +2,7 @@
 
 Module Reporte
 
-    Public Sub CargarReportes(ByRef dgv As DataGridView, Optional ByVal nombreDataSet As String = "Reportes")
+    Public Sub CargarReportes(ByRef dgv As DataGridView, ByVal sql As String, Optional ByVal nombreDataSet As String = "Reportes")
 
         'Creamos la tabla si no existe
         If Not Principal.dataset.Tables.Contains(nombreDataSet) Then
@@ -12,12 +12,7 @@ Module Reporte
         Principal.dataset.Tables(nombreDataSet).Clear()
 
         'Creamos el query
-        Principal.command.CommandText = "SELECT TOP (500) R.id AS id,
-                                  R.año AS Año,
-                                  Trim.nombre AS Trimestre                             
-                           FROM ReportesTrimestrales AS R
-                           LEFT JOIN Trimestres AS Trim ON R.trimestre_id = Trim.id
-                           ORDER BY R.año DESC"
+        Principal.command.CommandText = sql
 
         'Creamos el TableAdapter si no existe
         If Not Principal.tableadapters.ContainsKey(nombreDataSet) Then
@@ -44,14 +39,17 @@ Module Reporte
         Dim array = New String() {"Ingresos - Gastos", "Ingresos", "Egresos Seccional", "Egresos Central"}
 
         Do
-            Dim column As New DataGridViewButtonColumn
-            With column
-                .HeaderText = array(i)
-                .Text = "Ver Reporte"
-                .DataPropertyName = array(i)
-                .UseColumnTextForButtonValue = True
-            End With
-            dgv.Columns.Add(column)
+            If Not dgv.Columns.Contains(array(i)) Then
+                Dim column As New DataGridViewButtonColumn
+                With column
+                    .Name = array(i)
+                    .HeaderText = array(i)
+                    .Text = "Ver Reporte"
+                    .DataPropertyName = array(i)
+                    .UseColumnTextForButtonValue = True
+                End With
+                dgv.Columns.Add(column)
+            End If
             i = i + 1
         Loop While i <= 3
 
@@ -92,6 +90,5 @@ Module Reporte
     Public Sub CrearRepTrimestrales(ByVal trimestre As Integer, ByVal año As Integer)
 
     End Sub
-
 
 End Module
