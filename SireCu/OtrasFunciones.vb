@@ -132,22 +132,6 @@ Module OtrasFunciones
 
     End Function
 
-    Public Function existReporte(ByVal año As Integer, ByVal trim As Integer)
-
-        cargarTablaEnDataSet("ReportesTrimestrales")
-        Dim flag As Boolean = False
-
-        For i = 0 To Principal.dataset.Tables("ReportesTrimestrales").Rows.Count - 1
-            If (Principal.dataset.Tables("ReportesTrimestrales").Rows.Item(i).Item("año") = año) And
-               (Principal.dataset.Tables("ReportesTrimestrales").Rows.Item(i).Item("trimestre_id") = trim) Then
-                flag = True
-            End If
-        Next
-
-        Return flag
-
-    End Function
-
     Public Function autocomplete(ByVal tabla As String, ByVal Campo_a_Mostrar As String)
 
         Dim coleccion As New AutoCompleteStringCollection

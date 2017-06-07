@@ -22,70 +22,66 @@ Partial Class VerReporte
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GroupBoxTrimestre = New System.Windows.Forms.GroupBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.cb_Reporte = New System.Windows.Forms.ComboBox()
-        Me.btn_Abrir = New System.Windows.Forms.Button()
+        Me.btn_Ver = New System.Windows.Forms.Button()
         Me.lb_Trimestre = New System.Windows.Forms.Label()
         Me.lb_Año = New System.Windows.Forms.Label()
         Me.tb_Año = New System.Windows.Forms.TextBox()
         Me.cb_Trimestre = New System.Windows.Forms.ComboBox()
+        Me.dgv_Reportes = New System.Windows.Forms.DataGridView()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         Me.GroupBoxTrimestre.SuspendLayout()
+        CType(Me.dgv_Reportes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'SplitContainer1
+        '
+        Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.GroupBoxTrimestre)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.dgv_Reportes)
+        Me.SplitContainer1.Size = New System.Drawing.Size(755, 456)
+        Me.SplitContainer1.SplitterDistance = 117
+        Me.SplitContainer1.TabIndex = 0
         '
         'GroupBoxTrimestre
         '
-        Me.GroupBoxTrimestre.Controls.Add(Me.Label1)
-        Me.GroupBoxTrimestre.Controls.Add(Me.cb_Reporte)
-        Me.GroupBoxTrimestre.Controls.Add(Me.btn_Abrir)
+        Me.GroupBoxTrimestre.Controls.Add(Me.btn_Ver)
         Me.GroupBoxTrimestre.Controls.Add(Me.lb_Trimestre)
         Me.GroupBoxTrimestre.Controls.Add(Me.lb_Año)
         Me.GroupBoxTrimestre.Controls.Add(Me.tb_Año)
         Me.GroupBoxTrimestre.Controls.Add(Me.cb_Trimestre)
         Me.GroupBoxTrimestre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBoxTrimestre.Location = New System.Drawing.Point(29, 81)
+        Me.GroupBoxTrimestre.Location = New System.Drawing.Point(41, 8)
         Me.GroupBoxTrimestre.Name = "GroupBoxTrimestre"
-        Me.GroupBoxTrimestre.Size = New System.Drawing.Size(695, 304)
-        Me.GroupBoxTrimestre.TabIndex = 23
+        Me.GroupBoxTrimestre.Size = New System.Drawing.Size(695, 99)
+        Me.GroupBoxTrimestre.TabIndex = 24
         Me.GroupBoxTrimestre.TabStop = False
-        Me.GroupBoxTrimestre.Text = "Selección de Reporte"
+        Me.GroupBoxTrimestre.Text = "Filtrar Reportes"
         '
-        'Label1
+        'btn_Ver
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Label1.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Label1.Location = New System.Drawing.Point(212, 128)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(73, 25)
-        Me.Label1.TabIndex = 12
-        Me.Label1.Text = "Reporte"
-        '
-        'cb_Reporte
-        '
-        Me.cb_Reporte.AutoCompleteCustomSource.AddRange(New String() {"Ingresos", "Egresos Seccional", "Egresos Central", "Ingresos - Gastos"})
-        Me.cb_Reporte.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.cb_Reporte.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.cb_Reporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cb_Reporte.FormattingEnabled = True
-        Me.cb_Reporte.ItemHeight = 16
-        Me.cb_Reporte.Items.AddRange(New Object() {"Ingresos", "Egresos Seccional", "Egresos Central", "Ingresos - Gastos"})
-        Me.cb_Reporte.Location = New System.Drawing.Point(294, 128)
-        Me.cb_Reporte.Name = "cb_Reporte"
-        Me.cb_Reporte.Size = New System.Drawing.Size(203, 24)
-        Me.cb_Reporte.TabIndex = 13
-        '
-        'btn_Abrir
-        '
-        Me.btn_Abrir.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_Abrir.ForeColor = System.Drawing.Color.Green
-        Me.btn_Abrir.Location = New System.Drawing.Point(318, 222)
-        Me.btn_Abrir.Name = "btn_Abrir"
-        Me.btn_Abrir.Size = New System.Drawing.Size(81, 41)
-        Me.btn_Abrir.TabIndex = 4
-        Me.btn_Abrir.Text = "Abrir"
-        Me.btn_Abrir.UseVisualStyleBackColor = True
+        Me.btn_Ver.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Ver.ForeColor = System.Drawing.Color.Green
+        Me.btn_Ver.Location = New System.Drawing.Point(433, 33)
+        Me.btn_Ver.Name = "btn_Ver"
+        Me.btn_Ver.Size = New System.Drawing.Size(81, 41)
+        Me.btn_Ver.TabIndex = 4
+        Me.btn_Ver.Text = "Ver"
+        Me.btn_Ver.UseVisualStyleBackColor = True
         '
         'lb_Trimestre
         '
@@ -93,7 +89,7 @@ Partial Class VerReporte
         Me.lb_Trimestre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lb_Trimestre.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lb_Trimestre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.lb_Trimestre.Location = New System.Drawing.Point(380, 51)
+        Me.lb_Trimestre.Location = New System.Drawing.Point(90, 70)
         Me.lb_Trimestre.Name = "lb_Trimestre"
         Me.lb_Trimestre.Size = New System.Drawing.Size(89, 25)
         Me.lb_Trimestre.TabIndex = 2
@@ -104,7 +100,7 @@ Partial Class VerReporte
         Me.lb_Año.AutoSize = True
         Me.lb_Año.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lb_Año.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Año.Location = New System.Drawing.Point(132, 51)
+        Me.lb_Año.Location = New System.Drawing.Point(139, 33)
         Me.lb_Año.Name = "lb_Año"
         Me.lb_Año.Size = New System.Drawing.Size(40, 25)
         Me.lb_Año.TabIndex = 11
@@ -113,7 +109,7 @@ Partial Class VerReporte
         'tb_Año
         '
         Me.tb_Año.BackColor = System.Drawing.SystemColors.Window
-        Me.tb_Año.Location = New System.Drawing.Point(178, 50)
+        Me.tb_Año.Location = New System.Drawing.Point(185, 32)
         Me.tb_Año.MaxLength = 4
         Me.tb_Año.Name = "tb_Año"
         Me.tb_Año.Size = New System.Drawing.Size(49, 26)
@@ -128,31 +124,59 @@ Partial Class VerReporte
         Me.cb_Trimestre.FormattingEnabled = True
         Me.cb_Trimestre.ItemHeight = 16
         Me.cb_Trimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
-        Me.cb_Trimestre.Location = New System.Drawing.Point(482, 51)
+        Me.cb_Trimestre.Location = New System.Drawing.Point(192, 70)
         Me.cb_Trimestre.Name = "cb_Trimestre"
         Me.cb_Trimestre.Size = New System.Drawing.Size(121, 24)
         Me.cb_Trimestre.TabIndex = 2
+        '
+        'dgv_Reportes
+        '
+        Me.dgv_Reportes.AllowUserToAddRows = False
+        Me.dgv_Reportes.AllowUserToDeleteRows = False
+        Me.dgv_Reportes.AllowUserToResizeColumns = False
+        Me.dgv_Reportes.AllowUserToResizeRows = False
+        Me.dgv_Reportes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv_Reportes.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgv_Reportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgv_Reportes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgv_Reportes.Location = New System.Drawing.Point(0, 0)
+        Me.dgv_Reportes.Name = "dgv_Reportes"
+        Me.dgv_Reportes.ReadOnly = True
+        Me.dgv_Reportes.Size = New System.Drawing.Size(755, 335)
+        Me.dgv_Reportes.TabIndex = 0
         '
         'VerReporte
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.Controls.Add(Me.GroupBoxTrimestre)
+        Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "VerReporte"
         Me.Size = New System.Drawing.Size(755, 456)
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         Me.GroupBoxTrimestre.ResumeLayout(False)
         Me.GroupBoxTrimestre.PerformLayout()
+        CType(Me.dgv_Reportes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
+    Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents GroupBoxTrimestre As GroupBox
-    Friend WithEvents btn_Abrir As Button
+    Friend WithEvents btn_Ver As Button
     Friend WithEvents lb_Trimestre As Label
     Friend WithEvents lb_Año As Label
     Friend WithEvents tb_Año As TextBox
     Friend WithEvents cb_Trimestre As ComboBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents cb_Reporte As ComboBox
+    Friend WithEvents dgv_Reportes As DataGridView
 End Class

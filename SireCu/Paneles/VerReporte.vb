@@ -1,6 +1,6 @@
 ﻿Public Class VerReporte
 
-    Private Sub btn_Abrir_Click(sender As Object, e As EventArgs) Handles btn_Abrir.Click
+    Private Sub btn_Ver_Click(sender As Object, e As EventArgs) Handles btn_Ver.Click
 
         'TODO Check campos requeridos
 
@@ -25,20 +25,26 @@
             Exit Sub
         End If
 
-        Select Case cb_Reporte.Text
-            Case "Ingresos"
-                Dim repIng As New ReporteIngreso
-                repIng.Show()
-            Case "Egresos Seccional"
-                Dim repSec As New ReporteEgresoSec
-                repSec.Show()
-            Case "Egresos Central"
-                Dim repCen As New ReporteEgresoCen
-                repCen.Show()
-            Case "Ingresos -Gastos"
-                Dim repIngGas As New ReporteIngresoGasto
-                repIngGas.Show()
-        End Select
+        'Select Case cb_Reporte.Text
+        '    Case "Ingresos"
+        '        Dim repIng As New ReporteIngreso
+        '        repIng.Show()
+        '    Case "Egresos Seccional"
+        '        Dim repSec As New ReporteEgresoSec
+        '        repSec.Show()
+        '    Case "Egresos Central"
+        '        Dim repCen As New ReporteEgresoCen
+        '        repCen.Show()
+        '    Case "Ingresos -Gastos"
+        '        Dim repIngGas As New ReporteIngresoGasto
+        '        repIngGas.Show()
+        'End Select
+
+    End Sub
+
+    Private Sub VerReporte_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        CargarReportes(dgv_Reportes)
 
     End Sub
 
