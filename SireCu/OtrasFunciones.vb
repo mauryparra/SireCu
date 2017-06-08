@@ -172,6 +172,8 @@ Module OtrasFunciones
 
     Public Function obtenerID(ByVal tabla As String, ByVal campo As String, ByVal item_a_comparar As String, Optional ByVal distinto As Boolean = 0)
 
+        cargarTablaEnDataSet(tabla)
+
         Dim id As Integer = Nothing
 
         If distinto = 0 Then
@@ -189,6 +191,23 @@ Module OtrasFunciones
         End If
 
         Return id
+
+    End Function
+
+    Public Function obtenerSeccional()
+
+        Dim tabla As String = "Seccionales"
+        Dim seccional As String = ""
+
+        cargarTablaEnDataSet(tabla)
+
+        For i = 0 To Principal.dataset.Tables(tabla).Rows.Count - 1
+            If (LCase(Principal.dataset.Tables(tabla).Rows.Item(i).Item("nombre")) <> LCase("UDA Central")) Then
+                seccional = Principal.dataset.Tables(tabla).Rows.Item(i).Item("nombre")
+            End If
+        Next
+
+        Return (seccional)
 
     End Function
 
