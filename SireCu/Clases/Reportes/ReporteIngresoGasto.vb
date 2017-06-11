@@ -22,10 +22,12 @@
                                   R.saldo_final AS saldoFinal,
                                   R.ingresos AS ingresos,
                                   R.egresos AS egresos,
+                                  R.trimestre_id as trimID,
                                   Trim.fecha_inicio AS fechaInicial,
                                   Trim.fecha_fin AS fechaFinal                            
                            FROM ReportesTrimestrales AS R
-                           LEFT JOIN Trimestres AS Trim ON R.trimestre_id = Trim.id"
+                           LEFT JOIN Trimestres AS Trim ON R.trimestre_id = Trim.id
+                           WHERE R.trimestre_id=" & trimid & " AND R.año=" & año
 
         Dim dt As DataTable = consultarReader(sql)
 

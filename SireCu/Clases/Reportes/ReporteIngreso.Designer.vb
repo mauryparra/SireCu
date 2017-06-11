@@ -22,6 +22,8 @@ Partial Class ReporteIngreso
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ReporteIngreso))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -36,14 +38,14 @@ Partial Class ReporteIngreso
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tb_Seccional = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.dgv = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgv, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -87,9 +89,9 @@ Partial Class ReporteIngreso
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView1)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.dgv)
         Me.SplitContainer1.Size = New System.Drawing.Size(649, 396)
-        Me.SplitContainer1.SplitterDistance = 73
+        Me.SplitContainer1.SplitterDistance = 113
         Me.SplitContainer1.TabIndex = 4
         '
         'GroupBox1
@@ -103,7 +105,7 @@ Partial Class ReporteIngreso
         Me.GroupBox1.Controls.Add(Me.Label4)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(628, 73)
+        Me.GroupBox1.Size = New System.Drawing.Size(628, 110)
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         '
@@ -111,7 +113,7 @@ Partial Class ReporteIngreso
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(242, 8)
+        Me.Label1.Location = New System.Drawing.Point(229, 19)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(127, 31)
         Me.Label1.TabIndex = 13
@@ -120,7 +122,7 @@ Partial Class ReporteIngreso
         'tb_Trimestre
         '
         Me.tb_Trimestre.Enabled = False
-        Me.tb_Trimestre.Location = New System.Drawing.Point(526, 42)
+        Me.tb_Trimestre.Location = New System.Drawing.Point(521, 65)
         Me.tb_Trimestre.Name = "tb_Trimestre"
         Me.tb_Trimestre.Size = New System.Drawing.Size(81, 20)
         Me.tb_Trimestre.TabIndex = 12
@@ -129,7 +131,7 @@ Partial Class ReporteIngreso
         'tb_Año
         '
         Me.tb_Año.Enabled = False
-        Me.tb_Año.Location = New System.Drawing.Point(526, 16)
+        Me.tb_Año.Location = New System.Drawing.Point(521, 30)
         Me.tb_Año.Name = "tb_Año"
         Me.tb_Año.Size = New System.Drawing.Size(81, 20)
         Me.tb_Año.TabIndex = 11
@@ -138,7 +140,7 @@ Partial Class ReporteIngreso
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(470, 46)
+        Me.Label3.Location = New System.Drawing.Point(465, 69)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(50, 13)
         Me.Label3.TabIndex = 10
@@ -147,7 +149,7 @@ Partial Class ReporteIngreso
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(482, 19)
+        Me.Label2.Location = New System.Drawing.Point(477, 33)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(26, 13)
         Me.Label2.TabIndex = 9
@@ -156,7 +158,7 @@ Partial Class ReporteIngreso
         'tb_Seccional
         '
         Me.tb_Seccional.Enabled = False
-        Me.tb_Seccional.Location = New System.Drawing.Point(65, 47)
+        Me.tb_Seccional.Location = New System.Drawing.Point(63, 84)
         Me.tb_Seccional.Name = "tb_Seccional"
         Me.tb_Seccional.Size = New System.Drawing.Size(137, 20)
         Me.tb_Seccional.TabIndex = 8
@@ -165,26 +167,47 @@ Partial Class ReporteIngreso
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(5, 51)
+        Me.Label4.Location = New System.Drawing.Point(3, 88)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(54, 13)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "Seccional"
         '
-        'DataGridView1
+        'dgv
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.Enabled = False
-        Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
-        Me.DataGridView1.MultiSelect = False
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(649, 319)
-        Me.DataGridView1.TabIndex = 3
+        Me.dgv.AllowUserToAddRows = False
+        Me.dgv.AllowUserToDeleteRows = False
+        Me.dgv.AllowUserToResizeColumns = False
+        Me.dgv.AllowUserToResizeRows = False
+        Me.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgv.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgv.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dgv.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgv.Location = New System.Drawing.Point(0, 0)
+        Me.dgv.Name = "dgv"
+        Me.dgv.ReadOnly = True
+        Me.dgv.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.dgv.RowTemplate.DividerHeight = 1
+        Me.dgv.RowTemplate.Height = 35
+        Me.dgv.RowTemplate.ReadOnly = True
+        Me.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.dgv.Size = New System.Drawing.Size(649, 279)
+        Me.dgv.TabIndex = 2
         '
         'ReporteIngreso
         '
@@ -205,7 +228,7 @@ Partial Class ReporteIngreso
         Me.SplitContainer1.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgv, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -224,5 +247,5 @@ Partial Class ReporteIngreso
     Friend WithEvents Label2 As Label
     Friend WithEvents tb_Seccional As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents dgv As DataGridView
 End Class
