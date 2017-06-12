@@ -33,10 +33,16 @@
                 RE.total as total
                 From ReportesEgresos As RE
                 Left Join ReportesTrimestrales as RT on RE.reporte_trimestre_id = RT.id
-                WHERE RT.seccional_id = " & obtenerID("Seccionales", "nombre", "UDA Central", True) &
+                WHERE RE.seccional_id = " & obtenerID("Seccionales", "nombre", "UDA Central", True) &
                 " AND RT.trimestre_id = " & obtenerID("Trimestres", "nombre", trimestre) &
                 " AND RT.año = " & año
         Dim dt As DataTable = consultarReader(Sql)
+
+        'Si no encuentra nada, sale
+        If dt.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
         Dim idReporteEgreso As Integer = dt.Rows(0).Item("id")
         Dim totalGeneralEgreso As Double = dt.Rows(0).Item("total")
         dt.Clear()

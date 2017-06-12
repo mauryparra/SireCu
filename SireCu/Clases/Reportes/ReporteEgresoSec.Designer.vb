@@ -113,7 +113,7 @@ Partial Class ReporteEgresoSec
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(164, 8)
+        Me.Label1.Location = New System.Drawing.Point(169, 12)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(256, 31)
         Me.Label1.TabIndex = 13
@@ -122,7 +122,7 @@ Partial Class ReporteEgresoSec
         'tb_Trimestre
         '
         Me.tb_Trimestre.Enabled = False
-        Me.tb_Trimestre.Location = New System.Drawing.Point(526, 42)
+        Me.tb_Trimestre.Location = New System.Drawing.Point(526, 56)
         Me.tb_Trimestre.Name = "tb_Trimestre"
         Me.tb_Trimestre.Size = New System.Drawing.Size(81, 20)
         Me.tb_Trimestre.TabIndex = 12
@@ -131,7 +131,7 @@ Partial Class ReporteEgresoSec
         'tb_Año
         '
         Me.tb_Año.Enabled = False
-        Me.tb_Año.Location = New System.Drawing.Point(526, 16)
+        Me.tb_Año.Location = New System.Drawing.Point(526, 23)
         Me.tb_Año.Name = "tb_Año"
         Me.tb_Año.Size = New System.Drawing.Size(81, 20)
         Me.tb_Año.TabIndex = 11
@@ -140,7 +140,7 @@ Partial Class ReporteEgresoSec
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(470, 46)
+        Me.Label3.Location = New System.Drawing.Point(470, 60)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(50, 13)
         Me.Label3.TabIndex = 10
@@ -149,7 +149,7 @@ Partial Class ReporteEgresoSec
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(482, 19)
+        Me.Label2.Location = New System.Drawing.Point(482, 26)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(26, 13)
         Me.Label2.TabIndex = 9
@@ -158,7 +158,7 @@ Partial Class ReporteEgresoSec
         'tb_Seccional
         '
         Me.tb_Seccional.Enabled = False
-        Me.tb_Seccional.Location = New System.Drawing.Point(65, 47)
+        Me.tb_Seccional.Location = New System.Drawing.Point(65, 57)
         Me.tb_Seccional.Name = "tb_Seccional"
         Me.tb_Seccional.Size = New System.Drawing.Size(137, 20)
         Me.tb_Seccional.TabIndex = 8
@@ -167,7 +167,7 @@ Partial Class ReporteEgresoSec
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(5, 51)
+        Me.Label4.Location = New System.Drawing.Point(5, 61)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(54, 13)
         Me.Label4.TabIndex = 7
