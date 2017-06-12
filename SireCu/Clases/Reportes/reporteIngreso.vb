@@ -2,6 +2,7 @@
 
     Public trimestre As String
     Public año As Integer
+    Dim columnas As List(Of KeyValuePair(Of String, String)) = New List(Of KeyValuePair(Of String, String))
 
     Private Sub ReporteIngreso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tb_Año.Text = año
@@ -48,11 +49,14 @@
 
         Dim dt As DataTable = consultarReader(sql)
 
-        crearColumna(0, "mes", "Mes de:")
-        crearColumna(1, "ingCentral", "Ingresos UDA Central")
-        crearColumna(2, "ingProvin", "Ingresos Provinciales")
-        crearColumna(3, "ingOtros", "Otros Ingresos")
-        crearColumna(4, "totales", "TOTAL")
+        'Creamos las Columnas
+        columnas.Add(New KeyValuePair(Of String, String)("meses", "Mes de:"))
+        columnas.Add(New KeyValuePair(Of String, String)("IC", "Ingresos Central"))
+        columnas.Add(New KeyValuePair(Of String, String)("IP", "Ingresos Provinciales"))
+        columnas.Add(New KeyValuePair(Of String, String)("IO", "Otros Ingresos"))
+        columnas.Add(New KeyValuePair(Of String, String)("totales", "TOTAL"))
+        crearColumna(dgv, columnas)
+
 
         Dim totalGeneral As Double = dt.Rows(0).Item("totalGen") + dt.Rows(1).Item("totalGen") + dt.Rows(2).Item("totalGen")
 
@@ -72,22 +76,6 @@
         dgv.Rows.Add("", "Coparticipacion:", dt.Rows(2).Item("copart"), "", "")
         'Total General
         dgv.Rows.Add("", "", "", "Total General:", dt.Rows(2).Item("totalGen"))
-
-    End Sub
-
-    Private Sub crearColumna(ByVal index As Integer, ByVal nombreColumna As String, Optional ByVal header As String = "")
-
-        If Not dgv.Columns.Contains(nombreColumna) Then
-            Dim column As New DataGridViewTextBoxColumn
-            With column
-                .DisplayIndex = index
-                .Name = nombreColumna
-                .HeaderText = header
-                .DataPropertyName = nombreColumna
-                .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            End With
-            dgv.Columns.Add(column)
-        End If
 
     End Sub
 

@@ -27,14 +27,13 @@ Module Reporte
 
         dgv.DataSource = mybinding
 
-        crearColumnas(dgv)
+        columnasVerReporte(dgv)
 
         dgv.Columns("id").Visible = False
 
     End Sub
 
-    Private Sub crearColumnas(ByRef dgv As DataGridView)
-
+    Private Sub columnasVerReporte(ByRef dgv As DataGridView)
         Dim i As Integer = 0
         Dim array = New String() {"Ingresos - Gastos", "Ingresos", "Egresos Seccional", "Egresos Central"}
 
@@ -52,6 +51,24 @@ Module Reporte
             End If
             i = i + 1
         Loop While i <= 3
+
+    End Sub
+
+    Public Sub crearColumna(ByRef dgv As DataGridView, ByVal filtros As List(Of KeyValuePair(Of String, String)))
+
+        For Each columna As KeyValuePair(Of String, String) In filtros
+            If Not dgv.Columns.Contains(columna.Key) Then
+                Dim column As New DataGridViewTextBoxColumn
+                With column
+                    .Name = columna.Key
+                    .HeaderText = columna.Value
+                    .DataPropertyName = columna.Value
+                    .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                    .DefaultCellStyle.Format = "C2"
+                End With
+                dgv.Columns.Add(column)
+            End If
+        Next
 
     End Sub
 

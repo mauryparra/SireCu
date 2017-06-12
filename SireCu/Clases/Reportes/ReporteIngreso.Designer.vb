@@ -90,8 +90,8 @@ Partial Class ReporteIngreso
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgv)
-        Me.SplitContainer1.Size = New System.Drawing.Size(649, 396)
-        Me.SplitContainer1.SplitterDistance = 113
+        Me.SplitContainer1.Size = New System.Drawing.Size(649, 367)
+        Me.SplitContainer1.SplitterDistance = 116
         Me.SplitContainer1.TabIndex = 4
         '
         'GroupBox1
@@ -206,14 +206,15 @@ Partial Class ReporteIngreso
         Me.dgv.RowTemplate.Height = 35
         Me.dgv.RowTemplate.ReadOnly = True
         Me.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv.Size = New System.Drawing.Size(649, 279)
+        Me.dgv.Size = New System.Drawing.Size(649, 247)
         Me.dgv.TabIndex = 2
         '
         'ReporteIngreso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(649, 420)
+        Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ClientSize = New System.Drawing.Size(649, 391)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)

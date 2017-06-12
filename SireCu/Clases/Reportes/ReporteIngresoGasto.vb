@@ -2,6 +2,7 @@
 
     Public trimestre As String
     Public año As Integer
+    Dim columnas As List(Of KeyValuePair(Of String, String)) = New List(Of KeyValuePair(Of String, String))
 
     Private Sub ReporteIngresoGasto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         tb_Año.Text = año
@@ -31,9 +32,12 @@
 
         Dim dt As DataTable = consultarReader(sql)
 
-        crearColumna(0, "labels")
-        crearColumna(1, "meses")
-        crearColumna(2, "totales", "TOTAL")
+
+        'Creamos las Columnas
+        columnas.Add(New KeyValuePair(Of String, String)("labels", ""))
+        columnas.Add(New KeyValuePair(Of String, String)("fechas", ""))
+        columnas.Add(New KeyValuePair(Of String, String)("totales", "TOTAL"))
+        crearColumna(dgv, columnas)
 
         Dim fechaInicio As String = "01/" & DatePart(DateInterval.Month, dt.Rows(0).Item("fechaInicial")) & "/" & año
         Dim fechaFinal As String = DatePart(DateInterval.Day, dt.Rows(0).Item("fechaFinal")) & "/" &
@@ -46,22 +50,6 @@
         dgv.Rows.Add("Egresos", "", dt.Rows(0).Item("egresos"))
         dgv.Rows.Add("Saldo Final al", fechaFinal, dt.Rows(0).Item("saldoFinal"))
         dgv.Rows.Add("", "Total General", totalGeneral)
-
-    End Sub
-
-    Private Sub crearColumna(ByVal index As Integer, ByVal nombreColumna As String, Optional ByVal header As String = "")
-
-        If Not dgv.Columns.Contains(nombreColumna) Then
-            Dim column As New DataGridViewTextBoxColumn
-            With column
-                .DisplayIndex = index
-                .Name = nombreColumna
-                .HeaderText = header
-                .DataPropertyName = nombreColumna
-                .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            End With
-            dgv.Columns.Add(column)
-        End If
 
     End Sub
 
