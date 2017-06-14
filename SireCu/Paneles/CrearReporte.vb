@@ -7,23 +7,29 @@
         'TODO Verificaciones de reportes existentes
 
 
-        ' 1) Crear ReportesTrimestrales en blanco
-        ' 2) Crear ReportesIngresos
-        ' 3) Crear ReportesIngresosMensuales
-        ' 4) Crear ReportesEgresos
-        ' 5) Crear ReportesEgresosCategoras
-        ' 6) Modificar ReportesTrimestrales con valores verdaderos
+        ' 1) Crear ReportesTrimestrales en blanco LISTO
+        ' 2) Crear ReportesIngresos TODO
+        ' 3) Crear ReportesIngresosMensuales TODO 
+        ' 4) Crear ReportesEgresos LISTO
+        ' 5) Crear ReportesEgresosMensuales TODO
+        ' 6) Modificar ReportesTrimestrales con valores verdaderos TODO
 
         ActualizarTablasdeReporte()
-        Dim trimid As Integer = obtenerID("Trimestres", "nombre", cb_Trimestre.Text)
+        Dim idTrimestre As Integer = obtenerID("Trimestres", "nombre", cb_Trimestre.Text)
+        Dim idCentral As Integer = obtenerID("Seccionales", "nombre", "UDA Central")
+        Dim idSeccional As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
 
         ' 1)
+        CrearRepTrimestral(idTrimestre, tb_Año.Text, True)
 
-        CrearRepTrimestrales(trimid, tb_Año.Text)
-        CrearRepCentral(trimid, tb_Año.Text)
+        ' 2)
+        'CrearRepIngresos(cb_Trimestre.Text, tb_Año.Text)
 
-        CrearRepSeccional(trimid, tb_Año.Text)
-        CrearRepIngresos(trimid, tb_Año.Text)
+        ' 4)
+        CrearRepEgreso(cb_Trimestre.Text, tb_Año.Text, idSeccional, idCentral)
+        'CrearRepSeccional(trimid, tb_Año.Text)
+
+        'CrearRepTrimestral(trimid, tb_Año.Text)
 
     End Sub
 

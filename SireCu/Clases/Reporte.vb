@@ -65,6 +65,7 @@ Module Reporte
                     .DataPropertyName = columna.Value
                     .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                     .DefaultCellStyle.Format = "C2"
+                    .SortMode = DataGridViewColumnSortMode.NotSortable
                 End With
                 dgv.Columns.Add(column)
             End If
@@ -75,12 +76,12 @@ Module Reporte
     Public Function existReporte(ByVal año As Integer, ByVal trim As Integer)
 
         cargarTablaEnDataSet("ReportesTrimestrales")
-        Dim flag As Boolean = False
+        Dim flag As String = False
 
         For i = 0 To Principal.dataset.Tables("ReportesTrimestrales").Rows.Count - 1
             If (Principal.dataset.Tables("ReportesTrimestrales").Rows.Item(i).Item("año") = año) And
                (Principal.dataset.Tables("ReportesTrimestrales").Rows.Item(i).Item("trimestre_id") = trim) Then
-                flag = True
+                flag = Principal.dataset.Tables("ReportesTrimestrales").Rows.Item(i).Item("id")
             End If
         Next
 
@@ -92,19 +93,101 @@ Module Reporte
 
     End Sub
 
-    Public Sub CrearRepCentral(ByVal trimestre As Integer, ByVal año As Integer)
+    Public Sub CrearRepEgreso(ByVal trimestre As String, ByVal año As Integer, ByVal seccional As Integer, ByVal central As Integer)
+
+        Dim idTrimestre As Integer = obtenerID("Trimestres", "nombre", trimestre)
+        Dim idReporteTrimestral = existReporte(año, idTrimestre)
+        Dim sqlTotEgresoSec As String = ""
+        Dim sqlTotEgresoCen As String = ""
+
+        Select Case trimestre
+            Case "Primero"
+                sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & seccional &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 1 And 3 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 1 And 3 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+                sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & central &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 1 And 3 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 1 And 3 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+            Case "Segundo"
+                sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & seccional &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 4 And 6 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 4 And 6 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+                sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & central &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 4 And 6 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 4 And 6 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+            Case "Tercero"
+                sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & seccional &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 7 And 7 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 7 And 9 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+                sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & central &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 7 And 9 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 7 And 9 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+            Case "Cuarto"
+                sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & seccional &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 10 And 12 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 10 And 12 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+                sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
+                   WHERE seccional_id = " & central &
+                   " AND ((DATEPART(Month, [fecha]) BETWEEN 10 And 12 AND DATEPART(year, [fecha]) = " & año & ")
+                    OR (DATEPART(Month, [mes_reintegro]) BETWEEN 10 And 12 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
+        End Select
+
+        Dim resultadoConsulta = consultarES(sqlTotEgresoSec, Principal.command)
+        Dim totalEgresoSec As Double = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
+        resultadoConsulta = consultarES(sqlTotEgresoCen, Principal.command)
+        Dim totalEgresoCen As Double = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
+
+        'Reporte Egreso Seccional
+        Principal.query = "INSERT INTO ReportesEgresos 
+                                           (reporte_trimestre_id, seccional_id, total) 
+                                            VALUES 
+                                            (" & idReporteTrimestral & "," & seccional & "," & totalEgresoSec & ")"
+        consultarNQ(Principal.query, Principal.command)
+        'Reporte Egreso Central
+        Principal.query = "INSERT INTO ReportesEgresos 
+                                           (reporte_trimestre_id, seccional_id, total) 
+                                            VALUES 
+                                            (" & idReporteTrimestral & "," & central & "," & totalEgresoCen & ")"
+        consultarNQ(Principal.query, Principal.command)
 
     End Sub
 
-    Public Sub CrearRepSeccional(ByVal trimestre As Integer, ByVal año As Integer)
+    Public Sub CrearRepEgresoMensual(ByVal trimestre As Integer, ByVal año As Integer)
 
     End Sub
 
-    Public Sub CrearRepIngresos(ByVal trimestre As Integer, ByVal año As Integer)
+    Public Sub CrearRepIngresos(ByVal trimestre As String, ByVal año As Integer)
+
+
 
     End Sub
 
-    Public Sub CrearRepTrimestrales(ByVal trimestre As Integer, ByVal año As Integer)
+    Public Sub CrearRepTrimestral(ByVal trimestre As Integer, ByVal año As Integer, Optional ByVal blanco As Boolean = False)
+
+        Dim idSeccional As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
+
+        'Completamos reporte en Blanco
+        If blanco Then
+            Principal.query = "INSERT INTO ReportesTrimestrales 
+                                           (seccional_id, trimestre_id, año, saldo_inicial, 
+                                            ingresos, egresos, saldo_final) 
+                                            VALUES 
+                                            (" & idSeccional & "," & trimestre & "," & año & ",
+                                             0,0,0,0)"
+            consultarNQ(Principal.query, Principal.command)
+
+            'Modificamos reporte en blanco existente
+        Else
+
+        End If
+
 
     End Sub
 
