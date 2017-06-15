@@ -2,6 +2,7 @@
 
 Module Reporte
 
+    'Panel VerReporte
     Public Sub CargarReportes(ByRef dgv As DataGridView, ByVal sql As String, Optional ByVal nombreDataSet As String = "Reportes")
 
         'Creamos la tabla si no existe
@@ -32,7 +33,6 @@ Module Reporte
         dgv.Columns("id").Visible = False
 
     End Sub
-
     Private Sub columnasVerReporte(ByRef dgv As DataGridView)
         Dim i As Integer = 0
         Dim array = New String() {"Ingresos - Gastos", "Ingresos", "Egresos Seccional", "Egresos Central"}
@@ -54,6 +54,7 @@ Module Reporte
 
     End Sub
 
+    'Helpers
     Public Sub crearColumna(ByRef dgv As DataGridView, ByVal filtros As List(Of KeyValuePair(Of String, String)))
 
         For Each columna As KeyValuePair(Of String, String) In filtros
@@ -72,7 +73,6 @@ Module Reporte
         Next
 
     End Sub
-
     Public Function existReporte(ByVal año As Integer, ByVal trim As Integer)
 
         cargarTablaEnDataSet("ReportesTrimestrales")
@@ -89,10 +89,28 @@ Module Reporte
 
     End Function
 
-    Public Sub ActualizarTablasdeReporte()
+    'Crear Reportes
+    Public Sub CrearRepTrimestral(ByVal trimestre As Integer, ByVal año As Integer, Optional ByVal blanco As Boolean = False)
+
+        Dim idSeccional As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
+
+        'Completamos reporte en Blanco
+        If blanco Then
+            Principal.query = "INSERT INTO ReportesTrimestrales 
+                                           (seccional_id, trimestre_id, año, saldo_inicial, 
+                                            ingresos, egresos, saldo_final) 
+                                            VALUES 
+                                            (" & idSeccional & "," & trimestre & "," & año & ",
+                                             0,0,0,0)"
+            consultarNQ(Principal.query, Principal.command)
+
+            'Modificamos reporte en blanco existente
+        Else
+
+        End If
+
 
     End Sub
-
     Public Sub CrearRepEgreso(ByVal trimestre As String, ByVal año As Integer, ByVal seccional As Integer, ByVal central As Integer)
 
         Dim idTrimestre As Integer = obtenerID("Trimestres", "nombre", trimestre)
@@ -159,36 +177,66 @@ Module Reporte
 
     End Sub
 
+    'TODO
+    Public Sub ActualizarTablasdeReporte()
+
+    End Sub
     Public Sub CrearRepEgresoMensual(ByVal trimestre As Integer, ByVal año As Integer)
 
-    End Sub
 
+
+    End Sub
     Public Sub CrearRepIngresos(ByVal trimestre As String, ByVal año As Integer)
 
+        'Consultamos los ingresos en el período ingresado
+        'TODO Agregar Reintegro
+        'TODO ExistReporte necesita valor integer, no string
+        Dim sql As String = ""
+        Dim sqlCop As String = ""
+        Select Case trimestre
+            Case "Primero"
+                sql = "SELECT ingresos_prov, ingresos_central, ingresos_otros 
+                             FROM [Ingresos]
+                             WHERE DATEPART(Month, [fecha]) BETWEEN 1 And 3 And DATEPART(year, [fecha]) = " & año
+                sqlCop = "SELECT SUM(monto) FROM Egresos 
+                            WHERE seccional_id = " & obtenerID("Seccionales", "nombre", "UDA Central") &
+                            " AND DATEPART(Month, [fecha]) BETWEEN 1 And 3 And DATEPART(year, [fecha]) = " & año
+            Case "Segundo"
+                sql = "SELECT ingresos_prov, ingresos_central, ingresos_otros
+                             FROM [Ingresos]
+                             WHERE DATEPART(Month, [fecha]) BETWEEN 4 And 6 And DATEPART(year, [fecha]) = " & año
+            Case "Tercero"
+                sql = "SELECT ingresos_prov, ingresos_central, ingresos_otros
+                             FROM [Ingresos]
+                             WHERE DATEPART(Month, [fecha]) BETWEEN 7 And 9 And DATEPART(year, [fecha]) = " & año
+            Case "Cuarto"
+                sql = "SELECT ingresos_prov, ingresos_central, ingresos_otros
+                             FROM [Ingresos]
+                             WHERE DATEPART(Month, [fecha]) BETWEEN 10 And 12 And DATEPART(year, [fecha]) = " & año
+        End Select
+        Dim dt As DataTable = consultarReader(sql)
+        Dim totalProv As Double = 0.0
+        Dim totalGeneral As Double = 0.0
+        For i = 0 To dt.Rows.Count - 1
+            totalProv = totalProv + dt.Rows(i).Item("ingresos_prov")
+            totalGeneral = totalGeneral + (dt.Rows(i).Item("ingresos_prov") +
+                dt.Rows(0).Item("ingresos_central") + dt.Rows(0).Item("ingresos_otros"))
+        Next
 
+        'Consultamos el total de coparticipacion
+        Dim resultadoConsulta = consultarES(sql, Principal.command)
+        Dim totalCopart = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
+
+
+        'Obtenemos el id del reporte_trimestral asociado y guardamos
+        Dim idReporteTrimestral = existReporte(año, trimestre)
+        Principal.query = "INSERT INTO ReportesIngresos (
+                            reporte_trimestre_id, total_provincial, coparticipacion, total_general)
+                           VALUES (" & idReporteTrimestral & ""
+        consultarNQ(Principal.query, Principal.command)
 
     End Sub
 
-    Public Sub CrearRepTrimestral(ByVal trimestre As Integer, ByVal año As Integer, Optional ByVal blanco As Boolean = False)
 
-        Dim idSeccional As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
-
-        'Completamos reporte en Blanco
-        If blanco Then
-            Principal.query = "INSERT INTO ReportesTrimestrales 
-                                           (seccional_id, trimestre_id, año, saldo_inicial, 
-                                            ingresos, egresos, saldo_final) 
-                                            VALUES 
-                                            (" & idSeccional & "," & trimestre & "," & año & ",
-                                             0,0,0,0)"
-            consultarNQ(Principal.query, Principal.command)
-
-            'Modificamos reporte en blanco existente
-        Else
-
-        End If
-
-
-    End Sub
 
 End Module

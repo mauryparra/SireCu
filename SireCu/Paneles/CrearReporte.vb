@@ -27,7 +27,9 @@
 
         ' 4)
         CrearRepEgreso(cb_Trimestre.Text, tb_Año.Text, idSeccional, idCentral)
-        'CrearRepSeccional(trimid, tb_Año.Text)
+
+        ' 5)
+        'CrearRepEgresoMensual(idTrimestre, tb_Año.Text)
 
         'CrearRepTrimestral(trimid, tb_Año.Text)
 
