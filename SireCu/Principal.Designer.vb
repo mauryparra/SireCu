@@ -33,7 +33,6 @@ Partial Class Principal
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
         Me.RadioButtonSubirReporte = New System.Windows.Forms.RadioButton()
         Me.RadioButtonVerReporte = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonCrearReporte = New System.Windows.Forms.RadioButton()
         Me.RadioButtonABMAdmin = New System.Windows.Forms.RadioButton()
         Me.RadioButtonEgresos = New System.Windows.Forms.RadioButton()
         Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
@@ -127,7 +126,6 @@ Partial Class Principal
         '
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonSubirReporte)
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonVerReporte)
-        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonCrearReporte)
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonABMAdmin)
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonEgresos)
         Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonIngresos)
@@ -143,7 +141,7 @@ Partial Class Principal
         Me.RadioButtonSubirReporte.BackColor = System.Drawing.SystemColors.Control
         Me.RadioButtonSubirReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButtonSubirReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonSubirReporte.Location = New System.Drawing.Point(3, 287)
+        Me.RadioButtonSubirReporte.Location = New System.Drawing.Point(3, 271)
         Me.RadioButtonSubirReporte.MinimumSize = New System.Drawing.Size(190, 30)
         Me.RadioButtonSubirReporte.Name = "RadioButtonSubirReporte"
         Me.RadioButtonSubirReporte.Size = New System.Drawing.Size(190, 30)
@@ -159,7 +157,7 @@ Partial Class Principal
         Me.RadioButtonVerReporte.BackColor = System.Drawing.SystemColors.Control
         Me.RadioButtonVerReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RadioButtonVerReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonVerReporte.Location = New System.Drawing.Point(3, 230)
+        Me.RadioButtonVerReporte.Location = New System.Drawing.Point(3, 216)
         Me.RadioButtonVerReporte.MinimumSize = New System.Drawing.Size(190, 30)
         Me.RadioButtonVerReporte.Name = "RadioButtonVerReporte"
         Me.RadioButtonVerReporte.Size = New System.Drawing.Size(190, 30)
@@ -167,22 +165,6 @@ Partial Class Principal
         Me.RadioButtonVerReporte.Text = "Ver Reporte"
         Me.RadioButtonVerReporte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.RadioButtonVerReporte.UseVisualStyleBackColor = False
-        '
-        'RadioButtonCrearReporte
-        '
-        Me.RadioButtonCrearReporte.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonCrearReporte.AutoSize = True
-        Me.RadioButtonCrearReporte.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonCrearReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonCrearReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonCrearReporte.Location = New System.Drawing.Point(3, 172)
-        Me.RadioButtonCrearReporte.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonCrearReporte.Name = "RadioButtonCrearReporte"
-        Me.RadioButtonCrearReporte.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonCrearReporte.TabIndex = 3
-        Me.RadioButtonCrearReporte.Text = "Crear Reporte"
-        Me.RadioButtonCrearReporte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonCrearReporte.UseVisualStyleBackColor = False
         '
         'RadioButtonABMAdmin
         '
@@ -303,6 +285,5 @@ Partial Class Principal
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents RadioButtonABMAdmin As RadioButton
     Friend WithEvents RadioButtonVerReporte As RadioButton
-    Friend WithEvents RadioButtonCrearReporte As RadioButton
     Friend WithEvents RadioButtonSubirReporte As RadioButton
 End Class

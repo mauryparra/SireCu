@@ -20,7 +20,7 @@ Public Class Principal
     Private Sub RadioButtonABMAdmin_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonABMAdmin.CheckedChanged
         AdminPantallas("ABMAdmin")
     End Sub
-    Private Sub RadioButtonCrearReporte_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonCrearReporte.CheckedChanged
+    Private Sub RadioButtonCrearReporte_CheckedChanged(sender As Object, e As EventArgs)
         AdminPantallas("CrearReporte")
     End Sub
     Private Sub RadioButtonVerReporte_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonVerReporte.CheckedChanged
