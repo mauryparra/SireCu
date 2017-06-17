@@ -219,9 +219,12 @@ Module Egreso
 
         Dim flag As Boolean = False
 
+        cargarTablaEnDataSet("Egresos")
+
         For i = 0 To Principal.dataset.Tables("Egresos").Rows.Count - 1
             If (Principal.dataset.Tables("Egresos").Rows.Item(i).Item("nro_comprobante") = nComprobante) And
-               (Principal.dataset.Tables("Egresos").Rows.Item(i).Item("proveedor_id") = proveedorID) Then
+               (Principal.dataset.Tables("Egresos").Rows.Item(i).Item("proveedor_id") = proveedorID) And
+               (Principal.dataset.Tables("Egresos").Rows.Item(i).Item("eliminado") = 0) Then
                 flag = True
             End If
         Next

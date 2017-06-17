@@ -16,57 +16,38 @@ Public Class VerReporte
             Exit Sub
         Else
 
-            Dim filtros As List(Of KeyValuePair(Of String, String)) = New List(Of KeyValuePair(Of String, String))
-
-            If Not cb_Trimestre.SelectedItem = "" Then
-                filtros.Add(New KeyValuePair(Of String, String)("trimestre", cb_Trimestre.SelectedItem))
-            End If
-
-            If Not tb_Año.Text = "" Then
-                filtros.Add(New KeyValuePair(Of String, String)("año", tb_Año.Text))
-            End If
-
-            'SQL Básico
-            sql = "SELECT TOP (100) R.id AS id,
-                                  R.año AS Año,
-                                  Trim.nombre AS Trimestre                             
-                           FROM ReportesTrimestrales AS R
-                           LEFT JOIN Trimestres AS Trim ON R.trimestre_id = Trim.id WHERE R.id >= 0"
-
-
-            ' Aplicar Filtros al SQL
-
-            For Each keyv As KeyValuePair(Of String, String) In filtros
-                ' Filtrar por trimestre
-                If keyv.Key = "trimestre" Then
-                    sql += " AND Trim.nombre LIKE '" & keyv.Value & "'"
-                    ' Filtrar por año
-                ElseIf keyv.Key = "año" Then
-                    sql += " AND R.año =" & keyv.Value
-                End If
-            Next
-            sql += " ORDER BY R.año DESC"
-
-            CargarReportes(dgv_Reportes, sql)
-
-            bttn_Qfiltro.Enabled = True
+            cargarGrid()
 
         End If
 
     End Sub
-    Private Sub bttn_Qfiltro_Click(sender As Object, e As EventArgs) Handles bttn_Qfiltro.Click
-        sql = "SELECT TOP (100) R.id AS id,
-                                  R.año AS Año,
-                                  Trim.nombre AS Trimestre                             
-                           FROM ReportesTrimestrales AS R
-                           LEFT JOIN Trimestres AS Trim ON R.trimestre_id = Trim.id
-                           ORDER BY R.año DESC"
 
-        CargarReportes(dgv_Reportes, sql)
+#End Region
 
-        bttn_Qfiltro.Enabled = False
-        cb_Trimestre.Text = ""
-        tb_Año.Text = ""
+#Region "Helpers"
+
+    Private Sub cargarGrid()
+
+        Dim i As Integer = 0
+        Dim Array As String() = {"Ingresos - Gastos", "Ingresos", "Egresos Seccional", "Egresos Central"}
+
+        Do
+            If Not dgv_Reportes.Columns.Contains(Array(i)) Then
+                Dim column As New DataGridViewButtonColumn
+                With column
+                    .Name = Array(i)
+                    .HeaderText = Array(i)
+                    .Text = "Ver Reporte"
+                    .DataPropertyName = Array(i)
+                    .UseColumnTextForButtonValue = True
+                End With
+                dgv_Reportes.Columns.Add(column)
+            End If
+            i = i + 1
+        Loop While i <= 3
+
+        dgv_Reportes.Rows.Add()
+
     End Sub
 
 #End Region
@@ -82,43 +63,19 @@ Public Class VerReporte
 
             Select Case dgv_Reportes.Columns(e.ColumnIndex).HeaderText
                 Case "Ingresos - Gastos"
-                    Dim nuevo_reporte As New ReporteIngresoGasto
-                    nuevo_reporte.trimestre = dgv_Reportes.Rows(e.RowIndex).Cells(6).Value
-                    nuevo_reporte.año = dgv_Reportes.Rows(e.RowIndex).Cells(5).Value
-                    nuevo_reporte.Show()
+                    generarRepIngGast(cb_Trimestre.Text, tb_Año.Text)
                 Case "Ingresos"
-                    Dim nuevo_reporte As New ReporteIngreso
-                    nuevo_reporte.trimestre = dgv_Reportes.Rows(e.RowIndex).Cells(6).Value
-                    nuevo_reporte.año = dgv_Reportes.Rows(e.RowIndex).Cells(5).Value
-                    nuevo_reporte.Show()
+
                 Case "Egresos Seccional"
-                    Dim nuevo_reporte As New ReporteEgresoSec
-                    nuevo_reporte.trimestre = dgv_Reportes.Rows(e.RowIndex).Cells(6).Value
-                    nuevo_reporte.año = dgv_Reportes.Rows(e.RowIndex).Cells(5).Value
-                    nuevo_reporte.Show()
+
                 Case "Egresos Central"
-                    Dim nuevo_reporte As New ReporteEgresoCen
-                    nuevo_reporte.trimestre = dgv_Reportes.Rows(e.RowIndex).Cells(6).Value
-                    nuevo_reporte.año = dgv_Reportes.Rows(e.RowIndex).Cells(5).Value
-                    nuevo_reporte.Show()
+
                 Case Else
                     MsgBox("Error al seleccionar el reporte", MsgBoxStyle.Critical, "Error")
                     Exit Sub
             End Select
 
         End If
-
-    End Sub
-    Private Sub VerReporte_Load(sender As Object, e As EventArgs) Handles Me.Load
-
-        sql = "SELECT TOP (100) R.id AS id,
-                                  R.año AS Año,
-                                  Trim.nombre AS Trimestre                             
-                           FROM ReportesTrimestrales AS R
-                           LEFT JOIN Trimestres AS Trim ON R.trimestre_id = Trim.id
-                           ORDER BY R.año DESC"
-
-        CargarReportes(dgv_Reportes, sql)
 
     End Sub
 

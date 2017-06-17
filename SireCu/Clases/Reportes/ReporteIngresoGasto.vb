@@ -8,30 +8,11 @@
         tb_Año.Text = año
         tb_Trimestre.Text = trimestre
         tb_Seccional.Text = obtenerSeccional()
-
-        cargarGrid()
     End Sub
 
-    Private Sub cargarGrid()
+    Public Sub cargarGrid(ByVal saldoInicial As Decimal, ByVal saldoFinal As Decimal, ByVal ingresos As Decimal, ByVal egresos As Decimal)
 
         Dim trimid As Integer = obtenerID("Trimestres", "nombre", trimestre)
-        Dim sql As String
-
-        sql = "SELECT             R.id AS id,
-                                  R.año AS Año,
-                                  R.saldo_inicial AS saldoInicial,
-                                  R.saldo_final AS saldoFinal,
-                                  R.ingresos AS ingresos,
-                                  R.egresos AS egresos,
-                                  R.trimestre_id as trimID,
-                                  Trim.fecha_inicio AS fechaInicial,
-                                  Trim.fecha_fin AS fechaFinal                            
-                           FROM ReportesTrimestrales AS R
-                           LEFT JOIN Trimestres AS Trim ON R.trimestre_id = Trim.id
-                           WHERE R.trimestre_id=" & trimid & " AND R.año=" & año
-
-        Dim dt As DataTable = consultarReader(sql)
-
 
         'Creamos las Columnas
         columnas.Add(New KeyValuePair(Of String, String)("labels", ""))
@@ -39,17 +20,31 @@
         columnas.Add(New KeyValuePair(Of String, String)("totales", "TOTAL"))
         crearColumna(dgv, columnas)
 
-        Dim fechaInicio As String = "01/" & DatePart(DateInterval.Month, dt.Rows(0).Item("fechaInicial")) & "/" & año
-        Dim fechaFinal As String = DatePart(DateInterval.Day, dt.Rows(0).Item("fechaFinal")) & "/" &
-            DatePart(DateInterval.Month, dt.Rows(0).Item("fechaFinal")) & "/" & año
+        Dim dt As New DataTable
+        fechaIyF(dt, trimid)
+        Dim fechaInicio As String = "01/" & DatePart(DateInterval.Month, dt.Rows(0).Item("fecha_inicio")) & "/" & año
+        Dim fechaFinal As String = DatePart(DateInterval.Day, dt.Rows(0).Item("fecha_fin")) & "/" &
+            DatePart(DateInterval.Month, dt.Rows(0).Item("fecha_fin")) & "/" & año
 
-        Dim totalGeneral As Double = dt.Rows(0).Item("saldoFinal") + dt.Rows(0).Item("saldoInicial")
+        Dim totalGeneral As Double = saldoFinal + saldoInicial
 
-        dgv.Rows.Add("Saldo Inicial a:", fechaInicio, dt.Rows(0).Item("saldoInicial"))
-        dgv.Rows.Add("Ingresos", "", dt.Rows(0).Item("ingresos"))
-        dgv.Rows.Add("Egresos", "", dt.Rows(0).Item("egresos"))
-        dgv.Rows.Add("Saldo Final al", fechaFinal, dt.Rows(0).Item("saldoFinal"))
+        dgv.Rows.Add("Saldo Inicial a:", fechaInicio, saldoInicial)
+        dgv.Rows.Add("Ingresos", "", ingresos)
+        dgv.Rows.Add("Egresos", "", egresos)
+        dgv.Rows.Add("Saldo Final al", fechaFinal, saldoFinal)
         dgv.Rows.Add("", "Total General", totalGeneral)
+
+    End Sub
+
+    Private Sub fechaIyF(ByRef datatable As DataTable, ByVal trimestre As Integer)
+
+        Dim sql As String = "SELECT  
+                                  fecha_inicio,
+                                  fecha_fin                            
+                           FROM Trimestres
+                           WHERE id=" & trimestre
+
+        datatable = consultarReader(sql)
 
     End Sub
 

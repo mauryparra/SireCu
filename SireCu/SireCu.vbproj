@@ -165,12 +165,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtrasFunciones.vb" />
-    <Compile Include="Paneles\CrearReporte.Designer.vb">
-      <DependentUpon>CrearReporte.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Paneles\CrearReporte.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Paneles\VerReporte.Designer.vb">
       <DependentUpon>VerReporte.vb</DependentUpon>
     </Compile>
@@ -227,9 +221,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Paneles\CrearReporte.resx">
-      <DependentUpon>CrearReporte.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Paneles\VerReporte.resx">
       <DependentUpon>VerReporte.vb</DependentUpon>

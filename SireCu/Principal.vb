@@ -56,10 +56,6 @@ Public Class Principal
                     Dim pantallaABMAdmin As ABMAdmin = New ABMAdmin()
                     pantallaABMAdmin.Dock = DockStyle.Fill
                     SplitContainerPrincipal.Panel2.Controls.Add(pantallaABMAdmin)
-                Case "CrearReporte"
-                    Dim pantallaCrearReporte As CrearReporte = New CrearReporte()
-                    pantallaCrearReporte.Dock = DockStyle.Fill
-                    SplitContainerPrincipal.Panel2.Controls.Add(pantallaCrearReporte)
                 Case "VerReporte"
                     Dim pantallaVerReporte As VerReporte = New VerReporte()
                     pantallaVerReporte.Dock = DockStyle.Fill
