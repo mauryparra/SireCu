@@ -91,7 +91,7 @@ Partial Class ReporteIngreso
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgv)
         Me.SplitContainer1.Size = New System.Drawing.Size(649, 367)
-        Me.SplitContainer1.SplitterDistance = 116
+        Me.SplitContainer1.SplitterDistance = 128
         Me.SplitContainer1.TabIndex = 4
         '
         'GroupBox1
@@ -103,9 +103,9 @@ Partial Class ReporteIngreso
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.tb_Seccional)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 0)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(628, 110)
+        Me.GroupBox1.Size = New System.Drawing.Size(628, 112)
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         '
@@ -206,7 +206,7 @@ Partial Class ReporteIngreso
         Me.dgv.RowTemplate.Height = 35
         Me.dgv.RowTemplate.ReadOnly = True
         Me.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv.Size = New System.Drawing.Size(649, 247)
+        Me.dgv.Size = New System.Drawing.Size(649, 235)
         Me.dgv.TabIndex = 2
         '
         'ReporteIngreso

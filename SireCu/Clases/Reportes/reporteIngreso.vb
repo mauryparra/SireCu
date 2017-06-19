@@ -8,46 +8,9 @@
         tb_Año.Text = año
         tb_Trimestre.Text = trimestre
         tb_Seccional.Text = obtenerSeccional()
-
-        cargarGrid()
     End Sub
 
-    Private Sub cargarGrid()
-
-        Dim meses As String() = {}
-        Dim mesesNom As String() = {}
-        Select Case trimestre
-            Case "Primero"
-                meses = {1, 2, 3}
-                mesesNom = {"Enero", "Febrero", "Marzo"}
-            Case "Segundo"
-                meses = {4, 5, 6}
-                mesesNom = {"Abril", "Mayo", "Junio"}
-            Case "Tercero"
-                meses = {7, 8, 9}
-                mesesNom = {"Julio", "Agosto", "Septiembre"}
-            Case "Cuarto"
-                meses = {10, 11, 12}
-                mesesNom = {"Octubre", "Noviembre", "Diciembre"}
-        End Select
-
-        Dim sql As String
-        sql = "SELECT             Rim.id AS id,
-                                  Rim.mes as mes,
-                                  Rim.ingresos_provincial AS iProvinciales,
-                                  Rim.ingresos_otros AS iOtros,
-                                  Rim.ingresos_central AS iCentral,
-                                  Ring.total_provincial AS totProv,
-                                  Ring.coparticipacion AS copart,
-                                  Ring.total_general as totalGen                             
-                           FROM ReportesIngresosMensual AS Rim
-                           LEFT JOIN ReportesIngresos AS Ring ON Rim.reporte_ingreso_id = Ring.id
-                           WHERE 
-                            DATEPART(Month, Rim.mes)=" & meses(0) & " AND DATEPART(Year, Rim.mes)=" & año &
-                            "OR DATEPART(Month, Rim.mes)=" & meses(1) & " AND DATEPART(Year, Rim.mes)=" & año &
-                            "OR DATEPART(Month, Rim.mes)=" & meses(2) & " AND DATEPART(Year, Rim.mes)=" & año
-
-        Dim dt As DataTable = consultarReader(sql)
+    Public Sub cargarGrid(ByVal ingresos As DataTable, ByVal coparticipacion As Double())
 
         'Creamos las Columnas
         columnas.Add(New KeyValuePair(Of String, String)("meses", "Mes de:"))
@@ -57,25 +20,36 @@
         columnas.Add(New KeyValuePair(Of String, String)("totales", "TOTAL"))
         crearColumna(dgv, columnas)
 
-
-        Dim totalGeneral As Double = dt.Rows(0).Item("totalGen") + dt.Rows(1).Item("totalGen") + dt.Rows(2).Item("totalGen")
+        Dim meses As String()
+        Select Case trimestre
+            Case "Primero"
+                meses = {"Enero", "Febrero", "Marzo"}
+            Case "Segundo"
+                meses = {"Abril", "MAyo", "Junio"}
+            Case "Tercero"
+                meses = {"Julio", "Agosto", "Septiembre"}
+            Case "Cuarto"
+                meses = {"Octubre", "Noviembre", "Diciembre"}
+        End Select
 
         'Mes 1
-        dgv.Rows.Add(mesesNom(0), dt.Rows(0).Item("iCentral"), dt.Rows(0).Item("iProvinciales"), dt.Rows(0).Item("iOtros"),
-            (dt.Rows(0).Item("iCentral") + dt.Rows(0).Item("iProvinciales") + dt.Rows(0).Item("iOtros")))
+        dgv.Rows.Add(meses(0), ingresos.Rows(0).Item("ingresos_central"), ingresos.Rows(0).Item("ingresos_prov"), ingresos.Rows(0).Item("ingresos_otros"),
+            (ingresos.Rows(0).Item("ingresos_central") + ingresos.Rows(0).Item("ingresos_prov") + ingresos.Rows(0).Item("ingresos_otros")))
         'Mes 2
-        dgv.Rows.Add(mesesNom(1), dt.Rows(1).Item("iCentral"), dt.Rows(1).Item("iProvinciales"), dt.Rows(1).Item("iOtros"),
-            (dt.Rows(1).Item("iCentral") + dt.Rows(1).Item("iProvinciales") + dt.Rows(1).Item("iOtros")))
+        dgv.Rows.Add(meses(1), ingresos.Rows(1).Item("ingresos_central"), ingresos.Rows(1).Item("ingresos_prov"), ingresos.Rows(1).Item("ingresos_otros"),
+            (ingresos.Rows(1).Item("ingresos_central") + ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(1).Item("ingresos_otros")))
         'Mes 3
-        dgv.Rows.Add(mesesNom(2), dt.Rows(2).Item("iCentral"), dt.Rows(2).Item("iProvinciales"), dt.Rows(2).Item("iOtros"),
-            (dt.Rows(2).Item("iCentral") + dt.Rows(2).Item("iProvinciales") + dt.Rows(2).Item("iOtros")))
+        dgv.Rows.Add(meses(2), ingresos.Rows(2).Item("ingresos_central"), ingresos.Rows(2).Item("ingresos_prov"), ingresos.Rows(2).Item("ingresos_otros"),
+            (ingresos.Rows(2).Item("ingresos_central") + ingresos.Rows(2).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_otros")))
+        'Totales Mensuales
+
         'Total Provincial
-        dgv.Rows.Add("", "Total Provincial:", dt.Rows(0).Item("iProvinciales") +
-                     dt.Rows(1).Item("iProvinciales") + dt.Rows(2).Item("iProvinciales"), "", "")
+        dgv.Rows.Add("", "Total Provincial:", ingresos.Rows(0).Item("ingresos_prov") +
+                     ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_prov"), "", "")
         'Coparticipacion
-        dgv.Rows.Add("", "Coparticipacion:", dt.Rows(2).Item("copart"), "", "")
+        dgv.Rows.Add("", "Coparticipacion:", (coparticipacion(0) + coparticipacion(1) + coparticipacion(2)), "", "")
         'Total General
-        dgv.Rows.Add("", "", "", "Total General:", dt.Rows(2).Item("totalGen"))
+        dgv.Rows.Add("", "", "", "Total General:", obtenerIngresos(trimestre, año, "full"))
 
     End Sub
 

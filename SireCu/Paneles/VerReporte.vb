@@ -31,6 +31,8 @@ Public Class VerReporte
         Dim i As Integer = 0
         Dim Array As String() = {"Ingresos - Gastos", "Ingresos", "Egresos Seccional", "Egresos Central"}
 
+        dgv_Reportes.Rows.Clear()
+
         Do
             If Not dgv_Reportes.Columns.Contains(Array(i)) Then
                 Dim column As New DataGridViewButtonColumn
@@ -65,7 +67,7 @@ Public Class VerReporte
                 Case "Ingresos - Gastos"
                     generarRepIngGast(cb_Trimestre.Text, tb_Año.Text)
                 Case "Ingresos"
-
+                    generarRepIngresos(cb_Trimestre.Text, tb_Año.Text)
                 Case "Egresos Seccional"
 
                 Case "Egresos Central"

@@ -54,10 +54,10 @@ Module OtrasFunciones
         Dim resEgre As Decimal
         If trimAnterior = "Cuarto" Then
             resIng = obtenerIngresos(trimAnterior, añoAnterior)
-            resEgre = obtenerEgresos(trimAnterior, añoAnterior, idSeccional, idCentral)
+            resEgre = obtenerEgresosTotales(trimAnterior, añoAnterior, "full")
         Else
             resIng = obtenerIngresos(trimAnterior, año)
-            resEgre = obtenerEgresos(trimAnterior, año, idSeccional, idCentral)
+            resEgre = obtenerEgresosTotales(trimAnterior, año, "full")
         End If
 
         saldoAnterior = resIng - resEgre
@@ -78,11 +78,9 @@ Module OtrasFunciones
 
     Public Function obtenerIngresos(ByVal trimestre As String, ByVal año As Integer, Optional modo As String = "full")
 
-        'Full = true = Total de ingresos
-        'Full = false = Total ingresos provinciales
-
         Dim sqlfull As String = ""
         Dim sqlprov As String = ""
+        Dim sqlMeses As String = ""
 
         Select Case trimestre
             Case "Primero"
@@ -90,21 +88,29 @@ Module OtrasFunciones
                           WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
+                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                           WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
             Case "Segundo"
                 sqlfull = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
-                          WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
+                          WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
+                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                           WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
             Case "Tercero"
                 sqlfull = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
-                          WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
+                          WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
+                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                           WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
             Case "Cuarto"
                 sqlfull = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
-                          WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
+                          WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
+                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                           WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
         End Select
 
         Select Case modo
@@ -114,63 +120,111 @@ Module OtrasFunciones
             Case "provincial"
                 Dim resultadoConsulta = consultarES(sqlprov, Principal.command)
                 Return (IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta))
+            Case "meses"
+                Return (consultarReader(sqlMeses))
             Case Else
                 Return (Nothing)
         End Select
 
     End Function
 
-    Public Function obtenerEgresos(ByVal trimestre As String, ByVal año As Integer, ByVal seccional As Integer, ByVal central As Integer, Optional ByVal modo As String = "full")
+    Public Function obtenerEgresosTotales(ByVal trimestre As String, ByVal año As Integer, ByVal modo As String, Optional ByVal seccional As String = "UDA Central")
 
         Dim sqlFull As String = ""
         Dim sqlSeccional As String = ""
-        Dim sqlCentral As String = ""
+        Dim meses As Integer()
+        Dim idSec As Integer
+        If seccional = "UDA Central" Then
+            idSec = obtenerID("Seccionales", "nombre", "UDA Central")
+        Else
+            idSec = obtenerID("Seccionales", "nombre", "UDA Central", True)
+        End If
 
         Select Case trimestre
             Case "Primero"
                 sqlFull = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 AND 3
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
-                sqlSeccional = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 AND 3
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & seccional
-                sqlCentral = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 AND 3
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & central
+                meses = {1, 2, 3}
             Case "Segundo"
-                sqlFull = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 AND 6
+                sqlFull = "Select SUM( [monto] ) As Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 And 6
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
                 sqlSeccional = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 AND 6
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & seccional
-                sqlCentral = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 AND 6
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & central
+                meses = {4, 5, 6}
             Case "Tercero"
                 sqlFull = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 7 AND 9
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
                 sqlSeccional = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 7 AND 9
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & seccional
-                sqlCentral = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 7 AND 9
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & central
+                meses = {7, 8, 9}
             Case "Cuarto"
                 sqlFull = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 10 AND 12
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
                 sqlSeccional = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 10 AND 12
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & seccional
-                sqlCentral = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 10 AND 12
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & central
+                meses = {10, 11, 12}
         End Select
 
 
         Select Case modo
+
             Case "full"
+
                 Dim resultadoConsulta = consultarES(sqlFull, Principal.command)
                 Return (IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta))
+
             Case "seccional"
-                Dim resultadoConsulta = consultarES(sqlSeccional, Principal.command)
-                Return (IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta))
-            Case "central"
-                Dim resultadoConsulta = consultarES(sqlCentral, Principal.command)
-                Return (IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta))
+
+                Dim arrayResultado As Double() = {0, 0, 0}
+                Dim resultadoConsulta = Nothing
+                Dim i As Integer = 0
+
+                For i = 0 To meses.Count - 1
+                    sqlSeccional = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) = " & meses(i) &
+                               " AND DATEPART(Year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & idSec
+                    resultadoConsulta = consultarES(sqlSeccional, Principal.command)
+                    arrayResultado(i) = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
+                Next
+
+                Return (arrayResultado)
+
             Case Else
                 Return (Nothing)
+
         End Select
+
+    End Function
+
+    Public Function obtenerEgresosCategorias(ByVal trimestre As String, ByVal categoria As Integer, ByVal año As Integer, ByVal seccional As Integer)
+
+        Dim sql As String = ""
+
+        Select Case trimestre
+            Case "Primero"
+                sql = "Select monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 And 3
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+            Case "Segundo"
+                sql = "SELECT monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 AND 6
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+            Case "Tercero"
+                sql = "SELECT monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 7 AND 9
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+            Case "Cuarto"
+                sql = "SELECT monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 10 AND 12
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+        End Select
+
+        Dim dt As DataTable = consultarReader(sql)
+        Dim array As Double() = {0, 0, 0}
+        Dim i As Integer = 0
+
+        If dt.Rows.Count <> 0 Then
+            For i = 0 To dt.Rows.Count - 1
+                array(i) = dt.Rows(i).Item("monto")
+            Next
+        End If
+
+        Return (array)
 
     End Function
 

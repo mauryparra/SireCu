@@ -104,7 +104,7 @@ Module Reporte
         ingresos = obtenerIngresos(trimestre, año)
 
         ' 3)
-        egresos = obtenerEgresos(trimestre, año, idSeccional, idCentral)
+        egresos = obtenerEgresosTotales(trimestre, año, "full")
 
         ' 4)
         saldoFinal = ingresos - egresos
@@ -118,8 +118,26 @@ Module Reporte
 
     End Sub
     'REPORTE INGRESOS
-    Public Sub generarRepIngresos()
+    Public Sub generarRepIngresos(ByVal trimestre As String, ByVal año As Integer)
 
+        ' 1) Obtener los 3 Ingresos de cada mes del trimestre
+        ' 2) Obtener la coparticipacion (Total egresos tipo gasto "Coparticipacion")
+        ' 3) Generar la vista
+
+        ' 1)
+        Dim ingresos As DataTable = obtenerIngresos(trimestre, año, "meses")
+
+        ' 2)
+        Dim catID As Integer = obtenerID("CategoriasGastos", "nombre", "Coparticipacion")
+        Dim seccionalID As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
+        Dim copart As Double() = obtenerEgresosCategorias(trimestre, catID, año, seccionalID)
+
+        ' 3)
+        Dim nuevo_reporte As New ReporteIngreso
+        nuevo_reporte.trimestre = trimestre
+        nuevo_reporte.año = año
+        nuevo_reporte.cargarGrid(ingresos, copart)
+        nuevo_reporte.Show()
     End Sub
     'REPORTE EGRESOS SECCIONAL
     Public Sub generarRepEgreSec()
