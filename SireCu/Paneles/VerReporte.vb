@@ -71,7 +71,7 @@ Public Class VerReporte
                 Case "Egresos Seccional"
 
                 Case "Egresos Central"
-
+                    generarRepEgreCen(cb_Trimestre.Text, tb_Año.Text)
                 Case Else
                     MsgBox("Error al seleccionar el reporte", MsgBoxStyle.Critical, "Error")
                     Exit Sub

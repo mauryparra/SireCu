@@ -202,16 +202,16 @@ Module OtrasFunciones
         Select Case trimestre
             Case "Primero"
                 sql = "Select monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 And 3
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria & " AND seccional_id = " & seccional
             Case "Segundo"
                 sql = "SELECT monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 AND 6
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria & " AND seccional_id = " & seccional
             Case "Tercero"
                 sql = "SELECT monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 7 AND 9
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria & " AND seccional_id = " & seccional
             Case "Cuarto"
                 sql = "SELECT monto, mes_reintegro FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 10 AND 12
-                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND categoria_gasto_id = " & categoria & " AND seccional_id = " & seccional
         End Select
 
         Dim dt As DataTable = consultarReader(sql)
@@ -220,7 +220,14 @@ Module OtrasFunciones
 
         If dt.Rows.Count <> 0 Then
             For i = 0 To dt.Rows.Count - 1
-                array(i) = dt.Rows(i).Item("monto")
+                Select Case DatePart(DateInterval.Month, dt.Rows(i).Item("mes_reintegro"))
+                    Case 1, 4, 7, 10
+                        array(0) = array(0) + dt.Rows(i).Item("monto")
+                    Case 2, 5, 8, 11
+                        array(1) = array(1) + dt.Rows(i).Item("monto")
+                    Case 3, 6, 9, 12
+                        array(2) = array(2) + dt.Rows(i).Item("monto")
+                End Select
             Next
         End If
 

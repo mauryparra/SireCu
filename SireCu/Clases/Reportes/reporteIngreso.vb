@@ -32,24 +32,38 @@
                 meses = {"Octubre", "Noviembre", "Diciembre"}
         End Select
 
-        'Mes 1
-        dgv.Rows.Add(meses(0), ingresos.Rows(0).Item("ingresos_central"), ingresos.Rows(0).Item("ingresos_prov"), ingresos.Rows(0).Item("ingresos_otros"),
-            (ingresos.Rows(0).Item("ingresos_central") + ingresos.Rows(0).Item("ingresos_prov") + ingresos.Rows(0).Item("ingresos_otros")))
-        'Mes 2
-        dgv.Rows.Add(meses(1), ingresos.Rows(1).Item("ingresos_central"), ingresos.Rows(1).Item("ingresos_prov"), ingresos.Rows(1).Item("ingresos_otros"),
-            (ingresos.Rows(1).Item("ingresos_central") + ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(1).Item("ingresos_otros")))
-        'Mes 3
-        dgv.Rows.Add(meses(2), ingresos.Rows(2).Item("ingresos_central"), ingresos.Rows(2).Item("ingresos_prov"), ingresos.Rows(2).Item("ingresos_otros"),
-            (ingresos.Rows(2).Item("ingresos_central") + ingresos.Rows(2).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_otros")))
-        'Totales Mensuales
+        If ingresos.Rows.Count = 0 Then
+            'Mes 1
+            dgv.Rows.Add(meses(0), 0, 0, 0, 0)
+            'Mes 2
+            dgv.Rows.Add(meses(1), 0, 0, 0, 0)
+            'Mes 3
+            dgv.Rows.Add(meses(2), 0, 0, 0, 0)
+            'Total Provincial
+            dgv.Rows.Add("", "Total Provincial:", 0, "", "")
+            'Coparticipacion
+            dgv.Rows.Add("", "Coparticipacion:", (coparticipacion(0) + coparticipacion(1) + coparticipacion(2)), "", "")
+            'Total General
+            dgv.Rows.Add("", "", "", "Total General:", 0)
+        Else
 
-        'Total Provincial
-        dgv.Rows.Add("", "Total Provincial:", ingresos.Rows(0).Item("ingresos_prov") +
-                     ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_prov"), "", "")
-        'Coparticipacion
-        dgv.Rows.Add("", "Coparticipacion:", (coparticipacion(0) + coparticipacion(1) + coparticipacion(2)), "", "")
-        'Total General
-        dgv.Rows.Add("", "", "", "Total General:", obtenerIngresos(trimestre, año, "full"))
+            'Mes 1
+            dgv.Rows.Add(meses(0), ingresos.Rows(0).Item("ingresos_central"), ingresos.Rows(0).Item("ingresos_prov"), ingresos.Rows(0).Item("ingresos_otros"),
+            (ingresos.Rows(0).Item("ingresos_central") + ingresos.Rows(0).Item("ingresos_prov") + ingresos.Rows(0).Item("ingresos_otros")))
+            'Mes 2
+            dgv.Rows.Add(meses(1), ingresos.Rows(1).Item("ingresos_central"), ingresos.Rows(1).Item("ingresos_prov"), ingresos.Rows(1).Item("ingresos_otros"),
+                (ingresos.Rows(1).Item("ingresos_central") + ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(1).Item("ingresos_otros")))
+            'Mes 3
+            dgv.Rows.Add(meses(2), ingresos.Rows(2).Item("ingresos_central"), ingresos.Rows(2).Item("ingresos_prov"), ingresos.Rows(2).Item("ingresos_otros"),
+                (ingresos.Rows(2).Item("ingresos_central") + ingresos.Rows(2).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_otros")))
+            'Total Provincial
+            dgv.Rows.Add("", "Total Provincial:", ingresos.Rows(0).Item("ingresos_prov") +
+                         ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_prov"), "", "")
+            'Coparticipacion
+            dgv.Rows.Add("", "Coparticipacion:", (coparticipacion(0) + coparticipacion(1) + coparticipacion(2)), "", "")
+            'Total General
+            dgv.Rows.Add("", "", "", "Total General:", obtenerIngresos(trimestre, año, "full"))
+        End If
 
     End Sub
 
