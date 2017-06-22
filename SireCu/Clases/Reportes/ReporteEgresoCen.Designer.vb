@@ -113,7 +113,7 @@ Partial Class ReporteEgresoCen
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgv)
         Me.SplitContainer1.Size = New System.Drawing.Size(655, 417)
-        Me.SplitContainer1.SplitterDistance = 95
+        Me.SplitContainer1.SplitterDistance = 118
         Me.SplitContainer1.TabIndex = 2
         '
         'GroupBox1
@@ -125,9 +125,9 @@ Partial Class ReporteEgresoCen
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.tb_Seccional)
         Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 0)
+        Me.GroupBox1.Location = New System.Drawing.Point(12, 5)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(628, 86)
+        Me.GroupBox1.Size = New System.Drawing.Size(628, 104)
         Me.GroupBox1.TabIndex = 7
         Me.GroupBox1.TabStop = False
         '
@@ -135,7 +135,7 @@ Partial Class ReporteEgresoCen
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(145, 11)
+        Me.Label1.Location = New System.Drawing.Point(143, 17)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(293, 31)
         Me.Label1.TabIndex = 13
@@ -144,7 +144,7 @@ Partial Class ReporteEgresoCen
         'tb_Trimestre
         '
         Me.tb_Trimestre.Enabled = False
-        Me.tb_Trimestre.Location = New System.Drawing.Point(526, 55)
+        Me.tb_Trimestre.Location = New System.Drawing.Point(526, 63)
         Me.tb_Trimestre.Name = "tb_Trimestre"
         Me.tb_Trimestre.Size = New System.Drawing.Size(81, 20)
         Me.tb_Trimestre.TabIndex = 12
@@ -153,7 +153,7 @@ Partial Class ReporteEgresoCen
         'tb_Año
         '
         Me.tb_Año.Enabled = False
-        Me.tb_Año.Location = New System.Drawing.Point(526, 25)
+        Me.tb_Año.Location = New System.Drawing.Point(526, 28)
         Me.tb_Año.Name = "tb_Año"
         Me.tb_Año.Size = New System.Drawing.Size(81, 20)
         Me.tb_Año.TabIndex = 11
@@ -162,7 +162,7 @@ Partial Class ReporteEgresoCen
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(470, 59)
+        Me.Label3.Location = New System.Drawing.Point(470, 67)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(50, 13)
         Me.Label3.TabIndex = 10
@@ -171,7 +171,7 @@ Partial Class ReporteEgresoCen
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(482, 28)
+        Me.Label2.Location = New System.Drawing.Point(482, 31)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(26, 13)
         Me.Label2.TabIndex = 9
@@ -180,7 +180,7 @@ Partial Class ReporteEgresoCen
         'tb_Seccional
         '
         Me.tb_Seccional.Enabled = False
-        Me.tb_Seccional.Location = New System.Drawing.Point(65, 56)
+        Me.tb_Seccional.Location = New System.Drawing.Point(65, 75)
         Me.tb_Seccional.Name = "tb_Seccional"
         Me.tb_Seccional.Size = New System.Drawing.Size(137, 20)
         Me.tb_Seccional.TabIndex = 8
@@ -189,7 +189,7 @@ Partial Class ReporteEgresoCen
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(5, 60)
+        Me.Label4.Location = New System.Drawing.Point(5, 79)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(54, 13)
         Me.Label4.TabIndex = 7
@@ -228,7 +228,7 @@ Partial Class ReporteEgresoCen
         Me.dgv.RowTemplate.Height = 35
         Me.dgv.RowTemplate.ReadOnly = True
         Me.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgv.Size = New System.Drawing.Size(655, 318)
+        Me.dgv.Size = New System.Drawing.Size(655, 295)
         Me.dgv.TabIndex = 3
         '
         'ReporteEgresoCen

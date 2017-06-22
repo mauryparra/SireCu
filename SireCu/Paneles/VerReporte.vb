@@ -69,7 +69,7 @@ Public Class VerReporte
                 Case "Ingresos"
                     generarRepIngresos(cb_Trimestre.Text, tb_Año.Text)
                 Case "Egresos Seccional"
-
+                    generarRepEgreSec(cb_Trimestre.Text, tb_Año.Text)
                 Case "Egresos Central"
                     generarRepEgreCen(cb_Trimestre.Text, tb_Año.Text)
                 Case Else

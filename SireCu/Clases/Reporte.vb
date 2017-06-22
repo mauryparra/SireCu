@@ -140,7 +140,23 @@ Module Reporte
         nuevo_reporte.Show()
     End Sub
     'REPORTE EGRESOS SECCIONAL
-    Public Sub generarRepEgreSec()
+    Public Sub generarRepEgreSec(ByVal trimestre As String, ByVal año As Integer)
+
+        ' 1) Obtener cantidad de Categorias de Gastos
+        ' 2) Generar la vista
+
+
+        ' 1)
+        Dim sql As String = "SELECT id, nombre FROM CategoriasGastos"
+        Dim dt As DataTable = consultarReader(sql)
+
+
+        ' 2)
+        Dim nuevo_reporte As New ReporteEgresoSec
+        nuevo_reporte.trimestre = trimestre
+        nuevo_reporte.año = año
+        nuevo_reporte.cargarGrid(dt)
+        nuevo_reporte.Show()
 
     End Sub
     'REPORTE EGRESOS CENTRAL
