@@ -334,25 +334,22 @@ Module OtrasFunciones
 
     Public Function obtenerID(ByVal tabla As String, ByVal campo As String, ByVal item_a_comparar As String, Optional ByVal distinto As Boolean = 0)
 
-        cargarTablaEnDataSet(tabla)
-
-        Dim id As Integer = Nothing
+        Dim dt As DataTable
+        Dim sql As String = ""
 
         If distinto = 0 Then
-            For i = 0 To Principal.dataset.Tables(tabla).Rows.Count - 1
-                If (LCase(Principal.dataset.Tables(tabla).Rows.Item(i).Item(campo)) = LCase(item_a_comparar)) Then
-                    id = Principal.dataset.Tables(tabla).Rows.Item(i).Item(id)
-                End If
-            Next
+            sql = "SELECT id from " & tabla & " WHERE " & campo & " = '" & item_a_comparar & "'"
         Else
-            For i = 0 To Principal.dataset.Tables(tabla).Rows.Count - 1
-                If (LCase(Principal.dataset.Tables(tabla).Rows.Item(i).Item(campo)) <> LCase(item_a_comparar)) Then
-                    id = Principal.dataset.Tables(tabla).Rows.Item(i).Item(id)
-                End If
-            Next
+            sql = "SELECT id from " & tabla & " WHERE " & campo & " <> '" & item_a_comparar & "'"
         End If
 
-        Return id
+        dt = consultarReader(sql)
+
+        If dt.Rows.Count = 0 Then
+            Return Nothing
+        Else
+            Return dt.Rows(0).Item("id")
+        End If
 
     End Function
 
