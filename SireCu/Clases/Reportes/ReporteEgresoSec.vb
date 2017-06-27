@@ -74,7 +74,7 @@
         Dim totalmes3 As Double = 0.0
         For i = 0 To categorias.Rows.Count - 1
             'Verificamos si es la categoria Aplicables a Coparticipacion
-            If (categorias.Rows(i).Item("nombre") = "Aplicables a Coparticipacion") Then
+            If (LCase(categorias.Rows(i).Item("nombre")) = "aplicables a coparticipacion") Then
                 Dim aplicables As Double() = obtenerEgresosTotales(trimestre, año, "seccional", "UDA Central")
                 dgv.Rows.Add(
                              categorias.Rows(i).Item("nombre"),
