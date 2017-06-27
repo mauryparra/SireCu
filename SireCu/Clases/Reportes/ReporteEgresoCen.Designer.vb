@@ -28,7 +28,6 @@ Partial Class ReporteEgresoCen
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.HerramientasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuardarComoExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImprimirToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuardarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImprimirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -62,7 +61,7 @@ Partial Class ReporteEgresoCen
         '
         'HerramientasToolStripMenuItem1
         '
-        Me.HerramientasToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuardarComoExcelToolStripMenuItem, Me.ImprimirToolStripMenuItem1})
+        Me.HerramientasToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuardarComoExcelToolStripMenuItem})
         Me.HerramientasToolStripMenuItem1.Name = "HerramientasToolStripMenuItem1"
         Me.HerramientasToolStripMenuItem1.Size = New System.Drawing.Size(90, 20)
         Me.HerramientasToolStripMenuItem1.Text = "Herramientas"
@@ -70,14 +69,8 @@ Partial Class ReporteEgresoCen
         'GuardarComoExcelToolStripMenuItem
         '
         Me.GuardarComoExcelToolStripMenuItem.Name = "GuardarComoExcelToolStripMenuItem"
-        Me.GuardarComoExcelToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.GuardarComoExcelToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.GuardarComoExcelToolStripMenuItem.Text = "Guardar"
-        '
-        'ImprimirToolStripMenuItem1
-        '
-        Me.ImprimirToolStripMenuItem1.Name = "ImprimirToolStripMenuItem1"
-        Me.ImprimirToolStripMenuItem1.Size = New System.Drawing.Size(120, 22)
-        Me.ImprimirToolStripMenuItem1.Text = "Imprimir"
         '
         'HerramientasToolStripMenuItem
         '
@@ -263,7 +256,6 @@ Partial Class ReporteEgresoCen
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents HerramientasToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GuardarComoExcelToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ImprimirToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label
     Friend WithEvents tb_Trimestre As TextBox
