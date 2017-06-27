@@ -8,7 +8,7 @@
 
     Private Sub GuardarComoExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GuardarComoExcelToolStripMenuItem.Click
 
-        Dim Book = guardarIngreso()
+        Dim Book = guardarEgreso()
         Dim sfd As New SaveFileDialog
         sfd.Filter = "Excel File (*xlsx) | *.xlsx"
         sfd.DefaultExt = "xlsx"
@@ -94,7 +94,7 @@
                          )
 
     End Sub
-    Private Function guardarIngreso()
+    Private Function guardarEgreso()
 
         Dim Excel As Object
         Dim Book As Object

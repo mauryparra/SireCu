@@ -28,7 +28,6 @@ Partial Class ReporteEgresoSec
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.HerramientasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GuardarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImprimirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -59,7 +58,7 @@ Partial Class ReporteEgresoSec
         '
         'HerramientasToolStripMenuItem
         '
-        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuardarToolStripMenuItem, Me.ImprimirToolStripMenuItem})
+        Me.HerramientasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GuardarToolStripMenuItem})
         Me.HerramientasToolStripMenuItem.Name = "HerramientasToolStripMenuItem"
         Me.HerramientasToolStripMenuItem.Size = New System.Drawing.Size(90, 20)
         Me.HerramientasToolStripMenuItem.Text = "Herramientas"
@@ -67,14 +66,8 @@ Partial Class ReporteEgresoSec
         'GuardarToolStripMenuItem
         '
         Me.GuardarToolStripMenuItem.Name = "GuardarToolStripMenuItem"
-        Me.GuardarToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
+        Me.GuardarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.GuardarToolStripMenuItem.Text = "Guardar"
-        '
-        'ImprimirToolStripMenuItem
-        '
-        Me.ImprimirToolStripMenuItem.Name = "ImprimirToolStripMenuItem"
-        Me.ImprimirToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
-        Me.ImprimirToolStripMenuItem.Text = "Imprimir"
         '
         'SplitContainer1
         '
@@ -237,7 +230,6 @@ Partial Class ReporteEgresoSec
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents HerramientasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GuardarToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ImprimirToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label1 As Label

@@ -24,13 +24,13 @@ Partial Class ABMAdmin
     Private Sub InitializeComponent()
         Me.SplitContainerAdmin = New System.Windows.Forms.SplitContainer()
         Me.DGVAdmin = New System.Windows.Forms.DataGridView()
-        Me.CBTabla = New System.Windows.Forms.ComboBox()
-        Me.TBModificar = New System.Windows.Forms.TextBox()
-        Me.BGuardar = New System.Windows.Forms.Button()
-        Me.BEliminar = New System.Windows.Forms.Button()
-        Me.BCancelar = New System.Windows.Forms.Button()
-        Me.LTabla = New System.Windows.Forms.Label()
         Me.LEditar = New System.Windows.Forms.Label()
+        Me.LTabla = New System.Windows.Forms.Label()
+        Me.BCancelar = New System.Windows.Forms.Button()
+        Me.BEliminar = New System.Windows.Forms.Button()
+        Me.BGuardar = New System.Windows.Forms.Button()
+        Me.TBModificar = New System.Windows.Forms.TextBox()
+        Me.CBTabla = New System.Windows.Forms.ComboBox()
         CType(Me.SplitContainerAdmin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerAdmin.Panel1.SuspendLayout()
         Me.SplitContainerAdmin.Panel2.SuspendLayout()
@@ -72,46 +72,27 @@ Partial Class ABMAdmin
         Me.DGVAdmin.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGVAdmin.Location = New System.Drawing.Point(0, 0)
         Me.DGVAdmin.Name = "DGVAdmin"
+        Me.DGVAdmin.ReadOnly = True
         Me.DGVAdmin.Size = New System.Drawing.Size(530, 456)
         Me.DGVAdmin.TabIndex = 0
         '
-        'CBTabla
+        'LEditar
         '
-        Me.CBTabla.FormattingEnabled = True
-        Me.CBTabla.Items.AddRange(New Object() {"Proveedor", "Tipo de Comprobante", "Tipo de Gasto", "Persona", "Seccional"})
-        Me.CBTabla.Location = New System.Drawing.Point(17, 117)
-        Me.CBTabla.Name = "CBTabla"
-        Me.CBTabla.Size = New System.Drawing.Size(186, 21)
-        Me.CBTabla.TabIndex = 0
+        Me.LEditar.AutoSize = True
+        Me.LEditar.Location = New System.Drawing.Point(17, 150)
+        Me.LEditar.Name = "LEditar"
+        Me.LEditar.Size = New System.Drawing.Size(37, 13)
+        Me.LEditar.TabIndex = 6
+        Me.LEditar.Text = "Editar:"
         '
-        'TBModificar
+        'LTabla
         '
-        Me.TBModificar.Location = New System.Drawing.Point(17, 166)
-        Me.TBModificar.Name = "TBModificar"
-        Me.TBModificar.Size = New System.Drawing.Size(186, 20)
-        Me.TBModificar.TabIndex = 1
-        '
-        'BGuardar
-        '
-        Me.BGuardar.BackColor = System.Drawing.Color.Honeydew
-        Me.BGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BGuardar.Location = New System.Drawing.Point(17, 214)
-        Me.BGuardar.Name = "BGuardar"
-        Me.BGuardar.Size = New System.Drawing.Size(186, 23)
-        Me.BGuardar.TabIndex = 2
-        Me.BGuardar.Text = "Guardar Nuevo"
-        Me.BGuardar.UseVisualStyleBackColor = False
-        '
-        'BEliminar
-        '
-        Me.BEliminar.BackColor = System.Drawing.Color.MistyRose
-        Me.BEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BEliminar.Location = New System.Drawing.Point(17, 265)
-        Me.BEliminar.Name = "BEliminar"
-        Me.BEliminar.Size = New System.Drawing.Size(186, 23)
-        Me.BEliminar.TabIndex = 3
-        Me.BEliminar.Text = "Eliminar"
-        Me.BEliminar.UseVisualStyleBackColor = False
+        Me.LTabla.AutoSize = True
+        Me.LTabla.Location = New System.Drawing.Point(17, 98)
+        Me.LTabla.Name = "LTabla"
+        Me.LTabla.Size = New System.Drawing.Size(53, 13)
+        Me.LTabla.TabIndex = 5
+        Me.LTabla.Text = "Modificar:"
         '
         'BCancelar
         '
@@ -124,23 +105,43 @@ Partial Class ABMAdmin
         Me.BCancelar.Text = "Cancelar"
         Me.BCancelar.UseVisualStyleBackColor = True
         '
-        'LTabla
+        'BEliminar
         '
-        Me.LTabla.AutoSize = True
-        Me.LTabla.Location = New System.Drawing.Point(17, 98)
-        Me.LTabla.Name = "LTabla"
-        Me.LTabla.Size = New System.Drawing.Size(53, 13)
-        Me.LTabla.TabIndex = 5
-        Me.LTabla.Text = "Modificar:"
+        Me.BEliminar.BackColor = System.Drawing.Color.MistyRose
+        Me.BEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BEliminar.Location = New System.Drawing.Point(17, 265)
+        Me.BEliminar.Name = "BEliminar"
+        Me.BEliminar.Size = New System.Drawing.Size(186, 23)
+        Me.BEliminar.TabIndex = 3
+        Me.BEliminar.Text = "Eliminar"
+        Me.BEliminar.UseVisualStyleBackColor = False
         '
-        'LEditar
+        'BGuardar
         '
-        Me.LEditar.AutoSize = True
-        Me.LEditar.Location = New System.Drawing.Point(17, 150)
-        Me.LEditar.Name = "LEditar"
-        Me.LEditar.Size = New System.Drawing.Size(37, 13)
-        Me.LEditar.TabIndex = 6
-        Me.LEditar.Text = "Editar:"
+        Me.BGuardar.BackColor = System.Drawing.Color.Honeydew
+        Me.BGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BGuardar.Location = New System.Drawing.Point(17, 214)
+        Me.BGuardar.Name = "BGuardar"
+        Me.BGuardar.Size = New System.Drawing.Size(186, 23)
+        Me.BGuardar.TabIndex = 2
+        Me.BGuardar.Text = "Guardar Nuevo"
+        Me.BGuardar.UseVisualStyleBackColor = False
+        '
+        'TBModificar
+        '
+        Me.TBModificar.Location = New System.Drawing.Point(17, 166)
+        Me.TBModificar.Name = "TBModificar"
+        Me.TBModificar.Size = New System.Drawing.Size(186, 20)
+        Me.TBModificar.TabIndex = 1
+        '
+        'CBTabla
+        '
+        Me.CBTabla.FormattingEnabled = True
+        Me.CBTabla.Items.AddRange(New Object() {"Proveedor", "Tipo de Comprobante", "Tipo de Gasto", "Persona", "Seccional"})
+        Me.CBTabla.Location = New System.Drawing.Point(17, 117)
+        Me.CBTabla.Name = "CBTabla"
+        Me.CBTabla.Size = New System.Drawing.Size(186, 21)
+        Me.CBTabla.TabIndex = 0
         '
         'ABMAdmin
         '
