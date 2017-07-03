@@ -137,7 +137,7 @@ Partial Class ABMAdmin
         'CBTabla
         '
         Me.CBTabla.FormattingEnabled = True
-        Me.CBTabla.Items.AddRange(New Object() {"Proveedor", "Tipo de Comprobante", "Tipo de Gasto", "Persona", "Seccional"})
+        Me.CBTabla.Items.AddRange(New Object() {"Proveedor", "Tipo de Comprobante", "Tipo de Gasto", "Persona"})
         Me.CBTabla.Location = New System.Drawing.Point(17, 117)
         Me.CBTabla.Name = "CBTabla"
         Me.CBTabla.Size = New System.Drawing.Size(186, 21)

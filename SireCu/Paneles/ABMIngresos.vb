@@ -177,7 +177,9 @@ Public Class ABMIngresos
     Private Sub validarIngresos(sender As Object, e As EventArgs)
         If Not IsNumeric(sender.Text) Or IsDBNull(sender.Text) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un valor numérico o 0")
-            ControlesConErrores.Add(sender)
+            If Not ControlesConErrores.Contains(sender) Then
+                ControlesConErrores.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErrores.Remove(sender)

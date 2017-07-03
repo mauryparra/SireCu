@@ -114,9 +114,8 @@
   <ItemGroup>
     <Compile Include="Clases\Egreso.vb" />
     <Compile Include="Clases\Ingreso.vb" />
-    <Compile Include="Clases\Personas\Persona.vb" />
-    <Compile Include="Clases\Personas\personaGastador.vb" />
-    <Compile Include="Clases\Personas\personaProveedor.vb" />
+    <Compile Include="Clases\Persona.vb" />
+    <Compile Include="Clases\Usuario.vb" />
     <Compile Include="Clases\Reporte.vb" />
     <Compile Include="Clases\Reportes\ReporteEgresoCen.Designer.vb">
       <DependentUpon>ReporteEgresoCen.vb</DependentUpon>
@@ -130,9 +129,6 @@
     <Compile Include="Clases\Reportes\ReporteEgresoSec.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Clases\Personas\personaUsuario.vb" />
-    <Compile Include="Clases\Personas\Usuarios\usuarioAdmin.vb" />
-    <Compile Include="Clases\Personas\Usuarios\usuarioContador.vb" />
     <Compile Include="Clases\Reportes\ReporteIngreso.Designer.vb">
       <DependentUpon>ReporteIngreso.vb</DependentUpon>
     </Compile>
@@ -165,6 +161,24 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtrasFunciones.vb" />
+    <Compile Include="Paneles\Config.Designer.vb">
+      <DependentUpon>Config.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\Config.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Paneles\Home.Designer.vb">
+      <DependentUpon>Home.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\Home.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Paneles\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\Login.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Paneles\VerReporte.Designer.vb">
       <DependentUpon>VerReporte.vb</DependentUpon>
     </Compile>
@@ -221,6 +235,15 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\Config.resx">
+      <DependentUpon>Config.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\Home.resx">
+      <DependentUpon>Home.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Paneles\VerReporte.resx">
       <DependentUpon>VerReporte.vb</DependentUpon>
@@ -294,6 +317,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Clases\Usuarios\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

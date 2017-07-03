@@ -96,7 +96,10 @@ Public Class VerReporte
         If (cb_Trimestre.Text <> "Primero") And (cb_Trimestre.Text <> "Segundo") And (cb_Trimestre.Text <> "Tercero") And
             (cb_Trimestre.Text <> "Cuarto") Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Trimestre válido")
-            ControlesConErrores.Add(sender)
+            If Not ControlesConErrores.Contains(sender) Then
+                ControlesConErrores.Add(sender)
+            End If
+
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErrores.Remove(sender)

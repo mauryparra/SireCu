@@ -650,7 +650,9 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("Personas", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
                                              "Puede agregar una nueva en la seccion Administrar")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresAgregar.Remove(sender)
@@ -660,20 +662,23 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("CategoriasGastos", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
                                              "Puede agregar una nueva en la seccion Administrar")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
-
     Private Sub tbProveedor_Validating(sender As Object, e As CancelEventArgs) Handles tbProveedor.Validating
         If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
         Else
-            Principal.ErrorProvider.SetError(sender, "")
+                Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
@@ -681,18 +686,22 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
         Else
-            Principal.ErrorProvider.SetError(sender, "")
+                Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
     Private Sub tbMonto_Validating(sender As Object, e As CancelEventArgs) Handles tbMonto.Validating
         If Not IsNumeric(sender.Text) Or IsDBNull(sender.Text) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un valor numérico o cero")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
         Else
-            Principal.ErrorProvider.SetError(sender, "")
+                Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresAgregar.Remove(sender)
         End If
     End Sub
@@ -700,7 +709,9 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
                                              "Puede agregar una nueva en la seccion Administrar")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresAgregar.Remove(sender)
@@ -715,16 +726,22 @@ Public Class ABMEgresos
         End If
         If (sender.text = "") Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar número de comprobante")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
             Exit Sub
         ElseIf (obtenerID(tbProveedor.Text, "Proveedores") = -1) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
             Exit Sub
         ElseIf (comprobante_repetido(comprobante, obtenerID(tbProveedor.Text, "Proveedores"))) Then
             Principal.ErrorProvider.SetError(sender, "Ese comprobante ya fué cargado para ese Proveedor")
-            ControlesConErroresAgregar.Add(sender)
+            If Not ControlesConErroresAgregar.Contains(sender) Then
+                ControlesConErroresAgregar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresAgregar.Remove(sender)
@@ -769,7 +786,9 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("Personas", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Persona correcta." & vbCrLf &
                                              "Puede agregar una nueva en la seccion Administrar")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)
@@ -779,7 +798,9 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("Proveedores", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)
@@ -788,7 +809,9 @@ Public Class ABMEgresos
     Private Sub TextBoxMonto_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TextBoxMonto.Validating
         If Not IsNumeric(sender.Text) Or IsDBNull(sender.Text) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un valor numérico o cero")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)
@@ -803,16 +826,22 @@ Public Class ABMEgresos
         End If
         If (sender.text = "") Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar número de comprobante")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
             Exit Sub
         ElseIf (obtenerID(TextBoxProveedor.Text, "Proveedores") = -1) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
             Exit Sub
         ElseIf (comprobante_repetido(comprobante, obtenerID(tbProveedor.Text, "Proveedores"))) Then
             Principal.ErrorProvider.SetError(sender, "Ese comprobante ya fué cargado para ese Proveedor")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)
@@ -822,7 +851,9 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
                                              "Puede agregar una nueva en la seccion Administrar")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)
@@ -832,7 +863,9 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("TiposComprobantes", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Tipo de Comprobante correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)
@@ -842,7 +875,9 @@ Public Class ABMEgresos
         If (sender.Text = "") Or (exist("Categoriasgastos", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Categoría correcta." & vbCrLf &
                                              "Puede agregar una nueva en la seccion Administrar")
-            ControlesConErroresModificar.Add(sender)
+            If Not ControlesConErroresModificar.Contains(sender) Then
+                ControlesConErroresModificar.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErroresModificar.Remove(sender)

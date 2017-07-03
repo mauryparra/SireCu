@@ -97,8 +97,6 @@
 
     Private Sub CBTabla_TextChanged(sender As Object, e As EventArgs) Handles CBTabla.TextChanged
         actualizar()
-        'TODO Revisar
-        'Sacamos el TB de la lista de errores
         Principal.ErrorProvider.SetError(TBModificar, "")
         ControlesConErrores.Remove(TBModificar)
     End Sub
@@ -120,9 +118,6 @@
             Case "Persona"
                 tabla = "Personas"
                 cargarDatos("Personas")
-            Case "Seccional"
-                tabla = "Seccionales"
-                cargarDatos("Seccionales")
         End Select
     End Sub
     Private Sub cargarDatos(ByVal tabla As String)
@@ -153,11 +148,13 @@
     Private Sub CBTabla_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles CBTabla.Validating
         'TODO Revisar
         If (CBTabla.Text <> "Proveedor") And (CBTabla.Text <> "Tipo de Comprobante") And
-            (CBTabla.Text <> "Tipo de Gasto") And (CBTabla.Text <> "Persona") And (CBTabla.Text <> "Seccional") Or
+            (CBTabla.Text <> "Tipo de Gasto") And (CBTabla.Text <> "Persona") Or
             IsDBNull(sender.Text) Or (CBTabla.Text = "") Then
 
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una opción válida")
-            ControlesConErrores.Add(sender)
+            If Not ControlesConErrores.Contains(sender) Then
+                ControlesConErrores.Add(sender)
+            End If
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErrores.Remove(sender)
@@ -167,11 +164,14 @@
     Private Sub TBModificar_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TBModificar.Validating
         If IsDBNull(sender.Text) Or (TBModificar.Text = "") Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un nombre válido")
-            ControlesConErrores.Add(sender)
+            If Not ControlesConErrores.Contains(sender) Then
+                ControlesConErrores.Add(sender)
+            End If
         Else
-            Principal.ErrorProvider.SetError(sender, "")
+                Principal.ErrorProvider.SetError(sender, "")
             ControlesConErrores.Remove(sender)
         End If
     End Sub
+
 #End Region
 End Class

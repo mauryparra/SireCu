@@ -132,7 +132,7 @@ Module OtrasFunciones
 
         Dim sqlFull As String = ""
         Dim sqlSeccional As String = ""
-        Dim meses As Integer()
+        Dim meses As Integer() = {}
         Dim idSec As Integer
         If seccional = "UDA Central" Then
             idSec = obtenerID("Seccionales", "nombre", "UDA Central")
@@ -355,18 +355,18 @@ Module OtrasFunciones
 
     Public Function obtenerSeccional()
 
-        Dim tabla As String = "Seccionales"
-        Dim seccional As String = ""
+        Dim dt As DataTable
+        Dim sql As String = ""
 
-        cargarTablaEnDataSet(tabla)
+        sql = "SELECT nombre from Seccionales WHERE nombre NOT LIKE 'UDA Central'"
 
-        For i = 0 To Principal.dataset.Tables(tabla).Rows.Count - 1
-            If (LCase(Principal.dataset.Tables(tabla).Rows.Item(i).Item("nombre")) <> LCase("UDA Central")) Then
-                seccional = Principal.dataset.Tables(tabla).Rows.Item(i).Item("nombre")
-            End If
-        Next
+        dt = consultarReader(sql)
 
-        Return (seccional)
+        If dt.Rows.Count = 0 Then
+            Return ("")
+        Else
+            Return dt.Rows(0).Item("nombre")
+        End If
 
     End Function
 
