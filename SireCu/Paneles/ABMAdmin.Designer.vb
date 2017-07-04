@@ -23,7 +23,6 @@ Partial Class ABMAdmin
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.SplitContainerAdmin = New System.Windows.Forms.SplitContainer()
-        Me.DGVAdmin = New System.Windows.Forms.DataGridView()
         Me.LEditar = New System.Windows.Forms.Label()
         Me.LTabla = New System.Windows.Forms.Label()
         Me.BCancelar = New System.Windows.Forms.Button()
@@ -31,6 +30,7 @@ Partial Class ABMAdmin
         Me.BGuardar = New System.Windows.Forms.Button()
         Me.TBModificar = New System.Windows.Forms.TextBox()
         Me.CBTabla = New System.Windows.Forms.ComboBox()
+        Me.DGVAdmin = New System.Windows.Forms.DataGridView()
         CType(Me.SplitContainerAdmin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerAdmin.Panel1.SuspendLayout()
         Me.SplitContainerAdmin.Panel2.SuspendLayout()
@@ -62,19 +62,6 @@ Partial Class ABMAdmin
         Me.SplitContainerAdmin.Size = New System.Drawing.Size(755, 456)
         Me.SplitContainerAdmin.SplitterDistance = 530
         Me.SplitContainerAdmin.TabIndex = 0
-        '
-        'DGVAdmin
-        '
-        Me.DGVAdmin.AllowUserToAddRows = False
-        Me.DGVAdmin.AllowUserToDeleteRows = False
-        Me.DGVAdmin.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DGVAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVAdmin.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DGVAdmin.Location = New System.Drawing.Point(0, 0)
-        Me.DGVAdmin.Name = "DGVAdmin"
-        Me.DGVAdmin.ReadOnly = True
-        Me.DGVAdmin.Size = New System.Drawing.Size(530, 456)
-        Me.DGVAdmin.TabIndex = 0
         '
         'LEditar
         '
@@ -143,6 +130,19 @@ Partial Class ABMAdmin
         Me.CBTabla.Size = New System.Drawing.Size(186, 21)
         Me.CBTabla.TabIndex = 0
         '
+        'DGVAdmin
+        '
+        Me.DGVAdmin.AllowUserToAddRows = False
+        Me.DGVAdmin.AllowUserToDeleteRows = False
+        Me.DGVAdmin.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DGVAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGVAdmin.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DGVAdmin.Location = New System.Drawing.Point(0, 0)
+        Me.DGVAdmin.Name = "DGVAdmin"
+        Me.DGVAdmin.ReadOnly = True
+        Me.DGVAdmin.Size = New System.Drawing.Size(530, 456)
+        Me.DGVAdmin.TabIndex = 0
+        '
         'ABMAdmin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -161,7 +161,6 @@ Partial Class ABMAdmin
     End Sub
 
     Friend WithEvents SplitContainerAdmin As SplitContainer
-    Friend WithEvents DGVAdmin As DataGridView
     Friend WithEvents CBTabla As ComboBox
     Friend WithEvents TBModificar As TextBox
     Friend WithEvents BCancelar As Button
@@ -169,4 +168,5 @@ Partial Class ABMAdmin
     Friend WithEvents BGuardar As Button
     Friend WithEvents LEditar As Label
     Friend WithEvents LTabla As Label
+    Friend WithEvents DGVAdmin As DataGridView
 End Class

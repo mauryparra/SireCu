@@ -6,6 +6,7 @@ Public Class Principal
     Public command As New SqlCeCommand()
     Public tableadapters As New Dictionary(Of String, SqlCeDataAdapter)
     Public query As String
+    Public userLogueado As String
 
 
 #Region "Botones Panel"
@@ -42,6 +43,10 @@ Public Class Principal
     End Sub
     Private Sub SeccionalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeccionalToolStripMenuItem.Click
         Config.ShowDialog()
+    End Sub
+
+    Private Sub EliminarUsuarioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdministrarUsuariosToolStripMenuItem.Click
+        AdminPantallas("Usuarios")
     End Sub
 
 #End Region
@@ -88,6 +93,10 @@ Public Class Principal
                     Dim pantallaHome As Home = New Home()
                     pantallaHome.Dock = DockStyle.Fill
                     SplitContainerPrincipal.Panel2.Controls.Add(pantallaHome)
+                Case "Usuarios"
+                    Dim pantallaABMUsuarios As ABMUsuarios = New ABMUsuarios()
+                    pantallaABMUsuarios.Dock = DockStyle.Fill
+                    SplitContainerPrincipal.Panel2.Controls.Add(pantallaABMUsuarios)
                 Case Else
                     MessageBox.Show("Error del administrador de pantallas")
 
@@ -111,6 +120,8 @@ Public Class Principal
         TStripLabelSaldo.Text = ""
         stat_Label.Text = "Desconectado"
         bttn_Login.Text = "Login"
+
+        userLogueado = ""
 
         AdminPantallas("Home")
 

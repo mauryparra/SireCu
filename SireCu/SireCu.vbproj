@@ -161,6 +161,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="OtrasFunciones.vb" />
+    <Compile Include="Paneles\ABMUsuarios.Designer.vb">
+      <DependentUpon>ABMUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\ABMUsuarios.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Paneles\Config.Designer.vb">
       <DependentUpon>Config.vb</DependentUpon>
     </Compile>
@@ -235,6 +241,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\ABMUsuarios.resx">
+      <DependentUpon>ABMUsuarios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Paneles\Config.resx">
       <DependentUpon>Config.vb</DependentUpon>

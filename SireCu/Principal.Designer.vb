@@ -43,9 +43,7 @@ Partial Class Principal
         Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SeccionalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AgregarUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ModificarUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EliminarUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdministrarUsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
@@ -287,29 +285,17 @@ Partial Class Principal
         '
         'UsuariosToolStripMenuItem
         '
-        Me.UsuariosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AgregarUsuarioToolStripMenuItem, Me.ModificarUsuarioToolStripMenuItem, Me.EliminarUsuarioToolStripMenuItem})
+        Me.UsuariosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministrarUsuariosToolStripMenuItem})
         Me.UsuariosToolStripMenuItem.Enabled = False
         Me.UsuariosToolStripMenuItem.Name = "UsuariosToolStripMenuItem"
         Me.UsuariosToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
         Me.UsuariosToolStripMenuItem.Text = "Usuarios"
         '
-        'AgregarUsuarioToolStripMenuItem
+        'AdministrarUsuariosToolStripMenuItem
         '
-        Me.AgregarUsuarioToolStripMenuItem.Name = "AgregarUsuarioToolStripMenuItem"
-        Me.AgregarUsuarioToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
-        Me.AgregarUsuarioToolStripMenuItem.Text = "Agregar Usuario"
-        '
-        'ModificarUsuarioToolStripMenuItem
-        '
-        Me.ModificarUsuarioToolStripMenuItem.Name = "ModificarUsuarioToolStripMenuItem"
-        Me.ModificarUsuarioToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
-        Me.ModificarUsuarioToolStripMenuItem.Text = "Modificar Usuario"
-        '
-        'EliminarUsuarioToolStripMenuItem
-        '
-        Me.EliminarUsuarioToolStripMenuItem.Name = "EliminarUsuarioToolStripMenuItem"
-        Me.EliminarUsuarioToolStripMenuItem.Size = New System.Drawing.Size(168, 22)
-        Me.EliminarUsuarioToolStripMenuItem.Text = "Eliminar Usuario"
+        Me.AdministrarUsuariosToolStripMenuItem.Name = "AdministrarUsuariosToolStripMenuItem"
+        Me.AdministrarUsuariosToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.AdministrarUsuariosToolStripMenuItem.Text = "Administrar Usuarios"
         '
         'ErrorProvider
         '
@@ -357,9 +343,7 @@ Partial Class Principal
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
     Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UsuariosToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AgregarUsuarioToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ModificarUsuarioToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents EliminarUsuarioToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AdministrarUsuariosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SeccionalToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents bttn_Login As Button
     Friend WithEvents btn_Ingresos As Button

@@ -88,11 +88,15 @@
     End Sub
 
     Private Sub DGVAdmin_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVAdmin.CellMouseDoubleClick
-        TBModificar.Text = DGVAdmin.CurrentRow.Cells(1).Value
-        DGVAdmin.Enabled = False
-        CBTabla.Enabled = False
-        BGuardar.Text = "Actualizar"
-        BCancelar.Enabled = True
+        Dim senderGrid = DirectCast(sender, DataGridView)
+        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso
+           e.RowIndex >= 0 Then
+            TBModificar.Text = DGVAdmin.CurrentRow.Cells(1).Value
+            DGVAdmin.Enabled = False
+            CBTabla.Enabled = False
+            BGuardar.Text = "Actualizar"
+            BCancelar.Enabled = True
+        End If
     End Sub
 
     Private Sub CBTabla_TextChanged(sender As Object, e As EventArgs) Handles CBTabla.TextChanged
@@ -174,4 +178,5 @@
     End Sub
 
 #End Region
+
 End Class

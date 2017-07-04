@@ -12,6 +12,7 @@ Public Class Login
         If verificarUsuario(tb_Usuario.Text, tb_Contraseña.Text) Then
             Principal.bttn_Login.Text = "Desloguear"
             Principal.stat_Label.Text = "Logueado como: " & tb_Usuario.Text
+            Principal.userLogueado = tb_Usuario.Text
 
             ActualizarSaldo()
             permisosUsuarios(tb_Usuario.Text)
@@ -47,6 +48,16 @@ Public Class Login
             Case "User"
                 'Nada
         End Select
+    End Sub
+
+#End Region
+
+#Region "Eventos"
+
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+        tb_Usuario.Focus()
+
     End Sub
 
 #End Region
