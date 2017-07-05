@@ -110,6 +110,8 @@ Partial Class ABMEgresos
         Me.TSComboBoxFiltro2 = New System.Windows.Forms.ToolStripComboBox()
         Me.TSComboBoxOpera2 = New System.Windows.Forms.ToolStripComboBox()
         Me.TSTextBoxFiltro2 = New System.Windows.Forms.ToolStripTextBox()
+        Me.TSButtonFiltrar = New System.Windows.Forms.ToolStripButton()
+        Me.TSButtonQuitarFiltros = New System.Windows.Forms.ToolStripButton()
         Me.TabPagePapelera = New System.Windows.Forms.TabPage()
         Me.SplitContainerPapelera = New System.Windows.Forms.SplitContainer()
         Me.ToolStripContainerPapelera = New System.Windows.Forms.ToolStripContainer()
@@ -134,8 +136,7 @@ Partial Class ABMEgresos
         Me.bPapeleraEliminar = New System.Windows.Forms.Button()
         Me.bPapeleraVaciarPapelera = New System.Windows.Forms.Button()
         Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
-        Me.TSButtonFiltrar = New System.Windows.Forms.ToolStripButton()
-        Me.TSButtonQuitarFiltros = New System.Windows.Forms.ToolStripButton()
+        Me.btn_Cancelar = New System.Windows.Forms.Button()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.GroupBoxAgregar.SuspendLayout()
@@ -432,10 +433,10 @@ Partial Class ABMEgresos
         'lb_Titulo
         '
         Me.lb_Titulo.AutoSize = True
-        Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Titulo.Location = New System.Drawing.Point(284, 2)
+        Me.lb_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Titulo.Location = New System.Drawing.Point(281, 5)
         Me.lb_Titulo.Name = "lb_Titulo"
-        Me.lb_Titulo.Size = New System.Drawing.Size(193, 38)
+        Me.lb_Titulo.Size = New System.Drawing.Size(211, 33)
         Me.lb_Titulo.TabIndex = 91
         Me.lb_Titulo.Text = "Nuevo Egreso"
         '
@@ -457,7 +458,7 @@ Partial Class ABMEgresos
         'ToolStripContainerModificar.ContentPanel
         '
         Me.ToolStripContainerModificar.ContentPanel.Controls.Add(Me.SplitContainerModificar)
-        Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(595, 421)
+        Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(597, 421)
         Me.ToolStripContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerModificar.LeftToolStripPanelVisible = False
         Me.ToolStripContainerModificar.Location = New System.Drawing.Point(3, 3)
@@ -484,6 +485,7 @@ Partial Class ABMEgresos
         '
         'SplitContainerModificar.Panel2
         '
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.btn_Cancelar)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.ButtonEliminar)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.LabelSeccional)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.ComboBoxSeccional)
@@ -508,7 +510,7 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label12)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxComentario)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxProveedor)
-        Me.SplitContainerModificar.Size = New System.Drawing.Size(595, 421)
+        Me.SplitContainerModificar.Size = New System.Drawing.Size(597, 421)
         Me.SplitContainerModificar.SplitterDistance = 201
         Me.SplitContainerModificar.TabIndex = 1
         '
@@ -523,7 +525,7 @@ Partial Class ABMEgresos
         Me.DGVModificar.Name = "DGVModificar"
         Me.DGVModificar.ReadOnly = True
         Me.DGVModificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVModificar.Size = New System.Drawing.Size(595, 201)
+        Me.DGVModificar.Size = New System.Drawing.Size(597, 201)
         Me.DGVModificar.TabIndex = 1
         '
         'id
@@ -643,9 +645,9 @@ Partial Class ABMEgresos
         '
         Me.ButtonEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEliminar.ForeColor = System.Drawing.Color.Red
-        Me.ButtonEliminar.Location = New System.Drawing.Point(449, 182)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(449, 159)
         Me.ButtonEliminar.Name = "ButtonEliminar"
-        Me.ButtonEliminar.Size = New System.Drawing.Size(150, 31)
+        Me.ButtonEliminar.Size = New System.Drawing.Size(150, 25)
         Me.ButtonEliminar.TabIndex = 103
         Me.ButtonEliminar.Text = "Eliminar"
         Me.ButtonEliminar.UseVisualStyleBackColor = True
@@ -765,9 +767,9 @@ Partial Class ABMEgresos
         '
         Me.ButtonGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGuardar.ForeColor = System.Drawing.Color.Green
-        Me.ButtonGuardar.Location = New System.Drawing.Point(449, 145)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(449, 130)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(150, 31)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(150, 25)
         Me.ButtonGuardar.TabIndex = 102
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
@@ -870,14 +872,14 @@ Partial Class ABMEgresos
         Me.ToolStripModificar.Location = New System.Drawing.Point(0, 3)
         Me.ToolStripModificar.Name = "ToolStripModificar"
         Me.ToolStripModificar.Padding = New System.Windows.Forms.Padding(0)
-        Me.ToolStripModificar.Size = New System.Drawing.Size(146, 398)
+        Me.ToolStripModificar.Size = New System.Drawing.Size(144, 398)
         Me.ToolStripModificar.TabIndex = 0
         '
         'TSLabelTrimestre
         '
         Me.TSLabelTrimestre.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelTrimestre.Name = "TSLabelTrimestre"
-        Me.TSLabelTrimestre.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelTrimestre.Size = New System.Drawing.Size(137, 15)
         Me.TSLabelTrimestre.Text = "Trimestre: "
         '
         'TSComboBoxTrimestre
@@ -888,13 +890,13 @@ Partial Class ABMEgresos
         Me.TSComboBoxTrimestre.Items.AddRange(New Object() {"", "Primero", "Segundo", "Tercero", "Cuarto"})
         Me.TSComboBoxTrimestre.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxTrimestre.Name = "TSComboBoxTrimestre"
-        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(137, 23)
         '
         'TSLabelAño
         '
         Me.TSLabelAño.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelAño.Name = "TSLabelAño"
-        Me.TSLabelAño.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelAño.Size = New System.Drawing.Size(137, 15)
         Me.TSLabelAño.Text = "Año: "
         '
         'TSTextBoxAño
@@ -902,13 +904,13 @@ Partial Class ABMEgresos
         Me.TSTextBoxAño.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TSTextBoxAño.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSTextBoxAño.Name = "TSTextBoxAño"
-        Me.TSTextBoxAño.Size = New System.Drawing.Size(139, 23)
+        Me.TSTextBoxAño.Size = New System.Drawing.Size(137, 23)
         '
         'TSLabelMes
         '
         Me.TSLabelMes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelMes.Name = "TSLabelMes"
-        Me.TSLabelMes.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelMes.Size = New System.Drawing.Size(137, 15)
         Me.TSLabelMes.Text = "Mes:"
         '
         'TSComboBoxMes
@@ -919,13 +921,13 @@ Partial Class ABMEgresos
         Me.TSComboBoxMes.Items.AddRange(New Object() {"", "01 - Enero", "02 - Febrero", "03 - Marzo", "04 - Abril", "05 - Mayo", "06 - Junio", "07 - Julio", "08 - Agosto", "09 - Septiembre", "10 - Octubre", "11 - Noviembre", "12 - Diciembre"})
         Me.TSComboBoxMes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxMes.Name = "TSComboBoxMes"
-        Me.TSComboBoxMes.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxMes.Size = New System.Drawing.Size(137, 23)
         '
         'TSLabelFiltro1
         '
         Me.TSLabelFiltro1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelFiltro1.Name = "TSLabelFiltro1"
-        Me.TSLabelFiltro1.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelFiltro1.Size = New System.Drawing.Size(137, 15)
         Me.TSLabelFiltro1.Text = "Filtrar Por:"
         '
         'TSComboBoxFiltro1
@@ -936,7 +938,7 @@ Partial Class ABMEgresos
         Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
         Me.TSComboBoxFiltro1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxFiltro1.Name = "TSComboBoxFiltro1"
-        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(137, 23)
         Me.TSComboBoxFiltro1.ToolTipText = "Seleccione columna por la cual desea filtrar"
         '
         'TSComboBoxOpera1
@@ -945,7 +947,7 @@ Partial Class ABMEgresos
         Me.TSComboBoxOpera1.Items.AddRange(New Object() {"*", "="})
         Me.TSComboBoxOpera1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxOpera1.Name = "TSComboBoxOpera1"
-        Me.TSComboBoxOpera1.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxOpera1.Size = New System.Drawing.Size(137, 23)
         Me.TSComboBoxOpera1.Text = "*"
         Me.TSComboBoxOpera1.ToolTipText = "Elija entre buscar resultados apróximados o exactos"
         '
@@ -954,14 +956,14 @@ Partial Class ABMEgresos
         Me.TSTextBoxFiltro1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TSTextBoxFiltro1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSTextBoxFiltro1.Name = "TSTextBoxFiltro1"
-        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(139, 23)
+        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(137, 23)
         Me.TSTextBoxFiltro1.ToolTipText = "Ingresar valores por los cuales quiere filtrar la tabla."
         '
         'TSLabelFiltro2
         '
         Me.TSLabelFiltro2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelFiltro2.Name = "TSLabelFiltro2"
-        Me.TSLabelFiltro2.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelFiltro2.Size = New System.Drawing.Size(137, 15)
         Me.TSLabelFiltro2.Text = "Filtro Adicional: "
         '
         'TSComboBoxFiltro2
@@ -972,7 +974,7 @@ Partial Class ABMEgresos
         Me.TSComboBoxFiltro2.Items.AddRange(New Object() {"", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
         Me.TSComboBoxFiltro2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxFiltro2.Name = "TSComboBoxFiltro2"
-        Me.TSComboBoxFiltro2.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxFiltro2.Size = New System.Drawing.Size(137, 23)
         Me.TSComboBoxFiltro2.ToolTipText = "Seleccione columna por la cual desea filtrar"
         '
         'TSComboBoxOpera2
@@ -981,7 +983,7 @@ Partial Class ABMEgresos
         Me.TSComboBoxOpera2.Items.AddRange(New Object() {"*", "="})
         Me.TSComboBoxOpera2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxOpera2.Name = "TSComboBoxOpera2"
-        Me.TSComboBoxOpera2.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxOpera2.Size = New System.Drawing.Size(137, 23)
         Me.TSComboBoxOpera2.Text = "*"
         Me.TSComboBoxOpera2.ToolTipText = "Elija entre buscar resultados apróximados o exactos"
         '
@@ -990,7 +992,31 @@ Partial Class ABMEgresos
         Me.TSTextBoxFiltro2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TSTextBoxFiltro2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSTextBoxFiltro2.Name = "TSTextBoxFiltro2"
-        Me.TSTextBoxFiltro2.Size = New System.Drawing.Size(139, 23)
+        Me.TSTextBoxFiltro2.Size = New System.Drawing.Size(137, 23)
+        '
+        'TSButtonFiltrar
+        '
+        Me.TSButtonFiltrar.BackColor = System.Drawing.Color.LightGreen
+        Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
+        Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonFiltrar.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
+        Me.TSButtonFiltrar.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
+        Me.TSButtonFiltrar.Size = New System.Drawing.Size(137, 23)
+        Me.TSButtonFiltrar.Text = "Filtrar"
+        '
+        'TSButtonQuitarFiltros
+        '
+        Me.TSButtonQuitarFiltros.BackColor = System.Drawing.Color.LightBlue
+        Me.TSButtonQuitarFiltros.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSButtonQuitarFiltros.Image = CType(resources.GetObject("TSButtonQuitarFiltros.Image"), System.Drawing.Image)
+        Me.TSButtonQuitarFiltros.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonQuitarFiltros.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSButtonQuitarFiltros.Name = "TSButtonQuitarFiltros"
+        Me.TSButtonQuitarFiltros.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
+        Me.TSButtonQuitarFiltros.Size = New System.Drawing.Size(137, 23)
+        Me.TSButtonQuitarFiltros.Text = "Quitar Filtros"
         '
         'TabPagePapelera
         '
@@ -1199,29 +1225,16 @@ Partial Class ABMEgresos
         Me.bPapeleraRestaurar.Text = "Restaurar"
         Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
         '
-        'TSButtonFiltrar
+        'btn_Cancelar
         '
-        Me.TSButtonFiltrar.BackColor = System.Drawing.Color.LightGreen
-        Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
-        Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSButtonFiltrar.Margin = New System.Windows.Forms.Padding(3)
-        Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
-        Me.TSButtonFiltrar.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
-        Me.TSButtonFiltrar.Size = New System.Drawing.Size(139, 23)
-        Me.TSButtonFiltrar.Text = "Filtrar"
-        '
-        'TSButtonQuitarFiltros
-        '
-        Me.TSButtonQuitarFiltros.BackColor = System.Drawing.Color.LightBlue
-        Me.TSButtonQuitarFiltros.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSButtonQuitarFiltros.Image = CType(resources.GetObject("TSButtonQuitarFiltros.Image"), System.Drawing.Image)
-        Me.TSButtonQuitarFiltros.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSButtonQuitarFiltros.Margin = New System.Windows.Forms.Padding(3)
-        Me.TSButtonQuitarFiltros.Name = "TSButtonQuitarFiltros"
-        Me.TSButtonQuitarFiltros.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
-        Me.TSButtonQuitarFiltros.Size = New System.Drawing.Size(139, 23)
-        Me.TSButtonQuitarFiltros.Text = "Quitar Filtros"
+        Me.btn_Cancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Cancelar.ForeColor = System.Drawing.Color.Black
+        Me.btn_Cancelar.Location = New System.Drawing.Point(449, 188)
+        Me.btn_Cancelar.Name = "btn_Cancelar"
+        Me.btn_Cancelar.Size = New System.Drawing.Size(150, 25)
+        Me.btn_Cancelar.TabIndex = 120
+        Me.btn_Cancelar.Text = "Cancelar"
+        Me.btn_Cancelar.UseVisualStyleBackColor = True
         '
         'ABMEgresos
         '
@@ -1265,7 +1278,6 @@ Partial Class ABMEgresos
 
     Friend WithEvents TabControl As TabControl
     Friend WithEvents TabPageAgregar As TabPage
-    Friend WithEvents lb_Titulo As Label
     Friend WithEvents TabPageModificar As TabPage
     Friend WithEvents TabPagePapelera As TabPage
     Friend WithEvents SplitContainerPapelera As SplitContainer
@@ -1376,4 +1388,6 @@ Partial Class ABMEgresos
     Friend WithEvents tbProveedor As TextBox
     Friend WithEvents TSLabelMes As ToolStripLabel
     Friend WithEvents TSComboBoxMes As ToolStripComboBox
+    Friend WithEvents lb_Titulo As Label
+    Friend WithEvents btn_Cancelar As Button
 End Class

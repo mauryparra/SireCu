@@ -79,9 +79,9 @@ Public Class ABMEgresos
 
             nuevo_egreso(
                          comprobante,
-                         obtenerID(tbProveedor.Text, "Proveedores"),
+                         obtenerID("Proveedores", "nombre", tbProveedor.Text),
                          cbTGasto.SelectedValue,
-                         obtenerID(tbNombre.Text, "Personas"),
+                         obtenerID("Personas", "nombre", tbNombre.Text),
                          dtpFecha.Value.Date,
                          cbTComprobante.SelectedValue,
                          cbSeccional.SelectedValue,
@@ -109,7 +109,7 @@ Public Class ABMEgresos
                 idModificando = CInt(DGVModificar.Rows(e.RowIndex).Cells("id").Value)
 
                 TextBoxNombre.Text = DGVModificar.Rows(e.RowIndex).Cells("persona_nombre").Value
-                ComboBoxCategGasto.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("categoria_gasto_id").Value
+                ComboBoxCategGasto.Text = DGVModificar.Rows(e.RowIndex).Cells("categoria_nombre").Value
                 TextBoxProveedor.Text = DGVModificar.Rows(e.RowIndex).Cells("proveedor_nombre").Value
                 If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value Is DBNull.Value Then
                     DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
@@ -123,10 +123,10 @@ Public Class ABMEgresos
                         DateTimePickerMesReintegro.Checked = True
                     End If
                 End If
-                ComboBoxSeccional.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("seccional_id").Value
+                ComboBoxSeccional.Text = DGVModificar.Rows(e.RowIndex).Cells("seccional_nombre").Value
                 TextBoxComentario.Text = DGVModificar.Rows(e.RowIndex).Cells("comentario").Value.ToString
                 DateTimePickerFecha.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
-                ComboBoxTipoComprobante.SelectedValue = DGVModificar.Rows(e.RowIndex).Cells("tipo_comprobante_id").Value
+                ComboBoxTipoComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("tipo_comprobante_nombre").Value
                 If DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Contains("-") Then
                     TextBoxPVenta.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(0)
                     TextBoxNroComprobante.Text = DGVModificar.Rows(e.RowIndex).Cells("nro_comprobante").Value.ToString.Split("-")(1)
@@ -221,9 +221,9 @@ Public Class ABMEgresos
             modificar_egreso(
                          idModificando,
                          comprobante,
-                         obtenerID(TextBoxProveedor.Text, "Proveedores"),
+                         obtenerID("Proveedores", "nombre", TextBoxProveedor.Text),
                          ComboBoxCategGasto.SelectedValue,
-                         obtenerID(TextBoxNombre.Text, "Personas"),
+                         obtenerID("Personas", "nombre", TextBoxNombre.Text),
                          DateTimePickerFecha.Value.Date,
                          ComboBoxTipoComprobante.SelectedValue,
                          ComboBoxSeccional.SelectedValue,
@@ -240,7 +240,6 @@ Public Class ABMEgresos
         End If
 
     End Sub
-
     Private Sub ButtonEliminar_Click(sender As Object, e As EventArgs) Handles ButtonEliminar.Click
         If (MsgBox("Está seguro?", MsgBoxStyle.OkCancel, "Eliminar?") = MsgBoxResult.Ok) Then
 
@@ -254,7 +253,6 @@ Public Class ABMEgresos
             ActualizarSaldo()
         End If
     End Sub
-
     Private Sub TSButtonFiltrar_Click(sender As Object, e As EventArgs) Handles TSButtonFiltrar.Click
         Dim filtros As List(Of KeyValuePair(Of String, String)) = New List(Of KeyValuePair(Of String, String))
         Dim sql As String = ""
@@ -408,8 +406,11 @@ Public Class ABMEgresos
         FiltrarDGV(DGVModificar, sql)
 
     End Sub
-
-
+    Private Sub btn_Cancelar_Click(sender As Object, e As EventArgs) Handles btn_Cancelar.Click
+        idModificando = 0
+        limpiarForm(SplitContainerModificar.Panel2)
+        activarModificar(False)
+    End Sub
     Private Sub TSButtonQuitarFiltros_Click(sender As Object, e As EventArgs) Handles TSButtonQuitarFiltros.Click
 
         TSComboBoxTrimestre.SelectedIndex = -1
@@ -551,19 +552,6 @@ Public Class ABMEgresos
 
 #Region "Helpers"
 
-    Private Function obtenerID(ByVal Campo_a_comparar As String, ByVal tabla As String) As Integer
-        Dim id As Integer = -1
-
-        For Each row As DataRow In Principal.dataset.Tables(tabla).Rows
-            If (LCase(row.Item("nombre")) = LCase(Campo_a_comparar)) Then
-                id = row.Item("id")
-            End If
-        Next
-
-        Return (id)
-
-    End Function
-
     ' Activa o desactiva la modificación de un Egreso
     Private Sub activarModificar(ByVal activar As Boolean)
         If activar Then
@@ -574,6 +562,7 @@ Public Class ABMEgresos
             Next
             ButtonGuardar.Enabled = True
             ButtonEliminar.Enabled = True
+            btn_Cancelar.Enabled = True
         Else
             For Each control As Control In SplitContainerModificar.Panel2.Controls
                 If TypeOf control Is TextBox Or TypeOf control Is ComboBox Or TypeOf control Is DateTimePicker Then
@@ -582,6 +571,7 @@ Public Class ABMEgresos
             Next
             ButtonGuardar.Enabled = False
             ButtonEliminar.Enabled = False
+            btn_Cancelar.Enabled = False
         End If
     End Sub
 
@@ -730,14 +720,14 @@ Public Class ABMEgresos
                 ControlesConErroresAgregar.Add(sender)
             End If
             Exit Sub
-        ElseIf (obtenerID(tbProveedor.Text, "Proveedores") = -1) Then
+        ElseIf (obtenerID("Proveedores", "nombre", tbProveedor.Text) = Nothing) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
             If Not ControlesConErroresAgregar.Contains(sender) Then
                 ControlesConErroresAgregar.Add(sender)
             End If
             Exit Sub
-        ElseIf (comprobante_repetido(comprobante, obtenerID(tbProveedor.Text, "Proveedores"))) Then
+        ElseIf (comprobante_repetido(comprobante, obtenerID("Proveedores", "nombre", tbProveedor.Text))) Then
             Principal.ErrorProvider.SetError(sender, "Ese comprobante ya fué cargado para ese Proveedor")
             If Not ControlesConErroresAgregar.Contains(sender) Then
                 ControlesConErroresAgregar.Add(sender)
@@ -830,14 +820,14 @@ Public Class ABMEgresos
                 ControlesConErroresModificar.Add(sender)
             End If
             Exit Sub
-        ElseIf (obtenerID(TextBoxProveedor.Text, "Proveedores") = -1) Then
+        ElseIf (obtenerID("Proveedores", "nombre", TextBoxProveedor.Text) = Nothing) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Proveedor correcto." & vbCrLf &
                                              "Puede agregar uno nuevo en la seccion Administrar")
             If Not ControlesConErroresModificar.Contains(sender) Then
                 ControlesConErroresModificar.Add(sender)
             End If
             Exit Sub
-        ElseIf (comprobante_repetido(comprobante, obtenerID(tbProveedor.Text, "Proveedores"))) Then
+        ElseIf (comprobante_repetido(comprobante, obtenerID("Proveedores", "nombre", tbProveedor.Text))) Then
             Principal.ErrorProvider.SetError(sender, "Ese comprobante ya fué cargado para ese Proveedor")
             If Not ControlesConErroresModificar.Contains(sender) Then
                 ControlesConErroresModificar.Add(sender)
@@ -993,6 +983,7 @@ Public Class ABMEgresos
             TSComboBoxMes.BackColor = Color.MistyRose
         End If
     End Sub
+
 #End Region
 
 End Class

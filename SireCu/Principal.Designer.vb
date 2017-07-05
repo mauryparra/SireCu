@@ -148,7 +148,7 @@ Partial Class Principal
         Me.btn_Administrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.btn_Administrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
         Me.btn_Administrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_Administrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Administrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Administrar.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btn_Administrar.Location = New System.Drawing.Point(3, 410)
         Me.btn_Administrar.Name = "btn_Administrar"
@@ -165,7 +165,7 @@ Partial Class Principal
         Me.btn_VerReporte.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.btn_VerReporte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
         Me.btn_VerReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_VerReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_VerReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_VerReporte.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btn_VerReporte.Location = New System.Drawing.Point(3, 179)
         Me.btn_VerReporte.Name = "btn_VerReporte"
@@ -183,7 +183,7 @@ Partial Class Principal
         Me.btn_SubirReporte.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.btn_SubirReporte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
         Me.btn_SubirReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_SubirReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_SubirReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_SubirReporte.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btn_SubirReporte.Location = New System.Drawing.Point(3, 235)
         Me.btn_SubirReporte.Name = "btn_SubirReporte"
@@ -201,7 +201,7 @@ Partial Class Principal
         Me.btn_Egresos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.btn_Egresos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
         Me.btn_Egresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_Egresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Egresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Egresos.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btn_Egresos.Location = New System.Drawing.Point(3, 79)
         Me.btn_Egresos.Name = "btn_Egresos"
@@ -219,7 +219,7 @@ Partial Class Principal
         Me.btn_Ingresos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.btn_Ingresos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
         Me.btn_Ingresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_Ingresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Ingresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Ingresos.ForeColor = System.Drawing.SystemColors.ControlText
         Me.btn_Ingresos.Location = New System.Drawing.Point(3, 25)
         Me.btn_Ingresos.Name = "btn_Ingresos"
@@ -236,7 +236,7 @@ Partial Class Principal
         Me.bttn_Login.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.bttn_Login.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
         Me.bttn_Login.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bttn_Login.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bttn_Login.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.bttn_Login.ForeColor = System.Drawing.SystemColors.ControlText
         Me.bttn_Login.Location = New System.Drawing.Point(3, 356)
         Me.bttn_Login.Name = "bttn_Login"

@@ -19,6 +19,7 @@ Public Class Login
 
             ' Limpiamos todas las pantallas
             Principal.SplitContainerPrincipal.Panel2.Controls.Clear()
+            Principal.AdminPantallas("Home")
         Else
             Principal.ErrorProvider.SetError(tb_Contraseña, "Usuario y/o Contraseña Inválido/s")
         End If

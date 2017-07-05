@@ -53,10 +53,10 @@ Partial Class ABMIngresos
         'lb_Titulo
         '
         Me.lb_Titulo.AutoSize = True
-        Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Titulo.Location = New System.Drawing.Point(305, 13)
+        Me.lb_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Titulo.Location = New System.Drawing.Point(308, 16)
         Me.lb_Titulo.Name = "lb_Titulo"
-        Me.lb_Titulo.Size = New System.Drawing.Size(128, 38)
+        Me.lb_Titulo.Size = New System.Drawing.Size(135, 33)
         Me.lb_Titulo.TabIndex = 0
         Me.lb_Titulo.Text = "Ingresos"
         '
@@ -77,14 +77,13 @@ Partial Class ABMIngresos
         'lb_Trimestre
         '
         Me.lb_Trimestre.AutoSize = True
-        Me.lb_Trimestre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lb_Trimestre.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Trimestre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lb_Trimestre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.lb_Trimestre.Location = New System.Drawing.Point(236, 35)
+        Me.lb_Trimestre.Location = New System.Drawing.Point(263, 35)
         Me.lb_Trimestre.Name = "lb_Trimestre"
-        Me.lb_Trimestre.Size = New System.Drawing.Size(96, 25)
+        Me.lb_Trimestre.Size = New System.Drawing.Size(84, 20)
         Me.lb_Trimestre.TabIndex = 2
-        Me.lb_Trimestre.Text = "Trimestre:"
+        Me.lb_Trimestre.Text = "Trimestre"
         '
         'lb_Mes1
         '
@@ -177,7 +176,7 @@ Partial Class ABMIngresos
         'btn_Guardar
         '
         Me.btn_Guardar.Enabled = False
-        Me.btn_Guardar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Guardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Guardar.ForeColor = System.Drawing.Color.Green
         Me.btn_Guardar.Location = New System.Drawing.Point(621, 283)
         Me.btn_Guardar.Name = "btn_Guardar"
@@ -189,7 +188,7 @@ Partial Class ABMIngresos
         'btn_Modificar
         '
         Me.btn_Modificar.Enabled = False
-        Me.btn_Modificar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Modificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Modificar.Location = New System.Drawing.Point(621, 122)
         Me.btn_Modificar.Name = "btn_Modificar"
         Me.btn_Modificar.Size = New System.Drawing.Size(116, 61)
@@ -200,10 +199,10 @@ Partial Class ABMIngresos
         'lb_Año
         '
         Me.lb_Año.AutoSize = True
-        Me.lb_Año.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Año.Location = New System.Drawing.Point(89, 35)
+        Me.lb_Año.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Año.Location = New System.Drawing.Point(89, 38)
         Me.lb_Año.Name = "lb_Año"
-        Me.lb_Año.Size = New System.Drawing.Size(38, 23)
+        Me.lb_Año.Size = New System.Drawing.Size(41, 20)
         Me.lb_Año.TabIndex = 11
         Me.lb_Año.Text = "Año"
         '

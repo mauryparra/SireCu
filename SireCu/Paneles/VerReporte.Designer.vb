@@ -88,9 +88,9 @@ Partial Class VerReporte
         '
         'btn_Ver
         '
-        Me.btn_Ver.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Ver.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Ver.ForeColor = System.Drawing.Color.Green
-        Me.btn_Ver.Location = New System.Drawing.Point(471, 138)
+        Me.btn_Ver.Location = New System.Drawing.Point(473, 134)
         Me.btn_Ver.Name = "btn_Ver"
         Me.btn_Ver.Size = New System.Drawing.Size(81, 82)
         Me.btn_Ver.TabIndex = 4
@@ -100,23 +100,21 @@ Partial Class VerReporte
         'lb_Trimestre
         '
         Me.lb_Trimestre.AutoSize = True
-        Me.lb_Trimestre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lb_Trimestre.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Trimestre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lb_Trimestre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.lb_Trimestre.Location = New System.Drawing.Point(183, 192)
+        Me.lb_Trimestre.Location = New System.Drawing.Point(195, 192)
         Me.lb_Trimestre.Name = "lb_Trimestre"
-        Me.lb_Trimestre.Size = New System.Drawing.Size(89, 25)
+        Me.lb_Trimestre.Size = New System.Drawing.Size(84, 20)
         Me.lb_Trimestre.TabIndex = 2
         Me.lb_Trimestre.Text = "Trimestre"
         '
         'lb_Año
         '
         Me.lb_Año.AutoSize = True
-        Me.lb_Año.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lb_Año.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Año.Location = New System.Drawing.Point(210, 138)
+        Me.lb_Año.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Año.Location = New System.Drawing.Point(216, 141)
         Me.lb_Año.Name = "lb_Año"
-        Me.lb_Año.Size = New System.Drawing.Size(40, 25)
+        Me.lb_Año.Size = New System.Drawing.Size(41, 20)
         Me.lb_Año.TabIndex = 11
         Me.lb_Año.Text = "Año"
         '

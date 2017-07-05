@@ -53,7 +53,7 @@ Public Class Principal
 
 #Region "Helpers"
 
-    Private Sub AdminPantallas(ByVal pantalla As String)
+    Public Sub AdminPantallas(ByVal pantalla As String)
         Dim bandera As Boolean = False
 
         ' Si la pantalla no se encuentra cargada, la hace visible
