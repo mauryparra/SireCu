@@ -161,6 +161,7 @@ Partial Class Principal
         'btn_VerReporte
         '
         Me.btn_VerReporte.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_VerReporte.Enabled = False
         Me.btn_VerReporte.FlatAppearance.BorderColor = System.Drawing.Color.Black
         Me.btn_VerReporte.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
         Me.btn_VerReporte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White

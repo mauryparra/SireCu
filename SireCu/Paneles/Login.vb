@@ -46,8 +46,8 @@ Public Class Login
                 Principal.btn_VerReporte.Enabled = True
                 Principal.btn_Administrar.Enabled = True
                 Principal.EditarToolStripMenuItem.Enabled = True
-            Case "User"
-                'Nada
+            Case "Usuario"
+                Principal.btn_VerReporte.Enabled = True
         End Select
     End Sub
 

@@ -89,7 +89,7 @@
 
     Private Sub DGVAdmin_CellMouseDoubleClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGVAdmin.CellMouseDoubleClick
         Dim senderGrid = DirectCast(sender, DataGridView)
-        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso
+        If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewTextBoxColumn AndAlso
            e.RowIndex >= 0 Then
             TBModificar.Text = DGVAdmin.CurrentRow.Cells(1).Value
             DGVAdmin.Enabled = False

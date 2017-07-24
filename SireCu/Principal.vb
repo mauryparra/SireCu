@@ -113,6 +113,7 @@ Public Class Principal
         btn_Ingresos.Enabled = False
         btn_Egresos.Enabled = False
         btn_Administrar.Enabled = False
+        btn_VerReporte.Enabled = False
 
         EditarToolStripMenuItem.Enabled = False
         UsuariosToolStripMenuItem.Enabled = False
