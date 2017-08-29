@@ -20,9 +20,6 @@ Public Class Principal
     Private Sub btn_Administrar_Click(sender As Object, e As EventArgs) Handles btn_Administrar.Click
         AdminPantallas("ABMAdmin")
     End Sub
-    Private Sub btn_SubirReporte_Click(sender As Object, e As EventArgs) Handles btn_SubirReporte.Click
-
-    End Sub
     Private Sub btn_VerReporte_Click(sender As Object, e As EventArgs) Handles btn_VerReporte.Click
         AdminPantallas("VerReporte")
     End Sub
@@ -44,9 +41,11 @@ Public Class Principal
     Private Sub SeccionalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SeccionalToolStripMenuItem.Click
         Config.ShowDialog()
     End Sub
-
     Private Sub EliminarUsuarioToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdministrarUsuariosToolStripMenuItem.Click
         AdminPantallas("Usuarios")
+    End Sub
+    Private Sub CerrarTrimestreToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CerrarTrimestreToolStripMenuItem.Click
+        AdminPantallas("CerrarTrimestre")
     End Sub
 
 #End Region
@@ -97,6 +96,10 @@ Public Class Principal
                     Dim pantallaABMUsuarios As ABMUsuarios = New ABMUsuarios()
                     pantallaABMUsuarios.Dock = DockStyle.Fill
                     SplitContainerPrincipal.Panel2.Controls.Add(pantallaABMUsuarios)
+                Case "CerrarTrimestre"
+                    Dim pantallaCerrarTrimestre As CerrarTrimestre = New CerrarTrimestre()
+                    pantallaCerrarTrimestre.Dock = DockStyle.Fill
+                    SplitContainerPrincipal.Panel2.Controls.Add(pantallaCerrarTrimestre)
                 Case Else
                     MessageBox.Show("Error del administrador de pantallas")
 
@@ -115,6 +118,7 @@ Public Class Principal
         btn_Administrar.Enabled = False
         btn_VerReporte.Enabled = False
 
+        ArchivoToolStripMenuItem.Enabled = False
         EditarToolStripMenuItem.Enabled = False
         UsuariosToolStripMenuItem.Enabled = False
 

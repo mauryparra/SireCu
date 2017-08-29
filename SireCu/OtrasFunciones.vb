@@ -12,6 +12,7 @@ Module OtrasFunciones
         Dim añoAnterior As Integer = año - 1
         Dim queryEgresos As String = ""
         Dim queryIngresos As String = ""
+        Dim querySaldoInicial As String = ""
         Dim saldoAnterior As Double = 0
         Dim ingresos As Double = 0
         Dim egresos As Double = 0
@@ -48,19 +49,23 @@ Module OtrasFunciones
         End Select
 
         ' 1)
-        Dim idSeccional As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
-        Dim idCentral As Integer = obtenerID("Seccionales", "nombre", "UDA Central")
-        Dim resIng As Decimal
-        Dim resEgre As Decimal
-        If trimAnterior = "Cuarto" Then
-            resIng = obtenerIngresos(trimAnterior, añoAnterior)
-            resEgre = obtenerEgresosTotales(trimAnterior, añoAnterior, "full")
+        Dim idTrimestreAnterior As Integer = obtenerID("Trimestres", "nombre", trimAnterior)
+        Select Case trimestre
+            Case "Primero"
+                querySaldoInicial = "SELECT saldo_final from Saldos WHERE trimestre_id=" & idTrimestreAnterior &
+            " AND año=" & añoAnterior
+            Case Else
+                querySaldoInicial = "SELECT saldo_final from Saldos WHERE trimestre_id=" & idTrimestreAnterior &
+            " AND año=" & año
+        End Select
+
+        Dim dt As DataTable = consultarReader(querySaldoInicial)
+        If dt.Rows.Count = 0 Then
+            saldoAnterior = 0
         Else
-            resIng = obtenerIngresos(trimAnterior, año)
-            resEgre = obtenerEgresosTotales(trimAnterior, año, "full")
+            saldoAnterior = dt.Rows(0).Item("saldo_final")
         End If
 
-        saldoAnterior = resIng - resEgre
 
         ' 2)
         Dim resultadoConsulta = consultarES(queryIngresos, Principal.command)
@@ -72,7 +77,7 @@ Module OtrasFunciones
         resultadoConsulta = consultarES(queryEgresos, Principal.command)
         egresos = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
 
-        Return (saldoAnterior + ingresos - egresos)
+        Return ((saldoAnterior + ingresos) - egresos)
 
     End Function
 
@@ -144,6 +149,8 @@ Module OtrasFunciones
             Case "Primero"
                 sqlFull = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 AND 3
                                AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0"
+                sqlSeccional = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 1 AND 3
+                               AND DATEPART(year, [mes_reintegro]) = " & año & " AND [eliminado] = 0 AND seccional_id = " & seccional
                 meses = {1, 2, 3}
             Case "Segundo"
                 sqlFull = "Select SUM( [monto] ) As Egresos FROM [Egresos] WHERE DATEPART(month, [mes_reintegro]) BETWEEN 4 And 6
@@ -328,7 +335,7 @@ Module OtrasFunciones
         Else
             Principal.TStripLabelSaldo.ForeColor = Color.Red
         End If
-        Principal.TStripLabelSaldo.Text = "Saldo: $" & saldo & "    (" & Now.Month & "/" & Now.Year & ")"
+        Principal.TStripLabelSaldo.Text = "Saldo: " & Format(saldo, "$ #,###,##0.00") & "    (" & Now.Month & "/" & Now.Year & ")"
 
     End Sub
 
@@ -369,5 +376,38 @@ Module OtrasFunciones
         End If
 
     End Function
+
+    Public Sub cierraTrimestre(ByVal año As Integer, ByVal trimestre As Integer, ByVal saldo As Double)
+
+        Dim query As String = "SELECT * FROM Saldos WHERE trimestre_id=" & trimestre &
+            " AND año=" & año
+        Dim dt As DataTable = consultarReader(query)
+
+        If dt.Rows.Count = 0 Then
+            Principal.query = "INSERT INTO Saldos (saldo_final, año, trimestre_id)
+                                VALUES (@saldo, @año, @trim)"
+            Principal.command.Parameters.Clear()
+            Principal.command.Parameters.AddWithValue("@saldo", saldo)
+            Principal.command.Parameters.AddWithValue("@año", año)
+            Principal.command.Parameters.AddWithValue("@trim", trimestre)
+            consultarNQ(Principal.query, Principal.command)
+        Else
+            If MsgBox("El trimestre ingresado ya fue cerrado con un saldo de: " &
+                      vbCrLf & Format(dt.Rows(0).Item("saldo_final"), "$ #,###,##0.00") &
+                      vbCrLf & "Desea reemplazarlo?",
+                      MsgBoxStyle.YesNo, "Reemplazar?") = MsgBoxResult.Yes Then
+
+                Principal.query = "UPDATE Saldos SET saldo_final=@saldo
+                                WHERE trimestre_id=@trim AND año=@año"
+                Principal.command.Parameters.Clear()
+                Principal.command.Parameters.AddWithValue("@saldo", saldo)
+                Principal.command.Parameters.AddWithValue("@año", año)
+                Principal.command.Parameters.AddWithValue("@trim", trimestre)
+                consultarNQ(Principal.query, Principal.command)
+
+            End If
+        End If
+
+    End Sub
 
 End Module

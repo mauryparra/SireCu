@@ -1,8 +1,11 @@
 ﻿Imports System.ComponentModel
+Imports MySql.Data.MySqlClient
 
 Public Class VerReporte
 
     Dim sql As String = ""
+    Dim command As New MySqlCommand()
+    Dim dt As DataTable
     Dim ControlesConErrores As List(Of Control) = New List(Of Control)
 
 
@@ -14,11 +17,18 @@ Public Class VerReporte
         If ControlesConErrores.Count > 0 Then
             MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
             Exit Sub
+        ElseIf (tb_Año.Text = "" Or cb_Trimestre.Text = "") Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
         Else
-
             cargarGrid()
-
         End If
+
+    End Sub
+
+    Private Sub btn_Subir_Click(sender As Object, e As EventArgs) Handles btn_Subir.Click
+
+
 
     End Sub
 
@@ -51,6 +61,23 @@ Public Class VerReporte
         dgv_Reportes.Rows.Add()
 
     End Sub
+    Private Function HayInternet() As Boolean
+
+        If My.Computer.Network.IsAvailable() Then
+            Try
+                If My.Computer.Network.Ping("8.8.8.8") Then
+                    Return (True)
+                Else
+                    Return (False)
+                End If
+            Catch exint As Exception
+                Return (False)
+            End Try
+        Else
+            Return (False)
+        End If
+
+    End Function
 
 #End Region
 
@@ -59,6 +86,12 @@ Public Class VerReporte
     Private Sub dgv_Reportes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgv_Reportes.CellContentClick
 
         Dim senderGrid = DirectCast(sender, DataGridView)
+
+        'Verificamos que no se envíen los box vacios
+        If (tb_Año.Text = "" Or cb_Trimestre.Text = "") Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
+        End If
 
         If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso
            e.RowIndex >= 0 Then
@@ -89,7 +122,7 @@ Public Class VerReporte
         keyverify(e, numeros:=True)
     End Sub
     Private Sub cb_Trimestre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cb_Trimestre.KeyPress
-        keyverify(e, letras:=True, espacios:=True)
+        keyverify(e, letras:=True)
     End Sub
 
     Private Sub cb_Trimestre_Validating(sender As Object, e As CancelEventArgs) Handles cb_Trimestre.Validating

@@ -88,6 +88,10 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -118,7 +122,6 @@
   <ItemGroup>
     <Compile Include="Clases\Egreso.vb" />
     <Compile Include="Clases\Ingreso.vb" />
-    <Compile Include="Clases\Persona.vb" />
     <Compile Include="Clases\Usuario.vb" />
     <Compile Include="Clases\Reporte.vb" />
     <Compile Include="Clases\Reportes\ReporteEgresoCen.Designer.vb">
@@ -169,6 +172,12 @@
       <DependentUpon>ABMUsuarios.vb</DependentUpon>
     </Compile>
     <Compile Include="Paneles\ABMUsuarios.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Paneles\CerrarTrimestre.Designer.vb">
+      <DependentUpon>CerrarTrimestre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Paneles\CerrarTrimestre.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Paneles\Config.Designer.vb">
@@ -248,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Paneles\ABMUsuarios.resx">
       <DependentUpon>ABMUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Paneles\CerrarTrimestre.resx">
+      <DependentUpon>CerrarTrimestre.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Paneles\Config.resx">
       <DependentUpon>Config.vb</DependentUpon>
@@ -332,9 +344,7 @@
     </Content>
     <Content Include="favicon.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\Usuarios\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

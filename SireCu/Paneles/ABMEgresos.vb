@@ -115,11 +115,10 @@ Public Class ABMEgresos
                     DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("fecha").Value)
                     DateTimePickerMesReintegro.Checked = False
                 Else
+                    DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
                     If DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value = DGVModificar.Rows(e.RowIndex).Cells("fecha").Value Then
-                        DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
                         DateTimePickerMesReintegro.Checked = False
                     Else
-                        DateTimePickerMesReintegro.Value = CDate(DGVModificar.Rows(e.RowIndex).Cells("mes_reintegro").Value)
                         DateTimePickerMesReintegro.Checked = True
                     End If
                 End If
@@ -167,8 +166,12 @@ Public Class ABMEgresos
 
         Dim dgvRow As DataGridViewRow = DGVModificar.Rows(e.RowIndex)
 
-        If dgvRow.Cells(1).Value = True Then
+        If dgvRow.Cells(14).Value = "UDA Central" Then
             dgvRow.DefaultCellStyle.BackColor = Color.Honeydew
+        End If
+
+        If dgvRow.Cells(1).Value = True Then
+            dgvRow.DefaultCellStyle.BackColor = Color.LightGray
         Else
             dgvRow.DefaultCellStyle.BackColor = Color.White
         End If
@@ -279,7 +282,7 @@ Public Class ABMEgresos
         End If
 
         ' SQL Basico
-        sql = "SELECT TOP (500) E.id AS id,
+        sql = "SELECT E.id AS id,
                                   E.nro_comprobante AS nro_comprobante,
                                   E.tipo_comprobante_id AS tipo_comprobante_id,
                                   Comp.nombre AS tipo_comprobante_nombre,
@@ -325,44 +328,44 @@ Public Class ABMEgresos
             ElseIf keyv.Key = "año" Then
 
                 ' Filtrar por año
-                sql += " AND DATEPART(year, [fecha]) = " & keyv.Value
+                sql += " AND DATEPART(year, [mes_reintegro]) = " & keyv.Value
 
             ElseIf keyv.Key = "mes" Then
 
                 ' Filtrar por mes
-                sql += " AND DATEPART(month, [fecha]) = " & keyv.Value
+                sql += " AND DATEPART(month, [mes_reintegro]) = " & keyv.Value
 
             Else
 
                 ' Filtros adicionales
                 Select Case keyv.Key
-                    Case "Nro Comprobante="
+                    Case "Nro ComprobanteIGUAL"
                         sql += " AND E.nro_comprobante = '" & keyv.Value & "'"
-                    Case "Nro Comprobante*"
+                    Case "Nro ComprobanteCONTIENE"
                         sql += " AND E.nro_comprobante LIKE '%" & keyv.Value & "%'"
 
-                    Case "Tipo Comprobante="
+                    Case "Tipo ComprobanteIGUAL"
                         sql += " AND Comp.nombre = '" & keyv.Value & "'"
-                    Case "Tipo Comprobante*"
+                    Case "Tipo ComprobanteCONTIENE"
                         sql += " AND Comp.nombre LIKE '%" & keyv.Value & "%'"
 
-                    Case "Proveedor="
+                    Case "ProveedorIGUAL"
                         sql += " AND Pro.nombre = '" & keyv.Value & "'"
-                    Case "Proveedor*"
+                    Case "ProveedorCONTIENE"
                         sql += " AND Pro.nombre LIKE '%" & keyv.Value & "%'"
 
-                    Case "Categoria Gasto="
+                    Case "Categoria GastoIGUAL"
                         sql += " AND Gastos.nombre = '" & keyv.Value & "'"
-                    Case "Categoria Gasto*"
+                    Case "Categoria GastoCONTIENE"
                         sql += " AND Gastos.nombre LIKE '%" & keyv.Value & "%'"
 
-                    Case "Persona="
+                    Case "PersonaIGUAL"
                         sql += " AND Per.nombre = '" & keyv.Value & "'"
-                    Case "Persona*"
+                    Case "PersonaCONTIENE"
                         sql += " AND Per.nombre LIKE '%" & keyv.Value & "%'"
 
-                    Case "Fecha="
-                    Case "Fecha*"
+                    Case "FechaIGUAL"
+                    Case "FechaCONTIENE"
                         Dim fecha As Date
                         If Date.TryParse(keyv.Value, fecha) Then
                             sql += " AND E.fecha > '" & fecha.AddDays(-1).ToString("yyyy-MM-dd") & "' AND E.fecha < '" & fecha.AddDays(1).ToString("yyyy-MM-dd") & "'"
@@ -370,12 +373,12 @@ Public Class ABMEgresos
                             MsgBox("No se pudo convertir el filtro a una fecha valida", MsgBoxStyle.Exclamation, "Filtrar")
                         End If
 
-                    Case "Seccional="
+                    Case "SeccionalIGUAL"
                         sql += " AND Secc.nombre = '" & keyv.Value & "'"
-                    Case "Seccional*"
+                    Case "SeccionalCONTIENE"
                         sql += " AND Secc.nombre LIKE '%" & keyv.Value & "%'"
 
-                    Case "Mes Reintegro=", "Mes Reintegro*"
+                    Case "Mes ReintegroIGUAL", "Mes ReintegroCONTIENE"
                         Dim fecha As Date
                         If Date.TryParse(keyv.Value, fecha) Then
                             sql += " AND DATEPART(month, E.mes_reintegro) = '" & fecha.Month & "' AND DATEPART(year, E.mes_reintegro) = '" & fecha.Year & "'"
@@ -383,17 +386,17 @@ Public Class ABMEgresos
                             MsgBox("No se pudo convertir el filtro a una fecha valida", MsgBoxStyle.Exclamation, "Filtrar")
                         End If
 
-                    Case "Monto="
+                    Case "MontoIGUAL"
                         sql += " AND E.monto = '" & keyv.Value & "'"
-                    Case "Monto*"
+                    Case "MontoCONTIENE"
                         sql += " AND E.monto LIKE '%" & keyv.Value & "%'"
 
-                    Case "Comentario="
+                    Case "ComentarioIGUAL"
                         sql += " AND E.comentario = '" & keyv.Value & "'"
-                    Case "Comentario*"
+                    Case "ComentarioCONTIENE"
                         sql += " AND E.comentario LIKE '%" & keyv.Value & "%'"
 
-                    Case "Seleccionado=", "Seleccionado*"
+                    Case "SeleccionadoIGUAL", "SeleccionadoCONTIENE"
                         sql += " AND E.seleccionado = " & keyv.Value
                     Case Else
                         Exit Select
@@ -542,6 +545,9 @@ Public Class ABMEgresos
         DateTimePickerMesReintegro.Value = Now
         DateTimePickerFecha.Value = Now
 
+        '               Mostramos los egresos del año corriente
+        TSTextBoxAño.Text = Year(Now)
+        TSButtonFiltrar_Click(TSButtonFiltrar, Nothing)
 
         ' ######################################## TAB Papelera
         CargardDGV(DGVPapelera, 1, "Egresos_Papelera")

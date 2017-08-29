@@ -8,7 +8,7 @@ Public Class Login
 
     Private Sub btn_Login_Click(sender As Object, e As EventArgs) Handles btn_Login.Click
 
-        'Validaciones TODO
+        'Validaciones
         If verificarUsuario(tb_Usuario.Text, tb_Contraseña.Text) Then
             Principal.bttn_Login.Text = "Desloguear"
             Principal.stat_Label.Text = "Logueado como: " & tb_Usuario.Text
@@ -38,6 +38,7 @@ Public Class Login
                 Principal.btn_Egresos.Enabled = True
                 Principal.btn_VerReporte.Enabled = True
                 Principal.btn_Administrar.Enabled = True
+                Principal.ArchivoToolStripMenuItem.Enabled = True
                 Principal.EditarToolStripMenuItem.Enabled = True
                 Principal.UsuariosToolStripMenuItem.Enabled = True
             Case "Contador"
@@ -45,6 +46,7 @@ Public Class Login
                 Principal.btn_Egresos.Enabled = True
                 Principal.btn_VerReporte.Enabled = True
                 Principal.btn_Administrar.Enabled = True
+                Principal.ArchivoToolStripMenuItem.Enabled = True
                 Principal.EditarToolStripMenuItem.Enabled = True
             Case "Usuario"
                 Principal.btn_VerReporte.Enabled = True

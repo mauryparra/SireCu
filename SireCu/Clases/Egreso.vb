@@ -108,7 +108,7 @@ Module Egreso
         Principal.dataset.Tables(nombreDataSet).Clear()
 
         'Creamos el query
-        Principal.command.CommandText = "SELECT TOP (500) E.id AS id,
+        Principal.command.CommandText = "SELECT E.id AS id,
                                   E.nro_comprobante AS nro_comprobante,
                                   E.tipo_comprobante_id AS tipo_comprobante_id,
                                   Comp.nombre AS tipo_comprobante_nombre,
@@ -149,18 +149,18 @@ Module Egreso
         dgv.Columns.Item(0).DataPropertyName = "id"
         dgv.Columns.Item(1).DataPropertyName = "seleccionado"
         dgv.Columns.Item(2).DataPropertyName = "nro_comprobante"
-        dgv.Columns.Item(3).DataPropertyName = "tipo_comprobante_id"
-        dgv.Columns.Item(4).DataPropertyName = "tipo_comprobante_nombre"
-        dgv.Columns.Item(5).DataPropertyName = "proveedor_id"
-        dgv.Columns.Item(6).DataPropertyName = "proveedor_nombre"
-        dgv.Columns.Item(7).DataPropertyName = "categoria_gasto_id"
-        dgv.Columns.Item(8).DataPropertyName = "categoria_nombre"
-        dgv.Columns.Item(9).DataPropertyName = "persona_id"
-        dgv.Columns.Item(10).DataPropertyName = "persona_nombre"
-        dgv.Columns.Item(11).DataPropertyName = "fecha"
-        dgv.Columns.Item(12).DataPropertyName = "seccional_id"
-        dgv.Columns.Item(13).DataPropertyName = "seccional_nombre"
-        dgv.Columns.Item(14).DataPropertyName = "mes_reintegro"
+        dgv.Columns.Item(3).DataPropertyName = "proveedor_id"
+        dgv.Columns.Item(4).DataPropertyName = "proveedor_nombre"
+        dgv.Columns.Item(5).DataPropertyName = "categoria_gasto_id"
+        dgv.Columns.Item(6).DataPropertyName = "categoria_nombre"
+        dgv.Columns.Item(7).DataPropertyName = "persona_id"
+        dgv.Columns.Item(8).DataPropertyName = "persona_nombre"
+        dgv.Columns.Item(9).DataPropertyName = "fecha"
+        dgv.Columns.Item(10).DataPropertyName = "tipo_comprobante_id"
+        dgv.Columns.Item(11).DataPropertyName = "tipo_comprobante_nombre"
+        dgv.Columns.Item(12).DataPropertyName = "mes_reintegro"
+        dgv.Columns.Item(13).DataPropertyName = "seccional_id"
+        dgv.Columns.Item(14).DataPropertyName = "seccional_nombre"
         dgv.Columns.Item(15).DataPropertyName = "monto"
         dgv.Columns.Item(16).DataPropertyName = "comentario"
 
@@ -194,20 +194,21 @@ Module Egreso
         dgv.AutoGenerateColumns = False
 
         dgv.Columns.Item(0).DataPropertyName = "id"
+        dgv.Columns("id").Visible = False
         dgv.Columns.Item(1).DataPropertyName = "seleccionado"
         dgv.Columns.Item(2).DataPropertyName = "nro_comprobante"
-        dgv.Columns.Item(3).DataPropertyName = "tipo_comprobante_id"
-        dgv.Columns.Item(4).DataPropertyName = "tipo_comprobante_nombre"
-        dgv.Columns.Item(5).DataPropertyName = "proveedor_id"
-        dgv.Columns.Item(6).DataPropertyName = "proveedor_nombre"
-        dgv.Columns.Item(7).DataPropertyName = "categoria_gasto_id"
-        dgv.Columns.Item(8).DataPropertyName = "categoria_nombre"
-        dgv.Columns.Item(9).DataPropertyName = "persona_id"
-        dgv.Columns.Item(10).DataPropertyName = "persona_nombre"
-        dgv.Columns.Item(11).DataPropertyName = "fecha"
-        dgv.Columns.Item(12).DataPropertyName = "seccional_id"
-        dgv.Columns.Item(13).DataPropertyName = "seccional_nombre"
-        dgv.Columns.Item(14).DataPropertyName = "mes_reintegro"
+        dgv.Columns.Item(3).DataPropertyName = "proveedor_id"
+        dgv.Columns.Item(4).DataPropertyName = "proveedor_nombre"
+        dgv.Columns.Item(5).DataPropertyName = "categoria_gasto_id"
+        dgv.Columns.Item(6).DataPropertyName = "categoria_nombre"
+        dgv.Columns.Item(7).DataPropertyName = "persona_id"
+        dgv.Columns.Item(8).DataPropertyName = "persona_nombre"
+        dgv.Columns.Item(9).DataPropertyName = "fecha"
+        dgv.Columns.Item(10).DataPropertyName = "tipo_comprobante_id"
+        dgv.Columns.Item(11).DataPropertyName = "tipo_comprobante_nombre"
+        dgv.Columns.Item(12).DataPropertyName = "mes_reintegro"
+        dgv.Columns.Item(13).DataPropertyName = "seccional_id"
+        dgv.Columns.Item(14).DataPropertyName = "seccional_nombre"
         dgv.Columns.Item(15).DataPropertyName = "monto"
         dgv.Columns.Item(16).DataPropertyName = "comentario"
 

@@ -1,8 +1,10 @@
 ﻿Imports System.Data.SqlServerCe
+Imports MySql.Data.MySqlClient
 
 Module Conexion
 
     Public conexion As New SqlCeConnection(My.Settings.CadenaConexion)
+    Public conexionMySQL As New MySqlConnection(My.Settings.CadenaSQL)
 
     Private Sub conectar()
 
@@ -99,5 +101,48 @@ Module Conexion
 
     End Sub
 
+    Function consultarMySQL(ByVal sql As String, ByRef command As MySqlCommand)
+        Dim resultado As Integer = 0
+
+        Try
+            If conexionMySQL.State = ConnectionState.Closed Then
+                conexionMySQL.Open()
+                command.CommandText = sql
+                command.Connection = conexionMySQL
+                resultado = command.ExecuteNonQuery()
+            End If
+        Catch e As SqlCeException
+            MessageBox.Show(e.Message)
+            resultado = 1
+        End Try
+
+        conexionMySQL.Close()
+
+        Return resultado
+
+    End Function
+
+    Function consultarReaderSQL(ByVal sql As String) As DataTable
+
+        Dim reader As MySqlDataReader
+        Dim dt As New DataTable
+        Dim command As New MySqlCommand
+
+        Try
+            If conexionMySQL.State = ConnectionState.Closed Then
+                conexionMySQL.Open()
+            End If
+            command.CommandText = sql
+            command.Connection = conexionMySQL
+            reader = command.ExecuteReader()
+            dt.Load(reader)
+            desconectar()
+        Catch ex As SqlCeException
+            MessageBox.Show(ex.Message)
+            reader = Nothing
+        End Try
+
+        Return dt
+    End Function
 
 End Module
