@@ -1,13 +1,8 @@
 ﻿Imports System.ComponentModel
-Imports MySql.Data.MySqlClient
 
 Public Class VerReporte
 
-    Dim sql As String = ""
-    Dim command As New MySqlCommand()
-    Dim dt As DataTable
     Dim ControlesConErrores As List(Of Control) = New List(Of Control)
-
 
 #Region "Botones"
 
@@ -28,7 +23,46 @@ Public Class VerReporte
 
     Private Sub btn_Subir_Click(sender As Object, e As EventArgs) Handles btn_Subir.Click
 
+        'Verificamos que todos los campos hayan pasado las validaciones
+        If ControlesConErrores.Count > 0 Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
+        ElseIf (tb_Año.Text = "" Or cb_Trimestre.Text = "") Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
+        Else
+            'Verificación de Internet
+            If HayInternet() Then
 
+                If hayReporte(tb_Año.Text, cb_Trimestre.Text) = False Then
+
+                    Dim idReporteIngGast = generarRepIngGast(cb_Trimestre.Text, tb_Año.Text, True)
+                    generarRepIngresos(cb_Trimestre.Text, tb_Año.Text, True, idReporteIngGast)
+
+                    MsgBox("Reporte subido correctamente." & vbCrLf &
+                           "Puede visualizarlo en nuestra web." & vbCrLf &
+                           "www.udalarioja.com.ar/SireCu", MsgBoxStyle.Information, "Subido Correctamente")
+
+                Else
+                    If (MsgBox("El reporte con los parámetros:" & vbCrLf & "Trimestre: " & cb_Trimestre.Text &
+                              vbCrLf & "Año: " & tb_Año.Text & vbCrLf & "Ya se encuentra cargado." & vbCrLf &
+                              "Desea reemplazarlo?", MsgBoxStyle.OkCancel, "Reemplazar?") = MsgBoxResult.Ok) Then
+
+                        'Principal.query = "INSERT INTO seccionales (nombre) VALUES (@sec)"
+                        'command.Parameters.Clear()
+                        'command.Parameters.AddWithValue("@sec", TextBox1.Text)
+
+                        'consultarMySQL(Principal.query, command)
+
+                    End If
+                End If
+
+            Else
+                MsgBox("No se pudo establecer la conexción con el servidor." & vbCrLf &
+                       "Por favor, intentelo mas tarde.", MsgBoxStyle.Exclamation, "No se estableció conexión")
+                Exit Sub
+            End If
+        End If
 
     End Sub
 
@@ -61,23 +95,6 @@ Public Class VerReporte
         dgv_Reportes.Rows.Add()
 
     End Sub
-    Private Function HayInternet() As Boolean
-
-        If My.Computer.Network.IsAvailable() Then
-            Try
-                If My.Computer.Network.Ping("8.8.8.8") Then
-                    Return (True)
-                Else
-                    Return (False)
-                End If
-            Catch exint As Exception
-                Return (False)
-            End Try
-        Else
-            Return (False)
-        End If
-
-    End Function
 
 #End Region
 

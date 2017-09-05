@@ -17,30 +17,16 @@ Public Class CerrarTrimestre
             Exit Sub
         End If
 
-
         Dim query As String = ""
         Dim idTrimAnterior As Integer = obtenerID("Trimestres", "nombre", obtenerTrimAnterior(cb_Trimestre.Text))
 
         tb_Info.Text = vbCrLf & "El Trimestre seleccionado contiene la siguiente información:"
 
+        Dim saldos() As Double = getSaldos(cb_Trimestre.Text, tb_Año.Text)
+
         'Información del Saldo Inicial
-        If cb_Trimestre.Text = "Primero" Then
-            query = "SELECT saldo_final FROM Saldos WHERE trimestre_id=" &
-                idTrimAnterior & " AND año=" &
-                (tb_Año.Text - 1)
-        Else
-            query = "SELECT saldo_final FROM Saldos WHERE trimestre_id=" &
-                idTrimAnterior & " AND año=" &
-                tb_Año.Text
-        End If
-        Dim dt As DataTable = consultarReader(query)
-        If dt.Rows.Count = 0 Then
-            tb_Info.Text = tb_Info.Text & vbCrLf & vbCrLf & "Saldo Inicial: " & vbCrLf &
-            "$ 0,0"
-        Else
-            tb_Info.Text = tb_Info.Text & vbCrLf & vbCrLf & "Saldo Inicial: " & vbCrLf &
-            Format(dt.Rows(0).Item("saldo_final"), "$ #,###,##0.00")
-        End If
+        tb_Info.Text = tb_Info.Text & vbCrLf & vbCrLf & "Saldo Inicial: " & vbCrLf &
+                        Format(saldos(0), "$ #,###,##0.00")
         'Información del Total de Ingresos
         tb_Info.Text = tb_Info.Text & vbCrLf & vbCrLf & "Ingresos Totales: " & vbCrLf &
             Format(obtenerIngresos(cb_Trimestre.Text, tb_Año.Text),
@@ -51,16 +37,15 @@ Public Class CerrarTrimestre
                    "$ #,###,##0.00")
         'Información del Saldo Final
         tb_Info.Text = tb_Info.Text & vbCrLf & vbCrLf & "Saldo Final: " & vbCrLf &
-            Format(SaldoActual(cb_Trimestre.Text, tb_Año.Text),
-                   "$ #,###,##0.00")
+                        Format(saldos(1), "$ #,###,##0.00")
 
         btn_Cerrar.Enabled = True
 
     End Sub
     Private Sub btn_Cerrar_Click(sender As Object, e As EventArgs) Handles btn_Cerrar.Click
 
-        Dim saldo As Double = SaldoActual(cb_Trimestre.Text, tb_Año.Text)
-        cierraTrimestre(tb_Año.Text, obtenerID("Trimestres", "nombre", cb_Trimestre.Text),
+        Dim saldo As Double = SaldoActual()
+        cierraTrimestre(tb_Año.Text, cb_Trimestre.Text,
                            saldo)
 
         btn_Cerrar.Enabled = False
@@ -73,6 +58,14 @@ Public Class CerrarTrimestre
 #End Region
 
 #Region "Eventos"
+
+    Private Sub cb_Trimestre_TextChanged(sender As Object, e As EventArgs) Handles cb_Trimestre.TextChanged
+        If cb_Trimestre.Text <> "Primero" Or cb_Trimestre.Text <> "Segundo" Or
+                cb_Trimestre.Text <> "Tercero" Or cb_Trimestre.Text <> "Cuarto" Then
+            btn_Cerrar.Enabled = False
+            tb_Info.Text = ""
+        End If
+    End Sub
 
 #End Region
 

@@ -40,20 +40,7 @@ Public Class ABMEgresos
         End If
 
         'Verificar Saldo Disponible 
-        Dim saldo As Double
-        Select Case DatePart(DateInterval.Month, dtpFecha.Value)
-            Case 1 To 3
-                saldo = SaldoActual("Primero", DatePart(DateInterval.Year, dtpFecha.Value))
-            Case 4 To 6
-                saldo = SaldoActual("Segundo", DatePart(DateInterval.Year, dtpFecha.Value))
-            Case 7 To 9
-                saldo = SaldoActual("Tercero", DatePart(DateInterval.Year, dtpFecha.Value))
-            Case 10 To 12
-                saldo = SaldoActual("Cuarto", DatePart(DateInterval.Year, dtpFecha.Value))
-            Case Else
-                MsgBox("Número de Mes Incorrecto", MsgBoxStyle.Exclamation, "Error")
-                Exit Sub
-        End Select
+        Dim saldo As Double = SaldoActual()
 
         If (saldo < tbMonto.Text) Then
             If (MsgBox("Su saldo es insuficiente." & vbCrLf & "Desea guardar de todas formas?", MsgBoxStyle.YesNo, "Saldo Insuficiente") = MsgBoxResult.No) Then
@@ -187,17 +174,7 @@ Public Class ABMEgresos
         End If
 
         'Verificar Saldo Disponible 
-        Dim saldo As Double
-        Select Case DatePart(DateInterval.Month, DateTimePickerFecha.Value)
-            Case 1 To 3
-                saldo = SaldoActual("Primero", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
-            Case 4 To 6
-                saldo = SaldoActual("Segundo", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
-            Case 7 To 9
-                saldo = SaldoActual("Tercero", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
-            Case 10 To 12
-                saldo = SaldoActual("Cuarto", DatePart(DateInterval.Year, DateTimePickerFecha.Value))
-        End Select
+        Dim saldo As Double = SaldoActual()
 
         If (saldo < TextBoxMonto.Text) Then
             If (MsgBox("Su saldo es insuficiente." & vbCrLf & "Desea guardar de todas formas?", MsgBoxStyle.YesNo, "Saldo Insuficiente") = MsgBoxResult.No) Then

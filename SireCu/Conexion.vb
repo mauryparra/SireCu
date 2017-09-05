@@ -26,6 +26,8 @@ Module Conexion
 
     End Sub
 
+#Region "Desktop"
+
     Function consultarNQ(ByVal sql As String, ByRef command As SqlCeCommand) As Integer
         Dim resultado As Integer = 0
 
@@ -41,7 +43,6 @@ Module Conexion
 
         Return resultado
     End Function
-
     Function consultarES(ByVal sql As String, ByRef command As SqlCeCommand) As Object
         Dim resultado As Object = New Object
 
@@ -57,7 +58,6 @@ Module Conexion
 
         Return resultado
     End Function
-
     Function consultarReader(ByVal sql As String) As DataTable
 
         Dim reader As SqlCeDataReader
@@ -77,7 +77,6 @@ Module Conexion
 
         Return dt
     End Function
-
     Sub cargarTablaEnDataSet(ByVal tabla As String)
 
         Principal.command.Connection = conexion
@@ -101,17 +100,21 @@ Module Conexion
 
     End Sub
 
+#End Region
+
+#Region "Web"
+
     Function consultarMySQL(ByVal sql As String, ByRef command As MySqlCommand)
         Dim resultado As Integer = 0
 
         Try
             If conexionMySQL.State = ConnectionState.Closed Then
                 conexionMySQL.Open()
-                command.CommandText = sql
-                command.Connection = conexionMySQL
-                resultado = command.ExecuteNonQuery()
             End If
-        Catch e As SqlCeException
+            command.CommandText = sql
+            command.Connection = conexionMySQL
+            resultado = command.ExecuteNonQuery()
+        Catch e As MySqlException
             MessageBox.Show(e.Message)
             resultado = 1
         End Try
@@ -121,7 +124,6 @@ Module Conexion
         Return resultado
 
     End Function
-
     Function consultarReaderSQL(ByVal sql As String) As DataTable
 
         Dim reader As MySqlDataReader
@@ -136,13 +138,17 @@ Module Conexion
             command.Connection = conexionMySQL
             reader = command.ExecuteReader()
             dt.Load(reader)
-            desconectar()
-        Catch ex As SqlCeException
+            conexionMySQL.Close()
+        Catch ex As MySqlException
             MessageBox.Show(ex.Message)
             reader = Nothing
         End Try
 
         Return dt
     End Function
+
+#End Region
+
+
 
 End Module
