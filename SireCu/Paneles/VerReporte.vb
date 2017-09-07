@@ -36,8 +36,7 @@ Public Class VerReporte
 
                 If hayReporte(tb_Año.Text, cb_Trimestre.Text) = False Then
 
-                    Dim idReporteIngGast = generarRepIngGast(cb_Trimestre.Text, tb_Año.Text, True)
-                    generarRepIngresos(cb_Trimestre.Text, tb_Año.Text, True, idReporteIngGast)
+                    SubirReportes(cb_Trimestre.Text, tb_Año.Text)
 
                     MsgBox("Reporte subido correctamente." & vbCrLf &
                            "Puede visualizarlo en nuestra web." & vbCrLf &

@@ -65,9 +65,9 @@ Module OtrasFunciones
     End Function
     Public Function SaldoActual() As Decimal
 
-        ' 1) Buscamos el último saldo cuardado
-        ' 2) Buscamos el total de Ingresos del trimestre actual
-        ' 3) Buscamos el total de Egresos del trimestre actual
+        ' 1) Buscamos el último saldo guardado
+        ' 2) Buscamos el total de Ingresos a partir de la fecha del ultimo saldo
+        ' 3) Buscamos el total de Egresos a partir de la fecha del ultimo saldo
         ' 4) Retornamos el resultado 
 
         Dim queryEgresos As String = ""
@@ -92,7 +92,7 @@ Module OtrasFunciones
         Dim tablaSaldo As DataTable = consultarReader(querySaldo)
         If tablaSaldo.Rows.Count = 0 Then
             saldoAnterior = 0
-            tablaSaldo.Rows.Add(0, 0, (Now.Year() - 1), 0, "Cuarto")
+            tablaSaldo.Rows.Add(0, 0, "2000", 0, "Cuarto")
         Else
             saldoAnterior = tablaSaldo.Rows(0).Item("saldo_final")
         End If
@@ -180,28 +180,28 @@ Module OtrasFunciones
                           WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
-                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                sqlMeses = "SELECT fecha, ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
                            WHERE DATEPART(month, [fecha]) BETWEEN 1 AND 3 AND DATEPART(year, [fecha]) = " & año
             Case "Segundo"
                 sqlfull = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
-                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                sqlMeses = "SELECT fecha, ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
                            WHERE DATEPART(month, [fecha]) BETWEEN 4 AND 6 AND DATEPART(year, [fecha]) = " & año
             Case "Tercero"
                 sqlfull = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
-                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                sqlMeses = "SELECT fecha, ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
                            WHERE DATEPART(month, [fecha]) BETWEEN 7 AND 9 AND DATEPART(year, [fecha]) = " & año
             Case "Cuarto"
                 sqlfull = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
                 sqlprov = "SELECT SUM( [ingresos_prov] ) FROM [Ingresos]
                           WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
-                sqlMeses = "SELECT ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
+                sqlMeses = "SELECT fecha, ingresos_prov, ingresos_central, ingresos_otros FROM Ingresos
                            WHERE DATEPART(month, [fecha]) BETWEEN 10 AND 12 AND DATEPART(year, [fecha]) = " & año
         End Select
 

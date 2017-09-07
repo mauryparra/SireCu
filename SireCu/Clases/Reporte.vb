@@ -161,6 +161,120 @@ Module Reporte
 
 #End Region
 
+#Region "Subir Reporte"
+
+    Public Function HayInternet() As Boolean
+
+        If My.Computer.Network.IsAvailable() Then
+            Try
+                If My.Computer.Network.Ping("8.8.8.8") Then
+                    Return (True)
+                Else
+                    Return (False)
+                End If
+            Catch exint As Exception
+                Return (False)
+            End Try
+        Else
+            Return (False)
+        End If
+
+    End Function
+    Public Function hayReporte(ByVal año As Integer, ByVal trimestre As String)
+
+        Dim idTrimestre = obtenerIDSQL("trimestres", "nombre", trimestre)
+        Dim seccional As String = obtenerSeccional()
+        Dim idSeccional = obtenerIDSQL("seccionales", "nombre", seccional)
+
+        Dim sql As String = "SELECT * FROM reportes_trimestrales WHERE YEAR(fecha)='" & año &
+            "' AND trimestre_id='" & idTrimestre & "' AND seccional_id='" & idSeccional & "'"
+        dt = consultarReaderSQL(sql)
+
+        If dt.Rows.Count = 0 Then
+            Return (False)
+        Else
+            Return (True)
+        End If
+
+    End Function
+    Public Function SubirReportes(ByVal trimestre As String, ByVal año As Integer)
+
+        Dim sql As String = ""
+        Dim id As DataTable
+
+        'Subir reportes_trimestrales
+        Dim idReporteIngGast = generarRepIngGast(trimestre, año, True)
+
+        'Subir reportes_ingresos
+        generarRepIngresos(trimestre, año, True, idReporteIngGast)
+
+        'Subir reportes_ingresos_mensuales
+        sql = "SELECT id FROM reportes_ingresos WHERE reporte_trimestral_id = '" & idReporteIngGast & "'"
+        id = consultarReaderSQL(sql)
+        Dim ingresos As DataTable = obtenerIngresos(trimestre, año, "meses")
+        For i = 0 To ingresos.Rows.Count - 1
+            Principal.query = "INSERT INTO reportes_ingresos_mensuales (" &
+            "reporte_ingreso_id, mes, ingresos_provincial, ingresos_central, ingresos_otros)" &
+            " VALUES (@rep, @mes, @IP, @IC, @IO)"
+            command.Parameters.Clear()
+            command.Parameters.AddWithValue("@rep", id.Rows(0).Item("id"))
+            command.Parameters.AddWithValue("@mes", ingresos.Rows(i).Item("fecha"))
+            command.Parameters.AddWithValue("@IP", ingresos.Rows(i).Item("ingresos_prov"))
+            command.Parameters.AddWithValue("@IC", ingresos.Rows(i).Item("ingresos_central"))
+            command.Parameters.AddWithValue("@IO", ingresos.Rows(i).Item("ingresos_otros"))
+            consultarMySQL(Principal.query, command)
+        Next
+
+        'Subir reportes_egresos
+        Dim totSec() As Double = obtenerEgresosTotales(trimestre, año, "seccional", obtenerSeccional())
+        Dim totCen() As Double = obtenerEgresosTotales(trimestre, año, "seccional")
+        Principal.query = "INSERT INTO reportes_egresos (" &
+            "reporte_trimestral_id, total, total_central)" &
+            " VALUES (@idrep, @total, @totalC)"
+        command.Parameters.Clear()
+        command.Parameters.AddWithValue("@idrep", idReporteIngGast)
+        command.Parameters.AddWithValue("@total", totSec(0) + totSec(1) + totSec(2))
+        command.Parameters.AddWithValue("@totalC", totCen(0) + totCen(1) + totCen(2))
+        consultarMySQL(Principal.query, command)
+
+        'Subir reportes_egresos_categorias
+        sql = "SELECT id FROM reportes_egresos WHERE reporte_trimestral_id = '" & idReporteIngGast & "'"
+        id = consultarReaderSQL(sql)
+        sql = "SELECT id, nombre FROM CategoriasGastos"
+        Dim cat As DataTable = consultarReader(sql)
+        Dim catSec() As Double
+        Dim catCen() As Double
+        Dim idCen As Integer = obtenerID("Seccionales", "nombre", "UDA Central")
+        Dim idSec As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
+        For i = 0 To cat.Rows.Count - 1
+            If (LCase(cat.Rows(i).Item("nombre")) = "aplicables a coparticipacion") Then
+                catSec = obtenerEgresosTotales(trimestre, año, "seccional", "UDA Central")
+                catCen = {0, 0, 0}
+            Else
+                catSec = obtenerEgresosCategorias(trimestre, cat.Rows(i).Item("id"), año, idSec)
+                catCen = obtenerEgresosCategorias(trimestre, cat.Rows(i).Item("id"), año, idCen)
+            End If
+            Principal.query = "INSERT INTO reportes_egresos_categorias (" &
+            "reporte_egreso_id, categoria_gasto_id, total_mes_1, total_mes_2, total_mes_3," &
+            " total_mes_1_central, total_mes_2_central, total_mes_3_central)" &
+            " VALUES (@idrep, @idcat, @tot1, @tot2, @tot3, @tot1c, @tot2c, @tot3c)"
+            command.Parameters.Clear()
+            command.Parameters.AddWithValue("@idrep", idReporteIngGast)
+            command.Parameters.AddWithValue("@idcat", cat.Rows(i).Item("id"))
+            command.Parameters.AddWithValue("@tot1", catSec(0))
+            command.Parameters.AddWithValue("@tot2", catSec(1))
+            command.Parameters.AddWithValue("@tot3", catSec(2))
+            command.Parameters.AddWithValue("@tot1c", catCen(0))
+            command.Parameters.AddWithValue("@tot2c", catCen(1))
+            command.Parameters.AddWithValue("@tot3c", catCen(2))
+            consultarMySQL(Principal.query, command)
+        Next
+
+
+    End Function
+
+#End Region
+
 #Region "Helpers"
 
     Public Sub crearColumna(ByRef dgv As DataGridView, ByVal filtros As List(Of KeyValuePair(Of String, String)))
@@ -181,40 +295,6 @@ Module Reporte
         Next
 
     End Sub
-    Public Function hayReporte(ByVal año As Integer, ByVal trimestre As String)
-
-        Dim idTrimestre = obtenerIDSQL("trimestres", "nombre", trimestre)
-        Dim seccional As String = obtenerSeccional()
-        Dim idSeccional = obtenerIDSQL("seccionales", "nombre", seccional)
-
-        Dim sql As String = "SELECT * FROM reportes_trimestrales WHERE YEAR(fecha)='" & año &
-            "' AND trimestre_id='" & idTrimestre & "' AND seccional_id='" & idSeccional & "'"
-        dt = consultarReaderSQL(sql)
-
-        If dt.Rows.Count = 0 Then
-            Return (False)
-        Else
-            Return (True)
-        End If
-
-    End Function
-    Public Function HayInternet() As Boolean
-
-        If My.Computer.Network.IsAvailable() Then
-            Try
-                If My.Computer.Network.Ping("8.8.8.8") Then
-                    Return (True)
-                Else
-                    Return (False)
-                End If
-            Catch exint As Exception
-                Return (False)
-            End Try
-        Else
-            Return (False)
-        End If
-
-    End Function
 
 #End Region
 
