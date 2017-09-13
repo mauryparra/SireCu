@@ -48,6 +48,7 @@ Partial Class ABMUsuarios
         'SplitContainer
         '
         Me.SplitContainer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer.IsSplitterFixed = True
         Me.SplitContainer.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainer.Name = "SplitContainer"
         '

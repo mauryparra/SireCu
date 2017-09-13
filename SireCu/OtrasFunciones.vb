@@ -92,7 +92,7 @@ Module OtrasFunciones
         Dim tablaSaldo As DataTable = consultarReader(querySaldo)
         If tablaSaldo.Rows.Count = 0 Then
             saldoAnterior = 0
-            tablaSaldo.Rows.Add(0, 0, "2000", 0, "Cuarto")
+            tablaSaldo.Rows.Add(0, 0, "1999", 0, "Cuarto")
         Else
             saldoAnterior = tablaSaldo.Rows(0).Item("saldo_final")
         End If
@@ -104,9 +104,9 @@ Module OtrasFunciones
         Dim fechaFinalIngreso As Date
         Dim tabla As DataTable = consultarReader(ultimoRegistro)
         If tabla.Rows.Count = 0 Then
-            fechaFinalIngreso = Format(Now(), "MM/dd/yyyy")
+            fechaFinalIngreso = Now()
         Else
-            fechaFinalIngreso = Format(tabla.Rows(0).Item("fecha"), "MM/dd/yyyy")
+            fechaFinalIngreso = tabla.Rows(0).Item("fecha")
         End If
 
         'Fecha del ultimo registro de Egresos
@@ -114,9 +114,9 @@ Module OtrasFunciones
         Dim fechaFinalEgreso As Date
         tabla = consultarReader(ultimoRegistro)
         If tabla.Rows.Count = 0 Then
-            fechaFinalEgreso = Format(Now(), "MM/dd/yyyy")
+            fechaFinalEgreso = Now()
         Else
-            fechaFinalEgreso = Format(tabla.Rows(0).Item("fecha"), "MM/dd/yyyy")
+            fechaFinalEgreso = tabla.Rows(0).Item("fecha")
         End If
 
         'Seleccionar Todos los registros entre el trimestre siguiente al 
@@ -124,29 +124,29 @@ Module OtrasFunciones
         Select Case tablaSaldo.Rows(0).Item("trimestre_nombre")
             Case "Primero"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
-                                " WHERE [fecha] BETWEEN '04/01/" & tablaSaldo.Rows(0).Item("año") & "' AND '" & fechaFinalIngreso & "'"
+                                " WHERE [fecha] BETWEEN '04/01/" & tablaSaldo.Rows(0).Item("año") & "' AND '" & Format(fechaFinalIngreso, "MM/dd/yyyy") & "'"
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE [mes_reintegro] BETWEEN '04/01/" &
-                                tablaSaldo.Rows(0).Item("año") & "' AND '" & fechaFinalEgreso &
+                                tablaSaldo.Rows(0).Item("año") & "' AND '" & Format(fechaFinalEgreso, "MM/dd/yyyy") &
                                "' AND [eliminado] = 0"
             Case "Segundo"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
-                                " WHERE fecha BETWEEN '07/01/" & tablaSaldo.Rows(0).Item("año") & "' AND '" & fechaFinalIngreso & "'"
+                                " WHERE fecha BETWEEN '07/01/" & tablaSaldo.Rows(0).Item("año") & "' AND '" & Format(fechaFinalIngreso, "MM/dd/yyyy") & "'"
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE [mes_reintegro] BETWEEN '07/01/" &
-                                tablaSaldo.Rows(0).Item("año") & "' AND '" & fechaFinalEgreso &
+                                tablaSaldo.Rows(0).Item("año") & "' AND '" & Format(fechaFinalEgreso, "MM/dd/yyyy") &
                                "' AND [eliminado] = 0"
 
             Case "Tercero"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
-                                " WHERE fecha BETWEEN '10/01/" & tablaSaldo.Rows(0).Item("año") & "' AND '" & fechaFinalIngreso & "'"
+                                " WHERE fecha BETWEEN '10/01/" & tablaSaldo.Rows(0).Item("año") & "' AND '" & Format(fechaFinalIngreso, "MM/dd/yyyy") & "'"
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE [mes_reintegro] BETWEEN '10/01/" &
-                                tablaSaldo.Rows(0).Item("año") & "' AND '" & fechaFinalEgreso &
+                                tablaSaldo.Rows(0).Item("año") & "' AND '" & Format(fechaFinalEgreso, "MM/dd/yyyy") &
                                "' AND [eliminado] = 0"
 
             Case "Cuarto"
                 queryIngresos = "SELECT SUM( [ingresos_prov] + [ingresos_central] + [ingresos_otros] ) AS Ingresos FROM [Ingresos]" &
-                                " WHERE fecha BETWEEN '01/01/" & (tablaSaldo.Rows(0).Item("año") + 1) & "' AND '" & fechaFinalIngreso & "'"
+                                " WHERE fecha BETWEEN '01/01/" & (tablaSaldo.Rows(0).Item("año") + 1) & "' AND '" & Format(fechaFinalIngreso, "MM/dd/yyyy") & "'"
                 queryEgresos = "SELECT SUM( [monto] ) AS Egresos FROM [Egresos] WHERE [mes_reintegro] BETWEEN '01/01/" &
-                                (tablaSaldo.Rows(0).Item("año") + 1) & "' AND '" & fechaFinalEgreso &
+                                (tablaSaldo.Rows(0).Item("año") + 1) & "' AND '" & Format(fechaFinalEgreso, "MM/dd/yyyy") &
                                "' AND [eliminado] = 0"
 
         End Select
@@ -486,7 +486,7 @@ Module OtrasFunciones
 
             Dim dtCerrado As DataTable = consultarReader(query)
             If dtCerrado.Rows.Count = 0 Then
-                MsgBox("Para cerrar el trimestre:" & trimestre & " del año: " & año & vbCrLf &
+                MsgBox("Para cerrar el trimestre: " & trimestre & " del año: " & año & vbCrLf &
                        "Primero debe cerrar el trimestre anterior.", MsgBoxStyle.Exclamation, "Error")
             Else
                 Principal.query = "INSERT INTO Saldos (saldo_final, año, trimestre_id)
@@ -501,25 +501,9 @@ Module OtrasFunciones
             End If
 
         Else
-            If MsgBox("El trimestre ingresado ya fue cerrado con un saldo de: " &
-                      vbCrLf & Format(dtExist.Rows(0).Item("saldo_final"), "$ #,###,##0.00") &
-                      vbCrLf & "Desea reemplazarlo?",
-                      MsgBoxStyle.YesNo, "Reemplazar?") = MsgBoxResult.Yes Then
-
-                Principal.query = "UPDATE Saldos SET saldo_final=@saldo
-                                WHERE trimestre_id=@trim AND año=@año"
-                Principal.command.Parameters.Clear()
-                Principal.command.Parameters.AddWithValue("@saldo", saldo)
-                Principal.command.Parameters.AddWithValue("@año", año)
-                Principal.command.Parameters.AddWithValue("@trim", idTrimestre)
-                consultarNQ(Principal.query, Principal.command)
-
-                MsgBox("Trimestre actualizado correctamente.", MsgBoxStyle.Information, "Trimestre Cerrado")
-
-                'TODO 
-                'Cuando actualiza, debe actualizar todos los trimestres siguientes
-
-            End If
+            MsgBox("El trimestre ingresado ya fue cerrado con un saldo de: " &
+                      vbCrLf & Format(dtExist.Rows(0).Item("saldo_final"), "$ #,###,##0.00"),
+                      MsgBoxStyle.Information, "Trimestre Cerrado")
         End If
 
     End Sub
