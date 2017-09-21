@@ -43,20 +43,13 @@ Public Class VerReporte
                            "www.udalarioja.com.ar/SireCu", MsgBoxStyle.Information, "Subido Correctamente")
 
                 Else
-                    If (MsgBox("El reporte con los parámetros:" & vbCrLf & "Trimestre: " & cb_Trimestre.Text &
-                              vbCrLf & "Año: " & tb_Año.Text & vbCrLf & "Ya se encuentra cargado." & vbCrLf &
-                              "Desea reemplazarlo?", MsgBoxStyle.OkCancel, "Reemplazar?") = MsgBoxResult.Ok) Then
+                    MsgBox("El reporte con los parámetros" & vbCrLf & "Trimestre: " & cb_Trimestre.Text &
+                              vbCrLf & "Año: " & tb_Año.Text & vbCrLf & "Ya se encuentra cargado.",
+                           MsgBoxStyle.Information, "Reporte ya cargado")
 
-                        'Principal.query = "INSERT INTO seccionales (nombre) VALUES (@sec)"
-                        'command.Parameters.Clear()
-                        'command.Parameters.AddWithValue("@sec", TextBox1.Text)
-
-                        'consultarMySQL(Principal.query, command)
-
-                    End If
                 End If
 
-            Else
+                    Else
                 MsgBox("No se pudo establecer la conexción con el servidor." & vbCrLf &
                        "Por favor, intentelo mas tarde.", MsgBoxStyle.Exclamation, "No se estableció conexión")
                 Exit Sub

@@ -168,7 +168,12 @@ Module Reporte
         If My.Computer.Network.IsAvailable() Then
             Try
                 If My.Computer.Network.Ping("8.8.8.8") Then
-                    Return (True)
+                    Dim var As DataTable = consultarReaderSQL("SELECT * FROM reportes_trimestrales")
+                    If TypeOf var Is Object = False Then
+                        Return (False)
+                    Else
+                        Return (True)
+                    End If
                 Else
                     Return (False)
                 End If
@@ -197,7 +202,7 @@ Module Reporte
         End If
 
     End Function
-    Public Function SubirReportes(ByVal trimestre As String, ByVal año As Integer)
+    Public Sub SubirReportes(ByVal trimestre As String, ByVal año As Integer)
 
         Dim sql As String = ""
         Dim id As DataTable
@@ -271,7 +276,7 @@ Module Reporte
         Next
 
 
-    End Function
+    End Sub
 
 #End Region
 

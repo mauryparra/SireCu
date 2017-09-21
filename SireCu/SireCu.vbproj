@@ -335,10 +335,18 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />
-    <Content Include="Recursos\BVIDE.dll" />
-    <Content Include="Recursos\Microsoft.Office.Core.dll" />
-    <Content Include="Recursos\Microsoft.Office.Interop.Excel.dll" />
-    <Content Include="Recursos\MySql.Data.dll" />
+    <None Include="Recursos\BVIDE.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recursos\Microsoft.Office.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recursos\Microsoft.Office.Interop.Excel.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Recursos\MySql.Data.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

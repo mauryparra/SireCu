@@ -124,7 +124,7 @@ Module Conexion
         Return resultado
 
     End Function
-    Function consultarReaderSQL(ByVal sql As String) As DataTable
+    Function consultarReaderSQL(ByVal sql As String)
 
         Dim reader As MySqlDataReader
         Dim dt As New DataTable
@@ -140,8 +140,8 @@ Module Conexion
             dt.Load(reader)
             conexionMySQL.Close()
         Catch ex As MySqlException
-            MessageBox.Show(ex.Message)
             reader = Nothing
+            Return (Nothing)
         End Try
 
         Return dt
