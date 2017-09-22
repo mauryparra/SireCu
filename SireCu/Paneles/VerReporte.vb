@@ -2,9 +2,7 @@
 
 Public Class VerReporte
 
-    Dim sql As String = ""
     Dim ControlesConErrores As List(Of Control) = New List(Of Control)
-
 
 #Region "Botones"
 
@@ -14,10 +12,48 @@ Public Class VerReporte
         If ControlesConErrores.Count > 0 Then
             MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
             Exit Sub
+        ElseIf (tb_Año.Text = "" Or cb_Trimestre.Text = "") Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
         Else
-
             cargarGrid()
+        End If
 
+    End Sub
+
+    Private Sub btn_Subir_Click(sender As Object, e As EventArgs) Handles btn_Subir.Click
+
+        'Verificamos que todos los campos hayan pasado las validaciones
+        If ControlesConErrores.Count > 0 Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
+        ElseIf (tb_Año.Text = "" Or cb_Trimestre.Text = "") Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
+        Else
+            'Verificación de Internet
+            If HayInternet() Then
+
+                If hayReporte(tb_Año.Text, cb_Trimestre.Text) = False Then
+
+                    SubirReportes(cb_Trimestre.Text, tb_Año.Text)
+
+                    MsgBox("Reporte subido correctamente." & vbCrLf &
+                           "Puede visualizarlo en nuestra web." & vbCrLf &
+                           "www.udalarioja.com.ar/SireCu", MsgBoxStyle.Information, "Subido Correctamente")
+
+                Else
+                    MsgBox("El reporte con los parámetros" & vbCrLf & "Trimestre: " & cb_Trimestre.Text &
+                              vbCrLf & "Año: " & tb_Año.Text & vbCrLf & "Ya se encuentra cargado.",
+                           MsgBoxStyle.Information, "Reporte ya cargado")
+
+                End If
+
+                    Else
+                MsgBox("No se pudo establecer la conexción con el servidor." & vbCrLf &
+                       "Por favor, intentelo mas tarde.", MsgBoxStyle.Exclamation, "No se estableció conexión")
+                Exit Sub
+            End If
         End If
 
     End Sub
@@ -60,6 +96,12 @@ Public Class VerReporte
 
         Dim senderGrid = DirectCast(sender, DataGridView)
 
+        'Verificamos que no se envíen los box vacios
+        If (tb_Año.Text = "" Or cb_Trimestre.Text = "") Then
+            MsgBox("Por favor revise los campos ingresados", MsgBoxStyle.Exclamation, "Error")
+            Exit Sub
+        End If
+
         If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso
            e.RowIndex >= 0 Then
 
@@ -89,14 +131,17 @@ Public Class VerReporte
         keyverify(e, numeros:=True)
     End Sub
     Private Sub cb_Trimestre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cb_Trimestre.KeyPress
-        keyverify(e, letras:=True, espacios:=True)
+        keyverify(e, letras:=True)
     End Sub
 
     Private Sub cb_Trimestre_Validating(sender As Object, e As CancelEventArgs) Handles cb_Trimestre.Validating
         If (cb_Trimestre.Text <> "Primero") And (cb_Trimestre.Text <> "Segundo") And (cb_Trimestre.Text <> "Tercero") And
             (cb_Trimestre.Text <> "Cuarto") Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar un Trimestre válido")
-            ControlesConErrores.Add(sender)
+            If Not ControlesConErrores.Contains(sender) Then
+                ControlesConErrores.Add(sender)
+            End If
+
         Else
             Principal.ErrorProvider.SetError(sender, "")
             ControlesConErrores.Remove(sender)

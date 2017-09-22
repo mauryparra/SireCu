@@ -22,7 +22,27 @@ Partial Class ABMEgresos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ABMEgresos))
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.TabPageAgregar = New System.Windows.Forms.TabPage()
         Me.GroupBoxAgregar = New System.Windows.Forms.GroupBox()
@@ -57,8 +77,6 @@ Partial Class ABMEgresos
         Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.seleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.nro_comprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tipo_comprobante_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.tipo_comprobante_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.proveedor_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.proveedor_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.categoria_gasto_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -66,11 +84,14 @@ Partial Class ABMEgresos
         Me.persona_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.persona_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tipo_comprobante_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.tipo_comprobante_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.seccional_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.seccional_nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.mes_reintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.monto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.comentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btn_Cancelar = New System.Windows.Forms.Button()
         Me.ButtonEliminar = New System.Windows.Forms.Button()
         Me.LabelSeccional = New System.Windows.Forms.Label()
         Me.ComboBoxSeccional = New System.Windows.Forms.ComboBox()
@@ -110,6 +131,8 @@ Partial Class ABMEgresos
         Me.TSComboBoxFiltro2 = New System.Windows.Forms.ToolStripComboBox()
         Me.TSComboBoxOpera2 = New System.Windows.Forms.ToolStripComboBox()
         Me.TSTextBoxFiltro2 = New System.Windows.Forms.ToolStripTextBox()
+        Me.TSButtonFiltrar = New System.Windows.Forms.ToolStripButton()
+        Me.TSButtonQuitarFiltros = New System.Windows.Forms.ToolStripButton()
         Me.TabPagePapelera = New System.Windows.Forms.TabPage()
         Me.SplitContainerPapelera = New System.Windows.Forms.SplitContainer()
         Me.ToolStripContainerPapelera = New System.Windows.Forms.ToolStripContainer()
@@ -117,8 +140,6 @@ Partial Class ABMEgresos
         Me.PapeleraId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraSeleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.PapeleraNroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraTComprobanteId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraTipoComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraProveedorId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraCategoriaGastoId = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -126,16 +147,16 @@ Partial Class ABMEgresos
         Me.PapeleraPersonaId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraTComprobanteId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraTipoComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraSeccionalId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraSeccional = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PapeleraReintegro = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraMonto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PapeleraComentario = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.bPapeleraEliminar = New System.Windows.Forms.Button()
         Me.bPapeleraVaciarPapelera = New System.Windows.Forms.Button()
         Me.bPapeleraRestaurar = New System.Windows.Forms.Button()
-        Me.TSButtonFiltrar = New System.Windows.Forms.ToolStripButton()
-        Me.TSButtonQuitarFiltros = New System.Windows.Forms.ToolStripButton()
         Me.TabControl.SuspendLayout()
         Me.TabPageAgregar.SuspendLayout()
         Me.GroupBoxAgregar.SuspendLayout()
@@ -169,7 +190,7 @@ Partial Class ABMEgresos
         Me.TabControl.Location = New System.Drawing.Point(0, 0)
         Me.TabControl.Name = "TabControl"
         Me.TabControl.SelectedIndex = 0
-        Me.TabControl.Size = New System.Drawing.Size(755, 456)
+        Me.TabControl.Size = New System.Drawing.Size(837, 456)
         Me.TabControl.TabIndex = 0
         Me.TabControl.TabStop = False
         '
@@ -180,7 +201,7 @@ Partial Class ABMEgresos
         Me.TabPageAgregar.Location = New System.Drawing.Point(4, 25)
         Me.TabPageAgregar.Name = "TabPageAgregar"
         Me.TabPageAgregar.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageAgregar.Size = New System.Drawing.Size(747, 427)
+        Me.TabPageAgregar.Size = New System.Drawing.Size(829, 427)
         Me.TabPageAgregar.TabIndex = 0
         Me.TabPageAgregar.Text = "Agregar"
         Me.TabPageAgregar.UseVisualStyleBackColor = True
@@ -212,7 +233,7 @@ Partial Class ABMEgresos
         Me.GroupBoxAgregar.Controls.Add(Me.tbProveedor)
         Me.GroupBoxAgregar.Location = New System.Drawing.Point(6, 43)
         Me.GroupBoxAgregar.Name = "GroupBoxAgregar"
-        Me.GroupBoxAgregar.Size = New System.Drawing.Size(735, 378)
+        Me.GroupBoxAgregar.Size = New System.Drawing.Size(817, 378)
         Me.GroupBoxAgregar.TabIndex = 92
         Me.GroupBoxAgregar.TabStop = False
         Me.GroupBoxAgregar.Text = "Agregar Nuevo Egreso"
@@ -222,7 +243,7 @@ Partial Class ABMEgresos
         Me.cbTComprobante.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cbTComprobante.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.cbTComprobante.FormattingEnabled = True
-        Me.cbTComprobante.Location = New System.Drawing.Point(539, 84)
+        Me.cbTComprobante.Location = New System.Drawing.Point(625, 81)
         Me.cbTComprobante.Name = "cbTComprobante"
         Me.cbTComprobante.Size = New System.Drawing.Size(163, 24)
         Me.cbTComprobante.TabIndex = 464
@@ -232,9 +253,9 @@ Partial Class ABMEgresos
         Me.cbSeccional.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cbSeccional.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.cbSeccional.FormattingEnabled = True
-        Me.cbSeccional.Location = New System.Drawing.Point(153, 219)
+        Me.cbSeccional.Location = New System.Drawing.Point(158, 219)
         Me.cbSeccional.Name = "cbSeccional"
-        Me.cbSeccional.Size = New System.Drawing.Size(156, 24)
+        Me.cbSeccional.Size = New System.Drawing.Size(178, 24)
         Me.cbSeccional.TabIndex = 462
         '
         'cbTGasto
@@ -242,15 +263,15 @@ Partial Class ABMEgresos
         Me.cbTGasto.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.cbTGasto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.cbTGasto.FormattingEnabled = True
-        Me.cbTGasto.Location = New System.Drawing.Point(153, 84)
+        Me.cbTGasto.Location = New System.Drawing.Point(158, 84)
         Me.cbTGasto.Name = "cbTGasto"
-        Me.cbTGasto.Size = New System.Drawing.Size(156, 24)
+        Me.cbTGasto.Size = New System.Drawing.Size(178, 24)
         Me.cbTGasto.TabIndex = 459
         '
         'lbFecha
         '
         Me.lbFecha.AutoSize = True
-        Me.lbFecha.Location = New System.Drawing.Point(393, 45)
+        Me.lbFecha.Location = New System.Drawing.Point(479, 42)
         Me.lbFecha.Name = "lbFecha"
         Me.lbFecha.Size = New System.Drawing.Size(49, 16)
         Me.lbFecha.TabIndex = 480
@@ -260,7 +281,7 @@ Partial Class ABMEgresos
         '
         Me.dtpFecha.CustomFormat = ""
         Me.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFecha.Location = New System.Drawing.Point(539, 40)
+        Me.dtpFecha.Location = New System.Drawing.Point(625, 37)
         Me.dtpFecha.Name = "dtpFecha"
         Me.dtpFecha.Size = New System.Drawing.Size(163, 22)
         Me.dtpFecha.TabIndex = 463
@@ -271,18 +292,18 @@ Partial Class ABMEgresos
         Me.dtpReintegro.Checked = False
         Me.dtpReintegro.CustomFormat = "MM/yyyy"
         Me.dtpReintegro.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpReintegro.Location = New System.Drawing.Point(153, 171)
+        Me.dtpReintegro.Location = New System.Drawing.Point(158, 171)
         Me.dtpReintegro.Name = "dtpReintegro"
         Me.dtpReintegro.ShowCheckBox = True
         Me.dtpReintegro.ShowUpDown = True
-        Me.dtpReintegro.Size = New System.Drawing.Size(156, 22)
+        Me.dtpReintegro.Size = New System.Drawing.Size(178, 22)
         Me.dtpReintegro.TabIndex = 461
         Me.dtpReintegro.Value = New Date(2017, 3, 4, 19, 31, 9, 0)
         '
         'lbSeccional
         '
         Me.lbSeccional.AutoSize = True
-        Me.lbSeccional.Location = New System.Drawing.Point(34, 222)
+        Me.lbSeccional.Location = New System.Drawing.Point(39, 222)
         Me.lbSeccional.Name = "lbSeccional"
         Me.lbSeccional.Size = New System.Drawing.Size(68, 16)
         Me.lbSeccional.TabIndex = 479
@@ -290,14 +311,14 @@ Partial Class ABMEgresos
         '
         'tbNComprobante
         '
-        Me.tbNComprobante.Location = New System.Drawing.Point(605, 129)
+        Me.tbNComprobante.Location = New System.Drawing.Point(691, 126)
         Me.tbNComprobante.Name = "tbNComprobante"
         Me.tbNComprobante.Size = New System.Drawing.Size(97, 22)
         Me.tbNComprobante.TabIndex = 466
         '
         'tbPVenta
         '
-        Me.tbPVenta.Location = New System.Drawing.Point(539, 129)
+        Me.tbPVenta.Location = New System.Drawing.Point(625, 126)
         Me.tbPVenta.Name = "tbPVenta"
         Me.tbPVenta.Size = New System.Drawing.Size(56, 22)
         Me.tbPVenta.TabIndex = 465
@@ -305,7 +326,7 @@ Partial Class ABMEgresos
         'lbSmonto
         '
         Me.lbSmonto.AutoSize = True
-        Me.lbSmonto.Location = New System.Drawing.Point(518, 176)
+        Me.lbSmonto.Location = New System.Drawing.Point(604, 173)
         Me.lbSmonto.Name = "lbSmonto"
         Me.lbSmonto.Size = New System.Drawing.Size(15, 16)
         Me.lbSmonto.TabIndex = 478
@@ -314,7 +335,7 @@ Partial Class ABMEgresos
         'lbTComprobante
         '
         Me.lbTComprobante.AutoSize = True
-        Me.lbTComprobante.Location = New System.Drawing.Point(393, 87)
+        Me.lbTComprobante.Location = New System.Drawing.Point(479, 84)
         Me.lbTComprobante.Name = "lbTComprobante"
         Me.lbTComprobante.Size = New System.Drawing.Size(140, 16)
         Me.lbTComprobante.TabIndex = 477
@@ -322,7 +343,7 @@ Partial Class ABMEgresos
         '
         'tbMonto
         '
-        Me.tbMonto.Location = New System.Drawing.Point(539, 173)
+        Me.tbMonto.Location = New System.Drawing.Point(625, 170)
         Me.tbMonto.Name = "tbMonto"
         Me.tbMonto.Size = New System.Drawing.Size(163, 22)
         Me.tbMonto.TabIndex = 467
@@ -332,7 +353,7 @@ Partial Class ABMEgresos
         '
         Me.btnGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGuardar.ForeColor = System.Drawing.Color.Green
-        Me.btnGuardar.Location = New System.Drawing.Point(553, 278)
+        Me.btnGuardar.Location = New System.Drawing.Point(607, 281)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(126, 61)
         Me.btnGuardar.TabIndex = 469
@@ -342,7 +363,7 @@ Partial Class ABMEgresos
         'lbGasto
         '
         Me.lbGasto.AutoSize = True
-        Me.lbGasto.Location = New System.Drawing.Point(30, 87)
+        Me.lbGasto.Location = New System.Drawing.Point(35, 87)
         Me.lbGasto.Name = "lbGasto"
         Me.lbGasto.Size = New System.Drawing.Size(63, 16)
         Me.lbGasto.TabIndex = 476
@@ -353,15 +374,15 @@ Partial Class ABMEgresos
         Me.tbNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.tbNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.tbNombre.BackColor = System.Drawing.SystemColors.Window
-        Me.tbNombre.Location = New System.Drawing.Point(153, 40)
+        Me.tbNombre.Location = New System.Drawing.Point(158, 40)
         Me.tbNombre.Name = "tbNombre"
-        Me.tbNombre.Size = New System.Drawing.Size(197, 22)
+        Me.tbNombre.Size = New System.Drawing.Size(212, 22)
         Me.tbNombre.TabIndex = 458
         '
         'lbMes
         '
         Me.lbMes.AutoSize = True
-        Me.lbMes.Location = New System.Drawing.Point(30, 176)
+        Me.lbMes.Location = New System.Drawing.Point(35, 176)
         Me.lbMes.Name = "lbMes"
         Me.lbMes.Size = New System.Drawing.Size(115, 16)
         Me.lbMes.TabIndex = 475
@@ -379,7 +400,7 @@ Partial Class ABMEgresos
         'lbMonto
         '
         Me.lbMonto.AutoSize = True
-        Me.lbMonto.Location = New System.Drawing.Point(393, 176)
+        Me.lbMonto.Location = New System.Drawing.Point(479, 173)
         Me.lbMonto.Name = "lbMonto"
         Me.lbMonto.Size = New System.Drawing.Size(45, 16)
         Me.lbMonto.TabIndex = 473
@@ -388,7 +409,7 @@ Partial Class ABMEgresos
         'lbProveedor
         '
         Me.lbProveedor.AutoSize = True
-        Me.lbProveedor.Location = New System.Drawing.Point(30, 132)
+        Me.lbProveedor.Location = New System.Drawing.Point(35, 132)
         Me.lbProveedor.Name = "lbProveedor"
         Me.lbProveedor.Size = New System.Drawing.Size(72, 16)
         Me.lbProveedor.TabIndex = 472
@@ -397,7 +418,7 @@ Partial Class ABMEgresos
         'lbNombre
         '
         Me.lbNombre.AutoSize = True
-        Me.lbNombre.Location = New System.Drawing.Point(30, 43)
+        Me.lbNombre.Location = New System.Drawing.Point(35, 43)
         Me.lbNombre.Name = "lbNombre"
         Me.lbNombre.Size = New System.Drawing.Size(120, 16)
         Me.lbNombre.TabIndex = 471
@@ -406,7 +427,7 @@ Partial Class ABMEgresos
         'lbNComprobante
         '
         Me.lbNComprobante.AutoSize = True
-        Me.lbNComprobante.Location = New System.Drawing.Point(393, 132)
+        Me.lbNComprobante.Location = New System.Drawing.Point(479, 129)
         Me.lbNComprobante.Name = "lbNComprobante"
         Me.lbNComprobante.Size = New System.Drawing.Size(107, 16)
         Me.lbNComprobante.TabIndex = 470
@@ -424,18 +445,18 @@ Partial Class ABMEgresos
         '
         Me.tbProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.tbProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
-        Me.tbProveedor.Location = New System.Drawing.Point(153, 129)
+        Me.tbProveedor.Location = New System.Drawing.Point(158, 129)
         Me.tbProveedor.Name = "tbProveedor"
-        Me.tbProveedor.Size = New System.Drawing.Size(156, 22)
+        Me.tbProveedor.Size = New System.Drawing.Size(178, 22)
         Me.tbProveedor.TabIndex = 460
         '
         'lb_Titulo
         '
         Me.lb_Titulo.AutoSize = True
-        Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Titulo.Location = New System.Drawing.Point(284, 2)
+        Me.lb_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Titulo.Location = New System.Drawing.Point(281, 5)
         Me.lb_Titulo.Name = "lb_Titulo"
-        Me.lb_Titulo.Size = New System.Drawing.Size(193, 38)
+        Me.lb_Titulo.Size = New System.Drawing.Size(211, 33)
         Me.lb_Titulo.TabIndex = 91
         Me.lb_Titulo.Text = "Nuevo Egreso"
         '
@@ -445,7 +466,7 @@ Partial Class ABMEgresos
         Me.TabPageModificar.Location = New System.Drawing.Point(4, 25)
         Me.TabPageModificar.Name = "TabPageModificar"
         Me.TabPageModificar.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageModificar.Size = New System.Drawing.Size(747, 427)
+        Me.TabPageModificar.Size = New System.Drawing.Size(829, 427)
         Me.TabPageModificar.TabIndex = 1
         Me.TabPageModificar.Text = "Modificar"
         Me.TabPageModificar.UseVisualStyleBackColor = True
@@ -457,7 +478,7 @@ Partial Class ABMEgresos
         'ToolStripContainerModificar.ContentPanel
         '
         Me.ToolStripContainerModificar.ContentPanel.Controls.Add(Me.SplitContainerModificar)
-        Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(595, 421)
+        Me.ToolStripContainerModificar.ContentPanel.Size = New System.Drawing.Size(681, 421)
         Me.ToolStripContainerModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerModificar.LeftToolStripPanelVisible = False
         Me.ToolStripContainerModificar.Location = New System.Drawing.Point(3, 3)
@@ -466,7 +487,7 @@ Partial Class ABMEgresos
         'ToolStripContainerModificar.RightToolStripPanel
         '
         Me.ToolStripContainerModificar.RightToolStripPanel.Controls.Add(Me.ToolStripModificar)
-        Me.ToolStripContainerModificar.Size = New System.Drawing.Size(741, 421)
+        Me.ToolStripContainerModificar.Size = New System.Drawing.Size(823, 421)
         Me.ToolStripContainerModificar.TabIndex = 1
         Me.ToolStripContainerModificar.Text = "ToolStripContainer1"
         Me.ToolStripContainerModificar.TopToolStripPanelVisible = False
@@ -484,6 +505,7 @@ Partial Class ABMEgresos
         '
         'SplitContainerModificar.Panel2
         '
+        Me.SplitContainerModificar.Panel2.Controls.Add(Me.btn_Cancelar)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.ButtonEliminar)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.LabelSeccional)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.ComboBoxSeccional)
@@ -508,7 +530,7 @@ Partial Class ABMEgresos
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.Label12)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxComentario)
         Me.SplitContainerModificar.Panel2.Controls.Add(Me.TextBoxProveedor)
-        Me.SplitContainerModificar.Size = New System.Drawing.Size(595, 421)
+        Me.SplitContainerModificar.Size = New System.Drawing.Size(681, 421)
         Me.SplitContainerModificar.SplitterDistance = 201
         Me.SplitContainerModificar.TabIndex = 1
         '
@@ -517,13 +539,13 @@ Partial Class ABMEgresos
         Me.DGVModificar.AllowUserToAddRows = False
         Me.DGVModificar.AllowUserToDeleteRows = False
         Me.DGVModificar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.seleccionado, Me.nro_comprobante, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.seccional_id, Me.seccional_nombre, Me.mes_reintegro, Me.monto, Me.comentario})
+        Me.DGVModificar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.seleccionado, Me.nro_comprobante, Me.proveedor_id, Me.proveedor_nombre, Me.categoria_gasto_id, Me.categoria_nombre, Me.persona_id, Me.persona_nombre, Me.fecha, Me.tipo_comprobante_id, Me.tipo_comprobante_nombre, Me.mes_reintegro, Me.seccional_id, Me.seccional_nombre, Me.monto, Me.comentario})
         Me.DGVModificar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGVModificar.Location = New System.Drawing.Point(0, 0)
         Me.DGVModificar.Name = "DGVModificar"
         Me.DGVModificar.ReadOnly = True
         Me.DGVModificar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVModificar.Size = New System.Drawing.Size(595, 201)
+        Me.DGVModificar.Size = New System.Drawing.Size(681, 201)
         Me.DGVModificar.TabIndex = 1
         '
         'id
@@ -535,29 +557,19 @@ Partial Class ABMEgresos
         '
         'seleccionado
         '
-        Me.seleccionado.HeaderText = "Seleccionado"
+        Me.seleccionado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.seleccionado.HeaderText = "Check"
         Me.seleccionado.Name = "seleccionado"
         Me.seleccionado.ReadOnly = True
+        Me.seleccionado.Width = 52
         '
         'nro_comprobante
         '
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.nro_comprobante.DefaultCellStyle = DataGridViewCellStyle1
         Me.nro_comprobante.HeaderText = "Nro Comprobante"
         Me.nro_comprobante.Name = "nro_comprobante"
         Me.nro_comprobante.ReadOnly = True
-        '
-        'tipo_comprobante_id
-        '
-        Me.tipo_comprobante_id.HeaderText = "tipo_comprobante_id"
-        Me.tipo_comprobante_id.Name = "tipo_comprobante_id"
-        Me.tipo_comprobante_id.ReadOnly = True
-        Me.tipo_comprobante_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.tipo_comprobante_id.Visible = False
-        '
-        'tipo_comprobante_nombre
-        '
-        Me.tipo_comprobante_nombre.HeaderText = "Tipo Comprobante"
-        Me.tipo_comprobante_nombre.Name = "tipo_comprobante_nombre"
-        Me.tipo_comprobante_nombre.ReadOnly = True
         '
         'proveedor_id
         '
@@ -569,6 +581,8 @@ Partial Class ABMEgresos
         '
         'proveedor_nombre
         '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.proveedor_nombre.DefaultCellStyle = DataGridViewCellStyle2
         Me.proveedor_nombre.HeaderText = "Proveedor"
         Me.proveedor_nombre.Name = "proveedor_nombre"
         Me.proveedor_nombre.ReadOnly = True
@@ -583,6 +597,8 @@ Partial Class ABMEgresos
         '
         'categoria_nombre
         '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.categoria_nombre.DefaultCellStyle = DataGridViewCellStyle3
         Me.categoria_nombre.HeaderText = "Categoria Gasto"
         Me.categoria_nombre.Name = "categoria_nombre"
         Me.categoria_nombre.ReadOnly = True
@@ -597,15 +613,43 @@ Partial Class ABMEgresos
         '
         'persona_nombre
         '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.persona_nombre.DefaultCellStyle = DataGridViewCellStyle4
         Me.persona_nombre.HeaderText = "Persona"
         Me.persona_nombre.Name = "persona_nombre"
         Me.persona_nombre.ReadOnly = True
         '
         'fecha
         '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.fecha.DefaultCellStyle = DataGridViewCellStyle5
         Me.fecha.HeaderText = "Fecha"
         Me.fecha.Name = "fecha"
         Me.fecha.ReadOnly = True
+        '
+        'tipo_comprobante_id
+        '
+        Me.tipo_comprobante_id.HeaderText = "tipo_comprobante_id"
+        Me.tipo_comprobante_id.Name = "tipo_comprobante_id"
+        Me.tipo_comprobante_id.ReadOnly = True
+        Me.tipo_comprobante_id.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.tipo_comprobante_id.Visible = False
+        '
+        'tipo_comprobante_nombre
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.tipo_comprobante_nombre.DefaultCellStyle = DataGridViewCellStyle6
+        Me.tipo_comprobante_nombre.HeaderText = "Tipo Comprobante"
+        Me.tipo_comprobante_nombre.Name = "tipo_comprobante_nombre"
+        Me.tipo_comprobante_nombre.ReadOnly = True
+        '
+        'mes_reintegro
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.mes_reintegro.DefaultCellStyle = DataGridViewCellStyle7
+        Me.mes_reintegro.HeaderText = "Mes Reintegro"
+        Me.mes_reintegro.Name = "mes_reintegro"
+        Me.mes_reintegro.ReadOnly = True
         '
         'seccional_id
         '
@@ -617,35 +661,46 @@ Partial Class ABMEgresos
         '
         'seccional_nombre
         '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.seccional_nombre.DefaultCellStyle = DataGridViewCellStyle8
         Me.seccional_nombre.HeaderText = "Seccional"
         Me.seccional_nombre.Name = "seccional_nombre"
         Me.seccional_nombre.ReadOnly = True
         '
-        'mes_reintegro
-        '
-        Me.mes_reintegro.HeaderText = "Mes Reintegro"
-        Me.mes_reintegro.Name = "mes_reintegro"
-        Me.mes_reintegro.ReadOnly = True
-        '
         'monto
         '
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.monto.DefaultCellStyle = DataGridViewCellStyle9
         Me.monto.HeaderText = "Monto"
         Me.monto.Name = "monto"
         Me.monto.ReadOnly = True
         '
         'comentario
         '
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.comentario.DefaultCellStyle = DataGridViewCellStyle10
         Me.comentario.HeaderText = "Comentario"
         Me.comentario.Name = "comentario"
         Me.comentario.ReadOnly = True
+        '
+        'btn_Cancelar
+        '
+        Me.btn_Cancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Cancelar.ForeColor = System.Drawing.Color.Black
+        Me.btn_Cancelar.Location = New System.Drawing.Point(449, 188)
+        Me.btn_Cancelar.Name = "btn_Cancelar"
+        Me.btn_Cancelar.Size = New System.Drawing.Size(150, 25)
+        Me.btn_Cancelar.TabIndex = 120
+        Me.btn_Cancelar.Text = "Cancelar"
+        Me.btn_Cancelar.UseVisualStyleBackColor = True
         '
         'ButtonEliminar
         '
         Me.ButtonEliminar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEliminar.ForeColor = System.Drawing.Color.Red
-        Me.ButtonEliminar.Location = New System.Drawing.Point(449, 182)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(449, 159)
         Me.ButtonEliminar.Name = "ButtonEliminar"
-        Me.ButtonEliminar.Size = New System.Drawing.Size(150, 31)
+        Me.ButtonEliminar.Size = New System.Drawing.Size(150, 25)
         Me.ButtonEliminar.TabIndex = 103
         Me.ButtonEliminar.Text = "Eliminar"
         Me.ButtonEliminar.UseVisualStyleBackColor = True
@@ -765,9 +820,9 @@ Partial Class ABMEgresos
         '
         Me.ButtonGuardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonGuardar.ForeColor = System.Drawing.Color.Green
-        Me.ButtonGuardar.Location = New System.Drawing.Point(449, 145)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(449, 130)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(150, 31)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(150, 25)
         Me.ButtonGuardar.TabIndex = 102
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
@@ -870,14 +925,14 @@ Partial Class ABMEgresos
         Me.ToolStripModificar.Location = New System.Drawing.Point(0, 3)
         Me.ToolStripModificar.Name = "ToolStripModificar"
         Me.ToolStripModificar.Padding = New System.Windows.Forms.Padding(0)
-        Me.ToolStripModificar.Size = New System.Drawing.Size(146, 398)
+        Me.ToolStripModificar.Size = New System.Drawing.Size(142, 417)
         Me.ToolStripModificar.TabIndex = 0
         '
         'TSLabelTrimestre
         '
         Me.TSLabelTrimestre.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelTrimestre.Name = "TSLabelTrimestre"
-        Me.TSLabelTrimestre.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelTrimestre.Size = New System.Drawing.Size(135, 15)
         Me.TSLabelTrimestre.Text = "Trimestre: "
         '
         'TSComboBoxTrimestre
@@ -888,13 +943,13 @@ Partial Class ABMEgresos
         Me.TSComboBoxTrimestre.Items.AddRange(New Object() {"", "Primero", "Segundo", "Tercero", "Cuarto"})
         Me.TSComboBoxTrimestre.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxTrimestre.Name = "TSComboBoxTrimestre"
-        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxTrimestre.Size = New System.Drawing.Size(135, 23)
         '
         'TSLabelAño
         '
         Me.TSLabelAño.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelAño.Name = "TSLabelAño"
-        Me.TSLabelAño.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelAño.Size = New System.Drawing.Size(135, 15)
         Me.TSLabelAño.Text = "Año: "
         '
         'TSTextBoxAño
@@ -902,13 +957,13 @@ Partial Class ABMEgresos
         Me.TSTextBoxAño.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TSTextBoxAño.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSTextBoxAño.Name = "TSTextBoxAño"
-        Me.TSTextBoxAño.Size = New System.Drawing.Size(139, 23)
+        Me.TSTextBoxAño.Size = New System.Drawing.Size(135, 23)
         '
         'TSLabelMes
         '
         Me.TSLabelMes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelMes.Name = "TSLabelMes"
-        Me.TSLabelMes.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelMes.Size = New System.Drawing.Size(135, 15)
         Me.TSLabelMes.Text = "Mes:"
         '
         'TSComboBoxMes
@@ -919,13 +974,13 @@ Partial Class ABMEgresos
         Me.TSComboBoxMes.Items.AddRange(New Object() {"", "01 - Enero", "02 - Febrero", "03 - Marzo", "04 - Abril", "05 - Mayo", "06 - Junio", "07 - Julio", "08 - Agosto", "09 - Septiembre", "10 - Octubre", "11 - Noviembre", "12 - Diciembre"})
         Me.TSComboBoxMes.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxMes.Name = "TSComboBoxMes"
-        Me.TSComboBoxMes.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxMes.Size = New System.Drawing.Size(135, 23)
         '
         'TSLabelFiltro1
         '
         Me.TSLabelFiltro1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelFiltro1.Name = "TSLabelFiltro1"
-        Me.TSLabelFiltro1.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelFiltro1.Size = New System.Drawing.Size(135, 15)
         Me.TSLabelFiltro1.Text = "Filtrar Por:"
         '
         'TSComboBoxFiltro1
@@ -936,17 +991,17 @@ Partial Class ABMEgresos
         Me.TSComboBoxFiltro1.Items.AddRange(New Object() {"", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
         Me.TSComboBoxFiltro1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxFiltro1.Name = "TSComboBoxFiltro1"
-        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxFiltro1.Size = New System.Drawing.Size(135, 23)
         Me.TSComboBoxFiltro1.ToolTipText = "Seleccione columna por la cual desea filtrar"
         '
         'TSComboBoxOpera1
         '
         Me.TSComboBoxOpera1.FlatStyle = System.Windows.Forms.FlatStyle.Standard
-        Me.TSComboBoxOpera1.Items.AddRange(New Object() {"*", "="})
+        Me.TSComboBoxOpera1.Items.AddRange(New Object() {"CONTIENE", "IGUAL"})
         Me.TSComboBoxOpera1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxOpera1.Name = "TSComboBoxOpera1"
-        Me.TSComboBoxOpera1.Size = New System.Drawing.Size(139, 23)
-        Me.TSComboBoxOpera1.Text = "*"
+        Me.TSComboBoxOpera1.Size = New System.Drawing.Size(135, 23)
+        Me.TSComboBoxOpera1.Text = "CONTIENE"
         Me.TSComboBoxOpera1.ToolTipText = "Elija entre buscar resultados apróximados o exactos"
         '
         'TSTextBoxFiltro1
@@ -954,14 +1009,14 @@ Partial Class ABMEgresos
         Me.TSTextBoxFiltro1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TSTextBoxFiltro1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSTextBoxFiltro1.Name = "TSTextBoxFiltro1"
-        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(139, 23)
+        Me.TSTextBoxFiltro1.Size = New System.Drawing.Size(135, 23)
         Me.TSTextBoxFiltro1.ToolTipText = "Ingresar valores por los cuales quiere filtrar la tabla."
         '
         'TSLabelFiltro2
         '
         Me.TSLabelFiltro2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSLabelFiltro2.Name = "TSLabelFiltro2"
-        Me.TSLabelFiltro2.Size = New System.Drawing.Size(139, 15)
+        Me.TSLabelFiltro2.Size = New System.Drawing.Size(135, 15)
         Me.TSLabelFiltro2.Text = "Filtro Adicional: "
         '
         'TSComboBoxFiltro2
@@ -972,17 +1027,17 @@ Partial Class ABMEgresos
         Me.TSComboBoxFiltro2.Items.AddRange(New Object() {"", "Nro Comprobante", "Tipo Comprobante", "Proveedor", "Categoria Gasto", "Persona", "Fecha", "Seccional", "Mes Reintegro", "Monto", "Comentario", "Seleccionado"})
         Me.TSComboBoxFiltro2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxFiltro2.Name = "TSComboBoxFiltro2"
-        Me.TSComboBoxFiltro2.Size = New System.Drawing.Size(139, 23)
+        Me.TSComboBoxFiltro2.Size = New System.Drawing.Size(135, 23)
         Me.TSComboBoxFiltro2.ToolTipText = "Seleccione columna por la cual desea filtrar"
         '
         'TSComboBoxOpera2
         '
         Me.TSComboBoxOpera2.FlatStyle = System.Windows.Forms.FlatStyle.Standard
-        Me.TSComboBoxOpera2.Items.AddRange(New Object() {"*", "="})
+        Me.TSComboBoxOpera2.Items.AddRange(New Object() {"CONTIENE", "IGUAL"})
         Me.TSComboBoxOpera2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSComboBoxOpera2.Name = "TSComboBoxOpera2"
-        Me.TSComboBoxOpera2.Size = New System.Drawing.Size(139, 23)
-        Me.TSComboBoxOpera2.Text = "*"
+        Me.TSComboBoxOpera2.Size = New System.Drawing.Size(135, 23)
+        Me.TSComboBoxOpera2.Text = "CONTIENE"
         Me.TSComboBoxOpera2.ToolTipText = "Elija entre buscar resultados apróximados o exactos"
         '
         'TSTextBoxFiltro2
@@ -990,7 +1045,31 @@ Partial Class ABMEgresos
         Me.TSTextBoxFiltro2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TSTextBoxFiltro2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TSTextBoxFiltro2.Name = "TSTextBoxFiltro2"
-        Me.TSTextBoxFiltro2.Size = New System.Drawing.Size(139, 23)
+        Me.TSTextBoxFiltro2.Size = New System.Drawing.Size(135, 23)
+        '
+        'TSButtonFiltrar
+        '
+        Me.TSButtonFiltrar.BackColor = System.Drawing.Color.LightGreen
+        Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
+        Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonFiltrar.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
+        Me.TSButtonFiltrar.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
+        Me.TSButtonFiltrar.Size = New System.Drawing.Size(135, 23)
+        Me.TSButtonFiltrar.Text = "Filtrar"
+        '
+        'TSButtonQuitarFiltros
+        '
+        Me.TSButtonQuitarFiltros.BackColor = System.Drawing.Color.LightBlue
+        Me.TSButtonQuitarFiltros.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSButtonQuitarFiltros.Image = CType(resources.GetObject("TSButtonQuitarFiltros.Image"), System.Drawing.Image)
+        Me.TSButtonQuitarFiltros.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSButtonQuitarFiltros.Margin = New System.Windows.Forms.Padding(3)
+        Me.TSButtonQuitarFiltros.Name = "TSButtonQuitarFiltros"
+        Me.TSButtonQuitarFiltros.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
+        Me.TSButtonQuitarFiltros.Size = New System.Drawing.Size(135, 23)
+        Me.TSButtonQuitarFiltros.Text = "Quitar Filtros"
         '
         'TabPagePapelera
         '
@@ -998,7 +1077,7 @@ Partial Class ABMEgresos
         Me.TabPagePapelera.Location = New System.Drawing.Point(4, 25)
         Me.TabPagePapelera.Name = "TabPagePapelera"
         Me.TabPagePapelera.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPagePapelera.Size = New System.Drawing.Size(747, 427)
+        Me.TabPagePapelera.Size = New System.Drawing.Size(829, 427)
         Me.TabPagePapelera.TabIndex = 2
         Me.TabPagePapelera.Text = "Papelera"
         Me.TabPagePapelera.UseVisualStyleBackColor = True
@@ -1019,7 +1098,7 @@ Partial Class ABMEgresos
         Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraEliminar)
         Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraVaciarPapelera)
         Me.SplitContainerPapelera.Panel2.Controls.Add(Me.bPapeleraRestaurar)
-        Me.SplitContainerPapelera.Size = New System.Drawing.Size(741, 421)
+        Me.SplitContainerPapelera.Size = New System.Drawing.Size(823, 421)
         Me.SplitContainerPapelera.SplitterDistance = 350
         Me.SplitContainerPapelera.TabIndex = 1
         '
@@ -1029,11 +1108,11 @@ Partial Class ABMEgresos
         'ToolStripContainerPapelera.ContentPanel
         '
         Me.ToolStripContainerPapelera.ContentPanel.Controls.Add(Me.DGVPapelera)
-        Me.ToolStripContainerPapelera.ContentPanel.Size = New System.Drawing.Size(741, 325)
+        Me.ToolStripContainerPapelera.ContentPanel.Size = New System.Drawing.Size(823, 325)
         Me.ToolStripContainerPapelera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerPapelera.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainerPapelera.Name = "ToolStripContainerPapelera"
-        Me.ToolStripContainerPapelera.Size = New System.Drawing.Size(741, 350)
+        Me.ToolStripContainerPapelera.Size = New System.Drawing.Size(823, 350)
         Me.ToolStripContainerPapelera.TabIndex = 0
         Me.ToolStripContainerPapelera.Text = "ToolStripContainer1"
         '
@@ -1042,13 +1121,13 @@ Partial Class ABMEgresos
         Me.DGVPapelera.AllowUserToAddRows = False
         Me.DGVPapelera.AllowUserToDeleteRows = False
         Me.DGVPapelera.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGVPapelera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PapeleraId, Me.PapeleraSeleccionado, Me.PapeleraNroComprobante, Me.PapeleraTComprobanteId, Me.PapeleraTipoComprobante, Me.PapeleraProveedorId, Me.PapeleraProveedor, Me.PapeleraCategoriaGastoId, Me.PapeleraCategoriaGasto, Me.PapeleraPersonaId, Me.PapeleraPersona, Me.PapeleraFecha, Me.PapeleraSeccionalId, Me.PapeleraSeccional, Me.PapeleraReintegro, Me.PapeleraMonto, Me.PapeleraComentario})
+        Me.DGVPapelera.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.PapeleraId, Me.PapeleraSeleccionado, Me.PapeleraNroComprobante, Me.PapeleraProveedorId, Me.PapeleraProveedor, Me.PapeleraCategoriaGastoId, Me.PapeleraCategoriaGasto, Me.PapeleraPersonaId, Me.PapeleraPersona, Me.PapeleraFecha, Me.PapeleraTComprobanteId, Me.PapeleraTipoComprobante, Me.PapeleraReintegro, Me.PapeleraSeccionalId, Me.PapeleraSeccional, Me.PapeleraMonto, Me.PapeleraComentario})
         Me.DGVPapelera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DGVPapelera.Location = New System.Drawing.Point(0, 0)
         Me.DGVPapelera.Name = "DGVPapelera"
         Me.DGVPapelera.ReadOnly = True
         Me.DGVPapelera.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGVPapelera.Size = New System.Drawing.Size(741, 325)
+        Me.DGVPapelera.Size = New System.Drawing.Size(823, 325)
         Me.DGVPapelera.TabIndex = 0
         '
         'PapeleraId
@@ -1060,29 +1139,19 @@ Partial Class ABMEgresos
         '
         'PapeleraSeleccionado
         '
-        Me.PapeleraSeleccionado.HeaderText = "Seleccionado"
+        Me.PapeleraSeleccionado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader
+        Me.PapeleraSeleccionado.HeaderText = "Check"
         Me.PapeleraSeleccionado.Name = "PapeleraSeleccionado"
         Me.PapeleraSeleccionado.ReadOnly = True
+        Me.PapeleraSeleccionado.Width = 52
         '
         'PapeleraNroComprobante
         '
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraNroComprobante.DefaultCellStyle = DataGridViewCellStyle11
         Me.PapeleraNroComprobante.HeaderText = "Nro Comprobante"
         Me.PapeleraNroComprobante.Name = "PapeleraNroComprobante"
         Me.PapeleraNroComprobante.ReadOnly = True
-        '
-        'PapeleraTComprobanteId
-        '
-        Me.PapeleraTComprobanteId.HeaderText = "tipo_comprobante_id"
-        Me.PapeleraTComprobanteId.Name = "PapeleraTComprobanteId"
-        Me.PapeleraTComprobanteId.ReadOnly = True
-        Me.PapeleraTComprobanteId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.PapeleraTComprobanteId.Visible = False
-        '
-        'PapeleraTipoComprobante
-        '
-        Me.PapeleraTipoComprobante.HeaderText = "Tipo Comprobante"
-        Me.PapeleraTipoComprobante.Name = "PapeleraTipoComprobante"
-        Me.PapeleraTipoComprobante.ReadOnly = True
         '
         'PapeleraProveedorId
         '
@@ -1094,6 +1163,8 @@ Partial Class ABMEgresos
         '
         'PapeleraProveedor
         '
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraProveedor.DefaultCellStyle = DataGridViewCellStyle12
         Me.PapeleraProveedor.HeaderText = "Proveedor"
         Me.PapeleraProveedor.Name = "PapeleraProveedor"
         Me.PapeleraProveedor.ReadOnly = True
@@ -1108,6 +1179,8 @@ Partial Class ABMEgresos
         '
         'PapeleraCategoriaGasto
         '
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraCategoriaGasto.DefaultCellStyle = DataGridViewCellStyle13
         Me.PapeleraCategoriaGasto.HeaderText = "Categoria Gasto"
         Me.PapeleraCategoriaGasto.Name = "PapeleraCategoriaGasto"
         Me.PapeleraCategoriaGasto.ReadOnly = True
@@ -1122,15 +1195,43 @@ Partial Class ABMEgresos
         '
         'PapeleraPersona
         '
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraPersona.DefaultCellStyle = DataGridViewCellStyle14
         Me.PapeleraPersona.HeaderText = "Persona"
         Me.PapeleraPersona.Name = "PapeleraPersona"
         Me.PapeleraPersona.ReadOnly = True
         '
         'PapeleraFecha
         '
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraFecha.DefaultCellStyle = DataGridViewCellStyle15
         Me.PapeleraFecha.HeaderText = "Fecha"
         Me.PapeleraFecha.Name = "PapeleraFecha"
         Me.PapeleraFecha.ReadOnly = True
+        '
+        'PapeleraTComprobanteId
+        '
+        Me.PapeleraTComprobanteId.HeaderText = "tipo_comprobante_id"
+        Me.PapeleraTComprobanteId.Name = "PapeleraTComprobanteId"
+        Me.PapeleraTComprobanteId.ReadOnly = True
+        Me.PapeleraTComprobanteId.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.PapeleraTComprobanteId.Visible = False
+        '
+        'PapeleraTipoComprobante
+        '
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraTipoComprobante.DefaultCellStyle = DataGridViewCellStyle16
+        Me.PapeleraTipoComprobante.HeaderText = "Tipo Comprobante"
+        Me.PapeleraTipoComprobante.Name = "PapeleraTipoComprobante"
+        Me.PapeleraTipoComprobante.ReadOnly = True
+        '
+        'PapeleraReintegro
+        '
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraReintegro.DefaultCellStyle = DataGridViewCellStyle17
+        Me.PapeleraReintegro.HeaderText = "Mes Reintegro"
+        Me.PapeleraReintegro.Name = "PapeleraReintegro"
+        Me.PapeleraReintegro.ReadOnly = True
         '
         'PapeleraSeccionalId
         '
@@ -1142,24 +1243,24 @@ Partial Class ABMEgresos
         '
         'PapeleraSeccional
         '
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraSeccional.DefaultCellStyle = DataGridViewCellStyle18
         Me.PapeleraSeccional.HeaderText = "Seccional"
         Me.PapeleraSeccional.Name = "PapeleraSeccional"
         Me.PapeleraSeccional.ReadOnly = True
         '
-        'PapeleraReintegro
-        '
-        Me.PapeleraReintegro.HeaderText = "Mes Reintegro"
-        Me.PapeleraReintegro.Name = "PapeleraReintegro"
-        Me.PapeleraReintegro.ReadOnly = True
-        '
         'PapeleraMonto
         '
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraMonto.DefaultCellStyle = DataGridViewCellStyle19
         Me.PapeleraMonto.HeaderText = "Monto"
         Me.PapeleraMonto.Name = "PapeleraMonto"
         Me.PapeleraMonto.ReadOnly = True
         '
         'PapeleraComentario
         '
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.PapeleraComentario.DefaultCellStyle = DataGridViewCellStyle20
         Me.PapeleraComentario.HeaderText = "Comentario"
         Me.PapeleraComentario.Name = "PapeleraComentario"
         Me.PapeleraComentario.ReadOnly = True
@@ -1199,30 +1300,6 @@ Partial Class ABMEgresos
         Me.bPapeleraRestaurar.Text = "Restaurar"
         Me.bPapeleraRestaurar.UseVisualStyleBackColor = True
         '
-        'TSButtonFiltrar
-        '
-        Me.TSButtonFiltrar.BackColor = System.Drawing.Color.LightGreen
-        Me.TSButtonFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSButtonFiltrar.Image = CType(resources.GetObject("TSButtonFiltrar.Image"), System.Drawing.Image)
-        Me.TSButtonFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSButtonFiltrar.Margin = New System.Windows.Forms.Padding(3)
-        Me.TSButtonFiltrar.Name = "TSButtonFiltrar"
-        Me.TSButtonFiltrar.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
-        Me.TSButtonFiltrar.Size = New System.Drawing.Size(139, 23)
-        Me.TSButtonFiltrar.Text = "Filtrar"
-        '
-        'TSButtonQuitarFiltros
-        '
-        Me.TSButtonQuitarFiltros.BackColor = System.Drawing.Color.LightBlue
-        Me.TSButtonQuitarFiltros.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSButtonQuitarFiltros.Image = CType(resources.GetObject("TSButtonQuitarFiltros.Image"), System.Drawing.Image)
-        Me.TSButtonQuitarFiltros.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSButtonQuitarFiltros.Margin = New System.Windows.Forms.Padding(3)
-        Me.TSButtonQuitarFiltros.Name = "TSButtonQuitarFiltros"
-        Me.TSButtonQuitarFiltros.Padding = New System.Windows.Forms.Padding(10, 2, 10, 2)
-        Me.TSButtonQuitarFiltros.Size = New System.Drawing.Size(139, 23)
-        Me.TSButtonQuitarFiltros.Text = "Quitar Filtros"
-        '
         'ABMEgresos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1230,7 +1307,7 @@ Partial Class ABMEgresos
         Me.AutoSize = True
         Me.Controls.Add(Me.TabControl)
         Me.Name = "ABMEgresos"
-        Me.Size = New System.Drawing.Size(755, 456)
+        Me.Size = New System.Drawing.Size(837, 456)
         Me.TabControl.ResumeLayout(False)
         Me.TabPageAgregar.ResumeLayout(False)
         Me.TabPageAgregar.PerformLayout()
@@ -1265,7 +1342,6 @@ Partial Class ABMEgresos
 
     Friend WithEvents TabControl As TabControl
     Friend WithEvents TabPageAgregar As TabPage
-    Friend WithEvents lb_Titulo As Label
     Friend WithEvents TabPageModificar As TabPage
     Friend WithEvents TabPagePapelera As TabPage
     Friend WithEvents SplitContainerPapelera As SplitContainer
@@ -1274,43 +1350,9 @@ Partial Class ABMEgresos
     Friend WithEvents bPapeleraRestaurar As Button
     Friend WithEvents bPapeleraVaciarPapelera As Button
     Friend WithEvents bPapeleraEliminar As Button
-    Friend WithEvents PapeleraId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraSeleccionado As DataGridViewCheckBoxColumn
-    Friend WithEvents PapeleraNroComprobante As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraTComprobanteId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraTipoComprobante As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraProveedorId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraProveedor As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraCategoriaGastoId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraCategoriaGasto As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraPersonaId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraPersona As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraFecha As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraSeccionalId As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraSeccional As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraReintegro As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraMonto As DataGridViewTextBoxColumn
-    Friend WithEvents PapeleraComentario As DataGridViewTextBoxColumn
     Friend WithEvents ToolStripContainerModificar As ToolStripContainer
     Friend WithEvents SplitContainerModificar As SplitContainer
     Friend WithEvents DGVModificar As DataGridView
-    Friend WithEvents id As DataGridViewTextBoxColumn
-    Friend WithEvents seleccionado As DataGridViewCheckBoxColumn
-    Friend WithEvents nro_comprobante As DataGridViewTextBoxColumn
-    Friend WithEvents tipo_comprobante_id As DataGridViewTextBoxColumn
-    Friend WithEvents tipo_comprobante_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents proveedor_id As DataGridViewTextBoxColumn
-    Friend WithEvents proveedor_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents categoria_gasto_id As DataGridViewTextBoxColumn
-    Friend WithEvents categoria_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents persona_id As DataGridViewTextBoxColumn
-    Friend WithEvents persona_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents fecha As DataGridViewTextBoxColumn
-    Friend WithEvents seccional_id As DataGridViewTextBoxColumn
-    Friend WithEvents seccional_nombre As DataGridViewTextBoxColumn
-    Friend WithEvents mes_reintegro As DataGridViewTextBoxColumn
-    Friend WithEvents monto As DataGridViewTextBoxColumn
-    Friend WithEvents comentario As DataGridViewTextBoxColumn
     Friend WithEvents ButtonEliminar As Button
     Friend WithEvents LabelSeccional As Label
     Friend WithEvents ComboBoxSeccional As ComboBox
@@ -1376,4 +1418,40 @@ Partial Class ABMEgresos
     Friend WithEvents tbProveedor As TextBox
     Friend WithEvents TSLabelMes As ToolStripLabel
     Friend WithEvents TSComboBoxMes As ToolStripComboBox
+    Friend WithEvents lb_Titulo As Label
+    Friend WithEvents btn_Cancelar As Button
+    Friend WithEvents id As DataGridViewTextBoxColumn
+    Friend WithEvents seleccionado As DataGridViewCheckBoxColumn
+    Friend WithEvents nro_comprobante As DataGridViewTextBoxColumn
+    Friend WithEvents proveedor_id As DataGridViewTextBoxColumn
+    Friend WithEvents proveedor_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents categoria_gasto_id As DataGridViewTextBoxColumn
+    Friend WithEvents categoria_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents persona_id As DataGridViewTextBoxColumn
+    Friend WithEvents persona_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents fecha As DataGridViewTextBoxColumn
+    Friend WithEvents tipo_comprobante_id As DataGridViewTextBoxColumn
+    Friend WithEvents tipo_comprobante_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents mes_reintegro As DataGridViewTextBoxColumn
+    Friend WithEvents seccional_id As DataGridViewTextBoxColumn
+    Friend WithEvents seccional_nombre As DataGridViewTextBoxColumn
+    Friend WithEvents monto As DataGridViewTextBoxColumn
+    Friend WithEvents comentario As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraSeleccionado As DataGridViewCheckBoxColumn
+    Friend WithEvents PapeleraNroComprobante As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraProveedorId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraProveedor As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraCategoriaGastoId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraCategoriaGasto As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraPersonaId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraPersona As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraFecha As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraTComprobanteId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraTipoComprobante As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraReintegro As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraSeccionalId As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraSeccional As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraMonto As DataGridViewTextBoxColumn
+    Friend WithEvents PapeleraComentario As DataGridViewTextBoxColumn
 End Class

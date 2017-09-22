@@ -44,7 +44,7 @@
 
 #Region "Helpers"
 
-    Public Sub cargarGrid(ByVal ingresos As DataTable, ByVal coparticipacion As Double())
+    Public Sub cargarGrid(ByVal ingresos As DataTable)
 
         'Creamos las Columnas
         columnas.Add(New KeyValuePair(Of String, String)("meses", "Mes de:"))
@@ -54,7 +54,7 @@
         columnas.Add(New KeyValuePair(Of String, String)("totales", "TOTAL"))
         crearColumna(dgv, columnas)
 
-        Dim meses As String()
+        Dim meses As String() = {}
         Select Case trimestre
             Case "Primero"
                 meses = {"Enero", "Febrero", "Marzo"}
@@ -76,10 +76,12 @@
             'Total Provincial
             dgv.Rows.Add("", "Total Provincial:", 0, "", "")
             'Coparticipacion
-            dgv.Rows.Add("", "Coparticipacion:", (coparticipacion(0) + coparticipacion(1) + coparticipacion(2)), "", "")
+            dgv.Rows.Add("", "Coparticipacion:", 0, "", "")
             'Total General
             dgv.Rows.Add("", "", "", "Total General:", 0)
         Else
+
+            Dim totProv As Double = ingresos.Rows(0).Item("ingresos_prov") + ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_prov")
 
             'Mes 1
             dgv.Rows.Add(meses(0), ingresos.Rows(0).Item("ingresos_central"), ingresos.Rows(0).Item("ingresos_prov"), ingresos.Rows(0).Item("ingresos_otros"),
@@ -91,10 +93,9 @@
             dgv.Rows.Add(meses(2), ingresos.Rows(2).Item("ingresos_central"), ingresos.Rows(2).Item("ingresos_prov"), ingresos.Rows(2).Item("ingresos_otros"),
                 (ingresos.Rows(2).Item("ingresos_central") + ingresos.Rows(2).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_otros")))
             'Total Provincial
-            dgv.Rows.Add("", "Total Provincial:", ingresos.Rows(0).Item("ingresos_prov") +
-                         ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_prov"), "", "")
+            dgv.Rows.Add("", "Total Provincial:", totProv, "", "")
             'Coparticipacion
-            dgv.Rows.Add("", "Coparticipacion:", (coparticipacion(0) + coparticipacion(1) + coparticipacion(2)), "", "")
+            dgv.Rows.Add("", "Coparticipacion:", (totProv * 0.5), "", "")
             'Total General
             dgv.Rows.Add("", "", "", "Total General:", obtenerIngresos(trimestre, año, "full"))
         End If

@@ -53,10 +53,10 @@ Partial Class ABMIngresos
         'lb_Titulo
         '
         Me.lb_Titulo.AutoSize = True
-        Me.lb_Titulo.Font = New System.Drawing.Font("Comic Sans MS", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Titulo.Location = New System.Drawing.Point(305, 13)
+        Me.lb_Titulo.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Titulo.Location = New System.Drawing.Point(359, 16)
         Me.lb_Titulo.Name = "lb_Titulo"
-        Me.lb_Titulo.Size = New System.Drawing.Size(128, 38)
+        Me.lb_Titulo.Size = New System.Drawing.Size(135, 33)
         Me.lb_Titulo.TabIndex = 0
         Me.lb_Titulo.Text = "Ingresos"
         '
@@ -69,7 +69,7 @@ Partial Class ABMIngresos
         Me.cb_Trimestre.FormattingEnabled = True
         Me.cb_Trimestre.ItemHeight = 16
         Me.cb_Trimestre.Items.AddRange(New Object() {"Primero", "Segundo", "Tercero", "Cuarto"})
-        Me.cb_Trimestre.Location = New System.Drawing.Point(353, 35)
+        Me.cb_Trimestre.Location = New System.Drawing.Point(386, 34)
         Me.cb_Trimestre.Name = "cb_Trimestre"
         Me.cb_Trimestre.Size = New System.Drawing.Size(121, 24)
         Me.cb_Trimestre.TabIndex = 1
@@ -77,21 +77,20 @@ Partial Class ABMIngresos
         'lb_Trimestre
         '
         Me.lb_Trimestre.AutoSize = True
-        Me.lb_Trimestre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lb_Trimestre.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Trimestre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lb_Trimestre.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.lb_Trimestre.Location = New System.Drawing.Point(236, 35)
+        Me.lb_Trimestre.Location = New System.Drawing.Point(296, 34)
         Me.lb_Trimestre.Name = "lb_Trimestre"
-        Me.lb_Trimestre.Size = New System.Drawing.Size(96, 25)
+        Me.lb_Trimestre.Size = New System.Drawing.Size(84, 20)
         Me.lb_Trimestre.TabIndex = 2
-        Me.lb_Trimestre.Text = "Trimestre:"
+        Me.lb_Trimestre.Text = "Trimestre"
         '
         'lb_Mes1
         '
         Me.lb_Mes1.AutoSize = True
         Me.lb_Mes1.BackColor = System.Drawing.SystemColors.Control
         Me.lb_Mes1.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Mes1.Location = New System.Drawing.Point(9, 75)
+        Me.lb_Mes1.Location = New System.Drawing.Point(19, 86)
         Me.lb_Mes1.Name = "lb_Mes1"
         Me.lb_Mes1.Size = New System.Drawing.Size(50, 23)
         Me.lb_Mes1.TabIndex = 3
@@ -102,7 +101,7 @@ Partial Class ABMIngresos
         '
         Me.lb_Mes2.AutoSize = True
         Me.lb_Mes2.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Mes2.Location = New System.Drawing.Point(9, 127)
+        Me.lb_Mes2.Location = New System.Drawing.Point(19, 145)
         Me.lb_Mes2.Name = "lb_Mes2"
         Me.lb_Mes2.Size = New System.Drawing.Size(50, 23)
         Me.lb_Mes2.TabIndex = 4
@@ -113,7 +112,7 @@ Partial Class ABMIngresos
         '
         Me.lb_Mes3.AutoSize = True
         Me.lb_Mes3.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Mes3.Location = New System.Drawing.Point(9, 187)
+        Me.lb_Mes3.Location = New System.Drawing.Point(19, 210)
         Me.lb_Mes3.Name = "lb_Mes3"
         Me.lb_Mes3.Size = New System.Drawing.Size(50, 23)
         Me.lb_Mes3.TabIndex = 5
@@ -123,7 +122,7 @@ Partial Class ABMIngresos
         'tb_IngresosC1
         '
         Me.tb_IngresosC1.Enabled = False
-        Me.tb_IngresosC1.Location = New System.Drawing.Point(115, 74)
+        Me.tb_IngresosC1.Location = New System.Drawing.Point(124, 85)
         Me.tb_IngresosC1.Name = "tb_IngresosC1"
         Me.tb_IngresosC1.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosC1.TabIndex = 2
@@ -132,7 +131,7 @@ Partial Class ABMIngresos
         'tb_IngresosC2
         '
         Me.tb_IngresosC2.Enabled = False
-        Me.tb_IngresosC2.Location = New System.Drawing.Point(115, 126)
+        Me.tb_IngresosC2.Location = New System.Drawing.Point(124, 144)
         Me.tb_IngresosC2.Name = "tb_IngresosC2"
         Me.tb_IngresosC2.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosC2.TabIndex = 5
@@ -141,7 +140,7 @@ Partial Class ABMIngresos
         'tb_IngresosC3
         '
         Me.tb_IngresosC3.Enabled = False
-        Me.tb_IngresosC3.Location = New System.Drawing.Point(115, 186)
+        Me.tb_IngresosC3.Location = New System.Drawing.Point(124, 209)
         Me.tb_IngresosC3.Name = "tb_IngresosC3"
         Me.tb_IngresosC3.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosC3.TabIndex = 8
@@ -150,7 +149,7 @@ Partial Class ABMIngresos
         'tb_IngresosP1
         '
         Me.tb_IngresosP1.Enabled = False
-        Me.tb_IngresosP1.Location = New System.Drawing.Point(262, 74)
+        Me.tb_IngresosP1.Location = New System.Drawing.Point(284, 85)
         Me.tb_IngresosP1.Name = "tb_IngresosP1"
         Me.tb_IngresosP1.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosP1.TabIndex = 3
@@ -159,7 +158,7 @@ Partial Class ABMIngresos
         'tb_IngresosP2
         '
         Me.tb_IngresosP2.Enabled = False
-        Me.tb_IngresosP2.Location = New System.Drawing.Point(262, 126)
+        Me.tb_IngresosP2.Location = New System.Drawing.Point(284, 144)
         Me.tb_IngresosP2.Name = "tb_IngresosP2"
         Me.tb_IngresosP2.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosP2.TabIndex = 6
@@ -168,7 +167,7 @@ Partial Class ABMIngresos
         'tb_IngresosP3
         '
         Me.tb_IngresosP3.Enabled = False
-        Me.tb_IngresosP3.Location = New System.Drawing.Point(262, 186)
+        Me.tb_IngresosP3.Location = New System.Drawing.Point(284, 209)
         Me.tb_IngresosP3.Name = "tb_IngresosP3"
         Me.tb_IngresosP3.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosP3.TabIndex = 9
@@ -177,9 +176,9 @@ Partial Class ABMIngresos
         'btn_Guardar
         '
         Me.btn_Guardar.Enabled = False
-        Me.btn_Guardar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Guardar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_Guardar.ForeColor = System.Drawing.Color.Green
-        Me.btn_Guardar.Location = New System.Drawing.Point(621, 283)
+        Me.btn_Guardar.Location = New System.Drawing.Point(680, 289)
         Me.btn_Guardar.Name = "btn_Guardar"
         Me.btn_Guardar.Size = New System.Drawing.Size(116, 63)
         Me.btn_Guardar.TabIndex = 11
@@ -189,8 +188,8 @@ Partial Class ABMIngresos
         'btn_Modificar
         '
         Me.btn_Modificar.Enabled = False
-        Me.btn_Modificar.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_Modificar.Location = New System.Drawing.Point(621, 122)
+        Me.btn_Modificar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Modificar.Location = New System.Drawing.Point(680, 128)
         Me.btn_Modificar.Name = "btn_Modificar"
         Me.btn_Modificar.Size = New System.Drawing.Size(116, 61)
         Me.btn_Modificar.TabIndex = 12
@@ -200,16 +199,16 @@ Partial Class ABMIngresos
         'lb_Año
         '
         Me.lb_Año.AutoSize = True
-        Me.lb_Año.Font = New System.Drawing.Font("Comic Sans MS", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb_Año.Location = New System.Drawing.Point(89, 35)
+        Me.lb_Año.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lb_Año.Location = New System.Drawing.Point(108, 34)
         Me.lb_Año.Name = "lb_Año"
-        Me.lb_Año.Size = New System.Drawing.Size(38, 23)
+        Me.lb_Año.Size = New System.Drawing.Size(41, 20)
         Me.lb_Año.TabIndex = 11
         Me.lb_Año.Text = "Año"
         '
         'tb_Año
         '
-        Me.tb_Año.Location = New System.Drawing.Point(133, 35)
+        Me.tb_Año.Location = New System.Drawing.Point(152, 31)
         Me.tb_Año.MaxLength = 4
         Me.tb_Año.Name = "tb_Año"
         Me.tb_Año.ReadOnly = True
@@ -220,7 +219,7 @@ Partial Class ABMIngresos
         'tb_IngresosO1
         '
         Me.tb_IngresosO1.Enabled = False
-        Me.tb_IngresosO1.Location = New System.Drawing.Point(411, 74)
+        Me.tb_IngresosO1.Location = New System.Drawing.Point(454, 85)
         Me.tb_IngresosO1.Name = "tb_IngresosO1"
         Me.tb_IngresosO1.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosO1.TabIndex = 4
@@ -229,7 +228,7 @@ Partial Class ABMIngresos
         'tb_IngresosO2
         '
         Me.tb_IngresosO2.Enabled = False
-        Me.tb_IngresosO2.Location = New System.Drawing.Point(411, 126)
+        Me.tb_IngresosO2.Location = New System.Drawing.Point(454, 144)
         Me.tb_IngresosO2.Name = "tb_IngresosO2"
         Me.tb_IngresosO2.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosO2.TabIndex = 7
@@ -238,7 +237,7 @@ Partial Class ABMIngresos
         'tb_IngresosO3
         '
         Me.tb_IngresosO3.Enabled = False
-        Me.tb_IngresosO3.Location = New System.Drawing.Point(411, 186)
+        Me.tb_IngresosO3.Location = New System.Drawing.Point(454, 209)
         Me.tb_IngresosO3.Name = "tb_IngresosO3"
         Me.tb_IngresosO3.Size = New System.Drawing.Size(106, 26)
         Me.tb_IngresosO3.TabIndex = 10
@@ -247,7 +246,7 @@ Partial Class ABMIngresos
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(243, 42)
+        Me.Label1.Location = New System.Drawing.Point(265, 42)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(158, 20)
         Me.Label1.TabIndex = 16
@@ -257,7 +256,7 @@ Partial Class ABMIngresos
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(107, 42)
+        Me.Label2.Location = New System.Drawing.Point(116, 42)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(126, 20)
         Me.Label2.TabIndex = 17
@@ -267,7 +266,7 @@ Partial Class ABMIngresos
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(407, 42)
+        Me.Label3.Location = New System.Drawing.Point(450, 42)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(114, 20)
         Me.Label3.TabIndex = 18
@@ -282,7 +281,7 @@ Partial Class ABMIngresos
         Me.GroupBoxTrimestre.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxTrimestre.Location = New System.Drawing.Point(42, 66)
         Me.GroupBoxTrimestre.Name = "GroupBoxTrimestre"
-        Me.GroupBoxTrimestre.Size = New System.Drawing.Size(547, 79)
+        Me.GroupBoxTrimestre.Size = New System.Drawing.Size(605, 79)
         Me.GroupBoxTrimestre.TabIndex = 19
         Me.GroupBoxTrimestre.TabStop = False
         Me.GroupBoxTrimestre.Text = "Seleccione Trimestre"
@@ -307,7 +306,7 @@ Partial Class ABMIngresos
         Me.GroupBoxIngresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxIngresos.Location = New System.Drawing.Point(42, 151)
         Me.GroupBoxIngresos.Name = "GroupBoxIngresos"
-        Me.GroupBoxIngresos.Size = New System.Drawing.Size(547, 238)
+        Me.GroupBoxIngresos.Size = New System.Drawing.Size(605, 267)
         Me.GroupBoxIngresos.TabIndex = 20
         Me.GroupBoxIngresos.TabStop = False
         Me.GroupBoxIngresos.Text = "Ingresos Mensuales"
@@ -322,7 +321,7 @@ Partial Class ABMIngresos
         Me.Controls.Add(Me.btn_Guardar)
         Me.Controls.Add(Me.lb_Titulo)
         Me.Name = "ABMIngresos"
-        Me.Size = New System.Drawing.Size(773, 420)
+        Me.Size = New System.Drawing.Size(837, 456)
         Me.GroupBoxTrimestre.ResumeLayout(False)
         Me.GroupBoxTrimestre.PerformLayout()
         Me.GroupBoxIngresos.ResumeLayout(False)

@@ -31,14 +31,19 @@ Partial Class Principal
         Me.TStripLabelSaldo = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SplitContainerPrincipal = New System.Windows.Forms.SplitContainer()
-        Me.RadioButtonSubirReporte = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonVerReporte = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonABMAdmin = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonEgresos = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonIngresos = New System.Windows.Forms.RadioButton()
+        Me.btn_Administrar = New System.Windows.Forms.Button()
+        Me.btn_VerReporte = New System.Windows.Forms.Button()
+        Me.btn_Egresos = New System.Windows.Forms.Button()
+        Me.btn_Ingresos = New System.Windows.Forms.Button()
+        Me.bttn_Login = New System.Windows.Forms.Button()
         Me.MenuStripPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CerrarTrimestreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SeccionalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdministrarUsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.ToolStripContainerPrincipal.BottomToolStripPanel.SuspendLayout()
         Me.ToolStripContainerPrincipal.ContentPanel.SuspendLayout()
@@ -62,13 +67,13 @@ Partial Class Principal
         'ToolStripContainerPrincipal.ContentPanel
         '
         Me.ToolStripContainerPrincipal.ContentPanel.Controls.Add(Me.SplitContainerPrincipal)
-        Me.ToolStripContainerPrincipal.ContentPanel.Size = New System.Drawing.Size(982, 465)
+        Me.ToolStripContainerPrincipal.ContentPanel.Size = New System.Drawing.Size(1047, 465)
         Me.ToolStripContainerPrincipal.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ToolStripContainerPrincipal.LeftToolStripPanelVisible = False
         Me.ToolStripContainerPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripContainerPrincipal.Name = "ToolStripContainerPrincipal"
         Me.ToolStripContainerPrincipal.RightToolStripPanelVisible = False
-        Me.ToolStripContainerPrincipal.Size = New System.Drawing.Size(982, 511)
+        Me.ToolStripContainerPrincipal.Size = New System.Drawing.Size(1047, 511)
         Me.ToolStripContainerPrincipal.TabIndex = 0
         Me.ToolStripContainerPrincipal.Text = "ToolStripContainer1"
         '
@@ -82,15 +87,15 @@ Partial Class Principal
         Me.StatusStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stat_Label, Me.stat_Bar, Me.TStripLabelSaldo, Me.ToolStripStatusLabel1})
         Me.StatusStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.StatusStripPrincipal.Name = "StatusStripPrincipal"
-        Me.StatusStripPrincipal.Size = New System.Drawing.Size(982, 22)
+        Me.StatusStripPrincipal.Size = New System.Drawing.Size(1047, 22)
         Me.StatusStripPrincipal.TabIndex = 0
         '
         'stat_Label
         '
         Me.stat_Label.Name = "stat_Label"
-        Me.stat_Label.Size = New System.Drawing.Size(928, 17)
+        Me.stat_Label.Size = New System.Drawing.Size(1022, 17)
         Me.stat_Label.Spring = True
-        Me.stat_Label.Text = "Conectado"
+        Me.stat_Label.Text = "Desconectado"
         Me.stat_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'stat_Bar
@@ -102,8 +107,8 @@ Partial Class Principal
         'TStripLabelSaldo
         '
         Me.TStripLabelSaldo.Name = "TStripLabelSaldo"
-        Me.TStripLabelSaldo.Size = New System.Drawing.Size(39, 17)
-        Me.TStripLabelSaldo.Text = "Saldo:"
+        Me.TStripLabelSaldo.Size = New System.Drawing.Size(10, 17)
+        Me.TStripLabelSaldo.Text = " "
         '
         'ToolStripStatusLabel1
         '
@@ -124,117 +129,162 @@ Partial Class Principal
         '
         'SplitContainerPrincipal.Panel1
         '
-        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonSubirReporte)
-        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonVerReporte)
-        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonABMAdmin)
-        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonEgresos)
-        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.RadioButtonIngresos)
-        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(982, 465)
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.btn_Administrar)
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.btn_VerReporte)
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.btn_Egresos)
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.btn_Ingresos)
+        Me.SplitContainerPrincipal.Panel1.Controls.Add(Me.bttn_Login)
+        Me.SplitContainerPrincipal.Size = New System.Drawing.Size(1047, 465)
         Me.SplitContainerPrincipal.SplitterDistance = 200
         Me.SplitContainerPrincipal.SplitterWidth = 1
         Me.SplitContainerPrincipal.TabIndex = 0
         '
-        'RadioButtonSubirReporte
+        'btn_Administrar
         '
-        Me.RadioButtonSubirReporte.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonSubirReporte.AutoSize = True
-        Me.RadioButtonSubirReporte.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonSubirReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonSubirReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonSubirReporte.Location = New System.Drawing.Point(3, 271)
-        Me.RadioButtonSubirReporte.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonSubirReporte.Name = "RadioButtonSubirReporte"
-        Me.RadioButtonSubirReporte.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonSubirReporte.TabIndex = 5
-        Me.RadioButtonSubirReporte.Text = "Subir Reporte"
-        Me.RadioButtonSubirReporte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonSubirReporte.UseVisualStyleBackColor = False
+        Me.btn_Administrar.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_Administrar.Enabled = False
+        Me.btn_Administrar.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btn_Administrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.btn_Administrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.btn_Administrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_Administrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Administrar.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btn_Administrar.Location = New System.Drawing.Point(3, 390)
+        Me.btn_Administrar.Name = "btn_Administrar"
+        Me.btn_Administrar.Size = New System.Drawing.Size(190, 30)
+        Me.btn_Administrar.TabIndex = 6
+        Me.btn_Administrar.TabStop = False
+        Me.btn_Administrar.Text = "Administrar"
+        Me.btn_Administrar.UseVisualStyleBackColor = False
         '
-        'RadioButtonVerReporte
+        'btn_VerReporte
         '
-        Me.RadioButtonVerReporte.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonVerReporte.AutoSize = True
-        Me.RadioButtonVerReporte.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonVerReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonVerReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonVerReporte.Location = New System.Drawing.Point(3, 216)
-        Me.RadioButtonVerReporte.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonVerReporte.Name = "RadioButtonVerReporte"
-        Me.RadioButtonVerReporte.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonVerReporte.TabIndex = 4
-        Me.RadioButtonVerReporte.Text = "Ver Reporte"
-        Me.RadioButtonVerReporte.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonVerReporte.UseVisualStyleBackColor = False
+        Me.btn_VerReporte.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_VerReporte.Enabled = False
+        Me.btn_VerReporte.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btn_VerReporte.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.btn_VerReporte.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.btn_VerReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_VerReporte.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_VerReporte.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btn_VerReporte.Location = New System.Drawing.Point(3, 215)
+        Me.btn_VerReporte.Name = "btn_VerReporte"
+        Me.btn_VerReporte.Size = New System.Drawing.Size(190, 30)
+        Me.btn_VerReporte.TabIndex = 3
+        Me.btn_VerReporte.TabStop = False
+        Me.btn_VerReporte.Text = "Informes"
+        Me.btn_VerReporte.UseVisualStyleBackColor = False
         '
-        'RadioButtonABMAdmin
+        'btn_Egresos
         '
-        Me.RadioButtonABMAdmin.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonABMAdmin.AutoSize = True
-        Me.RadioButtonABMAdmin.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonABMAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonABMAdmin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonABMAdmin.Location = New System.Drawing.Point(3, 417)
-        Me.RadioButtonABMAdmin.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonABMAdmin.Name = "RadioButtonABMAdmin"
-        Me.RadioButtonABMAdmin.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonABMAdmin.TabIndex = 2
-        Me.RadioButtonABMAdmin.Text = "Administrar"
-        Me.RadioButtonABMAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonABMAdmin.UseVisualStyleBackColor = False
+        Me.btn_Egresos.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_Egresos.Enabled = False
+        Me.btn_Egresos.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btn_Egresos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.btn_Egresos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.btn_Egresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_Egresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Egresos.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btn_Egresos.Location = New System.Drawing.Point(3, 105)
+        Me.btn_Egresos.Name = "btn_Egresos"
+        Me.btn_Egresos.Size = New System.Drawing.Size(190, 30)
+        Me.btn_Egresos.TabIndex = 2
+        Me.btn_Egresos.TabStop = False
+        Me.btn_Egresos.Text = "Egresos"
+        Me.btn_Egresos.UseVisualStyleBackColor = False
         '
-        'RadioButtonEgresos
+        'btn_Ingresos
         '
-        Me.RadioButtonEgresos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonEgresos.AutoSize = True
-        Me.RadioButtonEgresos.BackColor = System.Drawing.SystemColors.Control
-        Me.RadioButtonEgresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonEgresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonEgresos.Location = New System.Drawing.Point(3, 70)
-        Me.RadioButtonEgresos.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonEgresos.Name = "RadioButtonEgresos"
-        Me.RadioButtonEgresos.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonEgresos.TabIndex = 1
-        Me.RadioButtonEgresos.Text = "Egresos"
-        Me.RadioButtonEgresos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonEgresos.UseVisualStyleBackColor = False
+        Me.btn_Ingresos.BackColor = System.Drawing.SystemColors.Control
+        Me.btn_Ingresos.Enabled = False
+        Me.btn_Ingresos.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.btn_Ingresos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.btn_Ingresos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.btn_Ingresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_Ingresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Ingresos.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.btn_Ingresos.Location = New System.Drawing.Point(3, 41)
+        Me.btn_Ingresos.Name = "btn_Ingresos"
+        Me.btn_Ingresos.Size = New System.Drawing.Size(190, 30)
+        Me.btn_Ingresos.TabIndex = 1
+        Me.btn_Ingresos.TabStop = False
+        Me.btn_Ingresos.Text = "Ingresos"
+        Me.btn_Ingresos.UseVisualStyleBackColor = False
         '
-        'RadioButtonIngresos
+        'bttn_Login
         '
-        Me.RadioButtonIngresos.Appearance = System.Windows.Forms.Appearance.Button
-        Me.RadioButtonIngresos.AutoSize = True
-        Me.RadioButtonIngresos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RadioButtonIngresos.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RadioButtonIngresos.Location = New System.Drawing.Point(3, 13)
-        Me.RadioButtonIngresos.MinimumSize = New System.Drawing.Size(190, 30)
-        Me.RadioButtonIngresos.Name = "RadioButtonIngresos"
-        Me.RadioButtonIngresos.Size = New System.Drawing.Size(190, 30)
-        Me.RadioButtonIngresos.TabIndex = 0
-        Me.RadioButtonIngresos.Text = "Ingresos"
-        Me.RadioButtonIngresos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.RadioButtonIngresos.UseVisualStyleBackColor = True
+        Me.bttn_Login.BackColor = System.Drawing.SystemColors.Control
+        Me.bttn_Login.FlatAppearance.BorderColor = System.Drawing.Color.Black
+        Me.bttn_Login.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White
+        Me.bttn_Login.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White
+        Me.bttn_Login.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bttn_Login.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bttn_Login.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.bttn_Login.Location = New System.Drawing.Point(3, 326)
+        Me.bttn_Login.Name = "bttn_Login"
+        Me.bttn_Login.Size = New System.Drawing.Size(190, 30)
+        Me.bttn_Login.TabIndex = 5
+        Me.bttn_Login.TabStop = False
+        Me.bttn_Login.Text = "Login"
+        Me.bttn_Login.UseVisualStyleBackColor = False
         '
         'MenuStripPrincipal
         '
         Me.MenuStripPrincipal.Dock = System.Windows.Forms.DockStyle.None
-        Me.MenuStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem})
+        Me.MenuStripPrincipal.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.EditarToolStripMenuItem, Me.UsuariosToolStripMenuItem})
         Me.MenuStripPrincipal.Location = New System.Drawing.Point(0, 0)
         Me.MenuStripPrincipal.Name = "MenuStripPrincipal"
-        Me.MenuStripPrincipal.Size = New System.Drawing.Size(982, 24)
+        Me.MenuStripPrincipal.Size = New System.Drawing.Size(1047, 24)
         Me.MenuStripPrincipal.TabIndex = 0
         Me.MenuStripPrincipal.Text = "MenuStrip1"
         '
         'ArchivoToolStripMenuItem
         '
-        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SalirToolStripMenuItem})
+        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CerrarTrimestreToolStripMenuItem, Me.SalirToolStripMenuItem})
+        Me.ArchivoToolStripMenuItem.Enabled = False
         Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
         Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(60, 20)
         Me.ArchivoToolStripMenuItem.Text = "&Archivo"
         '
+        'CerrarTrimestreToolStripMenuItem
+        '
+        Me.CerrarTrimestreToolStripMenuItem.Name = "CerrarTrimestreToolStripMenuItem"
+        Me.CerrarTrimestreToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
+        Me.CerrarTrimestreToolStripMenuItem.Text = "Cerrar Trimestre"
+        '
         'SalirToolStripMenuItem
         '
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(96, 22)
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(159, 22)
         Me.SalirToolStripMenuItem.Text = "&Salir"
+        '
+        'EditarToolStripMenuItem
+        '
+        Me.EditarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SeccionalToolStripMenuItem})
+        Me.EditarToolStripMenuItem.Enabled = False
+        Me.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem"
+        Me.EditarToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
+        Me.EditarToolStripMenuItem.Text = "Editar"
+        '
+        'SeccionalToolStripMenuItem
+        '
+        Me.SeccionalToolStripMenuItem.Name = "SeccionalToolStripMenuItem"
+        Me.SeccionalToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.SeccionalToolStripMenuItem.Text = "Seccional"
+        '
+        'UsuariosToolStripMenuItem
+        '
+        Me.UsuariosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdministrarUsuariosToolStripMenuItem})
+        Me.UsuariosToolStripMenuItem.Enabled = False
+        Me.UsuariosToolStripMenuItem.Name = "UsuariosToolStripMenuItem"
+        Me.UsuariosToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
+        Me.UsuariosToolStripMenuItem.Text = "Usuarios"
+        '
+        'AdministrarUsuariosToolStripMenuItem
+        '
+        Me.AdministrarUsuariosToolStripMenuItem.Name = "AdministrarUsuariosToolStripMenuItem"
+        Me.AdministrarUsuariosToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.AdministrarUsuariosToolStripMenuItem.Text = "Administrar Usuarios"
         '
         'ErrorProvider
         '
@@ -244,7 +294,7 @@ Partial Class Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(982, 511)
+        Me.ClientSize = New System.Drawing.Size(1047, 511)
         Me.Controls.Add(Me.ToolStripContainerPrincipal)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStripPrincipal
@@ -261,7 +311,6 @@ Partial Class Principal
         Me.StatusStripPrincipal.ResumeLayout(False)
         Me.StatusStripPrincipal.PerformLayout()
         Me.SplitContainerPrincipal.Panel1.ResumeLayout(False)
-        Me.SplitContainerPrincipal.Panel1.PerformLayout()
         CType(Me.SplitContainerPrincipal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainerPrincipal.ResumeLayout(False)
         Me.MenuStripPrincipal.ResumeLayout(False)
@@ -276,14 +325,19 @@ Partial Class Principal
     Friend WithEvents SplitContainerPrincipal As System.Windows.Forms.SplitContainer
     Friend WithEvents ArchivoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SalirToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents RadioButtonIngresos As System.Windows.Forms.RadioButton
     Friend WithEvents stat_Label As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents stat_Bar As System.Windows.Forms.ToolStripProgressBar
-    Friend WithEvents RadioButtonEgresos As System.Windows.Forms.RadioButton
     Friend WithEvents ErrorProvider As System.Windows.Forms.ErrorProvider
     Friend WithEvents TStripLabelSaldo As ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
-    Friend WithEvents RadioButtonABMAdmin As RadioButton
-    Friend WithEvents RadioButtonVerReporte As RadioButton
-    Friend WithEvents RadioButtonSubirReporte As RadioButton
+    Friend WithEvents EditarToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UsuariosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AdministrarUsuariosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SeccionalToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents bttn_Login As Button
+    Friend WithEvents btn_Ingresos As Button
+    Friend WithEvents btn_Egresos As Button
+    Friend WithEvents btn_VerReporte As Button
+    Friend WithEvents btn_Administrar As Button
+    Friend WithEvents CerrarTrimestreToolStripMenuItem As ToolStripMenuItem
 End Class

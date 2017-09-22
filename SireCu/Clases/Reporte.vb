@@ -1,84 +1,19 @@
-﻿Imports System.Data.SqlServerCe
+﻿Imports MySql.Data.MySqlClient
 
 Module Reporte
 
-
-    'Public Sub CrearRepEgreso(ByVal trimestre As String, ByVal año As Integer, ByVal seccional As Integer, ByVal central As Integer)
-
-    '    Dim idTrimestre As Integer = obtenerID("Trimestres", "nombre", trimestre)
-    '    Dim idReporteTrimestral = existReporte(año, idTrimestre)
-    '    Dim sqlTotEgresoSec As String = ""
-    '    Dim sqlTotEgresoCen As String = ""
-
-    '    Select Case trimestre
-    '        Case "Primero"
-    '            sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & seccional &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 1 And 3 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 1 And 3 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '            sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & central &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 1 And 3 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 1 And 3 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '        Case "Segundo"
-    '            sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & seccional &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 4 And 6 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 4 And 6 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '            sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & central &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 4 And 6 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 4 And 6 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '        Case "Tercero"
-    '            sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & seccional &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 7 And 7 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 7 And 9 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '            sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & central &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 7 And 9 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 7 And 9 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '        Case "Cuarto"
-    '            sqlTotEgresoSec = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & seccional &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 10 And 12 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 10 And 12 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '            sqlTotEgresoCen = "SELECT SUM(monto) FROM Egresos 
-    '               WHERE seccional_id = " & central &
-    '               " AND ((DATEPART(Month, [fecha]) BETWEEN 10 And 12 AND DATEPART(year, [fecha]) = " & año & ")
-    '                OR (DATEPART(Month, [mes_reintegro]) BETWEEN 10 And 12 AND DATEPART(year, [mes_reintegro]) = " & año & "))"
-    '    End Select
-
-    '    Dim resultadoConsulta = consultarES(sqlTotEgresoSec, Principal.command)
-    '    Dim totalEgresoSec As Double = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
-    '    resultadoConsulta = consultarES(sqlTotEgresoCen, Principal.command)
-    '    Dim totalEgresoCen As Double = IIf(IsDBNull(resultadoConsulta), 0, resultadoConsulta)
-
-    '    'Reporte Egreso Seccional
-    '    Principal.query = "INSERT INTO ReportesEgresos 
-    '                                       (reporte_trimestre_id, seccional_id, total) 
-    '                                        VALUES 
-    '                                        (" & idReporteTrimestral & "," & seccional & "," & totalEgresoSec & ")"
-    '    consultarNQ(Principal.query, Principal.command)
-    '    'Reporte Egreso Central
-    '    Principal.query = "INSERT INTO ReportesEgresos 
-    '                                       (reporte_trimestre_id, seccional_id, total) 
-    '                                        VALUES 
-    '                                        (" & idReporteTrimestral & "," & central & "," & totalEgresoCen & ")"
-    '    consultarNQ(Principal.query, Principal.command)
-
-    'End Sub
+    Dim command As New MySqlCommand()
+    Dim dt As DataTable
 
 #Region "Crear Reportes"
 
     'REPORTE INGRESOS-GASTOS
-    Public Sub generarRepIngGast(ByVal trimestre As String, ByVal año As Integer)
+    Public Function generarRepIngGast(ByVal trimestre As String, ByVal año As Integer, Optional ByVal subir As Boolean = False)
 
-        ' 1) Obtener Saldo Inicial
-        ' 2) Obtener total Ingresos
-        ' 3) Obtener total Egresos
-        ' 4) Obtener Saldo Final
-        ' 5) Generar la vista
+        ' 1) Obtener Saldo Inicial y Saldo Final
+        ' 2) Obtener Total Ingresos
+        ' 3) Obtener Total Egresos
+        ' 4) Generar la vista o Subir reporte
 
 
         Dim idSeccional As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
@@ -87,18 +22,11 @@ Module Reporte
         Dim saldoFinal As Decimal = 0.0
         Dim ingresos As Decimal = 0.0
         Dim egresos As Decimal = 0.0
+        Dim fecha As Date
 
         ' 1)
-        Select Case trimestre
-            Case "Primero"
-                saldoInicial = SaldoActual("Cuarto", (año - 1))
-            Case "Segundo"
-                saldoInicial = SaldoActual("Primero", año)
-            Case "Tercero"
-                saldoInicial = SaldoActual("Segundo", año)
-            Case "Cuarto"
-                saldoInicial = SaldoActual("Tercero", año)
-        End Select
+        Dim saldos() As Double = getSaldos(trimestre, año)
+        saldoInicial = saldos(0)
 
         ' 2)
         ingresos = obtenerIngresos(trimestre, año)
@@ -110,46 +38,99 @@ Module Reporte
         saldoFinal = ingresos - egresos
 
         '5)
-        Dim nuevo_reporte As New ReporteIngresoGasto
-        nuevo_reporte.trimestre = trimestre
-        nuevo_reporte.año = año
-        nuevo_reporte.cargarGrid(saldoInicial, saldoFinal, ingresos, egresos)
-        nuevo_reporte.Show()
 
-    End Sub
+        If subir = True Then
+
+            Dim idTrimestreSQL As Integer = obtenerIDSQL("trimestres", "nombre", trimestre)
+            Dim seccional As String = obtenerSeccional()
+            Dim idSeccionalSQL = obtenerIDSQL("seccionales", "nombre", seccional)
+
+            Select Case trimestre
+                Case "Primero"
+                    fecha = CDate("01/01/" & año)
+                Case "Segundo"
+                    fecha = CDate("01/04/" & año)
+                Case "Tercero"
+                    fecha = CDate("01/07/" & año)
+                Case "Cuarto"
+                    fecha = CDate("01/10/" & año)
+            End Select
+
+            Principal.query = "INSERT INTO reportes_trimestrales (" &
+            "seccional_id, trimestre_id, fecha, saldo_inicial, ingresos, egresos, saldo_final)" &
+            " VALUES (@sec, @trim, @fecha, @ini, @ing, @egre, @fin)"
+            command.Parameters.Clear()
+            command.Parameters.AddWithValue("@sec", idSeccionalSQL)
+            command.Parameters.AddWithValue("@trim", idTrimestreSQL)
+            command.Parameters.AddWithValue("@fecha", fecha)
+            command.Parameters.AddWithValue("@ini", saldoInicial)
+            command.Parameters.AddWithValue("@ing", ingresos)
+            command.Parameters.AddWithValue("@egre", egresos)
+            command.Parameters.AddWithValue("@fin", saldoFinal)
+
+            consultarMySQL(Principal.query, command)
+
+            Dim id As String = "SELECT id FROM reportes_trimestrales WHERE YEAR(fecha)='" & año &
+            "' AND trimestre_id='" & idTrimestreSQL & "' AND seccional_id='" & idSeccionalSQL & "'"
+            dt = consultarReaderSQL(id)
+
+            Return (dt.Rows(0).Item("id"))
+
+        Else
+            Dim nuevo_reporte As New ReporteIngresoGasto
+            nuevo_reporte.trimestre = trimestre
+            nuevo_reporte.año = año
+            nuevo_reporte.cargarGrid(saldoInicial, saldoFinal, ingresos, egresos)
+            nuevo_reporte.Show()
+            Return (Nothing)
+        End If
+
+    End Function
     'REPORTE INGRESOS
-    Public Sub generarRepIngresos(ByVal trimestre As String, ByVal año As Integer)
+    Public Sub generarRepIngresos(ByVal trimestre As String, ByVal año As Integer, Optional ByVal subir As Boolean = False, Optional ByVal idReporteIngGast As Integer = 0)
 
         ' 1) Obtener los 3 Ingresos de cada mes del trimestre
-        ' 2) Obtener la coparticipacion (Total egresos tipo gasto "Coparticipacion")
-        ' 3) Generar la vista
+        ' 2) Generar la vista o Subir reporte
 
         ' 1)
         Dim ingresos As DataTable = obtenerIngresos(trimestre, año, "meses")
 
         ' 2)
-        Dim catID As Integer = obtenerID("CategoriasGastos", "nombre", "Coparticipacion")
-        Dim seccionalID As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
-        Dim copart As Double() = obtenerEgresosCategorias(trimestre, catID, año, seccionalID)
+        If subir = True Then
 
-        ' 3)
-        Dim nuevo_reporte As New ReporteIngreso
-        nuevo_reporte.trimestre = trimestre
-        nuevo_reporte.año = año
-        nuevo_reporte.cargarGrid(ingresos, copart)
-        nuevo_reporte.Show()
+            Dim totProv As Double = ingresos.Rows(0).Item("ingresos_prov") + ingresos.Rows(1).Item("ingresos_prov") + ingresos.Rows(2).Item("ingresos_prov")
+            Dim cop As Double = totProv * 0.5
+
+            Principal.query = "INSERT INTO reportes_ingresos (" &
+            "reporte_trimestral_id, total_provincial, coparticipacion, total_general)" &
+            " VALUES (@repT, @totP, @cop, @totG)"
+            command.Parameters.Clear()
+            command.Parameters.AddWithValue("@repT", idReporteIngGast)
+            command.Parameters.AddWithValue("@totP", totProv)
+            command.Parameters.AddWithValue("@cop", cop)
+            command.Parameters.AddWithValue("@totG", obtenerIngresos(trimestre, año, "full"))
+
+            consultarMySQL(Principal.query, command)
+
+        Else
+
+            Dim nuevo_reporte As New ReporteIngreso
+            nuevo_reporte.trimestre = trimestre
+            nuevo_reporte.año = año
+            nuevo_reporte.cargarGrid(ingresos)
+            nuevo_reporte.Show()
+        End If
+
     End Sub
     'REPORTE EGRESOS SECCIONAL
-    Public Sub generarRepEgreSec(ByVal trimestre As String, ByVal año As Integer)
+    Public Sub generarRepEgreSec(ByVal trimestre As String, ByVal año As Integer, Optional ByVal subir As Boolean = False)
 
         ' 1) Obtener cantidad de Categorias de Gastos
-        ' 2) Generar la vista
-
+        ' 2) Generar la vista o Subir reporte
 
         ' 1)
         Dim sql As String = "SELECT id, nombre FROM CategoriasGastos"
         Dim dt As DataTable = consultarReader(sql)
-
 
         ' 2)
         Dim nuevo_reporte As New ReporteEgresoSec
@@ -160,16 +141,14 @@ Module Reporte
 
     End Sub
     'REPORTE EGRESOS CENTRAL
-    Public Sub generarRepEgreCen(ByVal trimestre As String, ByVal año As Integer)
+    Public Sub generarRepEgreCen(ByVal trimestre As String, ByVal año As Integer, Optional ByVal subir As Boolean = False)
 
         ' 1) Obtener cantidad de Categorias de Gastos
         ' 2) Generar la vista
 
-
         ' 1)
         Dim sql As String = "SELECT id, nombre FROM CategoriasGastos"
         Dim dt As DataTable = consultarReader(sql)
-
 
         ' 2)
         Dim nuevo_reporte As New ReporteEgresoCen
@@ -177,6 +156,125 @@ Module Reporte
         nuevo_reporte.año = año
         nuevo_reporte.cargarGrid(dt)
         nuevo_reporte.Show()
+
+    End Sub
+
+#End Region
+
+#Region "Subir Reporte"
+
+    Public Function HayInternet() As Boolean
+
+        If My.Computer.Network.IsAvailable() Then
+            Try
+                If My.Computer.Network.Ping("8.8.8.8") Then
+                    Dim var As DataTable = consultarReaderSQL("SELECT * FROM reportes_trimestrales")
+                    If TypeOf var Is Object = False Then
+                        Return (False)
+                    Else
+                        Return (True)
+                    End If
+                Else
+                    Return (False)
+                End If
+            Catch exint As Exception
+                Return (False)
+            End Try
+        Else
+            Return (False)
+        End If
+
+    End Function
+    Public Function hayReporte(ByVal año As Integer, ByVal trimestre As String)
+
+        Dim idTrimestre = obtenerIDSQL("trimestres", "nombre", trimestre)
+        Dim seccional As String = obtenerSeccional()
+        Dim idSeccional = obtenerIDSQL("seccionales", "nombre", seccional)
+
+        Dim sql As String = "SELECT * FROM reportes_trimestrales WHERE YEAR(fecha)='" & año &
+            "' AND trimestre_id='" & idTrimestre & "' AND seccional_id='" & idSeccional & "'"
+        dt = consultarReaderSQL(sql)
+
+        If dt.Rows.Count = 0 Then
+            Return (False)
+        Else
+            Return (True)
+        End If
+
+    End Function
+    Public Sub SubirReportes(ByVal trimestre As String, ByVal año As Integer)
+
+        Dim sql As String = ""
+        Dim id As DataTable
+
+        'Subir reportes_trimestrales
+        Dim idReporteIngGast = generarRepIngGast(trimestre, año, True)
+
+        'Subir reportes_ingresos
+        generarRepIngresos(trimestre, año, True, idReporteIngGast)
+
+        'Subir reportes_ingresos_mensuales
+        sql = "SELECT id FROM reportes_ingresos WHERE reporte_trimestral_id = '" & idReporteIngGast & "'"
+        id = consultarReaderSQL(sql)
+        Dim ingresos As DataTable = obtenerIngresos(trimestre, año, "meses")
+        For i = 0 To ingresos.Rows.Count - 1
+            Principal.query = "INSERT INTO reportes_ingresos_mensuales (" &
+            "reporte_ingreso_id, mes, ingresos_provincial, ingresos_central, ingresos_otros)" &
+            " VALUES (@rep, @mes, @IP, @IC, @IO)"
+            command.Parameters.Clear()
+            command.Parameters.AddWithValue("@rep", id.Rows(0).Item("id"))
+            command.Parameters.AddWithValue("@mes", ingresos.Rows(i).Item("fecha"))
+            command.Parameters.AddWithValue("@IP", ingresos.Rows(i).Item("ingresos_prov"))
+            command.Parameters.AddWithValue("@IC", ingresos.Rows(i).Item("ingresos_central"))
+            command.Parameters.AddWithValue("@IO", ingresos.Rows(i).Item("ingresos_otros"))
+            consultarMySQL(Principal.query, command)
+        Next
+
+        'Subir reportes_egresos
+        Dim totSec() As Double = obtenerEgresosTotales(trimestre, año, "seccional", obtenerSeccional())
+        Dim totCen() As Double = obtenerEgresosTotales(trimestre, año, "seccional")
+        Principal.query = "INSERT INTO reportes_egresos (" &
+            "reporte_trimestral_id, total, total_central)" &
+            " VALUES (@idrep, @total, @totalC)"
+        command.Parameters.Clear()
+        command.Parameters.AddWithValue("@idrep", idReporteIngGast)
+        command.Parameters.AddWithValue("@total", totSec(0) + totSec(1) + totSec(2))
+        command.Parameters.AddWithValue("@totalC", totCen(0) + totCen(1) + totCen(2))
+        consultarMySQL(Principal.query, command)
+
+        'Subir reportes_egresos_categorias
+        sql = "SELECT id FROM reportes_egresos WHERE reporte_trimestral_id = '" & idReporteIngGast & "'"
+        id = consultarReaderSQL(sql)
+        sql = "SELECT id, nombre FROM CategoriasGastos"
+        Dim cat As DataTable = consultarReader(sql)
+        Dim catSec() As Double
+        Dim catCen() As Double
+        Dim idCen As Integer = obtenerID("Seccionales", "nombre", "UDA Central")
+        Dim idSec As Integer = obtenerID("Seccionales", "nombre", "UDA Central", True)
+        For i = 0 To cat.Rows.Count - 1
+            If (LCase(cat.Rows(i).Item("nombre")) = "aplicables a coparticipacion") Then
+                catSec = obtenerEgresosTotales(trimestre, año, "seccional", "UDA Central")
+                catCen = {0, 0, 0}
+            Else
+                catSec = obtenerEgresosCategorias(trimestre, cat.Rows(i).Item("id"), año, idSec)
+                catCen = obtenerEgresosCategorias(trimestre, cat.Rows(i).Item("id"), año, idCen)
+            End If
+            Principal.query = "INSERT INTO reportes_egresos_categorias (" &
+            "reporte_egreso_id, categoria_gasto_id, total_mes_1, total_mes_2, total_mes_3," &
+            " total_mes_1_central, total_mes_2_central, total_mes_3_central)" &
+            " VALUES (@idrep, @idcat, @tot1, @tot2, @tot3, @tot1c, @tot2c, @tot3c)"
+            command.Parameters.Clear()
+            command.Parameters.AddWithValue("@idrep", idReporteIngGast)
+            command.Parameters.AddWithValue("@idcat", cat.Rows(i).Item("id"))
+            command.Parameters.AddWithValue("@tot1", catSec(0))
+            command.Parameters.AddWithValue("@tot2", catSec(1))
+            command.Parameters.AddWithValue("@tot3", catSec(2))
+            command.Parameters.AddWithValue("@tot1c", catCen(0))
+            command.Parameters.AddWithValue("@tot2c", catCen(1))
+            command.Parameters.AddWithValue("@tot3c", catCen(2))
+            consultarMySQL(Principal.query, command)
+        Next
+
 
     End Sub
 
