@@ -71,15 +71,18 @@ Public Class ABMUsuarios
             Exit Sub
         End If
 
-        'Si existe el usuario, preguntamos por modificarlo
-        Dim modificar As Boolean = 0
-        If (exist("Usuarios", "usuario", tb_Usuario.Text) = True) Then
-            modificar = 1
-        End If
-
         Select Case btn_Guardar.Text
             Case "Actualizar"
-                If (MsgBox("Quiere Modificar al usuario " & tb_Usuario.Text & "?",
+
+                If (exist("Usuarios", "usuario", tb_Usuario.Text) = True) Then
+                    If LCase(tb_Usuario.Text) <> LCase(DGVAdmin.CurrentRow.Cells(1).Value) Then
+                        MsgBox("El nombre de usuario ingresado ya se encuentra utilizado." &
+                           vbCrLf & "Por favor, intentelo con otro nuevamente.", MsgBoxStyle.Exclamation, "Usuario Inválido")
+                        Exit Sub
+                    End If
+                End If
+
+                If (MsgBox("Quiere Modificar al usuario " & DGVAdmin.CurrentRow.Cells(1).Value & "?",
                          MsgBoxStyle.OkCancel, "Modificar?") = MsgBoxResult.Ok) Then
 
                     Principal.query = "UPDATE [Usuarios] SET " &
@@ -94,6 +97,13 @@ Public Class ABMUsuarios
                     Exit Sub
                 End If
             Case "Guardar"
+
+                If (exist("Usuarios", "usuario", tb_Usuario.Text) = True) Then
+                    MsgBox("El nombre de usuario ingresado ya se encuentra utilizado." &
+                           vbCrLf & "Por favor, intentelo con otro nuevamente.", MsgBoxStyle.Exclamation, "Usuario Inválido")
+                    Exit Sub
+                End If
+
                 If (MsgBox("Guardar nuevo usuario?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
 
                     Principal.query = "INSERT INTO [Usuarios] (usuario,contraseña, rol) 

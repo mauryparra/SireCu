@@ -49,7 +49,7 @@ Public Class VerReporte
 
                 End If
 
-                    Else
+            Else
                 MsgBox("No se pudo establecer la conexción con el servidor." & vbCrLf &
                        "Por favor, intentelo mas tarde.", MsgBoxStyle.Exclamation, "No se estableció conexión")
                 Exit Sub
@@ -121,6 +121,12 @@ Public Class VerReporte
 
         End If
 
+    End Sub
+    Private Sub VerReporte_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Select Case tipoDeUsuario(Principal.userLogueado)
+            Case "Usuario"
+                btn_Subir.Enabled = False
+        End Select
     End Sub
 
 #End Region

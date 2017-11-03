@@ -681,7 +681,7 @@ Public Class ABMEgresos
     Private Sub cbSeccional_Validating(sender As Object, e As CancelEventArgs) Handles cbSeccional.Validating
         If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
-                                             "Puede agregar una nueva en la seccion Administrar")
+                                             "Puede configurarlo desde el Menú Editar")
             If Not ControlesConErroresAgregar.Contains(sender) Then
                 ControlesConErroresAgregar.Add(sender)
             End If
@@ -823,7 +823,7 @@ Public Class ABMEgresos
     Private Sub ComboBoxSeccional_Validating(sender As Object, e As CancelEventArgs) Handles ComboBoxSeccional.Validating
         If (sender.Text = "") Or (exist("Seccionales", "nombre", sender.Text) = False) Then
             Principal.ErrorProvider.SetError(sender, "Debe ingresar una Seccional correcta." & vbCrLf &
-                                             "Puede agregar una nueva en la seccion Administrar")
+                                             "Puede configurarlo desde el Menú Editar")
             If Not ControlesConErroresModificar.Contains(sender) Then
                 ControlesConErroresModificar.Add(sender)
             End If
