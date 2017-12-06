@@ -110,6 +110,9 @@ Public Class Principal
     End Sub
     Private Sub desloguear()
 
+        ' Se borra la identidad auntenticada en la aplicación
+        My.User.CurrentPrincipal = Nothing
+
         ' Limpiamos todas las pantallas
         SplitContainerPrincipal.Panel2.Controls.Clear()
 

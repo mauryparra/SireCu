@@ -8,11 +8,18 @@ Public Class Login
 
     Private Sub btn_Login_Click(sender As Object, e As EventArgs) Handles btn_Login.Click
 
-        'Validaciones
-        If verificarUsuario(tb_Usuario.Text, tb_Contraseña.Text) Then
+        Dim samplePrincipal As New Usuario.SampleIPrincipal(Me.tb_Usuario.Text, Me.tb_Contraseña.Text)
+        Me.tb_Contraseña.Text = ""
+        If (Not samplePrincipal.Identity.IsAuthenticated) Then
+            ' The user is still not validated.
+            Principal.ErrorProvider.SetError(tb_Contraseña, "Usuario y/o Contraseña Inválido/s")
+        Else
+            ' Update the current principal.
+            My.User.CurrentPrincipal = samplePrincipal
+
             Principal.bttn_Login.Text = "Desloguear"
-            Principal.stat_Label.Text = "Logueado como: " & tb_Usuario.Text
-            Principal.userLogueado = tb_Usuario.Text
+            Principal.stat_Label.Text = "Logueado como: " & My.User.Name
+            Principal.userLogueado = My.User.Name
 
             ActualizarSaldo()
             permisosUsuarios(tb_Usuario.Text)
@@ -20,8 +27,6 @@ Public Class Login
             ' Limpiamos todas las pantallas
             Principal.SplitContainerPrincipal.Panel2.Controls.Clear()
             Principal.AdminPantallas("Home")
-        Else
-            Principal.ErrorProvider.SetError(tb_Contraseña, "Usuario y/o Contraseña Inválido/s")
         End If
 
     End Sub
