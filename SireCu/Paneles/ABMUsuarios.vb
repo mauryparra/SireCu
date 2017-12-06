@@ -63,7 +63,9 @@ Public Class ABMUsuarios
             End If
         Else
             Principal.ErrorProvider.SetError(cb_Rol, "")
-            ControlesConErrores.Remove(cb_Rol)
+            If ControlesConErrores.Contains(cb_Rol) Then
+                ControlesConErrores.Remove(cb_Rol)
+            End If
         End If
 
         If ControlesConErrores.Count > 0 Then
@@ -71,20 +73,30 @@ Public Class ABMUsuarios
             Exit Sub
         End If
 
-        'Si existe el usuario, preguntamos por modificarlo
-        Dim modificar As Boolean = 0
-        If (exist("Usuarios", "usuario", tb_Usuario.Text) = True) Then
-            modificar = 1
-        End If
-
         Select Case btn_Guardar.Text
             Case "Actualizar"
-                If (MsgBox("Quiere Modificar al usuario " & tb_Usuario.Text & "?",
+
+                If (exist("Usuarios", "usuario", tb_Usuario.Text) = True) Then
+                    If LCase(tb_Usuario.Text) <> LCase(DGVAdmin.CurrentRow.Cells(1).Value) Then
+                        MsgBox("El nombre de usuario ingresado ya se encuentra utilizado." &
+                           vbCrLf & "Por favor, intentelo con otro nuevamente.", MsgBoxStyle.Exclamation, "Usuario Inválido")
+                        Exit Sub
+                    End If
+                End If
+
+                If (MsgBox("Quiere Modificar al usuario " & DGVAdmin.CurrentRow.Cells(1).Value & "?",
                          MsgBoxStyle.OkCancel, "Modificar?") = MsgBoxResult.Ok) Then
+
+                    Dim contraseña As String = ""
+                    If tb_Contraseña.Text = Usuario.GetHashedPassword(DGVAdmin.CurrentRow.Cells(1).Value) Then
+                        contraseña = tb_Contraseña.Text
+                    Else
+                        contraseña = Usuario.CreateHashedPassword(tb_Contraseña.Text, Usuario.GetSalt(DGVAdmin.CurrentRow.Cells(1).Value))
+                    End If
 
                     Principal.query = "UPDATE [Usuarios] SET " &
                                         "usuario = '" & tb_Usuario.Text &
-                                        "' ,contraseña = '" & tb_Contraseña.Text &
+                                        "' ,contraseña = '" & contraseña &
                                         "' ,rol = '" & cb_Rol.Text &
                                         "' WHERE id= '" & DGVAdmin.CurrentRow.Cells(0).Value & "'"
                     consultarNQ(Principal.query, Principal.command)
@@ -94,12 +106,22 @@ Public Class ABMUsuarios
                     Exit Sub
                 End If
             Case "Guardar"
+
+                If (exist("Usuarios", "usuario", tb_Usuario.Text) = True) Then
+                    MsgBox("El nombre de usuario ingresado ya se encuentra utilizado." &
+                           vbCrLf & "Por favor, intentelo con otro nuevamente.", MsgBoxStyle.Exclamation, "Usuario Inválido")
+                    Exit Sub
+                End If
+
                 If (MsgBox("Guardar nuevo usuario?", MsgBoxStyle.OkCancel, "Guardar?") = MsgBoxResult.Ok) Then
 
-                    Principal.query = "INSERT INTO [Usuarios] (usuario,contraseña, rol) 
+                    Dim salt As String = Usuario.CreateRandomSalt()
+                    Dim contraseña As String = Usuario.CreateHashedPassword(tb_Contraseña.Text, salt)
+
+                    Principal.query = "INSERT INTO [Usuarios] (usuario, contraseña, rol, salt) 
                                 VALUES ('" &
-                                     tb_Usuario.Text & "', '" & tb_Contraseña.Text &
-                                     "', '" & cb_Rol.Text & "')"
+                                     tb_Usuario.Text & "', '" & contraseña &
+                                     "', '" & cb_Rol.Text & "', '" & salt & "')"
                     consultarNQ(Principal.query, Principal.command)
 
                     MsgBox("Guardado Correctamente!", MsgBoxStyle.Information, "Guardado")
@@ -214,6 +236,7 @@ Public Class ABMUsuarios
         DGVAdmin.Columns.Item("usuario").HeaderText = "Usuario"
         DGVAdmin.Columns.Item("contraseña").HeaderText = "Contraseña"
         DGVAdmin.Columns.Item("rol").HeaderText = "Rol"
+        DGVAdmin.Columns.Item("salt").Visible = False
 
     End Sub
 
