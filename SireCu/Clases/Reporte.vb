@@ -265,7 +265,8 @@ Module Reporte
             " VALUES (@idrep, @idcat, @tot1, @tot2, @tot3, @tot1c, @tot2c, @tot3c)"
             command.Parameters.Clear()
             command.Parameters.AddWithValue("@idrep", idReporteIngGast)
-            command.Parameters.AddWithValue("@idcat", cat.Rows(i).Item("id"))
+            Dim var = obtenerIDSQL("categorias_gastos", "nombre", cat.Rows(i).Item("nombre"))
+            command.Parameters.AddWithValue("@idcat", var)
             command.Parameters.AddWithValue("@tot1", catSec(0))
             command.Parameters.AddWithValue("@tot2", catSec(1))
             command.Parameters.AddWithValue("@tot3", catSec(2))
